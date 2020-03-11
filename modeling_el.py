@@ -13,6 +13,7 @@ class BertForEntityLinking(BertPreTrainedModel):
         self.bert = BertModel(config)
         self.dropout = nn.Dropout(config.hidden_dropout_prob)
         self.classifier = nn.Linear(config.hidden_size, config.num_labels)
+        self.scorer = nn.CosineSimilarity()
 
         self.init_weights()
 
@@ -25,19 +26,24 @@ class BertForEntityLinking(BertPreTrainedModel):
         head_mask=None,
         inputs_embeds=None,
         labels=None,
-        target_candidate_ids=None,
+        target_entity_ids=None,
         candidates_info=None,
         tokenizer=None,
+        mode=None,
     ):
         r"""
         labels (:obj:`torch.LongTensor` of shape :obj:`(batch_size, sequence_length)`, `optional`, defaults to :obj:`None`):
             Labels for computing the token classification loss.
             Indices should be in ``[0, ..., config.num_labels - 1]``.
+        target_entity_ids (:obj:`torch.LongTensor` of shape :obj:`(batch_size, sequence_length)`)
+            IDs of the target candidates corresponding to each mention span. Outside the mention span, it is -100
 
     Returns:
         :obj:`tuple(torch.FloatTensor)` comprising various elements depending on the configuration (:class:`~transformers.BertConfig`) and inputs:
         loss (:obj:`torch.FloatTensor` of shape :obj:`(1,)`, `optional`, returned when ``labels`` is provided) :
-            Classification loss.
+            NER Classification loss + EL ranking loss
+        predicted_ranks (:obj:`torch.LongTensor`) of shape :obj:`(1,)`, returned when ``mode == 'eval'``
+            Ranks of the target candidate entities
         scores (:obj:`torch.FloatTensor` of shape :obj:`(batch_size, sequence_length, config.num_labels)`)
             Classification scores (before SoftMax).
         hidden_states (:obj:`tuple(torch.FloatTensor)`, `optional`, returned when ``config.output_hidden_states=True``):
@@ -79,18 +85,86 @@ class BertForEntityLinking(BertPreTrainedModel):
 
         sequence_output = outputs[0]
 
-        sequence_output = self.dropout(sequence_output)
-        logits = self.classifier(sequence_output)
+        # ************** <<<<<< Entity Linking >>>>>> ********************
+        entities, entities_to_idx, idx_to_entities = candidates_info
+        def get_candidate_embedding(candidate_name):
+            tokens = tokenizer.tokenize(candidate_name)
+            token_ids = tokenizer.convert_tokens_to_ids(tokens)
+            token_ids = torch.LongTensor(token_ids).cuda()
+            with torch.no_grad():
+                # Candidate embeddings are obtained from the input word embedding layer of BERT
+                token_embeddings = self.bert.embeddings.word_embeddings(token_ids)
+                candidate_embedding = token_embeddings.mean(dim=0).unsqueeze(0)
+            return candidate_embedding
 
+
+        # Get the mention spans --> mentions --> mention embeddings
+        mention_spans = target_entity_ids != -100
+        mentions = target_entity_ids[mention_spans]
+        all_mention_token_embeddings = sequence_output[mention_spans]  # last hidden state of BERT
+
+        mention_span_token_embeddings = {}
+        prev_mention_id = -100
+        for i in range(mentions.size(0)):
+            current_mention_id = mentions[i].item()
+            if current_mention_id != prev_mention_id:
+                mention_span_token_embeddings[current_mention_id] = []
+            mention_span_token_embeddings[current_mention_id].append(all_mention_token_embeddings[i].unsqueeze(0))
+            prev_mention_id = current_mention_id
+
+        if mode == 'train':
+            el_loss = []
+            for k in mention_span_token_embeddings:
+                # Mention Embedding by mean pooling the embeddings of the mention span tokens
+                mention_embedding = torch.cat(mention_span_token_embeddings[k], dim=0).mean(dim=0).unsqueeze(0)
+
+                # Get the embedding of the positive candidate
+                target_entity = idx_to_entities[k]
+                positive_candidate = entities[target_entity]['label']
+                p_c_embedding = get_candidate_embedding(positive_candidate)
+
+                # Get the embeddings of the negative candidates
+                negative_candidate_embeddings = []
+                for c in entities[target_entity]['candidates']:
+                    if c != target_entity:
+                        negative_candidate = entities[target_entity]['candidates'][c]
+                        n_c_embedding = get_candidate_embedding(negative_candidate)
+                        negative_candidate_embeddings.append(n_c_embedding)
+
+                # Ranking Loss
+                mention_loss = 0.0
+                mention_loss += (1.0 - self.scorer(mention_embedding, p_c_embedding))
+                for i, n_c_embedding in enumerate(negative_candidate_embeddings):
+                    mention_loss += max(0, self.scorer(mention_embedding, n_c_embedding))
+                el_loss.append(mention_loss)
+            el_loss = torch.cat(el_loss, dim=0).mean() # ???
+
+        elif mode == 'eval':
+            predicted_ranks = []
+            for k in mention_span_token_embeddings:
+                # Mention Embedding by mean pooling the embeddings of the mention span tokens
+                mention_embedding = torch.cat(mention_span_token_embeddings[k], dim=0).mean(dim=0).unsqueeze(0)
+
+                target_entity = idx_to_entities[k]
+                candidate_scores = {}
+                for c in entities[target_entity]['candidates']:
+                    candidate = entities[target_entity]['candidates'][c]
+                    c_embedding = get_candidate_embedding(candidate)
+                    candidate_scores[c] = self.scorer(mention_embedding, c_embedding)[0].item()
+
+                # Rank the scores and get the ranking of the target candidate
+                candidate_scores = sorted(candidate_scores.items(), key=lambda x: x[1])
+                for i, (key, value) in enumerate(candidate_scores):
+                    if key == entities[target_entity]['label']:
+                        predicted_ranks.append(i+1)
+            predicted_ranks = torch.LongTensor(predicted_ranks).cuda()
+
+        # **********************  <<<<< Named Entity Recognition >>>>>> ************************
+        sequence_output = self.dropout(sequence_output)
+        logits = self.classifier(sequence_output)  # for NER
         outputs = (logits,) + outputs[2:]  # add hidden states and attention if they are here
 
-        # Entity Linking
-        candidates, candidates_to_idx, idx_to_candidates = candidates_info
-
-
-
-
-        # Mention Detection
+        # For NER loss (classification loss)
         if labels is not None:
             loss_fct = CrossEntropyLoss()
             # Only keep active parts of the loss
@@ -98,9 +172,14 @@ class BertForEntityLinking(BertPreTrainedModel):
                 active_loss = attention_mask.view(-1) == 1
                 active_logits = logits.view(-1, self.num_labels)[active_loss]
                 active_labels = labels.view(-1)[active_loss]
-                loss = loss_fct(active_logits, active_labels)
+                ner_loss = loss_fct(active_logits, active_labels)
             else:
-                loss = loss_fct(logits.view(-1, self.num_labels), labels.view(-1))
-            outputs = (loss,) + outputs
+                ner_loss = loss_fct(logits.view(-1, self.num_labels), labels.view(-1))
 
-        return outputs  # (loss), scores, (hidden_states), (attentions)
+        # Final outputs
+        if mode == 'train':
+            outputs = (ner_loss + el_loss,) + outputs
+        elif mode == 'eval':
+            outputs = (ner_loss,) + (predicted_ranks,) + outputs
+
+        return outputs  # (loss), (predicted_ranks), ner_scores, (hidden_states), (attentions)

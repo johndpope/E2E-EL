@@ -12,7 +12,7 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-# limitations under the License.
+# limitations under the License.cd
 """ Fine-tuning the library models for named entity recognition on CoNLL-2003 (Bert or Roberta). """
 
 
@@ -192,7 +192,7 @@ def train(args, train_dataset, model, tokenizer, labels, candidates_info, pad_to
 
             model.train()
             batch = tuple(t.to(args.device) for t in batch)
-            inputs = {"input_ids": batch[0], "attention_mask": batch[1], "labels": batch[3], "target_candidate_ids": batch[4], "candidates_info": candidates_info, "tokenizer": tokenizer}
+            inputs = {"input_ids": batch[0], "attention_mask": batch[1], "labels": batch[3], "target_entity_ids": batch[4], "candidates_info": candidates_info, "tokenizer": tokenizer, "mode": 'train'}
             if args.model_type != "distilbert":
                 inputs["token_type_ids"] = (
                     batch[2] if args.model_type in ["bert", "xlnet"] else None
@@ -287,19 +287,20 @@ def evaluate(args, model, tokenizer, labels, candidates_info, pad_token_label_id
     nb_eval_steps = 0
     preds = None
     out_label_ids = None
+    ranks = None
     model.eval()
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
         batch = tuple(t.to(args.device) for t in batch)
 
         with torch.no_grad():
-            inputs = {"input_ids": batch[0], "attention_mask": batch[1], "labels": batch[3], "target_candidate_ids": batch[4], "candidates_info": candidates_info, "tokenizer": tokenizer}
+            inputs = {"input_ids": batch[0], "attention_mask": batch[1], "labels": batch[3], "target_entity_ids": batch[4], "candidates_info": candidates_info, "tokenizer": tokenizer, "mode": "eval"}
 
             if args.model_type != "distilbert":
                 inputs["token_type_ids"] = (
                     batch[2] if args.model_type in ["bert", "xlnet"] else None
                 )  # XLM and RoBERTa don"t use segment_ids
             outputs = model(**inputs)
-            tmp_eval_loss, logits = outputs[:2]
+            tmp_eval_loss, predicted_ranks,  logits = outputs[:3]
 
             if args.n_gpu > 1:
                 tmp_eval_loss = tmp_eval_loss.mean()  # mean() to average on multi-gpu parallel evaluating
@@ -312,6 +313,12 @@ def evaluate(args, model, tokenizer, labels, candidates_info, pad_token_label_id
         else:
             preds = np.append(preds, logits.detach().cpu().numpy(), axis=0)
             out_label_ids = np.append(out_label_ids, inputs["labels"].detach().cpu().numpy(), axis=0)
+
+        predicted_ranks = predicted_ranks.cpu().numpy().tolist()
+        if ranks is None:
+            ranks = predicted_ranks
+        else:
+            ranks += predicted_ranks
 
     eval_loss = eval_loss / nb_eval_steps
     preds = np.argmax(preds, axis=2)
@@ -327,11 +334,23 @@ def evaluate(args, model, tokenizer, labels, candidates_info, pad_token_label_id
                 out_label_list[i].append(label_map[out_label_ids[i][j]])
                 preds_list[i].append(label_map[preds[i][j]])
 
+    # Calculate Precision@1 and MAP
+    p_1 = 0
+    for i in range(len(ranks)):
+        if ranks[i] == 1:
+            p_1 += 1
+
+    all_precisions = [1.0/r for r in ranks]
+    all_precisions = np.array(all_precisions)
+    mean_avg_precision = sum(all_precisions) / all_precisions.shape[0]
+
     results = {
         "loss": eval_loss,
         "precision": precision_score(out_label_list, preds_list),
         "recall": recall_score(out_label_list, preds_list),
         "f1": f1_score(out_label_list, preds_list),
+        "P@1": p_1 / float(len(ranks)),
+        "MAP": mean_avg_precision
     }
 
     logger.info("***** Eval results %s *****", prefix)
@@ -389,8 +408,9 @@ def load_and_cache_examples(args, tokenizer, labels, candidates_info, pad_token_
     all_input_mask = torch.tensor([f.input_mask for f in features], dtype=torch.long)
     all_segment_ids = torch.tensor([f.segment_ids for f in features], dtype=torch.long)
     all_label_ids = torch.tensor([f.label_ids for f in features], dtype=torch.long)
+    all_target_entity_ids = torch.tensor([f.target_entity_ids for f in features], dtype=torch.long)
 
-    dataset = TensorDataset(all_input_ids, all_input_mask, all_segment_ids, all_label_ids)
+    dataset = TensorDataset(all_input_ids, all_input_mask, all_segment_ids, all_label_ids, all_target_entity_ids)
     return dataset
 
 
@@ -669,6 +689,7 @@ def main():
         model = BertForEntityLinking.from_pretrained(args.output_dir)
         model.to(args.device)
         result, predictions = evaluate(args, model, tokenizer, labels, candidates_info,  pad_token_label_id, mode="test")
+
         # Save results
         output_test_results_file = os.path.join(args.output_dir, "test_results.txt")
         with open(output_test_results_file, "w") as writer:
@@ -677,7 +698,7 @@ def main():
         # Save predictions
         output_test_predictions_file = os.path.join(args.output_dir, "test_predictions.txt")
         with open(output_test_predictions_file, "w") as writer:
-            with open(os.path.join(args.data_dir, "test.txt"), "r") as f:
+            with open(os.path.join(args.data_dir, "test.tsv"), "r") as f:
                 example_id = 0
                 for line in f:
                     if line.startswith("-DOCSTART-") or line == "" or line == "\n":

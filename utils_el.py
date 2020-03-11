@@ -46,12 +46,12 @@ class InputExample(object):
 class InputFeatures(object):
     """A single set of features of data."""
 
-    def __init__(self, input_ids, input_mask, segment_ids, label_ids, target_candidate_ids):
+    def __init__(self, input_ids, input_mask, segment_ids, label_ids, target_entity_ids):
         self.input_ids = input_ids
         self.input_mask = input_mask
         self.segment_ids = segment_ids
         self.label_ids = label_ids
-        self.target_candidate_ids = target_candidate_ids
+        self.target_entity_ids = target_entity_ids
 
 
 def read_examples_from_file(data_dir, mode):
@@ -75,9 +75,9 @@ def read_examples_from_file(data_dir, mode):
                 words.append(splits[0])
                 if len(splits) > 2:
                     labels.append(splits[-2].replace("\n", "").strip())
-                    target_candidate = splits[-1].replace("\n", "").strip()
-                    target_candidate = target_candidate.replace("UMLS:", "")
-                    gt_candidates.append(target_candidate)
+                    target_entity = splits[-1].replace("\n", "").strip()
+                    target_entity = target_entity.replace("UMLS:", "")
+                    gt_candidates.append(target_entity)
                 else:
                     # Examples could have no label for mode = "test"
                     labels.append("O")
@@ -121,11 +121,11 @@ def convert_examples_to_features(
 
         tokens = []
         label_ids = []
-        target_candidate_ids = []
+        target_entity_ids = []
         # candidate_tokens = []
         candidates, candidate_to_idx, idx_to_candidate = candidates_info
-        for word, label, target_candidate in zip(example.words, example.labels, example.gt_candidates):
-            # print(word, label, target_candidate)
+        for word, label, target_entity in zip(example.words, example.labels, example.gt_candidates):
+            # print(word, label, target_entity)
             word_tokens = tokenizer.tokenize(word)
             if len(word_tokens) > 0:
                 tokens.extend(word_tokens)
@@ -134,9 +134,9 @@ def convert_examples_to_features(
 
                 # Use the real candidate id for the mention tokens (B and I labeled words) and 0 for the remaining tokens
                 if 'I-' in label or 'B-' in label:
-                    target_candidate_ids.extend([candidate_to_idx[target_candidate]] * len(word_tokens))
+                    target_entity_ids.extend([candidate_to_idx[target_entity]] * len(word_tokens))
                 elif 'O' in label:
-                    target_candidate_ids.extend([pad_token_label_id] * len(word_tokens))
+                    target_entity_ids.extend([pad_token_label_id] * len(word_tokens))
 
 
         # print(">>> Check 1")
@@ -148,7 +148,7 @@ def convert_examples_to_features(
         if len(tokens) > max_seq_length - special_tokens_count:
             tokens = tokens[: (max_seq_length - special_tokens_count)]
             label_ids = label_ids[: (max_seq_length - special_tokens_count)]
-            target_candidate_ids = target_candidate_ids[: (max_seq_length - special_tokens_count)]
+            target_entity_ids = target_entity_ids[: (max_seq_length - special_tokens_count)]
 
         # print(">>> Check 2")
         # print(len(tokens))
@@ -174,24 +174,24 @@ def convert_examples_to_features(
         # the entire model is fine-tuned.
         tokens += [sep_token]
         label_ids += [pad_token_label_id]
-        target_candidate_ids += [pad_token_label_id]
+        target_entity_ids += [pad_token_label_id]
         if sep_token_extra:
             # roberta uses an extra separator b/w pairs of sentences
             tokens += [sep_token]
             label_ids += [pad_token_label_id]
-            target_candidate_ids += [pad_token_label_id]
+            target_entity_ids += [pad_token_label_id]
         segment_ids = [sequence_a_segment_id] * len(tokens)
 
         if cls_token_at_end:
             tokens += [cls_token]
             label_ids += [pad_token_label_id]
             segment_ids += [cls_token_segment_id]
-            target_candidate_ids += [pad_token_label_id]
+            target_entity_ids += [pad_token_label_id]
         else:
             tokens = [cls_token] + tokens
             label_ids = [pad_token_label_id] + label_ids
             segment_ids = [cls_token_segment_id] + segment_ids
-            target_candidate_ids = [pad_token_label_id] + target_candidate_ids
+            target_entity_ids = [pad_token_label_id] + target_entity_ids
 
         input_ids = tokenizer.convert_tokens_to_ids(tokens)
 
@@ -206,23 +206,23 @@ def convert_examples_to_features(
             input_mask = ([0 if mask_padding_with_zero else 1] * padding_length) + input_mask
             segment_ids = ([pad_token_segment_id] * padding_length) + segment_ids
             label_ids = ([pad_token_label_id] * padding_length) + label_ids
-            target_candidate_ids = ([pad_token_label_id] * padding_length) + target_candidate_ids
+            target_entity_ids = ([pad_token_label_id] * padding_length) + target_entity_ids
         else:
             input_ids += [pad_token] * padding_length
             input_mask += [0 if mask_padding_with_zero else 1] * padding_length
             segment_ids += [pad_token_segment_id] * padding_length
             label_ids += [pad_token_label_id] * padding_length
-            target_candidate_ids += [pad_token_label_id] * padding_length
+            target_entity_ids += [pad_token_label_id] * padding_length
 
         assert len(input_ids) == max_seq_length
         assert len(input_mask) == max_seq_length
         assert len(segment_ids) == max_seq_length
-        assert len(target_candidate_ids) == max_seq_length
+        assert len(target_entity_ids) == max_seq_length
         if len(label_ids) != max_seq_length:
             print(ex_index)
             print(len(label_ids))
             print(len(input_ids))
-            print(len(target_candidate_ids))
+            print(len(target_entity_ids))
         assert len(label_ids) == max_seq_length
 
         if ex_index < 5:
@@ -233,10 +233,14 @@ def convert_examples_to_features(
             logger.info("input_mask: %s", " ".join([str(x) for x in input_mask]))
             logger.info("segment_ids: %s", " ".join([str(x) for x in segment_ids]))
             logger.info("label_ids: %s", " ".join([str(x) for x in label_ids]))
-            logger.info("target_candidate_ids: %s", " ".join([str(x) for x in target_candidate_ids]))
+            logger.info("target_entity_ids: %s", " ".join([str(x) for x in target_entity_ids]))
 
         features.append(
-            InputFeatures(input_ids=input_ids, input_mask=input_mask, segment_ids=segment_ids, label_ids=label_ids, target_candidate_ids=target_candidate_ids)
+            InputFeatures(input_ids=input_ids,
+                          input_mask=input_mask,
+                          segment_ids=segment_ids,
+                          label_ids=label_ids,
+                          target_entity_ids=target_entity_ids)
         )
     return features
 
@@ -252,14 +256,14 @@ def get_labels(path):
         return ["O", "B-MISC", "I-MISC", "B-PER", "I-PER", "B-ORG", "I-ORG", "B-LOC", "I-LOC"]
 
 def get_candidates(path):
-    candidates_to_idx = {}
-    idx_to_candidates = {}
+    entities_to_idx = {}
+    idx_to_entities = {}
     with open(path, "r") as f:
-        candidates = json.load(f)
-    for c in candidates:
-        if c not in candidates_to_idx:
-            idx = len(candidates_to_idx)
-            candidates_to_idx[c] = idx
-            idx_to_candidates[idx] = c
-    return (candidates, candidates_to_idx, idx_to_candidates)
+        entities = json.load(f)
+    for e in entities:
+        if e not in entities_to_idx:
+            idx = len(entities_to_idx)
+            entities_to_idx[e] = idx
+            idx_to_entities[idx] = e
+    return entities, entities_to_idx, idx_to_entities
 
