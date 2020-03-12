@@ -30,6 +30,7 @@ from torch.utils.data import DataLoader, RandomSampler, SequentialSampler, Tenso
 from torch.utils.data.distributed import DistributedSampler
 from tqdm import tqdm, trange
 
+
 from transformers import (
     WEIGHTS_NAME,
     AdamW,
@@ -192,14 +193,21 @@ def train(args, train_dataset, model, tokenizer, labels, candidates_info, pad_to
 
             model.train()
             batch = tuple(t.to(args.device) for t in batch)
-            inputs = {"input_ids": batch[0], "attention_mask": batch[1], "labels": batch[3], "target_entity_ids": batch[4], "candidates_info": candidates_info, "tokenizer": tokenizer, "mode": 'train'}
+            inputs = {"input_ids": batch[0], "attention_mask": batch[1], "labels": batch[3], "target_entity_ids": batch[4], "candidates_info": candidates_info, "tokenizer": tokenizer}
             if args.model_type != "distilbert":
                 inputs["token_type_ids"] = (
                     batch[2] if args.model_type in ["bert", "xlnet"] else None
                 )  # XLM and RoBERTa don"t use segment_ids
 
             outputs = model(**inputs)
-            loss = outputs[0]  # model outputs are always tuple in pytorch-transformers (see doc)
+            ner_el_loss = outputs[0]  # model outputs are always tuple in pytorch-transformers (see doc)
+            ner_loss = ner_el_loss[0]
+            el_loss = ner_el_loss[1]
+            loss = ner_loss + el_loss
+
+            # Log the loss using Tensorboard writer
+            tb_writer.add_scalar("batch_NER_loss", ner_loss.mean(dim=0).item(), global_step + 1)
+            tb_writer.add_scalar("batch_EL_loss", el_loss.mean(dim=0).item(), global_step + 1)
 
             if args.n_gpu > 1:
                 loss = loss.mean()  # mean() to average on multi-gpu parallel training
@@ -293,14 +301,14 @@ def evaluate(args, model, tokenizer, labels, candidates_info, pad_token_label_id
         batch = tuple(t.to(args.device) for t in batch)
 
         with torch.no_grad():
-            inputs = {"input_ids": batch[0], "attention_mask": batch[1], "labels": batch[3], "target_entity_ids": batch[4], "candidates_info": candidates_info, "tokenizer": tokenizer, "mode": "eval"}
+            inputs = {"input_ids": batch[0], "attention_mask": batch[1], "labels": batch[3], "target_entity_ids": batch[4], "candidates_info": candidates_info, "tokenizer": tokenizer}
 
             if args.model_type != "distilbert":
                 inputs["token_type_ids"] = (
                     batch[2] if args.model_type in ["bert", "xlnet"] else None
                 )  # XLM and RoBERTa don"t use segment_ids
             outputs = model(**inputs)
-            tmp_eval_loss, predicted_ranks,  logits = outputs[:3]
+            tmp_eval_loss, predicted_ranks, logits = outputs[:3]
 
             if args.n_gpu > 1:
                 tmp_eval_loss = tmp_eval_loss.mean()  # mean() to average on multi-gpu parallel evaluating

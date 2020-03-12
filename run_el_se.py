@@ -342,6 +342,7 @@ def evaluate(args, model, tokenizer, labels, candidates_info, pad_token_label_id
 
     all_precisions = [1.0/r for r in ranks]
     all_precisions = np.array(all_precisions)
+    print(all_precisions)
     mean_avg_precision = sum(all_precisions) / all_precisions.shape[0]
 
     results = {

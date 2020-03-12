@@ -15,8 +15,6 @@ class BertForEntityLinking(BertPreTrainedModel):
         self.classifier = nn.Linear(config.hidden_size, config.num_labels)
         self.static_embedding = nn.Embedding(25419, config.hidden_size) # (num_entities, hidden_size)
         self.scorer = nn.CosineSimilarity()
-
-
         self.init_weights()
 
     def forward(
@@ -154,9 +152,9 @@ class BertForEntityLinking(BertPreTrainedModel):
                     candidate_scores[c] = self.scorer(mention_embedding, c_embedding)[0].item()
 
                 # Rank the scores and get the ranking of the target candidate
-                candidate_scores = sorted(candidate_scores.items(), key=lambda x: x[1])
+                candidate_scores = sorted(candidate_scores.items(), key=lambda x: x[1], reverse=True)
                 for i, (key, value) in enumerate(candidate_scores):
-                    if key == entities[target_entity]['label']:
+                    if key == target_entity:
                         predicted_ranks.append(i+1)
             predicted_ranks = torch.LongTensor(predicted_ranks).cuda()
 
