@@ -166,8 +166,8 @@ def train(args, train_dataset, model, tokenizer, labels, candidates_info, pad_to
     steps_trained_in_current_epoch = 0
     # Check if continuing training from a checkpoint
     if os.path.exists(args.model_name_or_path):
-        # set global_step to gobal_step of last saved checkpoint from model path
-        global_step = int(args.model_name_or_path.split("-")[-1].split("/")[0])
+        # set global_step to global_step of last saved checkpoint from model path
+        global_step = int(args.model_name_or_path.split("/")[-2].split("-")[-1])
         epochs_trained = global_step // (len(train_dataloader) // args.gradient_accumulation_steps)
         steps_trained_in_current_epoch = global_step % (len(train_dataloader) // args.gradient_accumulation_steps)
 
@@ -181,7 +181,7 @@ def train(args, train_dataset, model, tokenizer, labels, candidates_info, pad_to
     train_iterator = trange(
         epochs_trained, int(args.num_train_epochs), desc="Epoch", disable=args.local_rank not in [-1, 0]
     )
-    set_seed(args)  # Added here for reproductibility
+    set_seed(args)  # Added here for reproducibility
     for _ in train_iterator:
         epoch_iterator = tqdm(train_dataloader, desc="Iteration", disable=args.local_rank not in [-1, 0])
         for step, batch in enumerate(epoch_iterator):
@@ -203,7 +203,7 @@ def train(args, train_dataset, model, tokenizer, labels, candidates_info, pad_to
             ner_el_loss = outputs[0]  # model outputs are always tuple in pytorch-transformers (see doc)
             ner_loss = ner_el_loss[0]
             el_loss = ner_el_loss[1]
-            loss = ner_loss + el_loss
+            loss =  ner_loss + el_loss
 
             # Log the loss using Tensorboard writer
             tb_writer.add_scalar("batch_NER_loss", ner_loss.mean(dim=0).item(), global_step + 1)
@@ -496,9 +496,9 @@ def main():
         "--do_lower_case", action="store_true", help="Set this flag if you are using an uncased model."
     )
 
-    parser.add_argument("--per_gpu_train_batch_size", default=8, type=int, help="Batch size per GPU/CPU for training.")
+    parser.add_argument("--per_gpu_train_batch_size", default=16, type=int, help="Batch size per GPU/CPU for training.")
     parser.add_argument(
-        "--per_gpu_eval_batch_size", default=8, type=int, help="Batch size per GPU/CPU for evaluation."
+        "--per_gpu_eval_batch_size", default=16, type=int, help="Batch size per GPU/CPU for evaluation."
     )
     parser.add_argument(
         "--gradient_accumulation_steps",
@@ -578,7 +578,8 @@ def main():
     # Setup CUDA, GPU & distributed training
     if args.local_rank == -1 or args.no_cuda:
         device = torch.device("cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
-        args.n_gpu = torch.cuda.device_count()
+        #args.n_gpu = torch.cuda.device_count()
+        args.n_gpu = 2
     else:  # Initializes the distributed backend which will take care of sychronizing nodes/GPUs
         torch.cuda.set_device(args.local_rank)
         device = torch.device("cuda", args.local_rank)
@@ -639,8 +640,8 @@ def main():
     if args.local_rank == 0:
         torch.distributed.barrier()  # Make sure only the first process in distributed training will download model & vocab
 
+    print(args.device)
     model.to(args.device)
-    print(model)
 
     logger.info("Training/evaluation parameters %s", args)
 
