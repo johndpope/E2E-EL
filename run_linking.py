@@ -181,7 +181,7 @@ def train(args, train_dataset, model, tokenizer):
 
             model.train()
             batch = tuple(t.to(args.device) for t in batch)
-            inputs = {"input_ids": batch[0], "attention_mask": batch[1], "labels": batch[3]}
+            inputs = {"input_ids": batch[0], "attention_mask": batch[1], "mention_boundary_ids": batch[3], "labels": batch[4]}
             if args.model_type != "distilbert":
                 inputs["token_type_ids"] = (
                     batch[2] if args.model_type in ["bert"] else None
@@ -282,42 +282,80 @@ def evaluate(args, model, tokenizer, prefix=""):
     nb_eval_steps = 0
     preds = None
     out_label_ids = None
+    p_1 = 0
+    map = 0
+    nb_samples = 0
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
         model.eval()
         batch = tuple(t.to(args.device) for t in batch)
 
         with torch.no_grad():
-            inputs = {"input_ids": batch[0], "attention_mask": batch[1], "labels": batch[3]}
+            inputs = {"input_ids": batch[0], "attention_mask": batch[1], "mention_boundary_ids": batch[3],"labels": batch[4]}
             if args.model_type != "distilbert":
                 inputs["token_type_ids"] = (
                     batch[2] if args.model_type in ["bert"] else None
                 )  # XLM and DistilBERT don't use segment_ids
+            print(inputs)
             outputs = model(**inputs)
             tmp_eval_loss, logits = outputs[:2]
-
             eval_loss += tmp_eval_loss.mean().item()
         nb_eval_steps += 1
         if preds is None:
             preds = logits.detach().cpu().numpy()
-            out_label_ids = inputs["labels"].detach().cpu().numpy()
+            out_label_ids = inputs["labels"][:, 0].view(-1).detach().cpu().numpy()
+            sorted_preds = np.flip(np.argsort(preds), axis=1)
+            for i, sorted_pred in enumerate(sorted_preds):
+                # print(sorted_pred)
+                # print(out_label_ids[i])
+                rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
+                map += 1 / rank
+                if rank == 1:
+                    p_1 += 1
+            nb_samples += preds.shape[0]
         else:
-            preds = np.append(preds, logits.detach().cpu().numpy(), axis=0)
-            out_label_ids = np.append(out_label_ids, inputs["labels"].detach().cpu().numpy(), axis=0)
+            #preds = np.append(preds, logits.detach().cpu().numpy(), axis=0)
+            # out_label_ids = np.append(out_label_ids, inputs["labels"][:, 0].view(-1).detach().cpu().numpy(), axis=0)
+            preds = logits.detach().cpu().numpy()
+            out_label_ids = inputs["labels"][:, 0].view(-1).detach().cpu().numpy()
+            sorted_preds = np.flip(np.argsort(preds), axis=1)
+            for i, sorted_pred in enumerate(sorted_preds):
+                # print(sorted_pred)
+                # print(out_label_ids[i])
+                rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
+                map += 1 / rank
+                if rank == 1:
+                    p_1 += 1
+            nb_samples += preds.shape[0]
+        # print("---------------")
 
     eval_loss = eval_loss / nb_eval_steps
-    if args.output_mode == "classification":
-        preds = np.argmax(preds, axis=1)
-    else:
-        raise ValueError("No other `output_mode` for XNLI.")
 
-    output_eval_file = os.path.join(eval_output_dir, prefix, "eval_results.txt")
-    with open(output_eval_file, "w") as writer:
-        logger.info("***** Eval results {} *****".format(prefix))
-        for key in sorted(result.keys()):
-            logger.info("  %s = %s", key, str(result[key]))
-            writer.write("%s = %s\n" % (key, str(result[key])))
+    #preds = np.argmax(preds, axis=1)
 
-    return results
+    p_1 = p_1 / nb_samples
+    map = map / nb_samples
+
+    # sorted_preds = np.flip(np.argsort(preds), axis=1)
+    # for i, sorted_predin in enumerate(sorted_preds):
+    #     rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
+    #     map += 1 / rank
+    #     if rank == 1:
+    #         p_1 += 1
+    #
+    # p_1 = p_1 / out_label_ids.shape[0]
+    # map = map / out_label_ids.shape[0]
+
+    # output_eval_file = os.path.join(eval_output_dir, prefix, "eval_results.txt")
+    # with open(output_eval_file, "w") as writer:
+    #     logger.info("***** Eval results {} *****".format(prefix))
+    #     for key in sorted(result.keys()):
+    #         logger.info("  %s = %s", key, str(result[key]))
+    #         writer.write("%s = %s\n" % (key, str(result[key])))
+
+    print("p@1 = ", p_1)
+    print("MAP = ", map)
+
+    return (p_1, map)
 
 
 def load_and_cache_examples(args, tokenizer, mode):
@@ -345,6 +383,7 @@ def load_and_cache_examples(args, tokenizer, mode):
             entities,
             args.max_seq_length,
             tokenizer,
+            mode,
         )
         if args.local_rank in [-1, 0]:
             logger.info("Saving features into cached file %s", cached_features_file)
@@ -357,9 +396,10 @@ def load_and_cache_examples(args, tokenizer, mode):
     all_input_ids = torch.tensor([f.input_ids for f in features], dtype=torch.long)
     all_attention_mask = torch.tensor([f.input_mask for f in features], dtype=torch.long)
     all_token_type_ids = torch.tensor([f.segment_ids for f in features], dtype=torch.long)
+    all_mention_boundary_ids = torch.tensor([f.mention_boundary_ids for f in features], dtype=torch.long)
     all_labels = torch.tensor([f.label_ids for f in features], dtype=torch.long)
 
-    dataset = TensorDataset(all_input_ids, all_attention_mask, all_token_type_ids, all_labels)
+    dataset = TensorDataset(all_input_ids, all_attention_mask, all_token_type_ids, all_mention_boundary_ids, all_labels)
     return dataset
 
 
@@ -520,7 +560,7 @@ def main():
     # Setup CUDA, GPU & distributed training
     if args.local_rank == -1 or args.no_cuda:
         device = torch.device("cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
-        args.n_gpu = 0 if args.no_cuda else 2 #torch.cuda.device_count()
+        args.n_gpu = 0 if args.no_cuda else 6 #torch.cuda.device_count()
     else:  # Initializes the distributed backend which will take care of sychronizing nodes/GPUs
         torch.cuda.set_device(args.local_rank)
         device = torch.device("cuda", args.local_rank)
@@ -633,6 +673,8 @@ def main():
             model = BertForLinking.from_pretrained(checkpoint)
             model.to(args.device)
             result = evaluate(args, model, tokenizer, prefix=prefix)
+            print("P@1 =", result[0])
+            print("MAP =", result[1])
             result = dict((k + "_{}".format(global_step), v) for k, v in result.items())
             results.update(result)
 

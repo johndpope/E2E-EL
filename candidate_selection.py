@@ -200,17 +200,16 @@ for d in mentions: # key: document_id
         sorted_candidate_index = np.flip(np.argsort(similarity_scores), axis=0).tolist()
 
         # Append negative candidates
-        mentions[d][m]['negative_candidate'] = []
-        neg_count = 0
+        mentions[d][m]['all_candidates'] = []
+        all_count = 0
         print("+ ", mentions[d][m]['positive_candidate']['text'])
         for candidate_index in sorted_candidate_index:
             candidate_id = index_to_entity[candidate_index]
             candidate_text = entities[candidate_id]
-            if candidate_id != mentions[d][m]['positive_candidate']['candidate_id']:
-                mentions[d][m]['negative_candidate'].append({'candidate_id': candidate_id, 'text': candidate_text})
-                print("- ", candidate_text)
-                neg_count += 1
-            if neg_count == 9:
+            mentions[d][m]['all_candidates'].append({'candidate_id': candidate_id, 'text': candidate_text})
+            print("- ", candidate_text)
+            all_count += 1
+            if all_count == 10:
                 break
         print("---------------------")
 
