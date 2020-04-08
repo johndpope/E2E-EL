@@ -1,20 +1,7 @@
 # coding=utf-8
-# Copyright 2018 The Google AI Language Team Authors and The HuggingFace Inc. team.
-# Copyright (c) 2018, NVIDIA CORPORATION.  All rights reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-""" Finetuning multi-lingual models on XNLI (Bert, DistilBERT, XLM).
-    Adapted from `examples/run_glue.py`"""
+
+""" Finetuning BioBERT models on MedMentions.
+    Adapted from HuggingFace `examples/run_glue.py`"""
 
 
 import argparse
@@ -258,10 +245,7 @@ def train(args, train_dataset, model, tokenizer):
 def evaluate(args, model, tokenizer, prefix=""):
     eval_output_dir = args.output_dir
 
-    results = {}
-
     eval_dataset = load_and_cache_examples(args, tokenizer, 'test')
-
     if not os.path.exists(eval_output_dir) and args.local_rank in [-1, 0]:
          os.makedirs(eval_output_dir)
 
@@ -280,11 +264,13 @@ def evaluate(args, model, tokenizer, prefix=""):
     logger.info("  Batch size = %d", args.eval_batch_size)
     eval_loss = 0.0
     nb_eval_steps = 0
+    results = {}
     preds = None
     out_label_ids = None
     p_1 = 0
     map = 0
     nb_samples = 0
+    nb_normalized = 0
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
         model.eval()
         batch = tuple(t.to(args.device) for t in batch)
@@ -295,7 +281,6 @@ def evaluate(args, model, tokenizer, prefix=""):
                 inputs["token_type_ids"] = (
                     batch[2] if args.model_type in ["bert"] else None
                 )  # XLM and DistilBERT don't use segment_ids
-            print(inputs)
             outputs = model(**inputs)
             tmp_eval_loss, logits = outputs[:2]
             eval_loss += tmp_eval_loss.mean().item()
@@ -305,57 +290,45 @@ def evaluate(args, model, tokenizer, prefix=""):
             out_label_ids = inputs["labels"][:, 0].view(-1).detach().cpu().numpy()
             sorted_preds = np.flip(np.argsort(preds), axis=1)
             for i, sorted_pred in enumerate(sorted_preds):
-                # print(sorted_pred)
-                # print(out_label_ids[i])
-                rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
-                map += 1 / rank
-                if rank == 1:
-                    p_1 += 1
+                if out_label_ids[i] != -100:
+                    rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
+                    map += 1 / rank
+                    if rank == 1:
+                        p_1 += 1
+                    nb_normalized += 1
             nb_samples += preds.shape[0]
         else:
-            #preds = np.append(preds, logits.detach().cpu().numpy(), axis=0)
-            # out_label_ids = np.append(out_label_ids, inputs["labels"][:, 0].view(-1).detach().cpu().numpy(), axis=0)
             preds = logits.detach().cpu().numpy()
             out_label_ids = inputs["labels"][:, 0].view(-1).detach().cpu().numpy()
             sorted_preds = np.flip(np.argsort(preds), axis=1)
             for i, sorted_pred in enumerate(sorted_preds):
-                # print(sorted_pred)
-                # print(out_label_ids[i])
-                rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
-                map += 1 / rank
-                if rank == 1:
-                    p_1 += 1
+                if out_label_ids[i] != -100:
+                    rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
+                    map += 1 / rank
+                    if rank == 1:
+                        p_1 += 1
+                    nb_normalized += 1
             nb_samples += preds.shape[0]
-        # print("---------------")
 
     eval_loss = eval_loss / nb_eval_steps
 
-    #preds = np.argmax(preds, axis=1)
+    # Unnormalized precision
+    p_1_unnormalized = p_1 / nb_samples
+    map_unnormalized = map / nb_samples
 
-    p_1 = p_1 / nb_samples
-    map = map / nb_samples
+    # Normalized precision
+    p_1_normalized = p_1 / nb_normalized
+    map_normalized = map / nb_normalized
 
-    # sorted_preds = np.flip(np.argsort(preds), axis=1)
-    # for i, sorted_predin in enumerate(sorted_preds):
-    #     rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
-    #     map += 1 / rank
-    #     if rank == 1:
-    #         p_1 += 1
-    #
-    # p_1 = p_1 / out_label_ids.shape[0]
-    # map = map / out_label_ids.shape[0]
+    print("P@1 Unnormalized = ", p_1_unnormalized)
+    print("MAP Unnormalized = ", map_unnormalized)
+    print("P@1 Normaliized = ", p_1_normalized)
+    print("MAP Normalized = ", map_normalized)
 
-    # output_eval_file = os.path.join(eval_output_dir, prefix, "eval_results.txt")
-    # with open(output_eval_file, "w") as writer:
-    #     logger.info("***** Eval results {} *****".format(prefix))
-    #     for key in sorted(result.keys()):
-    #         logger.info("  %s = %s", key, str(result[key]))
-    #         writer.write("%s = %s\n" % (key, str(result[key])))
+    results["P@1"] = p_1_unnormalized
+    results["MAP"] = map_unnormalized
 
-    print("p@1 = ", p_1)
-    print("MAP = ", map)
-
-    return (p_1, map)
+    return results
 
 
 def load_and_cache_examples(args, tokenizer, mode):
@@ -560,7 +533,7 @@ def main():
     # Setup CUDA, GPU & distributed training
     if args.local_rank == -1 or args.no_cuda:
         device = torch.device("cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
-        args.n_gpu = 0 if args.no_cuda else 6 #torch.cuda.device_count()
+        args.n_gpu = 0 if args.no_cuda else 4 #torch.cuda.device_count()
     else:  # Initializes the distributed backend which will take care of sychronizing nodes/GPUs
         torch.cuda.set_device(args.local_rank)
         device = torch.device("cuda", args.local_rank)
@@ -673,8 +646,6 @@ def main():
             model = BertForLinking.from_pretrained(checkpoint)
             model.to(args.device)
             result = evaluate(args, model, tokenizer, prefix=prefix)
-            print("P@1 =", result[0])
-            print("MAP =", result[1])
             result = dict((k + "_{}".format(global_step), v) for k, v in result.items())
             results.update(result)
 

@@ -156,7 +156,7 @@ def getNgramsDF(docs, ngrams_to_index, n):
     return ngrams_df
 
 ngrams_df = getNgramsDF(text_corpus, ngrams_to_index, 5)
-ngram_df = np.sum(ngrams_df, axis=1) #+ 1 # +1 to avoid division by zero
+ngram_df = np.sum(ngrams_df, axis=1)
 N = len(text_corpus)
 ngram_idf = np.log(N / ngram_df)
 
@@ -178,8 +178,6 @@ for e in entities:
 # L2-normalize candidate vectors
 candidate_vectors = np.array(candidate_vectors)
 candidate_vectors = preprocessing.normalize(candidate_vectors, norm='l2', axis=1)
-
-# time.sleep(30)
 
 # Mention vectors and similarity scoring
 for d in mentions: # key: document_id

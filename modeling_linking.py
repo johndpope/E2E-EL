@@ -62,8 +62,6 @@ class BertForLinking(BertPreTrainedModel):
         batch_loss = 0
         batch_logits = []
 
-        # print(labels.size())
-
         for i in range(batch_size):
             inputs_embeds = self.bert.embeddings.word_embeddings(input_ids[i])
             mention_embeds = self.mention_boundary_embeddings(mention_boundary_ids[i])
@@ -71,7 +69,6 @@ class BertForLinking(BertPreTrainedModel):
             inputs_embeds = inputs_embeds + mention_embeds
 
             outputs = self.bert(
-                # input_ids[i],
                 attention_mask=attention_mask[i],
                 token_type_ids=token_type_ids[i],
                 position_ids=position_ids,
@@ -82,14 +79,9 @@ class BertForLinking(BertPreTrainedModel):
             pooled_output = outputs[1]
 
             pooled_output = self.dropout(pooled_output)
-            # print(pooled_output.size())
 
             logits = self.classifier(pooled_output)
             logits = logits.reshape(-1, self.num_labels)
-
-            # print(logits.size())
-
-            # print(labels[i][0])
 
             batch_logits.append(logits)
 

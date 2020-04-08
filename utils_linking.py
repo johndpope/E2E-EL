@@ -2,19 +2,8 @@ import os
 import json
 import random
 import math
-import time
-import torch
-import torch.nn.functional as F
-from torch.utils.data import Dataset, DataLoader
 import logging
 logger = logging.getLogger(__name__)
-
-# word_piece_ment = 128
-# word_piece_ent = 128
-
-# import tokenization
-# tokenizer = tokenization.BasicTokenizer(do_lower_case=False)
-
 
 def get_examples(data_dir, mode):
     entity_path = './data/MM_full_CUI/raw_data/entities.txt'
@@ -72,18 +61,13 @@ def get_mention_window(mention_id, mentions, docs,  max_seq_length, tokenizer):
     max_len_context = max_seq_length - 3 // 2 # number of characters
     # Get "enough" context from space-tokenized text.
     content_document_id = mentions[mention_id]['content_document_id']
-    # print(content_document_id)
     context_text = docs[content_document_id]['text']
     start_index = mentions[mention_id]['start_index']
     end_index = mentions[mention_id]['end_index']
     prefix = context_text[max(0, start_index - max_len_context): start_index]
     suffix = context_text[end_index: end_index + max_len_context]
     extracted_mention = context_text[start_index: end_index]
-    # print(len(context_text))
-    # print(start_index)
-    # print(end_index)
-    # print(extracted_mention)
-    # print(mentions[mention_id]['text'])
+
     assert extracted_mention == mentions[mention_id]['text']
 
     # Get window under new tokenization.
@@ -139,7 +123,7 @@ def convert_examples_to_features(
         # List of candidates
         label_candidate_id = mentions[mention_id]['label_candidate_id']
         candidates = []
-        if mode == 'train':
+        if mode == 'train': # or mode == 'test'
             candidates.append(label_candidate_id) # positive candidate
             for c in mentions[mention_id]["tfidf_candidates"]:
                 if c != label_candidate_id and len(candidates) < 10:
@@ -153,7 +137,7 @@ def convert_examples_to_features(
         if label_candidate_id in candidates:
             label_id = [candidates.index(label_candidate_id)]
         else:
-            label_id = [len(candidates) + 1] # when target candidate not in candidate set
+            label_id = [-100]  # when target candidate not in candidate set
 
         for c_idx, c in enumerate(candidates):
             entity_text = entities[c]
