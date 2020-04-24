@@ -65,6 +65,12 @@ class DataUtils:
         self.word2idx['<unk>'] = 1
         self.idx2word[1] = '<unk>'
 
+        # Add 'UnknownType' to type
+        self.type2id['UnknownType'] = 0
+        self.id2type[0] = 'UnknownType'
+        self.types['UnknownType'] = 1
+        self.num_types = 1
+
         print(" **** Building word and type vocabulary ...")
         entity_path = '../data/MM_full_CUI/raw_data/entities.txt'
         with open(entity_path, encoding='utf-8') as f:
@@ -330,17 +336,10 @@ def get_loaders(data_dir, utils, max_len, max_num_candidates, batch_size,
 # utils.build_vocabulary(data_dir)
 # max_len = 32
 # max_num_candidates = 10
-# batch_size = 2
-# num_workers = 2
+# batch_size = 1
+# num_workers = 1
 # loader_train, loader_dev, loader_test = get_loaders(data_dir, utils, max_len, max_num_candidates, batch_size,
 #                 num_workers)
 #
 # for idx, batch in enumerate(loader_train):
-#     print(batch[0])
-#     print(batch[1])
-#     print(batch[2])
-#     print(batch[3])
-#     print(batch[4])
-#     break
-
-
+#     print("-----------")
