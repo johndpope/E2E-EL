@@ -37,6 +37,7 @@ with open(os.path.join(data_dir, 'test_corpus.txt')) as f:
                 start_index = cols[1]
                 end_index = cols[2]
                 mention_text = cols[3]
+                mention_type = cols[4] #.split(',')[0]
                 candidate_id = cols[5]
 
                 # Positive and negative candidates
@@ -56,6 +57,7 @@ with open(os.path.join(data_dir, 'test_corpus.txt')) as f:
                                          "start_index": int(start_index),
                                          "end_index": int(end_index),
                                          "text": mention_text,
+                                         "type": mention_type,
                                          "content_document_id": document_id,
                                          "label_candidate_id": candidate_id,
                                          "tfidf_candidates": tfidf_candidates #list(candidates[candidate_id]["candidates"].keys())
