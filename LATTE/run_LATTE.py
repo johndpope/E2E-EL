@@ -106,9 +106,8 @@ def train(args, train_dataloader, model, utils):
                 loss = loss.mean()  # mean() to average on multi-gpu parallel training
             if args.gradient_accumulation_steps > 1:
                 loss = loss / args.gradient_accumulation_steps
-            print(loss)
+
             loss.backward()
-            print("After backward")
 
             tr_loss += loss.item()
             if (step + 1) % args.gradient_accumulation_steps == 0:
@@ -265,9 +264,9 @@ def main():
 
     # Model
     model = LATTE(config, utils, args.device)
+    if args.n_gpu > 1:
+        model = torch.nn.DataParallel(model)
     model.to(device)
-    # if args.n_gpu > 1:
-    #     model = torch.nn.DataParallel(model)
 
     # Data
     print(" **** Loading datasets ...")

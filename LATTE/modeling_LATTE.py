@@ -265,27 +265,3 @@ class LATTE(nn.Module):
         loss = ranking_loss + classification_loss
 
         return loss, scores
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
