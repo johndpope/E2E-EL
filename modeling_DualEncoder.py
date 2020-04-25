@@ -6,6 +6,8 @@ import copy
 from modeling_bert import BertPreTrainedModel
 from modeling_bert import BertModel
 
+import pdb
+
 
 class PreDualEncoder(BertPreTrainedModel):
     def __init__(self, config):
@@ -17,7 +19,7 @@ class DualEncoderBert(BertPreTrainedModel):
     def __init__(self, config, pretrained_bert):
         super().__init__(config)
         self.num_labels = 10
-        self.bert_mention = copy.deepcopy(pretrained_bert)
+        self.bert_mention = pretrained_bert
         self.bert_candidate = copy.deepcopy(pretrained_bert)
 
         self.init_weights()
@@ -69,20 +71,18 @@ class DualEncoderBert(BertPreTrainedModel):
         batch_loss = 0
         batch_logits = []
 
-        mention_outputs = self.bert_mention(
+        mention_outputs = self.bert_mention.bert(
             input_ids=mention_token_ids,
             attention_mask=mention_token_masks,
         )
         pooled_mention_outputs = mention_outputs[1]
-        print(pooled_mention_outputs.size())
 
         for i in range(batch_size):
-            candidate_outputs = self.bert_candidate(
+            candidate_outputs = self.bert_candidate.bert(
                 input_ids=candidate_token_ids[i],
                 attention_mask=candidate_token_masks[i],
             )
             pooled_candidate_outputs = candidate_outputs[1]
-            print(pooled_candidate_outputs.size())
 
             logits = torch.mm(pooled_mention_outputs[i].reshape(1, -1), pooled_candidate_outputs.t())
             logits = logits.reshape(-1, self.num_labels)

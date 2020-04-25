@@ -530,7 +530,7 @@ def main():
     # Setup CUDA, GPU & distributed training
     if args.local_rank == -1 or args.no_cuda:
         device = torch.device("cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
-        args.n_gpu = 0 if args.no_cuda else 4 #torch.cuda.device_count()
+        args.n_gpu = 0 if args.no_cuda else torch.cuda.device_count() #4
     else:  # Initializes the distributed backend which will take care of sychronizing nodes/GPUs
         torch.cuda.set_device(args.local_rank)
         device = torch.device("cuda", args.local_rank)
@@ -578,7 +578,14 @@ def main():
         config=config,
         cache_dir=args.cache_dir if args.cache_dir else None,
     )
+
+    # Add new special tokens '[Ms]' and '[Me]' to tag mention
+    new_tokens = ['[Ms]', '[Me]']
+    num_added_tokens = tokenizer.add_tokens(new_tokens)
+    pretrained_bert.resize_token_embeddings(len(tokenizer))
+
     model = DualEncoderBert(config, pretrained_bert)
+    print(model)
 
     if args.local_rank == 0:
         torch.distributed.barrier()  # Make sure only the first process in distributed training will download model & vocab
@@ -586,12 +593,6 @@ def main():
     model.to(args.device)
 
     logger.info("Training/evaluation parameters %s", args)
-
-    if args.do_train:
-        # Add new special tokens '[Ms]' and '[Me]' to tag mention
-        new_tokens = ['[Ms]', '[Me]']
-        num_added_tokens = tokenizer.add_tokens(new_tokens)
-        pretrained_bert.resize_token_embeddings(len(tokenizer))
 
     # Training
     if args.do_train:
@@ -618,7 +619,7 @@ def main():
         torch.save(args, os.path.join(args.output_dir, "training_args.bin"))
 
         # Load a trained model and vocabulary that you have fine-tuned
-        model = DualEncoderBert.from_pretrained(args.output_dir)
+        model.load_state_dict(torch.load(os.path.join(args.output_dir, 'pytorch_model-1000000.bin')))
         tokenizer = tokenizer_class.from_pretrained(args.output_dir)
         model.to(args.device)
 
@@ -636,8 +637,8 @@ def main():
         for checkpoint in checkpoints:
             global_step = checkpoint.split("-")[-1] if len(checkpoints) > 1 else ""
             prefix = checkpoint.split("/")[-1] if checkpoint.find("checkpoint") != -1 else ""
-
-            model = DualEncoderBert.from_pretrained(checkpoint)
+            #model = DualEncoderBert.from_pretrained(checkpoint, pretrained_bert)
+            model.load_state_dict(torch.load(os.path.join(checkpoint, 'pytorch_model-1000000.bin')))
             model.to(args.device)
             result = evaluate(args, model, tokenizer, prefix=prefix)
             result = dict((k + "_{}".format(global_step), v) for k, v in result.items())
