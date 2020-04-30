@@ -166,11 +166,9 @@ def train(args, train_dataset, model, tokenizer):
                       "mention_token_masks": batch[1],
                       "candidate_token_ids": batch[2],
                       "candidate_token_masks": batch[3],
-                      "labels": batch[4]}
-            # if args.model_type != "distilbert":
-            #     inputs["token_type_ids"] = (
-            #         batch[2] if args.model_type in ["bert"] else None
-            #     )  # XLM and DistilBERT don't use segment_ids
+                      "labels": batch[4]
+                      }
+
             outputs = model(**inputs)
             loss = outputs[0]  # model outputs are always tuple in transformers (see doc)
 
