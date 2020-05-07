@@ -2,8 +2,11 @@ import os
 import json
 import random
 import math
+import pdb
 import logging
 logger = logging.getLogger(__name__)
+import faiss
+import torch
 
 def get_examples(data_dir, mode):
     entity_path = './data/MM_full_CUI/raw_data/entities.txt'
@@ -100,16 +103,68 @@ def convert_examples_to_features(
     entities,
     max_seq_length,
     tokenizer,
-    mode,
+    args,
+    model=None,
 ):
 
+    # All entities
+    all_entities = list(entities.keys())
+    all_entity_token_ids = []
+    all_entity_token_masks = []
+
+    if args.use_all_candidates:
+        for c_idx, c in enumerate(all_entities):
+            entity_text = entities[c]
+            max_entity_len = max_seq_length  # Number of tokens
+            entity_window = get_entity_window(entity_text, max_entity_len, tokenizer)
+            # [CLS] candidate text [SEP]
+            candidate_tokens = [tokenizer.cls_token] + entity_window + [tokenizer.sep_token]
+            candidate_tokens = tokenizer.convert_tokens_to_ids(candidate_tokens)
+            if len(candidate_tokens) > max_seq_length:
+                candidate_tokens = candidate_tokens[:max_seq_length]
+                candidate_masks = [1] * max_seq_length
+            else:
+                candidate_len = len(candidate_tokens)
+                pad_len = max_seq_length - candidate_len
+                candidate_tokens += [tokenizer.pad_token_id] * pad_len
+                candidate_masks = [1] * candidate_len + [0] * pad_len
+
+            assert len(candidate_tokens) == max_seq_length
+            assert len(candidate_masks) == max_seq_length
+
+            all_entity_token_ids.append(candidate_tokens)
+            all_entity_token_masks.append(candidate_masks)
+
+    if model is not None:
+        # Gather all candidate embeddings for hard negative mining
+        all_candidate_embeddings = []
+        with torch.no_grad():
+            # Forward pass through the candidate encoder of the dual encoder
+            for i, (entity_tokens, entity_tokens_masks) in enumerate(
+                    zip(all_entity_token_ids, all_entity_token_masks)):
+                candidate_token_ids = torch.LongTensor([entity_tokens]).to(args.device)
+                candidate_token_masks = torch.LongTensor([entity_tokens_masks]).to(args.device)
+                candidate_outputs = model.bert_candidate.bert(
+                    input_ids=candidate_token_ids,
+                    attention_mask=candidate_token_masks,
+                )
+                candidate_embedding = candidate_outputs[1]
+                all_candidate_embeddings.append(candidate_embedding)
+
+        all_candidate_embeddings = torch.cat(all_candidate_embeddings, dim=0)
+
+        # Indexing for faster search (using FAISS)
+        d = all_candidate_embeddings.size(1)
+        all_candidate_index = faiss.IndexFlatL2(d)  # build the index, d=size of vectors
+        # here we assume xb contains a n-by-d numpy matrix of type float32
+        all_candidate_embeddings = all_candidate_embeddings.cpu().numpy()
+        all_candidate_index.add(all_candidate_embeddings)
+
+    # Process the mentions
     features = []
     for (ex_index, mention_id) in enumerate(mentions.keys()):
         if ex_index % 10000 == 0:
             logger.info("Writing example %d of %d", ex_index, len(mentions))
-
-        candidate_token_ids = []
-        candidate_token_masks = []
 
         mention_window, mention_start_index, mention_end_index = get_mention_window(mention_id,
                                                                             mentions,
@@ -132,46 +187,90 @@ def convert_examples_to_features(
         assert len(mention_tokens) == max_seq_length
         assert len(mention_tokens_mask) == max_seq_length
 
-        # List of candidates
+        # Build list of candidates
         label_candidate_id = mentions[mention_id]['label_candidate_id']
         candidates = []
-        if mode == 'train': # or mode == 'test'
-            candidates.append(label_candidate_id) # positive candidate
-            for c in mentions[mention_id]["tfidf_candidates"]:
-                if c != label_candidate_id and len(candidates) < 10:
-                    candidates.append(c)
-        else:
-            for c in mentions[mention_id]["tfidf_candidates"]:
-                candidates.append(c)
-
-        random.shuffle(candidates)
-
-        candidate_token_ids = []
-        candidate_token_masks = []
-
-        for c_idx, c in enumerate(candidates):
-            entity_text = entities[c]
-            max_entity_len = max_seq_length  # Number of tokens
-            entity_window = get_entity_window(entity_text, max_entity_len, tokenizer)
-
-
-            # [CLS] candidate text [SEP]
-            candidate_tokens = [tokenizer.cls_token] + entity_window + [tokenizer.sep_token]
-            candidate_tokens = tokenizer.convert_tokens_to_ids(candidate_tokens)
-            if len(candidate_tokens) > max_seq_length:
-                candidate_tokens = candidate_tokens[:max_seq_length]
-                candidate_masks = [1] * max_seq_length
+        if args.do_train:
+            candidates.append(label_candidate_id)  # positive candidate
+            if model is None:
+                # If model is not given, then use either random negative candidates
+                # or tfidf candidates based on the choice
+                if args.random_candidates:  # Random negatives
+                    candidate_pool = set(entities.keys()) - set([label_candidate_id])
+                    negative_candidates = random.sample(candidate_pool, 9)
+                    candidates += negative_candidates
+                elif args.tfidf_candidates: # TF-IDF negatives
+                    for c in mentions[mention_id]["tfidf_candidates"]:
+                        if c != label_candidate_id and len(candidates) < 10:
+                            candidates.append(c)
             else:
-                candidate_len = len(candidate_tokens)
-                pad_len = max_seq_length - candidate_len
-                candidate_tokens += [tokenizer.pad_token_id] * pad_len
-                candidate_masks = [1] * candidate_len + [0] * pad_len
+                # TODO:Implement hard negative candidate mining
+                print("Performing hard negative candidate mining ...")
+                mention_tokens = torch.LongTensor([mention_tokens]).to(args.devide)
+                mention_tokens_mask = torch.LongTensor([mention_tokens_mask]).to(args.devide)
+                # Forward pass through the mention encoder of the dual encoder
+                mention_outputs = model.bert_mention.bert(
+                    input_ids=mention_tokens,
+                    attention_mask=mention_tokens_mask,
+                )
+                mention_embedding = mention_outputs[1]  # 1 X d
+                mention_embedding = mention_embedding.cpu().numpy()
 
-            assert len(candidate_tokens) == max_seq_length
-            assert len(candidate_masks) == max_seq_length
+                # Perform similarity search
+                distance, candidate_indices = all_candidate_index.search(mention_embedding, 10)
+                candidate_indices = candidate_indices[0]  # original size 1 X 10 -> 10
 
-            candidate_token_ids.append(candidate_tokens)
-            candidate_token_masks.append(candidate_masks)
+                # Append the hard negative candidates to the list of all candidates
+                for c_idx in  candidate_indices:
+                    c = all_entities[c_idx]
+                    if c != label_candidate_id and len(candidates) < 10:
+                        candidates.append(c)
+
+        elif args.do_eval:
+            if args.include_positive:
+                candidates.append(label_candidate_id)  # positive candidate
+                for c in mentions[mention_id]["tfidf_candidates"]:
+                    if c != label_candidate_id and len(candidates) < 10:
+                        candidates.append(c)
+            elif args.tfidf_candidates:
+                for c in mentions[mention_id]["tfidf_candidates"]:
+                    candidates.append(c)
+            elif args.use_all_candidates:
+                candidates = all_entities
+
+        if not args.use_all_candidates:
+            random.shuffle(candidates)
+
+        if args.use_all_candidates:
+            # If all candidates are considered during inference,
+            # then place dummy candidate tokens and candidate masks
+            candidate_token_ids = None
+            candidate_token_masks = None
+        else:
+            candidate_token_ids = []
+            candidate_token_masks = []
+
+            for c_idx, c in enumerate(candidates):
+                entity_text = entities[c]
+                max_entity_len = max_seq_length  # Number of tokens
+                entity_window = get_entity_window(entity_text, max_entity_len, tokenizer)
+                # [CLS] candidate text [SEP]
+                candidate_tokens = [tokenizer.cls_token] + entity_window + [tokenizer.sep_token]
+                candidate_tokens = tokenizer.convert_tokens_to_ids(candidate_tokens)
+                if len(candidate_tokens) > max_seq_length:
+                    candidate_tokens = candidate_tokens[:max_seq_length]
+                    candidate_masks = [1] * max_seq_length
+                else:
+                    candidate_len = len(candidate_tokens)
+                    pad_len = max_seq_length - candidate_len
+                    candidate_tokens += [tokenizer.pad_token_id] * pad_len
+                    candidate_masks = [1] * candidate_len + [0] * pad_len
+
+                assert len(candidate_tokens) == max_seq_length
+                assert len(candidate_masks) == max_seq_length
+
+                candidate_token_ids.append(candidate_tokens)
+                candidate_token_masks.append(candidate_masks)
 
         # Target candidate
         if label_candidate_id in candidates:
@@ -183,8 +282,9 @@ def convert_examples_to_features(
             logger.info("*** Example ***")
             logger.info("mention_token_ids: %s", " ".join([str(x) for x in mention_tokens]))
             logger.info("mention_token_masks: %s", " ".join([str(x) for x in mention_tokens_mask]))
-            logger.info("candidate_token_ids: %s", " ".join([str(x) for x in candidate_token_ids]))
-            logger.info("candidate_token_masks: %s", " ".join([str(x) for x in candidate_token_masks]))
+            if candidate_token_ids is not None:
+                logger.info("candidate_token_ids: %s", " ".join([str(x) for x in candidate_token_ids]))
+                logger.info("candidate_token_masks: %s", " ".join([str(x) for x in candidate_token_masks]))
             logger.info("label_ids: %s", " ".join([str(x) for x in label_id]))
 
         features.append(
@@ -195,4 +295,4 @@ def convert_examples_to_features(
                           label_ids=label_id,
                           )
         )
-    return features
+    return features, (all_entities, all_entity_token_ids, all_entity_token_masks)

@@ -62,11 +62,12 @@ def set_seed(args):
         torch.cuda.manual_seed_all(args.seed)
 
 
-def train(args, train_dataset, model, tokenizer):
+def train(args, model, tokenizer):
     """ Train the model """
     if args.local_rank in [-1, 0]:
         tb_writer = SummaryWriter()
-
+    train_dataset, (all_entities, all_entity_token_ids, all_entity_token_masks) = load_and_cache_examples(args,
+                                                                                                          tokenizer)
     args.train_batch_size = args.per_gpu_train_batch_size * max(1, args.n_gpu)
     train_sampler = RandomSampler(train_dataset) if args.local_rank == -1 else DistributedSampler(train_dataset)
     train_dataloader = DataLoader(train_dataset, sampler=train_sampler, batch_size=args.train_batch_size)
@@ -241,7 +242,8 @@ def train(args, train_dataset, model, tokenizer):
 def evaluate(args, model, tokenizer, prefix=""):
     eval_output_dir = args.output_dir
 
-    eval_dataset = load_and_cache_examples(args, tokenizer, 'test')
+    eval_dataset, (all_entities, all_entity_token_ids, all_entity_token_masks) = load_and_cache_examples(args,
+                                                                                                         tokenizer)
     if not os.path.exists(eval_output_dir) and args.local_rank in [-1, 0]:
          os.makedirs(eval_output_dir)
 
@@ -254,6 +256,23 @@ def evaluate(args, model, tokenizer, prefix=""):
     if args.n_gpu > 1:
         model = torch.nn.DataParallel(model)
 
+    if args.use_all_candidates:
+        all_candidate_embeddings = []
+        with torch.no_grad():
+            for i, _ in enumerate(all_entity_token_ids):
+                entity_tokens = all_entity_token_ids[i]
+                entity_tokens_masks = all_entity_token_masks[i]
+                candidate_token_ids = torch.LongTensor([entity_tokens]).to(args.device)
+                candidate_token_masks = torch.LongTensor([entity_tokens_masks]).to(args.device)
+                candidate_outputs = model.bert_candidate.bert(
+                    input_ids=candidate_token_ids,
+                    attention_mask=candidate_token_masks,
+                )
+                candidate_embedding = candidate_outputs[1]
+                all_candidate_embeddings.append(candidate_embedding)
+        all_candidate_embeddings = torch.cat(all_candidate_embeddings, dim=0)
+        logger.info("INFO: Collected all candidate embeddings.")
+        print("Tensor size = ", all_candidate_embeddings.size())
     # Eval!
     logger.info("***** Running evaluation {} *****".format(prefix))
     logger.info("  Num examples = %d", len(eval_dataset))
@@ -265,6 +284,7 @@ def evaluate(args, model, tokenizer, prefix=""):
     out_label_ids = None
     p_1 = 0
     map = 0
+    r_10 = 0
     nb_samples = 0
     nb_normalized = 0
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
@@ -272,11 +292,21 @@ def evaluate(args, model, tokenizer, prefix=""):
         batch = tuple(t.to(args.device) for t in batch)
 
         with torch.no_grad():
-            inputs = {"mention_token_ids": batch[0],
-                      "mention_token_masks": batch[1],
-                      "candidate_token_ids": batch[2],
-                      "candidate_token_masks": batch[3],
-                      "labels": batch[4]}
+            if args.use_all_candidates:
+                inputs = {"mention_token_ids": batch[0],
+                          "mention_token_masks": batch[1],
+                          "candidate_token_ids": batch[2],
+                          "candidate_token_masks": batch[3],
+                          "labels": batch[4],
+                          "all_candidate_embeddings": all_candidate_embeddings,
+                          }
+            else:
+                inputs = {"mention_token_ids": batch[0],
+                          "mention_token_masks": batch[1],
+                          "candidate_token_ids": batch[2],
+                          "candidate_token_masks": batch[3],
+                          "labels": batch[4],
+                          }
             # if args.model_type != "distilbert":
             #     inputs["token_type_ids"] = (
             #         batch[2] if args.model_type in ["bert"] else None
@@ -293,8 +323,10 @@ def evaluate(args, model, tokenizer, prefix=""):
                 if out_label_ids[i] != -100:
                     rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
                     map += 1 / rank
-                    if rank == 1:
-                        p_1 += 1
+                    if rank <= 10:
+                        r_10 += 1
+                        if rank == 1:
+                            p_1 += 1
                     nb_normalized += 1
             nb_samples += preds.shape[0]
         else:
@@ -305,8 +337,10 @@ def evaluate(args, model, tokenizer, prefix=""):
                 if out_label_ids[i] != -100:
                     rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
                     map += 1 / rank
-                    if rank == 1:
-                        p_1 += 1
+                    if rank <= 10:
+                        r_10 += 1
+                        if rank == 1:
+                            p_1 += 1
                     nb_normalized += 1
             nb_samples += preds.shape[0]
 
@@ -320,10 +354,14 @@ def evaluate(args, model, tokenizer, prefix=""):
     p_1_normalized = p_1 / nb_normalized
     map_normalized = map / nb_normalized
 
+    # Recall@10
+    recall_10 = r_10 / nb_samples
+
     print("P@1 Unnormalized = ", p_1_unnormalized)
     print("MAP Unnormalized = ", map_unnormalized)
     print("P@1 Normaliized = ", p_1_normalized)
     print("MAP Normalized = ", map_normalized)
+    print("Recall@10 = ", recall_10)
 
     results["P@1"] = p_1_unnormalized
     results["MAP"] = map_unnormalized
@@ -331,12 +369,11 @@ def evaluate(args, model, tokenizer, prefix=""):
     return results
 
 
-def load_and_cache_examples(args, tokenizer, mode):
+def load_and_cache_examples(args, tokenizer, model=None):
     if args.local_rank not in [-1, 0] and not evaluate:
         torch.distributed.barrier()  # Make sure only the first process in distributed training process the dataset, and the others will use the cache
 
-    # processor = processors[task](language=args.language, train_language=args.train_language)
-    # output_mode = output_modes[task]
+    mode = 'train' if args.do_train else 'test'
     # Load data features from cache or dataset file
     cached_features_file = os.path.join(
         args.data_dir,
@@ -347,20 +384,30 @@ def load_and_cache_examples(args, tokenizer, mode):
     if os.path.exists(cached_features_file) and not args.overwrite_cache:
         logger.info("Loading features from cached file %s", cached_features_file)
         features = torch.load(cached_features_file)
+        all_entities = np.load(os.path.join(args.data_dir, 'all_entities.npy'))
+        all_entity_token_ids = np.load(os.path.join(args.data_dir, 'all_entity_token_ids.npy'))
+        all_entity_token_masks = np.load(os.path.join(args.data_dir, 'all_entity_token_masks.npy'))
     else:
         logger.info("Creating features from dataset file at %s", args.data_dir)
         examples, docs, entities = get_examples(args.data_dir, mode)
-        features = convert_examples_to_features(
+        features, (all_entities, all_entity_token_ids, all_entity_token_masks) = convert_examples_to_features(
             examples,
             docs,
             entities,
             args.max_seq_length,
             tokenizer,
-            mode,
+            args,
+            model,
         )
         if args.local_rank in [-1, 0]:
             logger.info("Saving features into cached file %s", cached_features_file)
             torch.save(features, cached_features_file)
+            np.save(os.path.join(args.data_dir, 'all_entities.npy'),
+                        np.array(all_entities))
+            np.save(os.path.join(args.data_dir, 'all_entity_token_ids.npy'),
+                    np.array(all_entity_token_ids))
+            np.save(os.path.join(args.data_dir, 'all_entity_token_masks.npy'),
+                    np.array(all_entity_token_masks))
 
     if args.local_rank == 0 and not evaluate:
         torch.distributed.barrier()  # Make sure only the first process in distributed training process the dataset, and the others will use the cache
@@ -368,8 +415,8 @@ def load_and_cache_examples(args, tokenizer, mode):
     # Convert to Tensors and build dataset
     all_mention_token_ids = torch.tensor([f.mention_token_ids for f in features], dtype=torch.long)
     all_mention_token_masks = torch.tensor([f.mention_token_masks for f in features], dtype=torch.long)
-    all_candidate_token_ids = torch.tensor([f.candidate_token_ids for f in features], dtype=torch.long)
-    all_candidate_token_masks = torch.tensor([f.candidate_token_masks for f in features], dtype=torch.long)
+    all_candidate_token_ids = torch.tensor([f.candidate_token_ids if f.candidate_token_ids is not None else [0] for f in features], dtype=torch.long)
+    all_candidate_token_masks = torch.tensor([f.candidate_token_masks if f.candidate_token_masks is not None else [0] for f in features], dtype=torch.long)
     all_labels = torch.tensor([f.label_ids for f in features], dtype=torch.long)
 
     dataset = TensorDataset(all_mention_token_ids,
@@ -377,7 +424,7 @@ def load_and_cache_examples(args, tokenizer, mode):
                             all_candidate_token_ids,
                             all_candidate_token_masks,
                             all_labels)
-    return dataset
+    return dataset, (all_entities, all_entity_token_ids, all_entity_token_masks)
 
 
 def main():
@@ -484,6 +531,18 @@ def main():
     )
     parser.add_argument(
         "--overwrite_cache", action="store_true", help="Overwrite the cached training and evaluation sets"
+    )
+    parser.add_argument(
+        "--include_positive", action="store_true", help="Includes the positive candidate during inference"
+    )
+    parser.add_argument(
+        "--random_candidates", action="store_true", help="Use random negative candidates during training"
+    )
+    parser.add_argument(
+        "--tfidf_candidates", action="store_true", help="Use random negative candidates during training"
+    )
+    parser.add_argument(
+        "--use_all_candidates", action="store_true", help="Use all entities as candidates"
     )
     parser.add_argument("--seed", type=int, default=42, help="random seed for initialization")
 
@@ -594,8 +653,7 @@ def main():
 
     # Training
     if args.do_train:
-        train_dataset = load_and_cache_examples(args, tokenizer, 'train')
-        global_step, tr_loss = train(args, train_dataset, model, tokenizer)
+        global_step, tr_loss = train(args, model, tokenizer)
         logger.info(" global_step = %s, average loss = %s", global_step, tr_loss)
 
     # Saving best-practices: if you use defaults names for the model, you can reload it using from_pretrained()
@@ -635,7 +693,7 @@ def main():
         for checkpoint in checkpoints:
             global_step = checkpoint.split("-")[-1] if len(checkpoints) > 1 else ""
             prefix = checkpoint.split("/")[-1] if checkpoint.find("checkpoint") != -1 else ""
-            #model = DualEncoderBert.from_pretrained(checkpoint, pretrained_bert)
+            # model = DualEncoderBert.from_pretrained(checkpoint, pretrained_bert)
             model.load_state_dict(torch.load(os.path.join(checkpoint, 'pytorch_model-1000000.bin')))
             model.to(args.device)
             result = evaluate(args, model, tokenizer, prefix=prefix)
