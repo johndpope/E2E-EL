@@ -3,7 +3,6 @@
 """ Finetuning BioBERT models on MedMentions.
     Adapted from HuggingFace `examples/run_glue.py`"""
 
-
 import argparse
 import glob
 import logging
@@ -66,11 +65,18 @@ def train(args, model, tokenizer):
     """ Train the model """
     if args.local_rank in [-1, 0]:
         tb_writer = SummaryWriter()
-    train_dataset, (all_entities, all_entity_token_ids, all_entity_token_masks) = load_and_cache_examples(args,
-                                                                                                          tokenizer)
-    args.train_batch_size = args.per_gpu_train_batch_size * max(1, args.n_gpu)
-    train_sampler = RandomSampler(train_dataset) if args.local_rank == -1 else DistributedSampler(train_dataset)
-    train_dataloader = DataLoader(train_dataset, sampler=train_sampler, batch_size=args.train_batch_size)
+
+        # Initial train dataloader
+        if args.use_random_candidates:
+            train_dataset, _ = load_and_cache_examples(args, tokenizer)
+        elif args.use_hard_negatives:
+            train_dataset, _ = load_and_cache_examples(args, tokenizer, model)
+        else:
+            train_dataset, _ = load_and_cache_examples(args, tokenizer)
+
+        args.train_batch_size = args.per_gpu_train_batch_size * max(1, args.n_gpu)
+        train_sampler = RandomSampler(train_dataset) if args.local_rank == -1 else DistributedSampler(train_dataset)
+        train_dataloader = DataLoader(train_dataset, sampler=train_sampler, batch_size=args.train_batch_size)
 
     if args.max_steps > 0:
         t_total = args.max_steps
@@ -135,10 +141,10 @@ def train(args, model, tokenizer):
     epochs_trained = 0
     steps_trained_in_current_epoch = 0
     # Check if continuing training from a checkpoint
-    if os.path.exists(args.model_name_or_path):
-        # set global_step to gobal_step of last saved checkpoint from model path
+    if os.path.exists(args.resume_path):
+        # set global_step to global_step of last saved checkpoint from model path
         # global_step = int(args.model_name_or_path.split("-")[-1].split("/")[0])
-        global_step = int(args.model_name_or_path.split("/")[-2].split("-")[-1])
+        global_step = int(args.resume_path.split("/")[-2].split("-")[-1])
         epochs_trained = global_step // (len(train_dataloader) // args.gradient_accumulation_steps)
         steps_trained_in_current_epoch = global_step % (len(train_dataloader) // args.gradient_accumulation_steps)
 
@@ -153,7 +159,7 @@ def train(args, model, tokenizer):
         epochs_trained, int(args.num_train_epochs), desc="Epoch", disable=args.local_rank not in [-1, 0]
     )
     set_seed(args)  # Added here for reproductibility
-    for _ in train_iterator:
+    for epoch_num in train_iterator:
         epoch_iterator = tqdm(train_dataloader, desc="Iteration", disable=args.local_rank not in [-1, 0])
         for step, batch in enumerate(epoch_iterator):
             # Skip past any already trained steps if resuming training
@@ -229,9 +235,28 @@ def train(args, model, tokenizer):
             if args.max_steps > 0 and global_step > args.max_steps:
                 epoch_iterator.close()
                 break
+
         if args.max_steps > 0 and global_step > args.max_steps:
             train_iterator.close()
             break
+
+        # New data loader for the next epoch
+        if args.use_random_candidates:
+            # New data loader at every epoch for random sampler if we use random negative samples
+            train_dataset, _ = load_and_cache_examples(args, tokenizer)
+            args.train_batch_size = args.per_gpu_train_batch_size * max(1, args.n_gpu)
+            train_sampler = RandomSampler(train_dataset) if args.local_rank == -1 else DistributedSampler(
+                train_dataset)
+            train_dataloader = DataLoader(train_dataset, sampler=train_sampler,
+                                          batch_size=args.train_batch_size)
+        elif args.use_hard_negatives:
+            # New data loader at every epoch for hard negative sampler if we use hard negative mining
+            train_dataset, _ = load_and_cache_examples(args, tokenizer, model)
+            args.train_batch_size = args.per_gpu_train_batch_size * max(1, args.n_gpu)
+            train_sampler = RandomSampler(train_dataset) if args.local_rank == -1 else DistributedSampler(
+                train_dataset)
+            train_dataloader = DataLoader(train_dataset, sampler=train_sampler,
+                                          batch_size=args.train_batch_size)
 
     if args.local_rank in [-1, 0]:
         tb_writer.close()
@@ -461,6 +486,13 @@ def main():
         help="The output directory where the model predictions and checkpoints will be written.",
     )
 
+    parser.add_argument(
+        "--resume_path",
+        default=None,
+        type=str,
+        required=False,
+        help="Path to the checkpoint from where the training should resume"
+    )
     # Other parameters
     parser.add_argument(
         "--config_name", default="", type=str, help="Pretrained config name or path if not the same as model_name"
@@ -533,17 +565,24 @@ def main():
         "--overwrite_cache", action="store_true", help="Overwrite the cached training and evaluation sets"
     )
     parser.add_argument(
+        "--use_random_candidates", action="store_true", help="Use random negative candidates during training"
+    )
+    parser.add_argument(
+        "--use_tfidf_candidates", action="store_true", help="Use random negative candidates during training"
+    )
+    parser.add_argument(
+        "--use_hard_negatives",  action="store_true", help="Use hard negative candidates during training"
+    )
+    parser.add_argument(
         "--include_positive", action="store_true", help="Includes the positive candidate during inference"
-    )
-    parser.add_argument(
-        "--random_candidates", action="store_true", help="Use random negative candidates during training"
-    )
-    parser.add_argument(
-        "--tfidf_candidates", action="store_true", help="Use random negative candidates during training"
     )
     parser.add_argument(
         "--use_all_candidates", action="store_true", help="Use all entities as candidates"
     )
+    parser.add_argument(
+        "--num_candidates", type=int, default=10, help="Number of candidates to consider per mention"
+    )
+
     parser.add_argument("--seed", type=int, default=42, help="random seed for initialization")
 
     parser.add_argument(
@@ -642,7 +681,7 @@ def main():
     pretrained_bert.resize_token_embeddings(len(tokenizer))
 
     model = DualEncoderBert(config, pretrained_bert)
-    print(model)
+    # print(model)
 
     if args.local_rank == 0:
         torch.distributed.barrier()  # Make sure only the first process in distributed training will download model & vocab
@@ -653,6 +692,12 @@ def main():
 
     # Training
     if args.do_train:
+        if args.resume_path is not None:
+            # Load a trained model and vocabulary from a sved checkpoint to resume training
+            model.load_state_dict(torch.load(os.path.join(args.resume_path, 'pytorch_model-1000000.bin')))
+            tokenizer = tokenizer_class.from_pretrained(args.resume_path)
+            model.to(args.device)
+            logger.info("INFO: Checkpoint loaded successfully. Training will resume from %s", args.resume_path)
         global_step, tr_loss = train(args, model, tokenizer)
         logger.info(" global_step = %s, average loss = %s", global_step, tr_loss)
 
@@ -693,7 +738,6 @@ def main():
         for checkpoint in checkpoints:
             global_step = checkpoint.split("-")[-1] if len(checkpoints) > 1 else ""
             prefix = checkpoint.split("/")[-1] if checkpoint.find("checkpoint") != -1 else ""
-            # model = DualEncoderBert.from_pretrained(checkpoint, pretrained_bert)
             model.load_state_dict(torch.load(os.path.join(checkpoint, 'pytorch_model-1000000.bin')))
             model.to(args.device)
             result = evaluate(args, model, tokenizer, prefix=prefix)

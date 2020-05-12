@@ -112,30 +112,32 @@ def convert_examples_to_features(
     all_entity_token_ids = []
     all_entity_token_masks = []
 
-    if args.use_all_candidates:
-        for c_idx, c in enumerate(all_entities):
-            entity_text = entities[c]
-            max_entity_len = max_seq_length  # Number of tokens
-            entity_window = get_entity_window(entity_text, max_entity_len, tokenizer)
-            # [CLS] candidate text [SEP]
-            candidate_tokens = [tokenizer.cls_token] + entity_window + [tokenizer.sep_token]
-            candidate_tokens = tokenizer.convert_tokens_to_ids(candidate_tokens)
-            if len(candidate_tokens) > max_seq_length:
-                candidate_tokens = candidate_tokens[:max_seq_length]
-                candidate_masks = [1] * max_seq_length
-            else:
-                candidate_len = len(candidate_tokens)
-                pad_len = max_seq_length - candidate_len
-                candidate_tokens += [tokenizer.pad_token_id] * pad_len
-                candidate_masks = [1] * candidate_len + [0] * pad_len
+    for c_idx, c in enumerate(all_entities):
+        entity_text = entities[c]
+        max_entity_len = max_seq_length  # Number of tokens
+        entity_window = get_entity_window(entity_text, max_entity_len, tokenizer)
+        # [CLS] candidate text [SEP]
+        candidate_tokens = [tokenizer.cls_token] + entity_window + [tokenizer.sep_token]
+        candidate_tokens = tokenizer.convert_tokens_to_ids(candidate_tokens)
+        if len(candidate_tokens) > max_seq_length:
+            candidate_tokens = candidate_tokens[:max_seq_length]
+            candidate_masks = [1] * max_seq_length
+        else:
+            candidate_len = len(candidate_tokens)
+            pad_len = max_seq_length - candidate_len
+            candidate_tokens += [tokenizer.pad_token_id] * pad_len
+            candidate_masks = [1] * candidate_len + [0] * pad_len
 
-            assert len(candidate_tokens) == max_seq_length
-            assert len(candidate_masks) == max_seq_length
+        assert len(candidate_tokens) == max_seq_length
+        assert len(candidate_masks) == max_seq_length
 
-            all_entity_token_ids.append(candidate_tokens)
-            all_entity_token_masks.append(candidate_masks)
+        all_entity_token_ids.append(candidate_tokens)
+        all_entity_token_masks.append(candidate_masks)
 
-    if model is not None:
+    if args.use_hard_negatives:
+        if model is None:
+            raise ValueError("`model` parameter cannot be None")
+        logger.info("INFO: Building index of the candidate embeddings ...")
         # Gather all candidate embeddings for hard negative mining
         all_candidate_embeddings = []
         with torch.no_grad():
@@ -157,7 +159,7 @@ def convert_examples_to_features(
         d = all_candidate_embeddings.size(1)
         all_candidate_index = faiss.IndexFlatL2(d)  # build the index, d=size of vectors
         # here we assume xb contains a n-by-d numpy matrix of type float32
-        all_candidate_embeddings = all_candidate_embeddings.cpu().numpy()
+        all_candidate_embeddings = all_candidate_embeddings.cpu().detach().numpy()
         all_candidate_index.add(all_candidate_embeddings)
 
     # Process the mentions
@@ -192,47 +194,51 @@ def convert_examples_to_features(
         candidates = []
         if args.do_train:
             candidates.append(label_candidate_id)  # positive candidate
-            if model is None:
-                # If model is not given, then use either random negative candidates
-                # or tfidf candidates based on the choice
-                if args.random_candidates:  # Random negatives
-                    candidate_pool = set(entities.keys()) - set([label_candidate_id])
-                    negative_candidates = random.sample(candidate_pool, 9)
-                    candidates += negative_candidates
-                elif args.tfidf_candidates: # TF-IDF negatives
-                    for c in mentions[mention_id]["tfidf_candidates"]:
-                        if c != label_candidate_id and len(candidates) < 10:
-                            candidates.append(c)
-            else:
-                # TODO:Implement hard negative candidate mining
-                print("Performing hard negative candidate mining ...")
-                mention_tokens = torch.LongTensor([mention_tokens]).to(args.devide)
-                mention_tokens_mask = torch.LongTensor([mention_tokens_mask]).to(args.devide)
+
+            if args.use_random_candidates:  # Random negatives
+                candidate_pool = set(entities.keys()) - set([label_candidate_id])
+                negative_candidates = random.sample(candidate_pool, args.num_candidates - 1)
+                candidates += negative_candidates
+
+            elif args.use_tfidf_candidates: # TF-IDF negatives
+                for c in mentions[mention_id]["tfidf_candidates"]:
+                    if c != label_candidate_id and len(candidates) < args.num_candidates:
+                        candidates.append(c)
+
+            elif args.use_hard_negatives:
+                if model is None:
+                    raise ValueError("`model` parameter cannot be None")
+                # Hard negative candidate mining
+                # print("Performing hard negative candidate mining ...")
+                input_token_ids = torch.LongTensor([mention_tokens]).to(args.device)
+                input_token_masks = torch.LongTensor([mention_tokens_mask]).to(args.device)
                 # Forward pass through the mention encoder of the dual encoder
                 mention_outputs = model.bert_mention.bert(
-                    input_ids=mention_tokens,
-                    attention_mask=mention_tokens_mask,
+                    input_ids=input_token_ids,
+                    attention_mask=input_token_masks,
                 )
                 mention_embedding = mention_outputs[1]  # 1 X d
-                mention_embedding = mention_embedding.cpu().numpy()
+                mention_embedding = mention_embedding.cpu().detach().numpy()
 
                 # Perform similarity search
-                distance, candidate_indices = all_candidate_index.search(mention_embedding, 10)
+                distance, candidate_indices = all_candidate_index.search(mention_embedding, args.num_candidates)
                 candidate_indices = candidate_indices[0]  # original size 1 X 10 -> 10
 
                 # Append the hard negative candidates to the list of all candidates
-                for c_idx in  candidate_indices:
+                for c_idx in candidate_indices:
                     c = all_entities[c_idx]
-                    if c != label_candidate_id and len(candidates) < 10:
+                    if c != label_candidate_id and len(candidates) < args.num_candidates:
                         candidates.append(c)
+
+
 
         elif args.do_eval:
             if args.include_positive:
                 candidates.append(label_candidate_id)  # positive candidate
                 for c in mentions[mention_id]["tfidf_candidates"]:
-                    if c != label_candidate_id and len(candidates) < 10:
+                    if c != label_candidate_id and len(candidates) < args.num_candidates:
                         candidates.append(c)
-            elif args.tfidf_candidates:
+            elif args.use_tfidf_candidates:
                 for c in mentions[mention_id]["tfidf_candidates"]:
                     candidates.append(c)
             elif args.use_all_candidates:
