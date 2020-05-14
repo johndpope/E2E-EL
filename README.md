@@ -24,6 +24,7 @@ Download the pretrained BioBERT-base-cased model from here https://github.com/na
 ```
 
 # Training
+
 ## NER
 ### BioBERT + Linear
 ```
@@ -33,7 +34,19 @@ python run_ner.py --data_dir ./data/MM_st21pv --model_type bert --model_name_or_
 ```
 python run_crf_ner.py --data_dir ./data/MM_st21pv --model_type bert --model_name_or_path ./biobert_v1.1_pubmed/model.ckpt-1000000 --output_dir ./model_output --labels ./data/MM_st21pv/MedMentions_label_list.txt --config_name ./biobert_v1.1_pubmed/bert_config.json --tokenizer_name ./biobert_v1.1_pubmed/vocab.txt --do_train --num_train_epochs 10 --overwrite_output_dir
 ```
+
 ## Entity Linking
+### Dual Encoder
+```
+python run_DualEncoder.py --data_dir ./data/MM_full_CUI/el_data --model_type bert --model_name_or_path ./biobert_v1.1_pubmed/model.ckpt-1000000 --output_dir ./model_output_DE_random/checkpoint-100000/ --config_name ./biobert_v1.1_pubmed/bert_config.json --tokenizer_name ./biobert_v1.1_pubmed/vocab.txt --do_train --use_random_candidates --overwrite_output_dir --overwrite_cache
+```
+### Full Transformer
+```
+python run_linking.py --data_dir ./data/MM_full_CUI/el_data --model_type bert --model_name_or_path ./biobert_v1.1_pubmed/model.ckpt-1000000 --output_dir ./model_output_linking/checkpoint-100000/ --config_name ./biobert_v1.1_pubmed/bert_config.json --tokenizer_name ./biobert_v1.1_pubmed/vocab.txt --do_train --use_tfidf_candidates --overwrite_output_dir --overwrite_cache
+```
+
+### Mention Level Linking
+
 ```
 python run_el.py --data_dir ./data/MM_st21pv_CUI --model_type bert --model_name_or_path ./biobert_v1.1_pubmed/model.ckpt-1000000 --output_dir ./model_output --labels ./data/MM_st21pv_CUI/MedMentions_label_list.txt --config_name ./biobert_v1.1_pubmed/bert_config.json --tokenizer_name ./biobert_v1.1_pubmed/vocab.txt --do_train --num_train_epochs 10 --overwrite_output_dir
 ```
