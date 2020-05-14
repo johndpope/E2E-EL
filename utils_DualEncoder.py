@@ -225,16 +225,18 @@ def convert_examples_to_features(
                 candidate_indices = candidate_indices[0]  # original size 1 X 10 -> 10
 
                 # Append the hard negative candidates to the list of all candidates
+                # print("Positive candidate: ", entities[label_candidate_id])
+                # print("Negative candidates: ")
                 for c_idx in candidate_indices:
                     c = all_entities[c_idx]
                     if c != label_candidate_id and len(candidates) < args.num_candidates:
                         candidates.append(c)
-
-
-
+                        print(entities[c])
+            # pdb.set_trace()
         elif args.do_eval:
             if args.include_positive:
                 candidates.append(label_candidate_id)  # positive candidate
+
                 for c in mentions[mention_id]["tfidf_candidates"]:
                     if c != label_candidate_id and len(candidates) < args.num_candidates:
                         candidates.append(c)

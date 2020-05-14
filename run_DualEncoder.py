@@ -99,12 +99,13 @@ def train(args, model, tokenizer):
     )
 
     # Check if saved optimizer or scheduler states exist
-    if os.path.isfile(os.path.join(args.model_name_or_path, "optimizer.pt")) and os.path.isfile(
-        os.path.join(args.model_name_or_path, "scheduler.pt")
+    if args.resume_path is not None and os.path.isfile(os.path.join(args.resume_path, "optimizer.pt")) and os.path.isfile(
+        os.path.join(args.resume_path, "scheduler.pt")
     ):
         # Load in optimizer and scheduler states
-        optimizer.load_state_dict(torch.load(os.path.join(args.model_name_or_path, "optimizer.pt")))
-        scheduler.load_state_dict(torch.load(os.path.join(args.model_name_or_path, "scheduler.pt")))
+        optimizer.load_state_dict(torch.load(os.path.join(args.resume_path, "optimizer.pt")))
+        scheduler.load_state_dict(torch.load(os.path.join(args.resume_path, "scheduler.pt")))
+        logger.info("INFO: Optimizer and scheduler state loaded successfully.")
 
     if args.fp16:
         try:
@@ -693,7 +694,7 @@ def main():
     # Training
     if args.do_train:
         if args.resume_path is not None:
-            # Load a trained model and vocabulary from a sved checkpoint to resume training
+            # Load a trained model and vocabulary from a saved checkpoint to resume training
             model.load_state_dict(torch.load(os.path.join(args.resume_path, 'pytorch_model-1000000.bin')))
             tokenizer = tokenizer_class.from_pretrained(args.resume_path)
             model.to(args.device)
