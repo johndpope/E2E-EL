@@ -69,7 +69,7 @@ def train(args, model, tokenizer):
         # Initial train dataloader
         if args.use_random_candidates:
             train_dataset, _ = load_and_cache_examples(args, tokenizer)
-        elif args.use_hard_negatives:
+        elif args.use_hard_negatives or args.use_hard_and_random_negatives:
             train_dataset, _ = load_and_cache_examples(args, tokenizer, model)
         else:
             train_dataset, _ = load_and_cache_examples(args, tokenizer)
@@ -99,8 +99,8 @@ def train(args, model, tokenizer):
     )
 
     # Check if saved optimizer or scheduler states exist
-    if args.resume_path is not None and os.path.isfile(os.path.join(args.resume_path, "optimizer.pt")) and os.path.isfile(
-        os.path.join(args.resume_path, "scheduler.pt")
+    if args.resume_path is not None and os.path.isfile(os.path.join(args.resume_path, "optimizer.pt")) \
+            and os.path.isfile(os.path.join(args.resume_path, "scheduler.pt")
     ):
         # Load in optimizer and scheduler states
         optimizer.load_state_dict(torch.load(os.path.join(args.resume_path, "optimizer.pt")))
@@ -142,7 +142,7 @@ def train(args, model, tokenizer):
     epochs_trained = 0
     steps_trained_in_current_epoch = 0
     # Check if continuing training from a checkpoint
-    if os.path.exists(args.resume_path):
+    if args.resume_path is not None:
         # set global_step to global_step of last saved checkpoint from model path
         # global_step = int(args.model_name_or_path.split("-")[-1].split("/")[0])
         global_step = int(args.resume_path.split("/")[-2].split("-")[-1])
@@ -170,12 +170,24 @@ def train(args, model, tokenizer):
 
             model.train()
             batch = tuple(t.to(args.device) for t in batch)
-            inputs = {"mention_token_ids": batch[0],
-                      "mention_token_masks": batch[1],
-                      "candidate_token_ids": batch[2],
-                      "candidate_token_masks": batch[3],
-                      "labels": batch[4]
-                      }
+            if args.use_hard_and_random_negatives:
+                inputs = {"mention_token_ids": batch[0],
+                          "mention_token_masks": batch[1],
+                          "candidate_token_ids_1": batch[2],
+                          "candidate_token_masks_1": batch[3],
+                          "candidate_token_ids_2": batch[4],
+                          "candidate_token_masks_2": batch[5],
+                          "labels": batch[6]
+                          }
+            else:
+                inputs = {"mention_token_ids": batch[0],
+                          "mention_token_masks": batch[1],
+                          "candidate_token_ids_1": batch[2],
+                          "candidate_token_masks_1": batch[3],
+                          "candidate_token_ids_2": None,
+                          "candidate_token_masks_2": None,
+                          "labels": batch[6]
+                          }
 
             outputs = model(**inputs)
             loss = outputs[0]  # model outputs are always tuple in transformers (see doc)
@@ -250,7 +262,7 @@ def train(args, model, tokenizer):
                 train_dataset)
             train_dataloader = DataLoader(train_dataset, sampler=train_sampler,
                                           batch_size=args.train_batch_size)
-        elif args.use_hard_negatives:
+        elif args.use_hard_negatives or args.use_hard_and_random_negatives:
             # New data loader at every epoch for hard negative sampler if we use hard negative mining
             train_dataset, _ = load_and_cache_examples(args, tokenizer, model)
             args.train_batch_size = args.per_gpu_train_batch_size * max(1, args.n_gpu)
@@ -321,17 +333,17 @@ def evaluate(args, model, tokenizer, prefix=""):
             if args.use_all_candidates:
                 inputs = {"mention_token_ids": batch[0],
                           "mention_token_masks": batch[1],
-                          "candidate_token_ids": batch[2],
-                          "candidate_token_masks": batch[3],
-                          "labels": batch[4],
+                          "candidate_token_ids_1": batch[2],
+                          "candidate_token_masks_1": batch[3],
+                          "labels": batch[6],
                           "all_candidate_embeddings": all_candidate_embeddings,
                           }
             else:
                 inputs = {"mention_token_ids": batch[0],
                           "mention_token_masks": batch[1],
-                          "candidate_token_ids": batch[2],
-                          "candidate_token_masks": batch[3],
-                          "labels": batch[4],
+                          "candidate_token_ids_1": batch[2],
+                          "candidate_token_masks_1": batch[3],
+                          "labels": batch[6],
                           }
             # if args.model_type != "distilbert":
             #     inputs["token_type_ids"] = (
@@ -441,14 +453,18 @@ def load_and_cache_examples(args, tokenizer, model=None):
     # Convert to Tensors and build dataset
     all_mention_token_ids = torch.tensor([f.mention_token_ids for f in features], dtype=torch.long)
     all_mention_token_masks = torch.tensor([f.mention_token_masks for f in features], dtype=torch.long)
-    all_candidate_token_ids = torch.tensor([f.candidate_token_ids if f.candidate_token_ids is not None else [0] for f in features], dtype=torch.long)
-    all_candidate_token_masks = torch.tensor([f.candidate_token_masks if f.candidate_token_masks is not None else [0] for f in features], dtype=torch.long)
+    all_candidate_token_ids_1 = torch.tensor([f.candidate_token_ids_1 if f.candidate_token_ids_1 is not None else [0] for f in features], dtype=torch.long)
+    all_candidate_token_masks_1 = torch.tensor([f.candidate_token_masks_1 if f.candidate_token_masks_1 is not None else [0] for f in features], dtype=torch.long)
+    all_candidate_token_ids_2 = torch.tensor([f.candidate_token_ids_2 if f.candidate_token_ids_2 is not None else [0] for f in features], dtype=torch.long)
+    all_candidate_token_masks_2 = torch.tensor([f.candidate_token_masks_2 if f.candidate_token_masks_2 is not None else [0] for f in features], dtype=torch.long)
     all_labels = torch.tensor([f.label_ids for f in features], dtype=torch.long)
 
     dataset = TensorDataset(all_mention_token_ids,
                             all_mention_token_masks,
-                            all_candidate_token_ids,
-                            all_candidate_token_masks,
+                            all_candidate_token_ids_1,
+                            all_candidate_token_masks_1,
+                            all_candidate_token_ids_2,
+                            all_candidate_token_masks_2,
                             all_labels)
     return dataset, (all_entities, all_entity_token_ids, all_entity_token_masks)
 
@@ -573,6 +589,9 @@ def main():
     )
     parser.add_argument(
         "--use_hard_negatives",  action="store_true", help="Use hard negative candidates during training"
+    )
+    parser.add_argument(
+        "--use_hard_and_random_negatives", action="store_true", help="Use hard negative candidates during training"
     )
     parser.add_argument(
         "--include_positive", action="store_true", help="Includes the positive candidate during inference"

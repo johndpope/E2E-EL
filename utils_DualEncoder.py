@@ -90,11 +90,16 @@ def get_entity_window(entity_text, max_entity_len, tokenizer):
 class InputFeatures(object):
     """A single set of features of data."""
 
-    def __init__(self, mention_token_ids, mention_token_masks, candidate_token_ids, candidate_token_masks, label_ids):
+    def __init__(self, mention_token_ids, mention_token_masks,
+                 candidate_token_ids_1, candidate_token_masks_1,
+                 candidate_token_ids_2, candidate_token_masks_2,
+                 label_ids):
         self.mention_token_ids = mention_token_ids
         self.mention_token_masks = mention_token_masks
-        self.candidate_token_ids = candidate_token_ids
-        self.candidate_token_masks = candidate_token_masks
+        self.candidate_token_ids_1 = candidate_token_ids_1
+        self.candidate_token_masks_1 = candidate_token_masks_1
+        self.candidate_token_ids_2 = candidate_token_ids_2
+        self.candidate_token_masks_2 = candidate_token_masks_2
         self.label_ids = label_ids
 
 def convert_examples_to_features(
@@ -134,7 +139,7 @@ def convert_examples_to_features(
         all_entity_token_ids.append(candidate_tokens)
         all_entity_token_masks.append(candidate_masks)
 
-    if args.use_hard_negatives:
+    if args.use_hard_negatives or args.use_hard_and_random_negatives:
         if model is None:
             raise ValueError("`model` parameter cannot be None")
         logger.info("INFO: Building index of the candidate embeddings ...")
@@ -158,12 +163,21 @@ def convert_examples_to_features(
         # Indexing for faster search (using FAISS)
         d = all_candidate_embeddings.size(1)
         all_candidate_index = faiss.IndexFlatL2(d)  # build the index, d=size of vectors
-        # here we assume xb contains a n-by-d numpy matrix of type float32
+        # here we assume `all_candidate_embeddings` contains a n-by-d numpy matrix of type float32
         all_candidate_embeddings = all_candidate_embeddings.cpu().detach().numpy()
         all_candidate_index.add(all_candidate_embeddings)
 
+    if args.use_hard_and_random_negatives:
+        # Get the existing hard negatives per mention
+        if os.path.exists(os.path.join(args.data_dir, 'mention_hard_negatives.json')):
+            with open(os.path.join(args.data_dir, 'mention_hard_negatives.json')) as f_hn:
+                mention_hard_negatives = json.load(f_hn)
+        else:
+            mention_hard_negatives = {}
+
     # Process the mentions
     features = []
+    position_of_positive = {}
     for (ex_index, mention_id) in enumerate(mentions.keys()):
         if ex_index % 10000 == 0:
             logger.info("Writing example %d of %d", ex_index, len(mentions))
@@ -192,6 +206,7 @@ def convert_examples_to_features(
         # Build list of candidates
         label_candidate_id = mentions[mention_id]['label_candidate_id']
         candidates = []
+        candidates_2 = None
         if args.do_train:
             candidates.append(label_candidate_id)  # positive candidate
 
@@ -225,14 +240,68 @@ def convert_examples_to_features(
                 candidate_indices = candidate_indices[0]  # original size 1 X 10 -> 10
 
                 # Append the hard negative candidates to the list of all candidates
-                # print("Positive candidate: ", entities[label_candidate_id])
-                # print("Negative candidates: ")
-                for c_idx in candidate_indices:
+                for i, c_idx in enumerate(candidate_indices):
                     c = all_entities[c_idx]
+                    if c == label_candidate_id:
+                        if i not in position_of_positive:
+                            position_of_positive[i] = 1
+                        else:
+                            position_of_positive[i] += 1
                     if c != label_candidate_id and len(candidates) < args.num_candidates:
                         candidates.append(c)
-                        print(entities[c])
-            # pdb.set_trace()
+
+            elif args.use_hard_and_random_negatives:
+                # First get the random negatives
+                candidate_pool = set(entities.keys()) - set([label_candidate_id])
+                negative_candidates = random.sample(candidate_pool, args.num_candidates - 1)
+                candidates += negative_candidates
+
+                # Then get the hard negative
+                if model is None:
+                    raise ValueError("`model` parameter cannot be None")
+                # Hard negative candidate mining
+                # print("Performing hard negative candidate mining ...")
+                # Get mention embeddings
+                input_token_ids = torch.LongTensor([mention_tokens]).to(args.device)
+                input_token_masks = torch.LongTensor([mention_tokens_mask]).to(args.device)
+                # Forward pass through the mention encoder of the dual encoder
+                mention_outputs = model.bert_mention.bert(
+                    input_ids=input_token_ids,
+                    attention_mask=input_token_masks,
+                )
+                mention_embedding = mention_outputs[1]  # 1 X d
+                mention_embedding = mention_embedding.cpu().detach().numpy()
+
+                # Perform similarity search
+                distance, candidate_indices = all_candidate_index.search(mention_embedding, args.num_candidates)
+                candidate_indices = candidate_indices[0]  # original size 1 X 10 -> 10
+
+                # Update the list of hard negatives for this `mention_id`
+                if mention_id not in mention_hard_negatives:
+                    mention_hard_negatives[mention_id] = []
+                for i, c_idx in enumerate(candidate_indices):
+                    c = all_entities[c_idx]
+                    if c == label_candidate_id:  # Positive candidate position
+                        if i not in position_of_positive:
+                            position_of_positive[i] = 1
+                        else:
+                            position_of_positive[i] += 1
+                        break
+                    else:
+                        if c not in mention_hard_negatives[mention_id]:
+                            mention_hard_negatives[mention_id].append(c)
+
+                # Append new hard negatives
+                candidates_2 = []
+                candidates_2.append(label_candidate_id)  # positive candidate
+                # Append hard negative candidates
+                if len(mention_hard_negatives[mention_id]) < args.num_candidates - 1:
+                    negative_candidates = mention_hard_negatives[mention_id]
+                else:
+                    candidate_pool = mention_hard_negatives[mention_id]
+                    negative_candidates = random.sample(candidate_pool, args.num_candidates - 1)
+                candidates_2 += negative_candidates
+
         elif args.do_eval:
             if args.include_positive:
                 candidates.append(label_candidate_id)  # positive candidate
@@ -246,17 +315,19 @@ def convert_examples_to_features(
             elif args.use_all_candidates:
                 candidates = all_entities
 
-        if not args.use_all_candidates:
-            random.shuffle(candidates)
+        # if not args.use_all_candidates:
+        #     random.shuffle(candidates)
 
         if args.use_all_candidates:
             # If all candidates are considered during inference,
             # then place dummy candidate tokens and candidate masks
-            candidate_token_ids = None
-            candidate_token_masks = None
+            candidate_token_ids_1 = None
+            candidate_token_masks_1 = None
+            candidate_token_ids_2 = None
+            candidate_token_masks_2 = None
         else:
-            candidate_token_ids = []
-            candidate_token_masks = []
+            candidate_token_ids_1 = []
+            candidate_token_masks_1 = []
 
             for c_idx, c in enumerate(candidates):
                 entity_text = entities[c]
@@ -277,8 +348,44 @@ def convert_examples_to_features(
                 assert len(candidate_tokens) == max_seq_length
                 assert len(candidate_masks) == max_seq_length
 
-                candidate_token_ids.append(candidate_tokens)
-                candidate_token_masks.append(candidate_masks)
+                candidate_token_ids_1.append(candidate_tokens)
+                candidate_token_masks_1.append(candidate_masks)
+
+            # This second set of candidates is required for Gillick et al. hard negative training
+            if candidates_2 is None:
+                candidate_token_ids_2 = None
+                candidate_token_masks_2 = None
+            else:
+                candidate_token_ids_2 = []
+                candidate_token_masks_2 = []
+                for c_idx, c in enumerate(candidates_2):
+                    entity_text = entities[c]
+                    max_entity_len = max_seq_length  # Number of tokens
+                    entity_window = get_entity_window(entity_text, max_entity_len, tokenizer)
+                    # [CLS] candidate text [SEP]
+                    candidate_tokens = [tokenizer.cls_token] + entity_window + [tokenizer.sep_token]
+                    candidate_tokens = tokenizer.convert_tokens_to_ids(candidate_tokens)
+                    if len(candidate_tokens) > max_seq_length:
+                        candidate_tokens = candidate_tokens[:max_seq_length]
+                        candidate_masks = [1] * max_seq_length
+                    else:
+                        candidate_len = len(candidate_tokens)
+                        pad_len = max_seq_length - candidate_len
+                        candidate_tokens += [tokenizer.pad_token_id] * pad_len
+                        candidate_masks = [1] * candidate_len + [0] * pad_len
+
+                    assert len(candidate_tokens) == max_seq_length
+                    assert len(candidate_masks) == max_seq_length
+
+                    candidate_token_ids_2.append(candidate_tokens)
+                    candidate_token_masks_2.append(candidate_masks)
+
+                # Add Padding candidates
+                if len(candidate_token_ids_2) < args.num_candidates:
+                    pad_size = args.num_candidates - len(candidate_token_ids_2)
+                    for k in range(pad_size):
+                        candidate_token_ids_2.append([0] * max_seq_length)
+                        candidate_token_masks_2.append([0] * max_seq_length)
 
         # Target candidate
         if label_candidate_id in candidates:
@@ -286,21 +393,36 @@ def convert_examples_to_features(
         else:
             label_id = [-100]  # when target candidate not in candidate set
 
-        if ex_index < 3:
-            logger.info("*** Example ***")
-            logger.info("mention_token_ids: %s", " ".join([str(x) for x in mention_tokens]))
-            logger.info("mention_token_masks: %s", " ".join([str(x) for x in mention_tokens_mask]))
-            if candidate_token_ids is not None:
-                logger.info("candidate_token_ids: %s", " ".join([str(x) for x in candidate_token_ids]))
-                logger.info("candidate_token_masks: %s", " ".join([str(x) for x in candidate_token_masks]))
-            logger.info("label_ids: %s", " ".join([str(x) for x in label_id]))
+        # if ex_index < 3:
+        #     logger.info("*** Example ***")
+        #     logger.info("mention_token_ids: %s", " ".join([str(x) for x in mention_tokens]))
+        #     logger.info("mention_token_masks: %s", " ".join([str(x) for x in mention_tokens_mask]))
+        #     if candidate_token_ids_1 is not None:
+        #         logger.info("candidate_token_ids_1: %s", " ".join([str(x) for x in candidate_token_ids_1]))
+        #         logger.info("candidate_token_masks_1: %s", " ".join([str(x) for x in candidate_token_masks_1]))
+        #     if candidate_token_ids_2 is not None:
+        #         logger.info("candidate_token_ids_2: %s", " ".join([str(x) for x in candidate_token_ids_2]))
+        #         logger.info("candidate_token_masks_2: %s", " ".join([str(x) for x in candidate_token_masks_2]))
+        #     logger.info("label_ids: %s", " ".join([str(x) for x in label_id]))
 
         features.append(
             InputFeatures(mention_token_ids=mention_tokens,
                           mention_token_masks=mention_tokens_mask,
-                          candidate_token_ids=candidate_token_ids,
-                          candidate_token_masks=candidate_token_masks,
+                          candidate_token_ids_1=candidate_token_ids_1,
+                          candidate_token_masks_1=candidate_token_masks_1,
+                          candidate_token_ids_2=candidate_token_ids_2,
+                          candidate_token_masks_2=candidate_token_masks_2,
                           label_ids=label_id,
                           )
         )
+
+    logger.info("*** Position of the positive candidates ***")
+    print(position_of_positive)
+
+    # Save the hard negatives
+    if args.use_hard_and_random_negatives:
+        with open(os.path.join(args.data_dir, 'mention_hard_negatives.json'), 'w+') as f_hn:
+            json.dump(mention_hard_negatives, f_hn)
+        f_hn.close()
+
     return features, (all_entities, all_entity_token_ids, all_entity_token_masks)

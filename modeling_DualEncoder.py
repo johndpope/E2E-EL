@@ -24,8 +24,10 @@ class DualEncoderBert(BertPreTrainedModel):
     def forward(self,
                 mention_token_ids=None,
                 mention_token_masks=None,
-                candidate_token_ids=None,
-                candidate_token_masks=None,
+                candidate_token_ids_1=None,
+                candidate_token_masks_1=None,
+                candidate_token_ids_2=None,
+                candidate_token_masks_2=None,
                 token_type_ids=None,
                 position_ids=None,
                 head_mask=None,
@@ -40,13 +42,13 @@ class DualEncoderBert(BertPreTrainedModel):
         pooled_mention_outputs = mention_outputs[1]
 
         if all_candidate_embeddings is None:
-            b_size, n_c, seq_len = candidate_token_ids.size()
-            candidate_token_ids = candidate_token_ids.reshape(-1, seq_len)  # BC X L
-            candidate_token_masks = candidate_token_masks.reshape(-1, seq_len)  # BC X L
+            b_size, n_c, seq_len = candidate_token_ids_1.size()
+            candidate_token_ids_1 = candidate_token_ids_1.reshape(-1, seq_len)  # BC X L
+            candidate_token_masks_1 = candidate_token_masks_1.reshape(-1, seq_len)  # BC X L
 
             candidate_outputs = self.bert_candidate.bert(
-                input_ids=candidate_token_ids,
-                attention_mask=candidate_token_masks,
+                input_ids=candidate_token_ids_1,
+                attention_mask=candidate_token_masks_1,
             )
             pooled_candidate_outputs = candidate_outputs[1]
 
@@ -70,6 +72,38 @@ class DualEncoderBert(BertPreTrainedModel):
 
         loss_fct = CrossEntropyLoss()
         loss = loss_fct(logits, labels)
+
+        # When a seocnd set of candidates is present
+        if candidate_token_ids_2 is not None:
+            b_size, n_c, seq_len = candidate_token_ids_2.size()
+
+            # Mask off the padding candidates
+            candidate_mask = torch.sum(candidate_token_ids_2, dim=2)  # B X C
+            non_zeros = torch.where(candidate_mask > 0)
+            candidate_mask[non_zeros] = 1  # B X C
+
+            candidate_token_ids_2 = candidate_token_ids_2.reshape(-1, seq_len)  # BC X L
+            candidate_token_masks_2 = candidate_token_masks_2.reshape(-1, seq_len)  # BC X L
+
+            candidate_outputs = self.bert_candidate.bert(
+                input_ids=candidate_token_ids_2,
+                attention_mask=candidate_token_masks_2,
+            )
+            pooled_candidate_outputs = candidate_outputs[1]
+
+            # pooled_mention_outputs = pooled_mention_outputs.unsqueeze(1)  # B X 1 X d
+            pooled_candidate_outputs = pooled_candidate_outputs.reshape(b_size, n_c, -1)  # B X C X d
+
+            logits = torch.bmm(pooled_mention_outputs, pooled_candidate_outputs.transpose(1, 2))  # B X 1 X C
+            logits = logits.reshape(b_size, n_c)  # B X C
+
+            # Mask off the padding candidates
+            logits = logits - (1.0 - candidate_mask) * 1e31
+
+            loss_fct = CrossEntropyLoss()
+            loss_2 = loss_fct(logits, labels)
+
+            loss = loss + loss_2
 
         outputs = (loss, ) + (logits, )
 
