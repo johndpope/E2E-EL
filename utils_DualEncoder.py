@@ -228,10 +228,11 @@ def convert_examples_to_features(
                 input_token_ids = torch.LongTensor([mention_tokens]).to(args.device)
                 input_token_masks = torch.LongTensor([mention_tokens_mask]).to(args.device)
                 # Forward pass through the mention encoder of the dual encoder
-                mention_outputs = model.bert_mention.bert(
-                    input_ids=input_token_ids,
-                    attention_mask=input_token_masks,
-                )
+                with torch.no_grad():
+                    mention_outputs = model.bert_mention.bert(
+                        input_ids=input_token_ids,
+                        attention_mask=input_token_masks,
+                    )
                 mention_embedding = mention_outputs[1]  # 1 X d
                 mention_embedding = mention_embedding.cpu().detach().numpy()
 
@@ -265,10 +266,11 @@ def convert_examples_to_features(
                 input_token_ids = torch.LongTensor([mention_tokens]).to(args.device)
                 input_token_masks = torch.LongTensor([mention_tokens_mask]).to(args.device)
                 # Forward pass through the mention encoder of the dual encoder
-                mention_outputs = model.bert_mention.bert(
-                    input_ids=input_token_ids,
-                    attention_mask=input_token_masks,
-                )
+                with torch.no_grad():
+                    mention_outputs = model.bert_mention.bert(
+                        input_ids=input_token_ids,
+                        attention_mask=input_token_masks,
+                    )
                 mention_embedding = mention_outputs[1]  # 1 X d
                 mention_embedding = mention_embedding.cpu().detach().numpy()
 
@@ -288,10 +290,10 @@ def convert_examples_to_features(
                             position_of_positive[i] += 1
                         break
                     else:
+                        # Append new hard negatives
                         if c not in mention_hard_negatives[mention_id]:
                             mention_hard_negatives[mention_id].append(c)
 
-                # Append new hard negatives
                 candidates_2 = []
                 candidates_2.append(label_candidate_id)  # positive candidate
                 # Append hard negative candidates

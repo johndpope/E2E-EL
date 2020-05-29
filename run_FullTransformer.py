@@ -241,40 +241,13 @@ def evaluate(args, config, model, tokenizer, prefix=""):
     if args.use_tfidf_candidates or args.include_positive:
         eval_dataset = load_and_cache_examples(args, tokenizer)
     elif args.use_dense_candidates:
-        from modeling_DualEncoder import PreDualEncoder, DualEncoderBert
-
-        pretrained_bert = PreDualEncoder.from_pretrained(
-            args.model_name_or_path,
-            from_tf=bool(".ckpt" in args.model_name_or_path),
-            config=config,
-            cache_dir=args.cache_dir if args.cache_dir else None,
-        )
-
-        dualencoder_tokenizer = BertTokenizer.from_pretrained(
-            args.tokenizer_name if args.tokenizer_name else args.model_name_or_path,
-            do_lower_case=args.do_lower_case,
-            cache_dir=args.cache_dir if args.cache_dir else None,
-        )
-        # Add new special tokens '[Ms]' and '[Me]' to tag mention
-        new_tokens = ['[Ms]', '[Me]']
-        num_added_tokens = dualencoder_tokenizer.add_tokens(new_tokens)
-        pretrained_bert.resize_token_embeddings(len(tokenizer))
-
-        dual_encoder_model = DualEncoderBert(config, pretrained_bert)
-
-        # Load trained Dual Encoder model and tokenizer
-        dualencoder_tokenizer = BertTokenizer.from_pretrained(args.retrieval_model_path,
-                                                                do_lower_case=args.do_lower_case)
-        dual_encoder_model = dual_encoder_model.load_state_dict(
-            torch.load(os.path.join(args.retrieval_model_path, 'pytorch_model-1000000.bin')))
-        dual_encoder_model.to(args.device)
+        dual_encoder_model, dual_encoder_tokenizer = get_pretrained_dual_encoder(args, config)
         # Load and cache test examples
         eval_dataset = load_and_cache_examples(args, tokenizer,
                                                 retrieval_model=dual_encoder_model,
-                                                retrieval_tokenizer=dualencoder_tokenizer, )
+                                                retrieval_tokenizer=dual_encoder_tokenizer, )
         # Remove the retrieval model to save GPU memory
-        del dualencoder_tokenizer
-        del pretrained_bert
+        del dual_encoder_tokenizer
         del dual_encoder_model
 
     if not os.path.exists(eval_output_dir) and args.local_rank in [-1, 0]:
@@ -407,6 +380,39 @@ def load_and_cache_examples(args, tokenizer, retrieval_model=None, retrieval_tok
     dataset = TensorDataset(all_input_ids, all_attention_mask, all_token_type_ids, all_mention_boundary_ids, all_labels)
     return dataset
 
+
+def get_pretrained_dual_encoder(args, config):
+    from modeling_DualEncoder import PreDualEncoder, DualEncoderBert
+
+    pretrained_bert = PreDualEncoder.from_pretrained(
+        args.model_name_or_path,
+        from_tf=bool(".ckpt" in args.model_name_or_path),
+        config=config,
+        cache_dir=args.cache_dir if args.cache_dir else None,
+    )
+
+    dual_encoder_tokenizer = BertTokenizer.from_pretrained(
+        args.tokenizer_name if args.tokenizer_name else args.model_name_or_path,
+        do_lower_case=args.do_lower_case,
+        cache_dir=args.cache_dir if args.cache_dir else None,
+    )
+    # Add new special tokens '[Ms]' and '[Me]' to tag mention
+    new_tokens = ['[Ms]', '[Me]']
+    num_added_tokens = dual_encoder_tokenizer.add_tokens(new_tokens)
+    pretrained_bert.resize_token_embeddings(len(dual_encoder_tokenizer))
+
+    dual_encoder_model = DualEncoderBert(config, pretrained_bert)
+
+    # Load trained Dual Encoder model and tokenizer
+    dual_encoder_tokenizer = BertTokenizer.from_pretrained(args.retrieval_model_path, do_lower_case=args.do_lower_case)
+    dual_encoder_model.load_state_dict(
+        torch.load(os.path.join(args.retrieval_model_path, 'pytorch_model-1000000.bin')))
+    dual_encoder_model.to(args.device)
+
+    # Remove the pretrained bert model to save GPU memory
+    del pretrained_bert
+
+    return dual_encoder_model, dual_encoder_tokenizer
 
 def main():
     parser = argparse.ArgumentParser()
@@ -646,39 +652,13 @@ def main():
         if args.use_tfidf_candidates:
             train_dataset = load_and_cache_examples(args, tokenizer)
         elif args.use_dense_candidates:
-            from modeling_DualEncoder import PreDualEncoder, DualEncoderBert
-
-            pretrained_bert = PreDualEncoder.from_pretrained(
-                args.model_name_or_path,
-                from_tf=bool(".ckpt" in args.model_name_or_path),
-                config=config,
-                cache_dir=args.cache_dir if args.cache_dir else None,
-            )
-
-            dualencoder_tokenizer = BertTokenizer.from_pretrained(
-                args.tokenizer_name if args.tokenizer_name else args.model_name_or_path,
-                do_lower_case=args.do_lower_case,
-                cache_dir=args.cache_dir if args.cache_dir else None,
-            )
-            # Add new special tokens '[Ms]' and '[Me]' to tag mention
-            new_tokens = ['[Ms]', '[Me]']
-            num_added_tokens = dualencoder_tokenizer.add_tokens(new_tokens)
-            pretrained_bert.resize_token_embeddings(len(tokenizer))
-
-            dual_encoder_model = DualEncoderBert(config, pretrained_bert)
-
-            # Load trained Dual Encoder model and tokenizer
-            dualencoder_tokenizer = BertTokenizer.from_pretrained(args.retrieval_model_path, do_lower_case=args.do_lower_case)
-            dual_encoder_model = dual_encoder_model.load_state_dict(
-                torch.load(os.path.join(args.retrieval_model_path, 'pytorch_model-1000000.bin')))
-            dual_encoder_model.to(args.device)
+            dual_encoder_model, dual_encoder_tokenizer = get_pretrained_dual_encoder(args, config)
             # Load and cache training examples
             train_dataset = load_and_cache_examples(args, tokenizer,
                                                     retrieval_model=dual_encoder_model,
-                                                    retrieval_tokenizer=dualencoder_tokenizer,)
+                                                    retrieval_tokenizer=dual_encoder_tokenizer,)
             # Remove the retrieval model to save GPU memory
-            del dualencoder_tokenizer
-            del pretrained_bert
+            del dual_encoder_tokenizer
             del dual_encoder_model
         global_step, tr_loss = train(args, train_dataset, config, model, tokenizer)
         logger.info(" global_step = %s, average loss = %s", global_step, tr_loss)

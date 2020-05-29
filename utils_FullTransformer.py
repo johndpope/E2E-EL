@@ -58,6 +58,29 @@ def get_window(prefix, mention, suffix, max_size):
 
     return window, mention_start_index, mention_end_index
 
+def get_window_for_retrieval(prefix, mention, suffix, max_size):
+    if len(mention) >= max_size:
+        window = mention[:max_size]
+        return window, 0, len(window) - 1
+
+    leftover = max_size - len(mention)
+    leftover_half = int(math.ceil(leftover / 2))
+
+    if len(prefix) >= leftover_half:
+        prefix_len = leftover_half if len(suffix) >= leftover_half else \
+                     leftover - len(suffix)
+    else:
+        prefix_len = len(prefix)
+
+    prefix = prefix[-prefix_len:]  # Truncate head of prefix
+    window = prefix + ['[Ms]'] + mention + ['[Me]'] + suffix
+    window = window[:max_size]  # Truncate tail of suffix
+
+    mention_start_index = len(prefix)
+    mention_end_index = len(prefix) + len(mention) - 1
+
+    return window, mention_start_index, mention_end_index
+
 
 def get_mention_window(mention_id, mentions, docs,  max_seq_length, tokenizer):
     max_len_context = max_seq_length - 3 // 2 # number of characters
@@ -74,6 +97,25 @@ def get_mention_window(mention_id, mentions, docs,  max_seq_length, tokenizer):
 
     # Get window under new tokenization.
     return get_window(tokenizer.tokenize(prefix),
+                      tokenizer.tokenize(extracted_mention),
+                      tokenizer.tokenize(suffix),
+                      max_len_context)
+
+def get_mention_window_for_retrieval(mention_id, mentions, docs,  max_seq_length, tokenizer):
+    max_len_context = max_seq_length - 3 // 2 # number of characters
+    # Get "enough" context from space-tokenized text.
+    content_document_id = mentions[mention_id]['content_document_id']
+    context_text = docs[content_document_id]['text']
+    start_index = mentions[mention_id]['start_index']
+    end_index = mentions[mention_id]['end_index']
+    prefix = context_text[max(0, start_index - max_len_context): start_index]
+    suffix = context_text[end_index: end_index + max_len_context]
+    extracted_mention = context_text[start_index: end_index]
+
+    assert extracted_mention == mentions[mention_id]['text']
+
+    # Get window under new tokenization.
+    return get_window_for_retrieval(tokenizer.tokenize(prefix),
                       tokenizer.tokenize(extracted_mention),
                       tokenizer.tokenize(suffix),
                       max_len_context)
@@ -106,34 +148,34 @@ def convert_examples_to_features(
     retrieval_model=None,
     retrieval_tokenizer=None,
 ):
-    # All entities
-    all_entities = list(entities.keys())
-    all_entity_token_ids = []
-    all_entity_token_masks = []
-
-    for c_idx, c in enumerate(all_entities):
-        entity_text = entities[c]
-        max_entity_len = max_seq_length // 2  # Number of tokens
-        entity_window = get_entity_window(entity_text, max_entity_len, retrieval_tokenizer)
-        # [CLS] candidate text [SEP]
-        candidate_tokens = [retrieval_tokenizer.cls_token] + entity_window + [retrieval_tokenizer.sep_token]
-        candidate_tokens = retrieval_tokenizer.convert_tokens_to_ids(candidate_tokens)
-        if len(candidate_tokens) > max_seq_length:
-            candidate_tokens = candidate_tokens[:max_seq_length]
-            candidate_masks = [1] * max_seq_length
-        else:
-            candidate_len = len(candidate_tokens)
-            pad_len = max_seq_length - candidate_len
-            candidate_tokens += [retrieval_tokenizer.pad_token_id] * pad_len
-            candidate_masks = [1] * candidate_len + [0] * pad_len
-
-        assert len(candidate_tokens) == max_seq_length
-        assert len(candidate_masks) == max_seq_length
-
-        all_entity_token_ids.append(candidate_tokens)
-        all_entity_token_masks.append(candidate_masks)
-
     if args.use_dense_candidates:
+        # All entities
+        all_entities = list(entities.keys())
+        all_entity_token_ids = []
+        all_entity_token_masks = []
+
+        for c_idx, c in enumerate(all_entities):
+            entity_text = entities[c]
+            max_entity_len = max_seq_length // 2  # Number of tokens in entity
+            entity_window = get_entity_window(entity_text, max_entity_len, retrieval_tokenizer)
+            # [CLS] candidate text [SEP]
+            candidate_tokens = [retrieval_tokenizer.cls_token] + entity_window + [retrieval_tokenizer.sep_token]
+            candidate_tokens = retrieval_tokenizer.convert_tokens_to_ids(candidate_tokens)
+            if len(candidate_tokens) > max_entity_len :
+                candidate_tokens = candidate_tokens[:max_entity_len]
+                candidate_masks = [1] * max_entity_len
+            else:
+                candidate_len = len(candidate_tokens)
+                pad_len = max_entity_len - candidate_len
+                candidate_tokens += [retrieval_tokenizer.pad_token_id] * pad_len
+                candidate_masks = [1] * candidate_len + [0] * pad_len
+
+            assert len(candidate_tokens) == max_entity_len
+            assert len(candidate_masks) == max_entity_len
+
+            all_entity_token_ids.append(candidate_tokens)
+            all_entity_token_masks.append(candidate_masks)
+
         if retrieval_model is None:
             raise ValueError("`retrieval_model` parameter cannot be None")
         logger.info("INFO: Building index of the candidate embeddings ...")
@@ -161,6 +203,42 @@ def convert_examples_to_features(
         all_candidate_embeddings = all_candidate_embeddings.cpu().detach().numpy()
         all_candidate_index.add(all_candidate_embeddings)
 
+    def get_dense_retrieval_candidates(mention_window_for_retrieval):
+        max_mention_len = max_seq_length // 2
+        # Prepre input for the dual encoder model i.e., [CLS] mention with context [SEP]
+        mention_tokens = [retrieval_tokenizer.cls_token] + mention_window_for_retrieval + [
+            retrieval_tokenizer.sep_token]
+        mention_tokens = retrieval_tokenizer.convert_tokens_to_ids(mention_tokens)
+        if len(mention_tokens) > max_mention_len:
+            mention_tokens = mention_tokens[:max_mention_len]
+            mention_tokens_mask = [1] * max_mention_len
+        else:
+            mention_len = len(mention_tokens)
+            pad_len = max_mention_len - mention_len
+            mention_tokens += [retrieval_tokenizer.pad_token_id] * pad_len
+            mention_tokens_mask = [1] * mention_len + [0] * pad_len
+
+        assert len(mention_tokens) == max_mention_len
+        assert len(mention_tokens_mask) == max_mention_len
+
+        input_token_ids = torch.LongTensor([mention_tokens]).to(args.device)
+        input_token_masks = torch.LongTensor([mention_tokens_mask]).to(args.device)
+        # Forward pass through the mention encoder of the dual encoder
+        with torch.no_grad():
+            mention_outputs = retrieval_model.bert_mention.bert(
+                input_ids=input_token_ids,
+                attention_mask=input_token_masks,
+            )
+            mention_embedding = mention_outputs[1]  # 1 X d
+            mention_embedding = mention_embedding.cpu().detach().numpy()
+
+        # Perform similarity search
+        distance, candidate_indices = all_candidate_index.search(mention_embedding, args.num_candidates)
+        candidate_indices = candidate_indices[0]  # original size 1 X 10 -> 10
+
+        return candidate_indices
+
+    #~~~~~~~~~~~~~~~~~~~~~~~~~ Convert examples to features ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     features = []
     position_of_positive = {}
     for (ex_index, mention_id) in enumerate(mentions.keys()):
@@ -188,40 +266,19 @@ def convert_examples_to_features(
                 for c in mentions[mention_id]["tfidf_candidates"]:
                     if c != label_candidate_id and len(candidates) < 10:
                         candidates.append(c)
+
             elif args.use_dense_candidates:
                 if retrieval_model is None:
                     raise ValueError("`retrieval_model` parameter cannot be None")
-                # Prepre input for the dual encoder model i.e., [CLS] mention with context [SEP]
-                mention_tokens = [retrieval_tokenizer.cls_token] + mention_window + [retrieval_tokenizer.sep_token]
-                mention_tokens = retrieval_tokenizer.convert_tokens_to_ids(mention_tokens)
-                if len(mention_tokens) > max_seq_length:
-                    mention_tokens = mention_tokens[:max_seq_length]
-                    mention_tokens_mask = [1] * max_seq_length
-                else:
-                    mention_len = len(mention_tokens)
-                    pad_len = max_seq_length - mention_len
-                    mention_tokens += [retrieval_tokenizer.pad_token_id] * pad_len
-                    mention_tokens_mask = [1] * mention_len + [0] * pad_len
+                mention_window_for_retrieval, _, _ = get_mention_window_for_retrieval(mention_id,
+                                                                                      mentions,
+                                                                                      docs,
+                                                                                      max_seq_length,
+                                                                                      tokenizer)
 
-                assert len(mention_tokens) == max_seq_length
-                assert len(mention_tokens_mask) == max_seq_length
-
-                input_token_ids = torch.LongTensor([mention_tokens]).to(args.device)
-                input_token_masks = torch.LongTensor([mention_tokens_mask]).to(args.device)
-                # Forward pass through the mention encoder of the dual encoder
-                mention_outputs = retrieval_model.bert_mention.bert(
-                    input_ids=input_token_ids,
-                    attention_mask=input_token_masks,
-                )
-                mention_embedding = mention_outputs[1]  # 1 X d
-                mention_embedding = mention_embedding.cpu().detach().numpy()
-
-                # Perform similarity search
-                distance, candidate_indices = all_candidate_index.search(mention_embedding, args.num_candidates)
-                candidate_indices = candidate_indices[0]  # original size 1 X 10 -> 10
-
-                # Append the retrieved candidates to the list candidates
                 candidates.append(label_candidate_id)  # positive candidate
+                # Append the retrieved candidates to the list candidates
+                candidate_indices = get_dense_retrieval_candidates(mention_window_for_retrieval)
                 for i, c_idx in enumerate(candidate_indices):
                     c = all_entities[c_idx]
                     if c == label_candidate_id:
@@ -244,35 +301,13 @@ def convert_examples_to_features(
             elif args.use_dense_candidates:
                 if retrieval_model is None:
                     raise ValueError("`retrieval_model` parameter cannot be None")
-                # Prepre input for the dual encoder model [CLS] mention with context [SEP]
-                mention_tokens = [retrieval_tokenizer.cls_token] + mention_window + [retrieval_tokenizer.sep_token]
-                mention_tokens = retrieval_tokenizer.convert_tokens_to_ids(mention_tokens)
-                if len(mention_tokens) > max_seq_length:
-                    mention_tokens = mention_tokens[:max_seq_length]
-                    mention_tokens_mask = [1] * max_seq_length
-                else:
-                    mention_len = len(mention_tokens)
-                    pad_len = max_seq_length - mention_len
-                    mention_tokens += [retrieval_tokenizer.pad_token_id] * pad_len
-                    mention_tokens_mask = [1] * mention_len + [0] * pad_len
+                mention_window_for_retrieval, _, _ = get_mention_window_for_retrieval(mention_id,
+                                                                                      mentions,
+                                                                                      docs,
+                                                                                      max_seq_length,
+                                                                                      tokenizer)
 
-                assert len(mention_tokens) == max_seq_length
-                assert len(mention_tokens_mask) == max_seq_length
-
-                input_token_ids = torch.LongTensor([mention_tokens]).to(args.device)
-                input_token_masks = torch.LongTensor([mention_tokens_mask]).to(args.device)
-                # Forward pass through the mention encoder of the dual encoder
-                mention_outputs = retrieval_model.bert_mention.bert(
-                    input_ids=input_token_ids,
-                    attention_mask=input_token_masks,
-                )
-                mention_embedding = mention_outputs[1]  # 1 X d
-                mention_embedding = mention_embedding.cpu().detach().numpy()
-
-                # Perform similarity search
-                distance, candidate_indices = all_candidate_index.search(mention_embedding, args.num_candidates)
-                candidate_indices = candidate_indices[0]  # original size 1 X 10 -> 10
-
+                candidate_indices = get_dense_retrieval_candidates(mention_window_for_retrieval)
                 # Append the retrieved candidates to the list candidates
                 for i, c_idx in enumerate(candidate_indices):
                     c = all_entities[c_idx]
@@ -281,7 +316,7 @@ def convert_examples_to_features(
                             position_of_positive[i] = 1
                         else:
                             position_of_positive[i] += 1
-                    if c != label_candidate_id and len(candidates) < args.num_candidates:
+                    if len(candidates) < args.num_candidates:
                         candidates.append(c)
 
         random.shuffle(candidates)

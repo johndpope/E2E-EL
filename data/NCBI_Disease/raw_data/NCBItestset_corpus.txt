@@ -490,12 +490,12 @@
 9674906	180	204	Schwartz-Jampel syndrome	SpecificDisease	D010009
 9674906	206	209	SJS	SpecificDisease	D010009
 9674906	214	222	myotonia	SpecificDisease	D009222
-9674906	227	245	skeletal dysplasia	SpecificDisease	MESH:C535662
+9674906	227	245	skeletal dysplasia	SpecificDisease	C535662
 9674906	263	273	SJS type 2	SpecificDisease	C537502
 9674906	335	359	Stuve-Wiedemann syndrome	SpecificDisease	C537502
 9674906	361	364	SWS	SpecificDisease	C537502
 9674906	383	393	campomelia	SpecificDisease	C537966
-9674906	408	426	skeletal dysplasia	SpecificDisease	MESH:C535662
+9674906	408	426	skeletal dysplasia	SpecificDisease	C535662
 9674906	428	440	contractures	SpecificDisease	D003286
 9674906	446	457	early death	SpecificDisease	D003643
 9674906	621	631	SJS type 2	SpecificDisease	C537502
