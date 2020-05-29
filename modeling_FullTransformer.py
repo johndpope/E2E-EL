@@ -5,6 +5,7 @@ from torch.nn import CrossEntropyLoss, MSELoss
 from modeling_bert import BertPreTrainedModel
 from modeling_bert import BertModel
 
+
 class BertForLinking(BertPreTrainedModel):
     def __init__(self, config):
         super().__init__(config)

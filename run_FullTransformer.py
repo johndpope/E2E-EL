@@ -30,22 +30,15 @@ from transformers import (
     XLMTokenizer,
     get_linear_schedule_with_warmup,
 )
-# from transformers import glue_convert_examples_to_features as convert_examples_to_features
-# from transformers import xnli_compute_metrics as compute_metrics
-# from transformers import xnli_output_modes as output_modes
-# from transformers import xnli_processors as processors
 
-from utils_linking import get_examples, convert_examples_to_features
+from utils_FullTransformer import get_examples, convert_examples_to_features
 
 from modeling_bert import BertModel
 from tokenization_bert import BertTokenizer
 from configuration_bert import BertConfig
-from modeling_linking import BertForLinking
-
+from modeling_FullTransformer import BertForLinking
 
 from torch.utils.tensorboard import SummaryWriter
-
-
 
 logger = logging.getLogger(__name__)
 
@@ -242,10 +235,48 @@ def train(args, train_dataset, model, tokenizer):
     return global_step, tr_loss / global_step
 
 
-def evaluate(args, model, tokenizer, prefix=""):
+def evaluate(args, config, model, tokenizer, prefix=""):
     eval_output_dir = args.output_dir
 
-    eval_dataset = load_and_cache_examples(args, tokenizer, 'test')
+    if args.use_tfidf_candidates or args.include_positive:
+        eval_dataset = load_and_cache_examples(args, tokenizer)
+    elif args.use_dense_candidates:
+        from modeling_DualEncoder import PreDualEncoder, DualEncoderBert
+
+        pretrained_bert = PreDualEncoder.from_pretrained(
+            args.model_name_or_path,
+            from_tf=bool(".ckpt" in args.model_name_or_path),
+            config=config,
+            cache_dir=args.cache_dir if args.cache_dir else None,
+        )
+
+        dualencoder_tokenizer = BertTokenizer.from_pretrained(
+            args.tokenizer_name if args.tokenizer_name else args.model_name_or_path,
+            do_lower_case=args.do_lower_case,
+            cache_dir=args.cache_dir if args.cache_dir else None,
+        )
+        # Add new special tokens '[Ms]' and '[Me]' to tag mention
+        new_tokens = ['[Ms]', '[Me]']
+        num_added_tokens = dualencoder_tokenizer.add_tokens(new_tokens)
+        pretrained_bert.resize_token_embeddings(len(tokenizer))
+
+        dual_encoder_model = DualEncoderBert(config, pretrained_bert)
+
+        # Load trained Dual Encoder model and tokenizer
+        dualencoder_tokenizer = BertTokenizer.from_pretrained(args.retrieval_model_path,
+                                                                do_lower_case=args.do_lower_case)
+        dual_encoder_model = dual_encoder_model.load_state_dict(
+            torch.load(os.path.join(args.retrieval_model_path, 'pytorch_model-1000000.bin')))
+        dual_encoder_model.to(args.device)
+        # Load and cache test examples
+        eval_dataset = load_and_cache_examples(args, tokenizer,
+                                                retrieval_model=dual_encoder_model,
+                                                retrieval_tokenizer=dualencoder_tokenizer, )
+        # Remove the retrieval model to save GPU memory
+        del dualencoder_tokenizer
+        del pretrained_bert
+        del dual_encoder_model
+
     if not os.path.exists(eval_output_dir) and args.local_rank in [-1, 0]:
          os.makedirs(eval_output_dir)
 
@@ -331,12 +362,11 @@ def evaluate(args, model, tokenizer, prefix=""):
     return results
 
 
-def load_and_cache_examples(args, tokenizer, mode):
+def load_and_cache_examples(args, tokenizer, retrieval_model=None, retrieval_tokenizer=None, ):
     if args.local_rank not in [-1, 0] and not evaluate:
         torch.distributed.barrier()  # Make sure only the first process in distributed training process the dataset, and the others will use the cache
 
-    # processor = processors[task](language=args.language, train_language=args.train_language)
-    # output_mode = output_modes[task]
+    mode = 'train' if args.do_train else 'test'
     # Load data features from cache or dataset file
     cached_features_file = os.path.join(
         args.data_dir,
@@ -356,7 +386,9 @@ def load_and_cache_examples(args, tokenizer, mode):
             entities,
             args.max_seq_length,
             tokenizer,
-            mode,
+            args,
+            retrieval_model,
+            retrieval_tokenizer,
         )
         if args.local_rank in [-1, 0]:
             logger.info("Saving features into cached file %s", cached_features_file)
@@ -401,16 +433,13 @@ def main():
         required=True,
         help="Path to pre-trained model or shortcut name selected in the list: " + ", ".join(ALL_MODELS),
     )
-    # parser.add_argument(
-    #     "--language",
-    #     default=None,
-    #     type=str,
-    #     required=True,
-    #     help="Evaluation language. Also train language if `train_language` is set to None.",
-    # )
-    # parser.add_argument(
-    #     "--train_language", default=None, type=str, help="Train language if is different of the evaluation language."
-    # )
+    parser.add_argument(
+        "--retrieval_model_path",
+        default=None,
+        type=str,
+        required=False,
+        help="Path to the pretrained dual encoder model that will be used for candidate retrieval"
+    )
     parser.add_argument(
         "--output_dir",
         default=None,
@@ -490,6 +519,19 @@ def main():
     parser.add_argument(
         "--overwrite_cache", action="store_true", help="Overwrite the cached training and evaluation sets"
     )
+    parser.add_argument(
+        "--num_candidates", type=int, default=10, help="Number of candidates to consider per mention"
+    )
+    parser.add_argument(
+        "--use_tfidf_candidates", action="store_true", help="Use tfidf candidates during training"
+    )
+    parser.add_argument(
+        "--use_dense_candidates", action="store_true", help="Use candidates from dense retrieval during training"
+    )
+    parser.add_argument(
+        "--include_positive", action="store_true", help="Includes the positive candidate during inference"
+    )
+
     parser.add_argument("--seed", type=int, default=42, help="random seed for initialization")
 
     parser.add_argument(
@@ -601,8 +643,44 @@ def main():
 
     # Training
     if args.do_train:
-        train_dataset = load_and_cache_examples(args, tokenizer, 'train')
-        global_step, tr_loss = train(args, train_dataset, model, tokenizer)
+        if args.use_tfidf_candidates:
+            train_dataset = load_and_cache_examples(args, tokenizer)
+        elif args.use_dense_candidates:
+            from modeling_DualEncoder import PreDualEncoder, DualEncoderBert
+
+            pretrained_bert = PreDualEncoder.from_pretrained(
+                args.model_name_or_path,
+                from_tf=bool(".ckpt" in args.model_name_or_path),
+                config=config,
+                cache_dir=args.cache_dir if args.cache_dir else None,
+            )
+
+            dualencoder_tokenizer = BertTokenizer.from_pretrained(
+                args.tokenizer_name if args.tokenizer_name else args.model_name_or_path,
+                do_lower_case=args.do_lower_case,
+                cache_dir=args.cache_dir if args.cache_dir else None,
+            )
+            # Add new special tokens '[Ms]' and '[Me]' to tag mention
+            new_tokens = ['[Ms]', '[Me]']
+            num_added_tokens = dualencoder_tokenizer.add_tokens(new_tokens)
+            pretrained_bert.resize_token_embeddings(len(tokenizer))
+
+            dual_encoder_model = DualEncoderBert(config, pretrained_bert)
+
+            # Load trained Dual Encoder model and tokenizer
+            dualencoder_tokenizer = BertTokenizer.from_pretrained(args.retrieval_model_path, do_lower_case=args.do_lower_case)
+            dual_encoder_model = dual_encoder_model.load_state_dict(
+                torch.load(os.path.join(args.retrieval_model_path, 'pytorch_model-1000000.bin')))
+            dual_encoder_model.to(args.device)
+            # Load and cache training examples
+            train_dataset = load_and_cache_examples(args, tokenizer,
+                                                    retrieval_model=dual_encoder_model,
+                                                    retrieval_tokenizer=dualencoder_tokenizer,)
+            # Remove the retrieval model to save GPU memory
+            del dualencoder_tokenizer
+            del pretrained_bert
+            del dual_encoder_model
+        global_step, tr_loss = train(args, train_dataset, config, model, tokenizer)
         logger.info(" global_step = %s, average loss = %s", global_step, tr_loss)
 
     # Saving best-practices: if you use defaults names for the model, you can reload it using from_pretrained()
@@ -645,7 +723,7 @@ def main():
 
             model = BertForLinking.from_pretrained(checkpoint)
             model.to(args.device)
-            result = evaluate(args, model, tokenizer, prefix=prefix)
+            result = evaluate(args, config, model, tokenizer, prefix=prefix)
             result = dict((k + "_{}".format(global_step), v) for k, v in result.items())
             results.update(result)
 

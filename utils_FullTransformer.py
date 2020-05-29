@@ -4,6 +4,8 @@ import random
 import math
 import logging
 logger = logging.getLogger(__name__)
+import torch
+import faiss
 
 def get_examples(data_dir, mode):
     entity_path = './data/MM_full_CUI/raw_data/entities.txt'
@@ -100,10 +102,67 @@ def convert_examples_to_features(
     entities,
     max_seq_length,
     tokenizer,
-    mode,
+    args,
+    retrieval_model=None,
+    retrieval_tokenizer=None,
 ):
+    # All entities
+    all_entities = list(entities.keys())
+    all_entity_token_ids = []
+    all_entity_token_masks = []
+
+    for c_idx, c in enumerate(all_entities):
+        entity_text = entities[c]
+        max_entity_len = max_seq_length // 2  # Number of tokens
+        entity_window = get_entity_window(entity_text, max_entity_len, retrieval_tokenizer)
+        # [CLS] candidate text [SEP]
+        candidate_tokens = [retrieval_tokenizer.cls_token] + entity_window + [retrieval_tokenizer.sep_token]
+        candidate_tokens = retrieval_tokenizer.convert_tokens_to_ids(candidate_tokens)
+        if len(candidate_tokens) > max_seq_length:
+            candidate_tokens = candidate_tokens[:max_seq_length]
+            candidate_masks = [1] * max_seq_length
+        else:
+            candidate_len = len(candidate_tokens)
+            pad_len = max_seq_length - candidate_len
+            candidate_tokens += [retrieval_tokenizer.pad_token_id] * pad_len
+            candidate_masks = [1] * candidate_len + [0] * pad_len
+
+        assert len(candidate_tokens) == max_seq_length
+        assert len(candidate_masks) == max_seq_length
+
+        all_entity_token_ids.append(candidate_tokens)
+        all_entity_token_masks.append(candidate_masks)
+
+    if args.use_dense_candidates:
+        if retrieval_model is None:
+            raise ValueError("`retrieval_model` parameter cannot be None")
+        logger.info("INFO: Building index of the candidate embeddings ...")
+        # Gather all candidate embeddings for hard negative mining
+        all_candidate_embeddings = []
+        with torch.no_grad():
+            # Forward pass through the candidate encoder of the dual encoder
+            for i, (entity_tokens, entity_tokens_masks) in enumerate(
+                    zip(all_entity_token_ids, all_entity_token_masks)):
+                candidate_token_ids = torch.LongTensor([entity_tokens]).to(args.device)
+                candidate_token_masks = torch.LongTensor([entity_tokens_masks]).to(args.device)
+                candidate_outputs = retrieval_model.bert_candidate.bert(
+                    input_ids=candidate_token_ids,
+                    attention_mask=candidate_token_masks,
+                )
+                candidate_embedding = candidate_outputs[1]
+                all_candidate_embeddings.append(candidate_embedding)
+
+        all_candidate_embeddings = torch.cat(all_candidate_embeddings, dim=0)
+
+        # Indexing for faster search (using FAISS)
+        d = all_candidate_embeddings.size(1)
+        all_candidate_index = faiss.IndexFlatL2(d)  # build the index, d=size of vectors
+        # here we assume `all_candidate_embeddings` contains a n-by-d numpy matrix of type float32
+        all_candidate_embeddings = all_candidate_embeddings.cpu().detach().numpy()
+        all_candidate_index.add(all_candidate_embeddings)
 
     features = []
+    position_of_positive = {}
     for (ex_index, mention_id) in enumerate(mentions.keys()):
         if ex_index % 10000 == 0:
             logger.info("Writing example %d of %d", ex_index, len(mentions))
@@ -123,14 +182,107 @@ def convert_examples_to_features(
         # List of candidates
         label_candidate_id = mentions[mention_id]['label_candidate_id']
         candidates = []
-        if mode == 'train': # or mode == 'test'
-            candidates.append(label_candidate_id) # positive candidate
-            for c in mentions[mention_id]["tfidf_candidates"]:
-                if c != label_candidate_id and len(candidates) < 10:
+        if args.do_train:
+            if args.use_tfidf_candidates:
+                candidates.append(label_candidate_id) # positive candidate
+                for c in mentions[mention_id]["tfidf_candidates"]:
+                    if c != label_candidate_id and len(candidates) < 10:
+                        candidates.append(c)
+            elif args.use_dense_candidates:
+                if retrieval_model is None:
+                    raise ValueError("`retrieval_model` parameter cannot be None")
+                # Prepre input for the dual encoder model i.e., [CLS] mention with context [SEP]
+                mention_tokens = [retrieval_tokenizer.cls_token] + mention_window + [retrieval_tokenizer.sep_token]
+                mention_tokens = retrieval_tokenizer.convert_tokens_to_ids(mention_tokens)
+                if len(mention_tokens) > max_seq_length:
+                    mention_tokens = mention_tokens[:max_seq_length]
+                    mention_tokens_mask = [1] * max_seq_length
+                else:
+                    mention_len = len(mention_tokens)
+                    pad_len = max_seq_length - mention_len
+                    mention_tokens += [retrieval_tokenizer.pad_token_id] * pad_len
+                    mention_tokens_mask = [1] * mention_len + [0] * pad_len
+
+                assert len(mention_tokens) == max_seq_length
+                assert len(mention_tokens_mask) == max_seq_length
+
+                input_token_ids = torch.LongTensor([mention_tokens]).to(args.device)
+                input_token_masks = torch.LongTensor([mention_tokens_mask]).to(args.device)
+                # Forward pass through the mention encoder of the dual encoder
+                mention_outputs = retrieval_model.bert_mention.bert(
+                    input_ids=input_token_ids,
+                    attention_mask=input_token_masks,
+                )
+                mention_embedding = mention_outputs[1]  # 1 X d
+                mention_embedding = mention_embedding.cpu().detach().numpy()
+
+                # Perform similarity search
+                distance, candidate_indices = all_candidate_index.search(mention_embedding, args.num_candidates)
+                candidate_indices = candidate_indices[0]  # original size 1 X 10 -> 10
+
+                # Append the retrieved candidates to the list candidates
+                candidates.append(label_candidate_id)  # positive candidate
+                for i, c_idx in enumerate(candidate_indices):
+                    c = all_entities[c_idx]
+                    if c == label_candidate_id:
+                        if i not in position_of_positive:
+                            position_of_positive[i] = 1
+                        else:
+                            position_of_positive[i] += 1
+                    if c != label_candidate_id and len(candidates) < args.num_candidates:
+                        candidates.append(c)
+
+        if args.do_eval:
+            if args.use_tfidf_candidates:
+                for c in mentions[mention_id]["tfidf_candidates"]:
                     candidates.append(c)
-        else:
-            for c in mentions[mention_id]["tfidf_candidates"]:
-                candidates.append(c)
+            elif args.include_positive:
+                candidates.append(label_candidate_id)  # positive candidate
+                for c in mentions[mention_id]["tfidf_candidates"]:
+                    if c != label_candidate_id and len(candidates) < 10:
+                        candidates.append(c)
+            elif args.use_dense_candidates:
+                if retrieval_model is None:
+                    raise ValueError("`retrieval_model` parameter cannot be None")
+                # Prepre input for the dual encoder model [CLS] mention with context [SEP]
+                mention_tokens = [retrieval_tokenizer.cls_token] + mention_window + [retrieval_tokenizer.sep_token]
+                mention_tokens = retrieval_tokenizer.convert_tokens_to_ids(mention_tokens)
+                if len(mention_tokens) > max_seq_length:
+                    mention_tokens = mention_tokens[:max_seq_length]
+                    mention_tokens_mask = [1] * max_seq_length
+                else:
+                    mention_len = len(mention_tokens)
+                    pad_len = max_seq_length - mention_len
+                    mention_tokens += [retrieval_tokenizer.pad_token_id] * pad_len
+                    mention_tokens_mask = [1] * mention_len + [0] * pad_len
+
+                assert len(mention_tokens) == max_seq_length
+                assert len(mention_tokens_mask) == max_seq_length
+
+                input_token_ids = torch.LongTensor([mention_tokens]).to(args.device)
+                input_token_masks = torch.LongTensor([mention_tokens_mask]).to(args.device)
+                # Forward pass through the mention encoder of the dual encoder
+                mention_outputs = retrieval_model.bert_mention.bert(
+                    input_ids=input_token_ids,
+                    attention_mask=input_token_masks,
+                )
+                mention_embedding = mention_outputs[1]  # 1 X d
+                mention_embedding = mention_embedding.cpu().detach().numpy()
+
+                # Perform similarity search
+                distance, candidate_indices = all_candidate_index.search(mention_embedding, args.num_candidates)
+                candidate_indices = candidate_indices[0]  # original size 1 X 10 -> 10
+
+                # Append the retrieved candidates to the list candidates
+                for i, c_idx in enumerate(candidate_indices):
+                    c = all_entities[c_idx]
+                    if c == label_candidate_id:
+                        if i not in position_of_positive:
+                            position_of_positive[i] = 1
+                        else:
+                            position_of_positive[i] += 1
+                    if c != label_candidate_id and len(candidates) < args.num_candidates:
+                        candidates.append(c)
 
         random.shuffle(candidates)
         # Target candidate
@@ -182,7 +334,7 @@ def convert_examples_to_features(
             mention_boundary_ids.append(mention_boundary_id)
             label_ids.append(label_id)
 
-        if ex_index < 5:
+        if ex_index < 1:
             logger.info("*** Example ***")
             # logger.info("guid: %s", .guid)
             # logger.info("tokens: %s", " ".join([str(x) for x in tokens]))
@@ -200,4 +352,8 @@ def convert_examples_to_features(
                           label_ids=label_ids,
                           )
         )
+
+    logger.info("***Postition of the positive candidate in retrieval***")
+    print(position_of_positive)
+
     return features

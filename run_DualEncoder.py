@@ -171,7 +171,9 @@ def train(args, model, tokenizer):
             model.train()
             batch = tuple(t.to(args.device) for t in batch)
             if args.use_hard_and_random_negatives:
-                inputs = {"mention_token_ids": batch[0],
+
+                inputs = {"args": args,
+                          "mention_token_ids": batch[0],
                           "mention_token_masks": batch[1],
                           "candidate_token_ids_1": batch[2],
                           "candidate_token_masks_1": batch[3],
@@ -180,7 +182,8 @@ def train(args, model, tokenizer):
                           "labels": batch[6]
                           }
             else:
-                inputs = {"mention_token_ids": batch[0],
+                inputs = {"args": args,
+                          "mention_token_ids": batch[0],
                           "mention_token_masks": batch[1],
                           "candidate_token_ids_1": batch[2],
                           "candidate_token_masks_1": batch[3],
@@ -271,6 +274,10 @@ def train(args, model, tokenizer):
             train_dataloader = DataLoader(train_dataset, sampler=train_sampler,
                                           batch_size=args.train_batch_size)
 
+            # Anneal the lamba_1 nd lambda_2 weights
+            args.lambda_1 = args.lambda_1 - 1 / (epoch_num + 1)
+            args.lambda_2 = args.lambda_2 + 1 / (epoch_num + 1)
+
     if args.local_rank in [-1, 0]:
         tb_writer.close()
 
@@ -331,7 +338,8 @@ def evaluate(args, model, tokenizer, prefix=""):
 
         with torch.no_grad():
             if args.use_all_candidates:
-                inputs = {"mention_token_ids": batch[0],
+                inputs = {"args": args,
+                          "mention_token_ids": batch[0],
                           "mention_token_masks": batch[1],
                           "candidate_token_ids_1": batch[2],
                           "candidate_token_masks_1": batch[3],
@@ -339,7 +347,8 @@ def evaluate(args, model, tokenizer, prefix=""):
                           "all_candidate_embeddings": all_candidate_embeddings,
                           }
             else:
-                inputs = {"mention_token_ids": batch[0],
+                inputs = {"args": args,
+                          "mention_token_ids": batch[0],
                           "mention_token_masks": batch[1],
                           "candidate_token_ids_1": batch[2],
                           "candidate_token_masks_1": batch[3],
@@ -601,6 +610,13 @@ def main():
     )
     parser.add_argument(
         "--num_candidates", type=int, default=10, help="Number of candidates to consider per mention"
+    )
+
+    parser.add_argument(
+        "--lambda_1", type=float, default=1, help="Weight of the random candidate loss"
+    )
+    parser.add_argument(
+        "--lambda_2", type=float, default=0, help="Weight of the hard negative candidate loss"
     )
 
     parser.add_argument("--seed", type=int, default=42, help="random seed for initialization")

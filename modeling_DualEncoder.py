@@ -8,7 +8,6 @@ from modeling_bert import BertModel
 
 import pdb
 
-
 class PreDualEncoder(BertPreTrainedModel):
     def __init__(self, config):
         super().__init__(config)
@@ -22,6 +21,7 @@ class DualEncoderBert(BertPreTrainedModel):
         self.bert_candidate = copy.deepcopy(pretrained_bert)
 
     def forward(self,
+                args,
                 mention_token_ids=None,
                 mention_token_masks=None,
                 candidate_token_ids_1=None,
@@ -103,7 +103,7 @@ class DualEncoderBert(BertPreTrainedModel):
             loss_fct = CrossEntropyLoss()
             loss_2 = loss_fct(logits, labels)
 
-            loss = loss + loss_2
+            loss = args.lambda_1 * loss + args.lambda_2 * loss_2
 
         outputs = (loss, ) + (logits, )
 
