@@ -14,7 +14,7 @@ documents = {}
 mentions = {}
 data_dir = './data/NCBI_Disease/raw_data'
 save_dir = './data/NCBI_Disease/el_data'
-with open(os.path.join(data_dir, 'NCBItestset_corpus.txt')) as f:
+with open(os.path.join(data_dir, 'NCBIdevelopset_corpus.txt')) as f:
     for line in f:
         line = line.strip()
         if regex.match(line):
@@ -66,14 +66,14 @@ with open(os.path.join(data_dir, 'NCBItestset_corpus.txt')) as f:
             else: # Empty lines
                 continue
 
-with open(os.path.join(save_dir, 'test/documents/documents.json'), 'w+') as f:
+with open(os.path.join(save_dir, 'dev/documents/documents.json'), 'w+') as f:
     for document_id in documents:
         dict_to_write = {"document_id": document_id, "text": documents[document_id]}
         dict_to_write = json.dumps(dict_to_write)
         f.write(dict_to_write + '\n')
 f.close()
 
-with open(os.path.join(save_dir, 'test/mentions/mentions.json'), 'w+') as f:
+with open(os.path.join(save_dir, 'dev/mentions/mentions.json'), 'w+') as f:
     for document_id in mentions:
         for m in mentions[document_id]:
             dict_to_write = json.dumps(m)
