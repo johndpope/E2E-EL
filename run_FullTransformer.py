@@ -581,7 +581,7 @@ def main():
     # Setup CUDA, GPU & distributed training
     if args.local_rank == -1 or args.no_cuda:
         device = torch.device("cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
-        args.n_gpu = 0 if args.no_cuda else 4 #torch.cuda.device_count()
+        args.n_gpu = 0 if args.no_cuda else 1 #torch.cuda.device_count()
     else:  # Initializes the distributed backend which will take care of sychronizing nodes/GPUs
         torch.cuda.set_device(args.local_rank)
         device = torch.device("cuda", args.local_rank)
@@ -660,7 +660,9 @@ def main():
             # Remove the retrieval model to save GPU memory
             del dual_encoder_tokenizer
             del dual_encoder_model
-        global_step, tr_loss = train(args, train_dataset, config, model, tokenizer)
+        else:
+            train_dataset = load_and_cache_examples(args, tokenizer)
+        global_step, tr_loss = train(args, train_dataset, model, tokenizer)
         logger.info(" global_step = %s, average loss = %s", global_step, tr_loss)
 
     # Saving best-practices: if you use defaults names for the model, you can reload it using from_pretrained()
