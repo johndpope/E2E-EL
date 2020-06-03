@@ -51,7 +51,7 @@ def get_window(prefix, mention, suffix, max_size):
         prefix_len = len(prefix)
 
     prefix = prefix[-prefix_len:]  # Truncate head of prefix
-    window = prefix + ['[Ms]'] + mention + ['[Me]'] +suffix
+    window = prefix + ['[Ms]'] + mention + ['[Me]'] + suffix
     window = window[:max_size]  # Truncate tail of suffix
 
     mention_start_index = len(prefix)

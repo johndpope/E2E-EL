@@ -81,6 +81,7 @@ class DualEncoderBert(BertPreTrainedModel):
             candidate_mask = torch.sum(candidate_token_ids_2, dim=2)  # B X C
             non_zeros = torch.where(candidate_mask > 0)
             candidate_mask[non_zeros] = 1  # B X C
+            candidate_mask = candidate_mask.float()
 
             candidate_token_ids_2 = candidate_token_ids_2.reshape(-1, seq_len)  # BC X L
             candidate_token_masks_2 = candidate_token_masks_2.reshape(-1, seq_len)  # BC X L

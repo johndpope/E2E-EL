@@ -16,6 +16,8 @@ from torch.utils.data import DataLoader, RandomSampler, SequentialSampler, Tenso
 from torch.utils.data.distributed import DistributedSampler
 from tqdm import tqdm, trange
 
+import pdb
+
 from transformers import (
     WEIGHTS_NAME,
     AdamW,
@@ -161,11 +163,12 @@ def train(args, train_dataset, model, tokenizer):
 
             model.train()
             batch = tuple(t.to(args.device) for t in batch)
-            inputs = {"input_ids": batch[0], "attention_mask": batch[1], "mention_boundary_ids": batch[3], "labels": batch[4]}
-            if args.model_type != "distilbert":
-                inputs["token_type_ids"] = (
-                    batch[2] if args.model_type in ["bert"] else None
-                )  # XLM and DistilBERT don't use segment_ids
+            inputs = {"input_ids": batch[0],
+                      "attention_mask": batch[1],
+                      "token_type_ids": batch[2],
+                      "mention_boundary_ids": batch[3],
+                      "labels": batch[4]}
+
             outputs = model(**inputs)
             loss = outputs[0]  # model outputs are always tuple in transformers (see doc)
 
@@ -241,7 +244,7 @@ def evaluate(args, config, model, tokenizer, prefix=""):
     if args.use_tfidf_candidates or args.include_positive:
         eval_dataset = load_and_cache_examples(args, tokenizer)
     elif args.use_dense_candidates:
-        dual_encoder_model, dual_encoder_tokenizer = get_pretrained_dual_encoder(args, config)
+        dual_encoder_model, dual_encoder_tokenizer = get_pretrained_dual_encoder(args)
         # Load and cache test examples
         eval_dataset = load_and_cache_examples(args, tokenizer,
                                                 retrieval_model=dual_encoder_model,
@@ -280,11 +283,11 @@ def evaluate(args, config, model, tokenizer, prefix=""):
         batch = tuple(t.to(args.device) for t in batch)
 
         with torch.no_grad():
-            inputs = {"input_ids": batch[0], "attention_mask": batch[1], "mention_boundary_ids": batch[3],"labels": batch[4]}
-            if args.model_type != "distilbert":
-                inputs["token_type_ids"] = (
-                    batch[2] if args.model_type in ["bert"] else None
-                )  # XLM and DistilBERT don't use segment_ids
+            inputs = {"input_ids": batch[0],
+                      "attention_mask": batch[1],
+                      "token_type_ids": batch[2],
+                      "mention_boundary_ids": batch[3],
+                      "labels": batch[4]}
             outputs = model(**inputs)
             tmp_eval_loss, logits = outputs[:2]
             eval_loss += tmp_eval_loss.mean().item()
@@ -381,13 +384,17 @@ def load_and_cache_examples(args, tokenizer, retrieval_model=None, retrieval_tok
     return dataset
 
 
-def get_pretrained_dual_encoder(args, config):
+def get_pretrained_dual_encoder(args):
     from modeling_DualEncoder import PreDualEncoder, DualEncoderBert
 
+    dual_encoder_config = BertConfig.from_pretrained(
+        args.config_name if args.config_name else args.model_name_or_path,
+        cache_dir=args.cache_dir if args.cache_dir else None,
+    )
     pretrained_bert = PreDualEncoder.from_pretrained(
         args.model_name_or_path,
         from_tf=bool(".ckpt" in args.model_name_or_path),
-        config=config,
+        config=dual_encoder_config,
         cache_dir=args.cache_dir if args.cache_dir else None,
     )
 
@@ -401,7 +408,7 @@ def get_pretrained_dual_encoder(args, config):
     num_added_tokens = dual_encoder_tokenizer.add_tokens(new_tokens)
     pretrained_bert.resize_token_embeddings(len(dual_encoder_tokenizer))
 
-    dual_encoder_model = DualEncoderBert(config, pretrained_bert)
+    dual_encoder_model = DualEncoderBert(dual_encoder_config, pretrained_bert)
 
     # Load trained Dual Encoder model and tokenizer
     dual_encoder_tokenizer = BertTokenizer.from_pretrained(args.retrieval_model_path, do_lower_case=args.do_lower_case)
@@ -624,8 +631,6 @@ def main():
     config_class, model_class, tokenizer_class = MODEL_CLASSES[args.model_type]
     config = config_class.from_pretrained(
         args.config_name if args.config_name else args.model_name_or_path,
-        # num_labels=num_labels,
-        # finetuning_task=args.task_name,
         cache_dir=args.cache_dir if args.cache_dir else None,
     )
     tokenizer = tokenizer_class.from_pretrained(
@@ -652,8 +657,10 @@ def main():
         if args.use_tfidf_candidates:
             train_dataset = load_and_cache_examples(args, tokenizer)
         elif args.use_dense_candidates:
-            dual_encoder_model, dual_encoder_tokenizer = get_pretrained_dual_encoder(args, config)
+            dual_encoder_model, dual_encoder_tokenizer = get_pretrained_dual_encoder(args)
             # Load and cache training examples
+            # print("Length of tokenizer before data loading: {}".format(len(tokenizer)))
+            # print("Embedding dim size before data loading = ", model.bert.embeddings.word_embeddings.weight.size())
             train_dataset = load_and_cache_examples(args, tokenizer,
                                                     retrieval_model=dual_encoder_model,
                                                     retrieval_tokenizer=dual_encoder_tokenizer,)
@@ -662,6 +669,9 @@ def main():
             del dual_encoder_model
         else:
             train_dataset = load_and_cache_examples(args, tokenizer)
+        # print("Length of tokenizer after dta loading: {}".format(len(tokenizer)))
+        # print("Embedding dim size after loading = ", model.bert.embeddings.word_embeddings.weight.size())
+        # pdb.set_trace()
         global_step, tr_loss = train(args, train_dataset, model, tokenizer)
         logger.info(" global_step = %s, average loss = %s", global_step, tr_loss)
 
@@ -677,8 +687,13 @@ def main():
         model_to_save = (
             model.module if hasattr(model, "module") else model
         )  # Take care of distributed/parallel training
+
+        # print("Embedding dim size before saving = ", model.bert.embeddings.word_embeddings.weight.size())
         model_to_save.save_pretrained(args.output_dir)
+        # print("Length of tokenizer before saving: {}".format(len(tokenizer)))
         tokenizer.save_pretrained(args.output_dir)
+
+        # pdb.set_trace()
 
         # Good practice: save your training arguments together with the trained model
         torch.save(args, os.path.join(args.output_dir, "training_args.bin"))
