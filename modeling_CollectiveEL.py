@@ -58,7 +58,7 @@ class DualEncoderBert(BertPreTrainedModel):
 
             return pooled_candidate_outputs
 
-        # When a seocnd set of candidates is present
+        # When a second set of candidates is present
         if candidate_token_ids_2 is not None:
             b_size, n_c, seq_len = candidate_token_ids_2.size()
 

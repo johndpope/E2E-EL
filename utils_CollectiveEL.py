@@ -21,19 +21,22 @@ def get_examples(data_dir, mode):
     with open(file_path, encoding='utf-8') as f:
         print("documents dataset is loading......")
         for line in f:
-            fields = json.loads(line)
+            fields = json.loads(line.strip())
             docs[fields["document_id"]] = {"text": fields["text"]}
         print("documents dataset is done :)")
 
-    doc_ids = list(docs.keys())
+    # doc_ids = list(docs.keys())
     file_path = os.path.join(data_dir, mode, 'mentions/mentions.json')
     ments = {}
     with open(file_path, encoding='utf-8') as f:
         print("mentions {} dataset is loading......".format(mode))
-        doc_idx = 0
+        # doc_idx = 0
         for line in f:
-            doc_id = doc_ids[doc_idx]
-            ments[doc_id] = json.loads(line)
+            # doc_id = doc_ids[doc_idx]
+            doc_mentions = json.loads(line.strip())
+            if len(doc_mentions) > 0:
+                doc_id = doc_mentions[0]["content_document_id"]
+                ments[doc_id] = json.loads(line)
             # for line in f:
             #     fields = json.loads(line)
             #     ments[fields["mention_id"]] = {k: v for k, v in fields.items() if k != "mention_id"}
@@ -100,19 +103,19 @@ def get_marked_mentions(document_id, mentions, docs,  max_seq_length, tokenizer)
         extracted_mention = context_text[start_index: end_index]
 
         # Text between the end of last mention and the beginning of current mention
-        prefix = context_text[prev_end_index: end_index]
+        prefix = context_text[prev_end_index: start_index]
         # Tokenize prefix and add it to the tokenized text
         prefix_tokens = tokenizer.tokenize(prefix)
         tokenized_text += prefix_tokens
         # Add mention start marker to the tokenized text
         mention_start_markers.append(len(tokenized_text))
-        tokenized_text += ['[Ms]']
+        # tokenized_text += ['[Ms]']
         # Tokenize the mention and add it to the tokenized text
         mention_tokens = tokenizer.tokenize(extracted_mention)
         tokenized_text += mention_tokens
         # Add mention end marker to the tokenized text
-        mention_end_markers.append(len(tokenized_text))
-        tokenized_text += ['[Me]']
+        mention_end_markers.append(len(tokenized_text) - 1)
+        # tokenized_text += ['[Me]']
         # Update prev_end_index
         prev_end_index = end_index
 
@@ -121,8 +124,6 @@ def get_marked_mentions(document_id, mentions, docs,  max_seq_length, tokenizer)
         suffix_tokens = tokenizer.tokenize(prefix)
         tokenized_text += suffix_tokens
     tokenized_text += [tokenizer.sep_token]
-
-    pdb.set_trace()
 
     return tokenized_text, mention_start_markers, mention_end_markers
 
@@ -140,7 +141,7 @@ class InputFeatures(object):
     def __init__(self, mention_token_ids, mention_token_masks,
                  candidate_token_ids_1, candidate_token_masks_1,
                  candidate_token_ids_2, candidate_token_masks_2,
-                 label_ids, mention_start_markers, mention_end_markers):
+                 label_ids, mention_start_indices, mention_end_indices, num_mentions):
         self.mention_token_ids = mention_token_ids
         self.mention_token_masks = mention_token_masks
         self.candidate_token_ids_1 = candidate_token_ids_1
@@ -148,8 +149,9 @@ class InputFeatures(object):
         self.candidate_token_ids_2 = candidate_token_ids_2
         self.candidate_token_masks_2 = candidate_token_masks_2
         self.label_ids = label_ids
-        self.mention_start_markers = mention_start_markers
-        self.mention_end_markers = mention_end_markers
+        self.mention_start_indices = mention_start_indices
+        self.mention_end_indices = mention_end_indices
+        self.num_mentions = num_mentions
 
 def convert_examples_to_features(
     mentions,
@@ -168,7 +170,7 @@ def convert_examples_to_features(
 
     for c_idx, c in enumerate(all_entities):
         entity_text = entities[c]
-        max_entity_len = max_seq_length  # Number of tokens
+        max_entity_len = max_seq_length // 4  # Number of tokens
         entity_window = get_entity_window(entity_text, max_entity_len, tokenizer)
         # [CLS] candidate text [SEP]
         candidate_tokens = [tokenizer.cls_token] + entity_window + [tokenizer.sep_token]
@@ -227,7 +229,8 @@ def convert_examples_to_features(
     # Process the mentions
     features = []
     position_of_positive = {}
-    for (ex_index, document_id) in enumerate(docs.keys()):
+    num_longer_docs = 0
+    for (ex_index, document_id) in enumerate(mentions.keys()):
         if ex_index % 1000 == 0:
             logger.info("Writing example %d of %d", ex_index, len(mentions))
 
@@ -242,11 +245,12 @@ def convert_examples_to_features(
                                                                             docs,
                                                                             max_seq_length,
                                                                             tokenizer)
-
         doc_tokens = tokenizer.convert_tokens_to_ids(doc_tokens)
         if len(doc_tokens) > max_seq_length:
-            mention_tokens = doc_tokens[:max_seq_length]
-            mention_tokens_mask = [1] * max_seq_length
+            print(len(doc_tokens))
+            doc_tokens = doc_tokens[:max_seq_length]
+            doc_tokens_mask = [1] * max_seq_length
+            num_longer_docs += 1
         else:
             mention_len = len(doc_tokens)
             pad_len = max_seq_length - mention_len
@@ -365,7 +369,7 @@ def convert_examples_to_features(
             #     candidates_2 += negative_candidates
 
         elif args.do_eval:
-            for m, m_idx in enumerate(mentions[document_id]):
+            for m_idx, m in enumerate(mentions[document_id]):
                 m_candidates = []
 
                 if args.include_positive:
@@ -381,8 +385,8 @@ def convert_examples_to_features(
 
                 candidates.append(m_candidates)
 
-        # if not args.use_all_candidates:
-        #     random.shuffle(candidates)
+        # Number of mentions in the documents
+        num_mentions = len(candidates)
 
         if args.use_all_candidates:
             # If all candidates are considered during inference,
@@ -392,12 +396,14 @@ def convert_examples_to_features(
             candidate_token_ids_2 = None
             candidate_token_masks_2 = None
         else:
-            candidate_token_ids_1 = []
-            candidate_token_masks_1 = []
+            candidate_token_ids_1 = [[tokenizer.pad_token_id] * max_entity_len] * (args.num_max_mentions * args.num_candidates)
+            candidate_token_masks_1 = [[0]*max_entity_len] * (args.num_max_mentions * args.num_candidates)
             candidate_token_ids_2 = None
             candidate_token_masks_2 = None
+
+            c_idx = 0
             for m_candidates in candidates:
-                for c_idx, c in enumerate(m_candidates):
+                for c in m_candidates:
                     entity_text = entities[c]
                     max_entity_len = max_seq_length // 4  # Number of tokens
                     entity_window = get_entity_window(entity_text, max_entity_len, tokenizer)
@@ -416,8 +422,9 @@ def convert_examples_to_features(
                     assert len(candidate_tokens) == max_entity_len
                     assert len(candidate_masks) == max_entity_len
 
-                    candidate_token_ids_1.append(candidate_tokens)
-                    candidate_token_masks_1.append(candidate_masks)
+                    candidate_token_ids_1[c_idx] = candidate_tokens
+                    candidate_token_masks_1[c_idx] = candidate_masks
+                    c_idx += 1
 
             # # This second set of candidates is required for Gillick et al. hard negative training
             # if candidates_2 is None:
@@ -456,12 +463,18 @@ def convert_examples_to_features(
             #             candidate_token_masks_2.append([0] * max_seq_length)
 
         # Target candidate
-        label_ids = []
+        label_ids = [-1] * args.num_max_mentions
         for m_idx, m_candidates in enumerate(candidates):
             if label_candidate_ids[m_idx] in m_candidates:
-                label_ids.append(candidates.index(label_candidate_ids[m_idx]))
+                label_ids[m_idx] = m_candidates.index(label_candidate_ids[m_idx])
             else:
-                label_ids.append(-100)  # when target candidate not in candidate set
+                label_ids[m_idx] = -100  # when target candidate not in candidate set
+
+        # Pad the mention start and end indices
+        mention_start_indices = [-1] * args.num_max_mentions
+        mention_start_indices[:num_mentions] = mention_start_markers
+        mention_end_indices = [-1] * args.num_max_mentions
+        mention_end_indices[:num_mentions] = mention_end_markers
 
         # if ex_index < 3:
         #     logger.info("*** Example ***")
@@ -483,13 +496,18 @@ def convert_examples_to_features(
                           candidate_token_ids_2=candidate_token_ids_2,
                           candidate_token_masks_2=candidate_token_masks_2,
                           label_ids=label_ids,
-                          mention_start_markers=mention_start_markers,
-                          mention_end_markers=mention_end_markers
+                          mention_start_indices=mention_start_indices,
+                          mention_end_indices=mention_end_indices,
+                          num_mentions=num_mentions,
                           )
         )
 
+        # if ex_index == 4:
+        #     break
+
     logger.info("*** Position of the positive candidates ***")
     print(position_of_positive)
+    print(num_longer_docs)
 
     # Save the hard negatives
     if args.use_hard_and_random_negatives:
