@@ -376,14 +376,46 @@ def evaluate(args, model, tokenizer, prefix=""):
 
         with torch.no_grad():
             if args.use_all_candidates:
-                inputs = {"args": args,
-                          "mention_token_ids": batch[0],
-                          "mention_token_masks": batch[1],
-                          "candidate_token_ids_1": batch[2],
-                          "candidate_token_masks_1": batch[3],
-                          "labels": batch[6],
-                          "all_candidate_embeddings": all_candidate_embeddings,
-                          }
+                micro_batch_size = 1
+                # Get the number of mention for this document
+                num_mentions = batch[9][0].item()  # We stipulate the batch size per GPU to 1
+                num_micro_batches = math.ceil(num_mentions / micro_batch_size)
+
+                for m_idx in range(num_micro_batches):
+                    mention_inputs = {"args": args,
+                                      "mention_token_ids": batch[0],
+                                      "mention_token_masks": batch[1],
+                                      }
+                    mention_outputs = model(**mention_inputs)
+
+                    mention_start_indices = batch[7][:, :num_mentions]
+                    n_embd = mention_outputs.size(2)  # Get the embedding size
+
+                    # Pool the mention representations
+                    mention_start_indices = mention_start_indices.unsqueeze(-1).expand(-1, -1, n_embd)
+                    pooled_mention_outputs = mention_outputs.gather(1, mention_start_indices)
+                    # Fetch the mention representation
+                    idx_from = m_idx * micro_batch_size
+                    idx_to = (m_idx + 1) * micro_batch_size
+                    pooled_mention_output = pooled_mention_outputs[:, idx_from:idx_to, :].squeeze(0)
+
+                    logits = torch.mm(pooled_mention_output, all_candidate_embeddings.t())
+                    # logits = logits.squeeze(1)
+
+                    preds = logits.detach().cpu().numpy()
+                    out_label_ids = batch[6][0][idx_from:idx_to].detach().cpu().numpy()
+                    sorted_preds = np.flip(np.argsort(preds), axis=1)
+
+                    for i, sorted_pred in enumerate(sorted_preds):
+                        if out_label_ids[i] != -100:
+                            rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
+                            map += 1 / rank
+                            if rank <= 10:
+                                r_10 += 1
+                                if rank == 1:
+                                    p_1 += 1
+                            nb_normalized += 1
+                    nb_samples += preds.shape[0]
             else:
                 micro_batch_size = 1
                 # Get the number of mention for this document
@@ -771,9 +803,9 @@ def main():
     )
 
     # Add new special tokens '[Ms]' and '[Me]' to tag mention
-    # new_tokens = ['[Ms]', '[Me]']
+    new_tokens = ['[Ms]', '[Me]']
     num_added_tokens = tokenizer.add_tokens(new_tokens)
-    # pretrained_bert.resize_token_embeddings(len(tokenizer))
+    pretrained_bert.resize_token_embeddings(len(tokenizer))
 
     model = DualEncoderBert(config, pretrained_bert)
 
