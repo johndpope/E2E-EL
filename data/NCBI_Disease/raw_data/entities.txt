@@ -1,729 +1,729 @@
-MESH:D012878	Skin Neoplasms
-MESH:D009369	Neoplasms
-MESH:D003110	Colonic Neoplasms
-MESH:D011125	Adenomatous Polyposis Coli
-MESH:D018296	Pilomatrixoma
-MESH:D016399	Lymphoma, T-Cell
-MESH:D006432	Hemochromatosis
-MESH:D030342	Genetic Diseases, Inborn
-MESH:D010051	Ovarian Neoplasms
-MESH:D001943	Breast Neoplasms
-OMIM:610102	Complement Component 7 Deficiency
-MESH:D016870	Neisseriaceae Infections
-MESH:D004673	Encephalomyelitis, Acute Disseminated
-MESH:D008585	Meningitis, Meningococcal
-MESH:D001168	Arthritis
-MESH:D008538	Meige Syndrome
-MESH:D004421	Dystonia
-MESH:C538007	Dystonia, Dopa-responsive
-MESH:D010505	Familial Mediterranean Fever
-MESH:D012700	Serositis
-MESH:D013585	Synovitis
-MESH:D056735	Autoimmune Lymphoproliferative Syndrome
-MESH:D008232	Lymphoproliferative Disorders
-MESH:D000326	Adrenoleukodystrophy
-MESH:D009461	Neurologic Manifestations
-MESH:D000309	Adrenal Insufficiency
-MESH:D000224	Addison Disease
-MESH:D008589	Meningococcal Infections
-MESH:D014657	Vasculitis
-MESH:D005334	Fever
-MESH:D018366	Vasculitis, Leukocytoclastic, Cutaneous
-MESH:D054067	Dihydropyrimidine Dehydrogenase Deficiency
-MESH:D004829	Epilepsy, Generalized
-MESH:D019957	Motor Skills Disorders
-MESH:D008607	Intellectual Disability
-MESH:D013568	Pathological Conditions, Signs and Symptoms
-MESH:D005955	Glucosephosphate Dehydrogenase Deficiency
-MESH:D006995	Hypobetalipoproteinemias
-MESH:D000012	Abetalipoproteinemia
-MESH:D019190	Iron Overload
-MESH:D008103	Liver Cirrhosis
-MESH:D000435	Alcoholic Intoxication
-MESH:D005234	Fatty Liver
-MESH:D006529	Hepatomegaly
-MESH:D010859	Pigmentation Disorders
-OMIM:312080	Pelizaeus-Merzbacher Disease
-MESH:D020279	Hereditary Central Nervous System Demyelinating Diseases
-MESH:C536170	Diastrophic dysplasia
-MESH:D010009	Osteochondrodysplasias
-MESH:D013122	Spinal Diseases
-MESH:C537356	Metatropic dwarfism
-MESH:D005736	Gardner Syndrome
-MESH:D019465	Craniofacial Abnormalities
-OMIM:217000	COMPLEMENT COMPONENT 2 DEFICIENCY
-OMIM:300624	Fragile X Syndrome
-MESH:D005600	Fragile X Syndrome
-MESH:D001008	Anxiety Disorders
-MESH:D000795	Fabry Disease
-MESH:D008052	Lipid Metabolism, Inborn Errors
-MESH:D000794	Angiokeratoma
-MESH:D010292	Paresthesia
-MESH:D051437	Renal Insufficiency
-MESH:D014652	Vascular Diseases
-MESH:D001714	Bipolar Disorder
-MESH:D041441	Retinoschisis
-MESH:C531604	Primary visual agnosia
-MESH:D012175	Retinoblastoma
-MESH:D058499	Retinal Dystrophies
-MESH:D015794	Choroideremia
-MESH:D015785	Eye Diseases, Hereditary
-MESH:D006623	von Hippel-Lindau Disease
-MESH:D018325	Hemangioblastoma
-MESH:D002292	Carcinoma, Renal Cell
-MESH:D009386	Neoplastic Syndromes, Hereditary
-MESH:D009800	Oculocerebrorenal Syndrome
-MESH:D040181	Genetic Diseases, X-Linked
-MESH:D000015	Abnormalities, Multiple
-MESH:D020388	Muscular Dystrophy, Duchenne
-MESH:D014947	Wounds and Injuries
-MESH:D009136	Muscular Dystrophies
-MESH:D008659	Metabolic Diseases
-MESH:D014842	von Willebrand Diseases
-MESH:D061325	Hereditary Breast and Ovarian Cancer Syndrome
-MESH:D018567	Breast Neoplasms, Male
-OMIM:606824	Glucose-Galactose Malabsorption
-MESH:D013661	Tay-Sachs Disease
-MESH:D017825	Canavan Disease
-MESH:D007966	Leukodystrophy, Metachromatic
-MESH:D003711	Demyelinating Diseases
-MESH:D015211	Zellweger Syndrome
-MESH:D018901	Peroxisomal Disorders
-OMIM:202370	PEROXISOME BIOGENESIS DISORDER 2B
-MESH:D017827	Machado-Joseph Disease
-MESH:D000474	Alkaptonuria
-MESH:D009794	Ochronosis
-MESH:D013274	Stomach Neoplasms
-MESH:D018256	Adenomatous Polyps
-OMIM:613825	C9 Deficiency
-MESH:D007153	Immunologic Deficiency Syndromes
-MESH:D007926	Lesch-Nyhan Syndrome
-MESH:D020389	Muscular Dystrophy, Emery-Dreifuss
-MESH:D003286	Contracture
-MESH:D009133	Muscular Atrophy
-MESH:D018908	Muscle Weakness
-MESH:D009202	Cardiomyopathies
-OMIM:115080	CARDIAC CONDUCTION DEFECT
-MESH:D006331	Heart Diseases
-MESH:D002278	Carcinoma in Situ
-MESH:D009362	Neoplasm Metastasis
-MESH:D009223	Myotonic Dystrophy
-MESH:D016537	Gangliosidosis, GM1
-MESH:D016464	Lysosomal Storage Diseases
-MESH:D018376	Cardiovascular Abnormalities
-MESH:D020022	Genetic Predisposition to Disease
-MESH:D002386	Cataract
-MESH:D009222	Myotonia
-MESH:D009135	Muscular Diseases
-MESH:D006327	Heart Block
-MESH:D009139	Musculoskeletal Abnormalities
-OMIM:609536	Complement component 5 deficiency
-MESH:D008179	Lupus Erythematosus, Discoid
-MESH:D014923	Wiskott-Aldrich Syndrome
-MESH:D013921	Thrombocytopenia
-MESH:D014564	Urogenital Abnormalities
-MESH:D030321	Denys-Drash Syndrome
-MESH:D009396	Wilms Tumor
-MESH:D008654	Mesothelioma
-MESH:D007938	Leukemia
-MESH:D004194	Disease
-MESH:D005921	Glomerulonephritis
-MESH:D007674	Kidney Diseases
-MESH:C537346	Mesangial sclerosis, diffuse
-MESH:D012734	Disorders of Sex Development
-MESH:D005832	Genital Diseases, Male
-MESH:D005236	Favism
-MESH:D000743	Anemia, Hemolytic
-MESH:D016757	Death, Sudden, Cardiac
-MESH:D008223	Lymphoma
-MESH:D016393	Lymphoma, B-Cell
-MESH:D010282	Parathyroid Neoplasms
-MESH:D008288	Malaria
-MESH:D013789	Thalassemia
-MESH:D006461	Hemolysis
-MESH:D000799	Angioedema
-MESH:D009157	Myasthenia Gravis
-MESH:D008180	Lupus Erythematosus, Systemic
-MESH:D001327	Autoimmune Diseases
-OMIM:613779	Complement Component 3 Deficiency, Autosomal Recessive
-MESH:D001424	Bacterial Infections
-MESH:D011014	Pneumonia
-MESH:D007105	Immune Complex Diseases
-MESH:D007239	Infections
-MESH:D008661	Metabolism, Inborn Errors
-MESH:D001260	Ataxia Telangiectasia
-MESH:D005693	Galactosemias
-MESH:D009468	Neuromuscular Diseases
-MESH:C536528	Van der Woude syndrome
-MESH:D002972	Cleft Palate
-MESH:D008047	Lip Diseases
-MESH:D002971	Cleft Lip
-MESH:C531732	Ascending aortic aneurysm, hypertelorism, bifid uvula, cleft palate, and arterial tortuosity
-MESH:D000848	Anodontia
-MESH:D007567	Jaundice, Neonatal
-OMIM:143470	HYPERALPHALIPOPROTEINEMIA 1
-MESH:D006937	Hypercholesterolemia
-MESH:D050197	Atherosclerosis
-MESH:C536648	Pendred syndrome
-MESH:C537845	Nonsyndromic sensorineural hearing loss
-OMIM:600791	DEAFNESS, AUTOSOMAL RECESSIVE 4, WITH ENLARGED VESTIBULAR AQUEDUCT
-MESH:D006042	Goiter
-OMIM:261600	Phenylketonurias
-MESH:D017042	Phenylketonuria, Maternal
-MESH:D010661	Phenylketonurias
-MESH:D056784	Leukoencephalopathies
-MESH:D053840	Brugada Syndrome
-MESH:D008133	Long QT Syndrome
-MESH:C537034	Long QT syndrome type 3
-MESH:C537182	Paroxysmal ventricular fibrillation
-OMIM:125700	Diabetes Insipidus, Neurogenic
-MESH:D009410	Nerve Degeneration
-MESH:D020790	Diabetes Insipidus, Neurogenic
-MESH:D015783	Aniridia
-MESH:C537209	Knobloch syndrome
-MESH:C538225	Adams Oliver syndrome
-MESH:D012162	Retinal Degeneration
-MESH:D009216	Myopia
-MESH:D006972	Hypertelorism
-MESH:D007569	Jaw Abnormalities
-MESH:D006319	Hearing Loss, Sensorineural
-MESH:D003638	Deafness
-MESH:D007759	Labyrinth Diseases
-MESH:D015179	Colorectal Neoplasms
-MESH:C538265	Attenuated familial adenomatous polyposis
-MESH:D000236	Adenoma
-MESH:D018222	Fibromatosis, Aggressive
-MESH:C536353	VLCAD deficiency
-MESH:D002312	Cardiomyopathy, Hypertrophic
-MESH:D006816	Huntington Disease
-MESH:D019636	Neurodegenerative Diseases
-MESH:D016864	Li-Fraumeni Syndrome
-MESH:D018239	Seminoma
-MESH:D008527	Medulloblastoma
-MESH:D002471	Cell Transformation, Neoplastic
-MESH:D000592	Amino Acid Metabolism, Inborn Errors
-MESH:C537849	Norrie disease
-MESH:D038901	Mental Retardation, X-Linked
-MESH:D015223	Wolman Disease
-MESH:D049288	Muscular Dystrophies, Limb-Girdle
-MESH:D024182	Uniparental Disomy
-MESH:D012514	Sarcoma, Kaposi
-MESH:D004485	Eczema
-MESH:D008206	Lymphatic Diseases
-MESH:D013163	Splenomegaly
-MESH:D020031	Epstein-Barr Virus Infections
-MESH:D003586	Cytomegalovirus Infections
-MESH:D015658	HIV Infections
-MESH:D019294	Xanthomatosis, Cerebrotendinous
-MESH:D014973	Xanthomatosis
-OMIM:612446	Complement Component 6 Deficiency
-MESH:D015826	Langer-Giedion Syndrome
-MESH:D005621	Friedreich Ataxia
-MESH:D028361	Mitochondrial Diseases
-MESH:D000745	Anemia, Hemolytic, Congenital
-MESH:D006965	Hyperplasia
-MESH:D054880	Aspartylglucosaminuria
-MESH:D017445	Skin Diseases, Vascular
-MESH:D018322	Angiofibroma
-MESH:D014402	Tuberous Sclerosis
-MESH:D007967	Leukoedema, Oral
-MESH:D019214	Gingival Overgrowth
-MESH:D009059	Mouth Diseases
-MESH:D017573	Focal Epithelial Hyperplasia
-OMIM:174810	Polyostotic osteolytic dysplasia, hereditary expansile
-MESH:D001847	Bone Diseases
-MESH:D030981	Acro-Osteolysis
-MESH:C538098	Familial Paget's disease of bone
-MESH:C538243	Amelogenesis imperfecta, hypoplastic-hypomaturation, X-linked 1
-MESH:D014071	Tooth Abnormalities
-MESH:D011218	Prader-Willi Syndrome
-MESH:D002869	Chromosome Aberrations
-MESH:D003025	Clubfoot
-MESH:C535504	Epiphyseal dysplasia, multiple, 4
-MESH:C536016	Achondrogenesis type 1B
-MESH:C535395	Atelosteogenesis type 2
-MESH:D006618	Hip Dislocation, Congenital
-MESH:D004427	Ear Diseases
-MESH:C536903	Thumb deformity
-OMIM:132400	Epiphyseal dysplasia, multiple, 1
-OMIM:600204	Epiphyseal dysplasia, multiple, 2
-OMIM:226900	Epiphyseal dysplasia, multiple, 4
-MESH:D017511	Pyoderma Gangrenosum
-MESH:D034721	Mastocytosis, Systemic
-MESH:D008545	Melanoma
-MESH:D002524	Cerebellar Ataxia
-MESH:D001927	Brain Diseases
-MESH:D018232	Rhabdomyosarcoma, Alveolar
-MESH:D009224	Myotonia Congenita
-OMIM:160800	MYOTONIA CONGENITA, AUTOSOMAL DOMINANT
-MESH:C536245	Nondystrophic myotonia
-MESH:C536106	Myostatin-related muscle hypertrophy
-MESH:D007863	Lecithin Cholesterol Acyltransferase Deficiency
-MESH:D003111	Colonic Polyps
-MESH:D003117	Color Vision Defects
-MESH:D003141	Communicable Diseases
-MESH:D000740	Anemia
-MESH:D007249	Inflammation
-MESH:C538249	Amyloidosis, familial visceral
-MESH:D011127	Polyps
-MESH:D005776	Gaucher Disease
-MESH:D009422	Nervous System Diseases
-MESH:D007027	Hypothalamic Diseases
-MESH:D052456	Hypoalphalipoproteinemias
-MESH:D010214	Papillon-Lefevre Disease
-MESH:D007645	Keratoderma, Palmoplantar
-MESH:D010518	Periodontitis
-MESH:D010510	Periodontal Diseases
-MESH:D056732	Prolidase Deficiency
-MESH:D012883	Skin Ulcer
-MESH:D008268	Macular Degeneration
-MESH:D012174	Retinitis Pigmentosa
-MESH:D012607	Scotoma
-MESH:C536309	Patterned dystrophy of retinal pigment epithelium
-OMIM:180020	Retinal Cone Dystrophy 1
-MESH:C535342	Cataract, zonular
-MESH:D004646	Emphysema
-MESH:D008107	Liver Diseases
-MESH:D009123	Muscle Hypotonia
-MESH:D002658	Developmental Disabilities
-MESH:D009765	Obesity
-MESH:D057215	Body Dysmorphic Disorders
-MESH:D006527	Hepatolenticular Degeneration
-MESH:D015834	Cochlear Diseases
-MESH:D013959	Thyroid Diseases
-MESH:D001145	Arrhythmias, Cardiac
-MESH:D006946	Hyperinsulinism
-MESH:D058495	Sotos Syndrome
-MESH:D012859	Sjogren's Syndrome
-MESH:D001172	Arthritis, Rheumatoid
-MESH:D020162	Hyperargininemia
-MESH:C535331	Aarskog Syndrome
-MESH:D006130	Growth Disorders
-OMIM:300755	Bruton type agammaglobulinemia
-MESH:C538320	Histidinemia
-MESH:C537207	Kniest dysplasia
-MESH:C535964	Collagenopathy, type 2 alpha 1
-OMIM:610170	Kyphoscoliosis 1
-OMIM:300194	Alport Syndrome, Mental Retardation, Midface Hypoplasia, and Elliptocytosis
-MESH:D034381	Hearing Loss
-MESH:D001321	Autistic Disorder
-MESH:D012004	Rectal Neoplasms
-MESH:D000013	Congenital Abnormalities
-MESH:D058456	Retinal Telangiectasis
-MESH:D006949	Hyperlipidemias
-MESH:D012163	Retinal Detachment
-MESH:C538037	Chromosome 15, trisomy mosaicism
-OMIM:313900	Thrombocytopenia 1
-MESH:D000853	Anophthalmos
-MESH:D009421	Nervous System Malformations
-OMIM:106210	Aniridia
-MESH:D003317	Corneal Dystrophies, Hereditary
-MESH:D013167	Spondylitis, Ankylosing
-MESH:D056769	Alstrom Syndrome
-MESH:D003924	Diabetes Mellitus, Type 2
-MESH:D002609	Chediak-Higashi Syndrome
-MESH:D051359	Lymphohistiocytosis, Hemophagocytic
-MESH:D018197	Hepatoblastoma
-MESH:D008113	Liver Neoplasms
-MESH:D008637	Mesenchymoma
-MESH:D018205	Neoplasms, Adipose Tissue
-MESH:D008067	Lipoma
-MESH:D043171	Chromosomal Instability
-MESH:D015451	Leukemia, Lymphocytic, Chronic, B-Cell
-MESH:D002051	Burkitt Lymphoma
-OMIM:300100	Adrenoleukodystrophy
-MESH:D025063	Chromosome Disorders
-MESH:D016116	Piebaldism
-MESH:D018198	Mixed Tumor, Malignant
-MESH:C535918	Schmid-Fraccaro syndrome
-MESH:C535733	Emanuel syndrome
-MESH:D004062	DiGeorge Syndrome
-MESH:D058670	Tetrasomy
-MESH:D004814	Epidermal Cyst
-MESH:D010016	Osteoma
-MESH:D012164	Retinal Diseases
-MESH:D018455	Protein S Deficiency
-OMIM:300323	Gout, HPRT-Related
-MESH:D015210	Arthritis, Gouty
-MESH:D002836	Hemophilia B
-MESH:D009393	Nephritis
-MESH:D011507	Proteinuria
-MESH:D006417	Hematuria
-MESH:D000303	Adrenal Cortex Diseases
-MESH:D007499	Iris Diseases
-MESH:D005124	Eye Abnormalities
-MESH:D000857	Olfaction Disorders
-MESH:D015821	Eye Infections, Fungal
-MESH:D007571	Jaw Diseases
-MESH:D009810	Odontoma
-MESH:C535468	Copper deficiency, familial benign
-MESH:D020518	Focal Nodular Hyperplasia
-MESH:D010900	Pituitary Diseases
-MESH:D004700	Endocrine System Diseases
-MESH:C537243	Prostate cancer, familial
-MESH:D011471	Prostatic Neoplasms
-MESH:D003967	Diarrhea
-MESH:D003681	Dehydration
-MESH:D007154	Immune System Diseases
-MESH:D019337	Hematologic Neoplasms
-MESH:D006402	Hematologic Diseases
-MESH:D013118	Spinal Cord Diseases
-MESH:D002493	Central Nervous System Diseases
-MESH:D002908	Chronic Disease
-MESH:D020964	Embryo Loss
-MESH:D013132	Spinocerebellar Degenerations
-OMIM:255125	Myopathy with Lactic Acidosis, Hereditary
-MESH:D010534	Peritoneal Neoplasms
-MESH:D005185	Fallopian Tube Neoplasms
-MESH:D010190	Pancreatic Neoplasms
-OMIM:604370	BREAST-OVARIAN CANCER, FAMILIAL, SUSCEPTIBILITY TO, 1
-MESH:D020141	Hemostatic Disorders
-MESH:D005076	Exanthema
-MESH:D018771	Arthralgia
-MESH:D017624	WAGR Syndrome
-MESH:D020936	Epilepsy, Benign Neonatal
-MESH:D001284	Atrophy
-MESH:D003072	Cognition Disorders
-MESH:D008831	Microcephaly
-MESH:C536438	Cohen syndrome
-MESH:D015862	Choroid Diseases
-MESH:D020158	Hyperglycinemia, Nonketotic
-MESH:D018319	Neurofibrosarcoma
-MESH:D004938	Esophageal Neoplasms
-MESH:D001859	Bone Neoplasms
-MESH:D005910	Glioma
-MESH:D005909	Glioblastoma
-MESH:C538068	Fructosuria
-MESH:D015535	Arthritis, Psoriatic
-MESH:C538273	Autoimmune enteropathy
-MESH:D058566	Sacroiliitis
-MESH:D011565	Psoriasis
-MESH:D014606	Uveitis, Anterior
-MESH:D007592	Joint Diseases
-MESH:D015212	Inflammatory Bowel Diseases
-MESH:D006457	Hemoglobinuria, Paroxysmal
-MESH:D018335	Rhabdoid Tumor
-MESH:D020288	Papilloma, Choroid Plexus
-MESH:D017599	Neuroectodermal Tumors
-MESH:D004806	Ependymoma
-MESH:D012509	Sarcoma
-MESH:D052476	Hypobetalipoproteinemia, Familial, Apolipoprotein B
-MESH:D003323	Coronary Aneurysm
-OMIM:238600	Hyperlipoproteinemia Type I
-MESH:D009436	Neural Tube Defects
-MESH:D006849	Hydrocephalus
-MESH:D000746	Anemia, Hemolytic, Congenital Nonspherocytic
-MESH:D006689	Hodgkin Disease
-MESH:D000544	Alzheimer Disease
-MESH:D020271	Heredodegenerative Disorders, Nervous System
-MESH:D003919	Diabetes Insipidus
-MESH:D010181	Pancreatic Cyst
-MESH:D010673	Pheochromocytoma
-MESH:D036821	Endometrial Stromal Tumors
-MESH:D003537	Cystadenoma
-MESH:D003093	Colitis, Ulcerative
-MESH:D013166	Spondylitis
-MESH:D018292	Cystadenoma, Papillary
-MESH:C538445	Clear-cell metastatic renal cell carcinoma
-MESH:D005402	Fistula
-MESH:D020371	Pelizaeus-Merzbacher Disease
-OMIM:222300	Wolfram Syndrome
-MESH:D003922	Diabetes Mellitus, Type 1
-MESH:D009896	Optic Atrophy
-MESH:D001523	Mental Disorders
-MESH:D003920	Diabetes Mellitus
-MESH:D003456	Cryptorchidism
-MESH:D005317	Fetal Growth Retardation
-MESH:D010033	Otitis Media
-MESH:D000008	Abdominal Neoplasms
-MESH:D009358	Congenital, Hereditary, and Neonatal Diseases and Abnormalities
-OMIM:200100	Abetalipoproteinemia
-OMIM:109150	Machado-Joseph Disease
-OMIM:125370	Myoclonic Epilepsies, Progressive
-MESH:C537627	Keratosis palmoplantaris with periodontopathia and onychogryposis
-MESH:D054119	Arachnodactyly
-MESH:D009260	Nail Diseases
-MESH:D006226	Hand Deformities
-MESH:C537277	Glycosylphosphatidylinositol deficiency
-MESH:D057130	Leber Congenital Amaurosis
-MESH:C535916	Cartilage-hair hypoplasia
-MESH:D008228	Lymphoma, Non-Hodgkin
-MESH:D002280	Carcinoma, Basal Cell
-MESH:C536288	Thymic aplasia
-MESH:C535464	Conotruncal cardiac defects
-MESH:D012512	Sarcoma, Ewing
-MESH:D001766	Blindness
-OMIM:610743	Spinocerebellar Ataxia, Autosomal Recessive 8
-OMIM:602482	AXENFELD-RIEGER SYNDROME, TYPE 3
-MESH:C537775	Anterior segment mesenchymal dysgenesis
-MESH:C535679	Axenfeld-Rieger syndrome
-MESH:D005901	Glaucoma
-MESH:D000686	Amyloidosis
-MESH:D059352	Musculoskeletal Pain
-MESH:D035583	Rare Diseases
-MESH:D049932	Nijmegen Breakage Syndrome
-MESH:D017204	Angelman Syndrome
-MESH:D018798	Anemia, Iron-Deficiency
-MESH:D003876	Dermatitis, Atopic
-MESH:D001249	Asthma
-MESH:D004827	Epilepsy
-MESH:D006951	Hyperlipoproteinemias
-MESH:D001112	Arcus Senilis
-OMIM:262400	Pituitary dwarfism 1
-OMIM:274400	Thyroid Dyshormonogenesis 1
-MESH:D003409	Congenital Hypothyroidism
-MESH:D020246	Venous Thrombosis
-MESH:D019851	Thrombophilia
-OMIM:612336	Thrombophilia, Hereditary, Due To Protein S Deficiency, Autosomal Dominant
-MESH:D013927	Thrombosis
-MESH:D051346	Mobility Limitation
-MESH:D005879	Tourette Syndrome
-OMIM:119500	Popliteal Pterygium Syndrome
-OMIM:119530	Orofacial Cleft 1
-OMIM:253000	Mucopolysaccharidosis IV
-MESH:D009085	Mucopolysaccharidosis IV
-MESH:D054098	Thrombocytopenia, Neonatal Alloimmune
-OMIM:300842	Neuroacanthocytosis, Mcleod Type
-MESH:D002819	Chorea
-MESH:D024741	Cardiomyopathy, Hypertrophic, Familial
-MESH:C536277	Idiopathic dilation cardiomyopathy
-MESH:D058405	Desmoplastic Small Round Cell Tumor
-MESH:D006456	Hemoglobinuria
-MESH:D007565	Jaundice
-MESH:D000782	Aneuploidy
-MESH:D008581	Meningitis
-MESH:C535700	Malignant mesenchymal tumor
-MESH:D006521	Hepatitis, Chronic
-OMIM:614380	Complement Component 4a Deficiency
-MESH:D018284	Cystadenocarcinoma, Serous
-MESH:D003123	Colorectal Neoplasms, Hereditary Nonpolyposis
-MESH:D006528	Carcinoma, Hepatocellular
-MESH:D000567	Amelogenesis Imperfecta
-MESH:D016111	Sjogren-Larsson Syndrome
-MESH:D005235	Fatty Liver, Alcoholic
-MESH:D018149	Glucose Intolerance
-MESH:D015228	Hypertriglyceridemia
-MESH:D002318	Cardiovascular Diseases
-MESH:D000347	Afibrinogenemia
-MESH:D033461	Hyperuricemia
-MESH:C537181	Paroxysmal nonkinesigenic dyskinesia
-MESH:D009128	Muscle Spasticity
-MESH:D004401	Dysarthria
-MESH:D052177	Kidney Diseases, Cystic
-MESH:D056725	von Willebrand Disease, Type 1
-MESH:D003318	Corneal Opacity
-MESH:D003327	Coronary Disease
-MESH:C536575	Borjeson-Forssman-Lehmann syndrome
-MESH:D011115	Polyneuropathies
-MESH:D010523	Peripheral Nervous System Diseases
-MESH:C548028	Inherited Peripheral Neuropathy
-MESH:D002607	Charcot-Marie-Tooth Disease
-OMIM:605253	Charcot-Marie-Tooth disease, Type 4E
-MESH:D025861	Blood Coagulation Disorders, Inherited
-MESH:D056728	von Willebrand Disease, Type 2
-MESH:D016889	Endometrial Neoplasms
-MESH:D012141	Respiratory Tract Infections
-MESH:C536456	Craniofrontonasal dysplasia
-MESH:C538065	Frontonasal dysplasia
-MESH:C537369	Muenke Syndrome
-MESH:D013576	Syndactyly
-MESH:C535884	Joint laxity, familial
-MESH:D020821	Dystonic Disorders
-MESH:D009069	Movement Disorders
-MESH:D004422	Dystonia Musculorum Deformans
-OMIM:314250	Dystonia 3, Torsion, X-Linked
-OMIM:304500	Deafness, X-Linked 1
-MESH:D012600	Scoliosis
-MESH:D005530	Foot Deformities
-MESH:D020886	Somatosensory Disorders
-MESH:D001745	Urinary Bladder Diseases
-OMIM:213700	Xanthomatosis, Cerebrotendinous
-MESH:D002526	Cerebellar Diseases
-MESH:D009120	Muscle Cramp
-MESH:C535506	Episodic Ataxia, Type 2
-MESH:D020325	Migraine with Aura
-OMIM:183086	Spinocerebellar Ataxias
-MESH:D008881	Migraine Disorders
-MESH:D044483	Intestinal Polyposis
-MESH:D019282	Wasting Syndrome
-MESH:D003645	Death, Sudden
-MESH:D052919	Refsum Disease, Infantile
-MESH:D012216	Rheumatic Diseases
-MESH:D005171	Factor X Deficiency
-MESH:D006474	Hemorrhagic Disorders
-MESH:D019042	Muscle Neoplasms
-OMIM:604391	Ataxia Telangiectasia Like Disorder
-MESH:D006501	Hepatic Encephalopathy
-MESH:D017093	Liver Failure
-MESH:D006323	Heart Arrest
-OMIM:310200	Muscular Dystrophy, Duchenne
-MESH:D006932	Hyperbilirubinemia
-MESH:D018268	Adrenocortical Carcinoma
-MESH:D004701	Endocrine Gland Neoplasms
-MESH:D002277	Carcinoma
-MESH:C535944	Desmoid disease, hereditary
-MESH:D009447	Neuroblastoma
-MESH:D015324	Pyruvate Carboxylase Deficiency Disease
-MESH:D000312	Adrenal Hyperplasia, Congenital
-MESH:C535764	Eunuchoidism, familial hypogonadotropic
-MESH:D006467	Hemophilia A
-MESH:D012516	Osteosarcoma
-MESH:D017202	Myocardial Ischemia
-MESH:D007246	Infertility
-MESH:D052159	Frasier Syndrome
-MESH:D020234	Gait Ataxia
-MESH:D012021	Reflex, Abnormal
-MESH:D053421	Hand-Arm Vibration Syndrome
-MESH:D028227	Amyloid Neuropathies, Familial
-MESH:D016512	Ankle Injuries
-MESH:D005221	Fatigue
-MESH:D007022	Hypotension
-MESH:D005313	Fetal Death
-MESH:D053632	X-Linked Combined Immunodeficiency Diseases
-MESH:D019767	Maxillofacial Abnormalities
-MESH:D009078	Mucocele
-MESH:D017496	Hypopigmentation
-MESH:D006069	Gonorrhea
-MESH:D016538	Mucopolysaccharidosis VII
-MESH:D016388	Tooth Loss
-MESH:D017488	Hyperkeratosis, Epidermolytic
-MESH:D007642	Keratosis
-MESH:D018302	Neoplasms, Neuroepithelial
-MESH:D016135	Spinal Dysraphism
-MESH:D000757	Anencephaly
-MESH:D056729	von Willebrand Disease, Type 3
-MESH:D016920	Meningitis, Bacterial
-MESH:D008586	Meningitis, Pneumococcal
-MESH:D004406	Dysgammaglobulinemia
-MESH:D000257	Adenoviridae Infections
-OMIM:230400	Galactosemias
-MESH:D012257	Riboflavin Deficiency
-OMIM:260350	Pancreatic Neoplasms
-MESH:D015499	Renal Tubular Transport, Inborn Errors
-MESH:D013953	Thymus Neoplasms
-OMIM:208900	Ataxia Telangiectasia
-MESH:D019954	Neurobehavioral Manifestations
-OMIM:190350	Trichorhinophalangeal Syndrome, Type I
-OMIM:136880	Fundus Albipunctatus
-MESH:C537884	Peters anomaly
-OMIM:136520	O'Donnell Pappas syndrome
-MESH:D006058	Gonadal Disorders
-MESH:D006963	Hyperphagia
-MESH:D016472	Motor Neuron Disease
-MESH:D004660	Encephalitis
-MESH:D007057	Ichthyosis
-MESH:D007960	Leukocyte Disorders
-OMIM:312920	Spastic paraplegia 2, X-linked
-MESH:D013945	Thymoma
-MESH:D001932	Brain Neoplasms
-MESH:D048629	Micronuclei, Chromosome-Defective
-MESH:D054508	Acute Radiation Syndrome
-MESH:D053842	Microsatellite Instability
-MESH:D003095	Collagen Diseases
-OMIM:255800	Osteochondrodysplasias
-MESH:D001848	Bone Diseases, Developmental
-MESH:C536252	Pyle disease
-MESH:C537502	Stuve-Wiedemann syndrome
-MESH:D004535	Ehlers-Danlos Syndrome
-MESH:D001019	Aortic Rupture
-MESH:D020417	Nystagmus, Congenital
-MESH:D014202	Tremor
-MESH:D003704	Dementia
-MESH:D010554	Personality Disorders
-MESH:D007680	Kidney Neoplasms
-MESH:D006059	Gonadal Dysgenesis
-MESH:D006106	Granulosa Cell Tumor
-MESH:D015470	Leukemia, Myeloid, Acute
-OMIM:300322	Lesch-Nyhan Syndrome
-OMIM:160900	Myotonic Dystrophy
-MESH:D020966	Muscular Disorders, Atrophic
-MESH:D005355	Fibrosis
-MESH:D017034	Epilepsy, Frontal Lobe
-MESH:C537750	Oncocytoma, renal
-OMIM:222600	Diastrophic dysplasia
-MESH:D007248	Infertility, Male
-MESH:D009837	Oligodendroglioma
-MESH:D002296	Carcinosarcoma
-OMIM:145001	Hyperparathyroidism 2
-MESH:C536399	Nephroblastomatosis, fetal ascites, macrosomia and Wilms tumor
-MESH:D006961	Hyperparathyroidism
-MESH:D007573	Jaw Neoplasms
-MESH:D007690	Polycystic Kidney Diseases
-MESH:D049950	Hyperparathyroidism, Primary
-MESH:D009377	Multiple Endocrine Neoplasia
-OMIM:131100	Multiple Endocrine Neoplasia Type 1
-MESH:D018813	Multiple Endocrine Neoplasia Type 2a
-MESH:D007890	Leiomyosarcoma
-MESH:D007965	Leukodystrophy, Globoid Cell
-OMIM:245200	Leukodystrophy, Globoid Cell
-MESH:D010264	Paraplegia
-OMIM:125852	Diabetes Mellitus, Insulin-Dependent, 2
-OMIM:607834	Anxiety Disorders
-OMIM:215600	Cirrhosis, Familial
-MESH:C536185	Ectopia pupillae
-MESH:C537022	Keratitis, hereditary
-MESH:D006223	Hamartoma Syndrome, Multiple
-MESH:D013964	Thyroid Neoplasms
-MESH:D001941	Breast Diseases
-MESH:D058490	Disorder of Sex Development, 46,XY
-MESH:C536587	Alport syndrome, recessive type
-MESH:D020754	Spinocerebellar Ataxias
-OMIM:164400	Spinocerebellar Ataxias
-OMIM:183090	Spinocerebellar Ataxias
-MESH:D009759	Nystagmus, Pathologic
-MESH:D015458	Leukemia, T-Cell
-MESH:D015461	Leukemia, Prolymphocytic, T-Cell
-MESH:D007945	Leukemia, Lymphoid
-MESH:D003643	Death
-MESH:C535662	Acromicric dysplasia
-MESH:C537966	Campomelia Cumming type
-MESH:D055036	Campomelic Dysplasia
-OMIM:613399	BREAST-OVARIAN CANCER, FAMILIAL, SUSCEPTIBILITY TO, 3
-MESH:D019572	Retinal Neoplasms
-MESH:C536210	Congenital chloride diarrhea
-MESH:D020143	Gangliosidoses, GM2
-MESH:D002311	Cardiomyopathy, Dilated
-OMIM:101400	Acrocephalosyndactylia
-MESH:D003398	Craniosynostoses
-MESH:D017880	Limb Deformities, Congenital
-MESH:D005146	Facial Asymmetry
-MESH:D001763	Blepharoptosis
-MESH:D005532	Foot Deformities, Congenital
-MESH:C536852	Familial streblodactyly
-MESH:D005834	Genital Neoplasms, Male
-MESH:D046349	Coproporphyria, Hereditary
-MESH:D017094	Porphyrias, Hepatic
-MESH:D019189	Iron Metabolism Disorders
-MESH:C531844	Von willebrand factor, deficiency
-MESH:D057772	Vascular System Injuries
-OMIM:609814	Complement Factor H Deficiency
-MESH:D006463	Hemolytic-Uremic Syndrome
-MESH:D014693	Ventricular Fibrillation
-MESH:D016109	Epidermolysis Bullosa, Junctional
-MESH:D009456	Neurofibromatosis 1
-MESH:D019964	Mood Disorders
-MESH:D003866	Depressive Disorder
-MESH:D001304	Auditory Diseases, Central
-MESH:D014849	Waardenburg Syndrome
-OMIM:201400	ACTH Deficiency, Isolated
-MESH:D001768	Blister
-MESH:C538333	Nail dysplasia, isolated congenital
-MESH:C531609	Diffuse alopecia
-MESH:C536183	Ectodermal Dysplasia-Skin Fragility Syndrome
-MESH:D006330	Heart Defects, Congenital
-MESH:D018275	Carcinoma, Lobular
-MESH:D044584	Carcinoma, Ductal
-MESH:C537666	Becker muscular dystrophy
-MESH:C531610	AAT deficiency
-MESH:C538219	Dermatofibrosarcoma protuberans
-MESH:C538138	Complex Glycerol Kinase Deficiency
-MESH:D001405	Reflex, Babinski
-MESH:C531603	Congenital afibrinogenemia
-MESH:C531652	Tapeto-Choroidal Dystrophy
-MESH:C538392	Dejerine-Sottas syndrome
-MESH:C535804	fundus flavimaculatus
-MESH:C538554	diminished GALC activity
-OMIM:103600	ALBUMIN
-OMIM:102600	ADENINE PHOSPHORIBOSYLTRANSFERASE
-OMIM:600698	HIGH MOBILITY GROUP AT-HOOK 2
-OMIM:164160	LEPTIN
+D012878	DiseaseClass	Skin Neoplasms
+D009369	DiseaseClass	Neoplasms
+D003110	DiseaseClass	Colonic Neoplasms
+D011125	SpecificDisease	Adenomatous Polyposis Coli
+D018296	SpecificDisease	Pilomatrixoma
+D016399	Modifier	Lymphoma, T-Cell
+D006432	SpecificDisease	Hemochromatosis
+D030342	DiseaseClass	Genetic Diseases, Inborn
+D010051	Modifier	Ovarian Neoplasms
+D001943	Modifier	Breast Neoplasms
+OMIM:610102	SpecificDisease	Complement Component 7 Deficiency
+D016870	DiseaseClass	Neisseriaceae Infections
+D004673	SpecificDisease	Encephalomyelitis, Acute Disseminated
+D008585	SpecificDisease	Meningitis, Meningococcal
+D001168	DiseaseClass	Arthritis
+D008538	SpecificDisease	Meige Syndrome
+D004421	DiseaseClass	Dystonia
+C538007	SpecificDisease	Dystonia, Dopa-responsive
+D010505	SpecificDisease	Familial Mediterranean Fever
+D012700	DiseaseClass	Serositis
+D013585	DiseaseClass	Synovitis
+D056735	SpecificDisease	Autoimmune Lymphoproliferative Syndrome
+D008232	CompositeMention	Lymphoproliferative Disorders
+D000326	SpecificDisease	Adrenoleukodystrophy
+D009461	SpecificDisease	Neurologic Manifestations
+D000309	DiseaseClass	Adrenal Insufficiency
+D000224	SpecificDisease	Addison Disease
+D008589	SpecificDisease	Meningococcal Infections
+D014657	SpecificDisease	Vasculitis
+D005334	SpecificDisease	Fever
+D018366	SpecificDisease	Vasculitis, Leukocytoclastic, Cutaneous
+D054067	SpecificDisease	Dihydropyrimidine Dehydrogenase Deficiency
+D004829	DiseaseClass	Epilepsy, Generalized
+D019957	DiseaseClass	Motor Skills Disorders
+D008607	DiseaseClass	Intellectual Disability
+D013568	DiseaseClass	Pathological Conditions, Signs and Symptoms
+D005955	SpecificDisease	Glucosephosphate Dehydrogenase Deficiency
+D006995	SpecificDisease	Hypobetalipoproteinemias
+D000012	SpecificDisease	Abetalipoproteinemia
+D019190	DiseaseClass	Iron Overload
+D008103	DiseaseClass	Liver Cirrhosis
+D000435	SpecificDisease	Alcoholic Intoxication
+D005234	SpecificDisease	Fatty Liver
+D006529	DiseaseClass	Hepatomegaly
+D010859	DiseaseClass	Pigmentation Disorders
+OMIM:312080	SpecificDisease	Pelizaeus-Merzbacher Disease
+D020279	DiseaseClass	Hereditary Central Nervous System Demyelinating Diseases
+C536170	SpecificDisease	Diastrophic dysplasia
+D010009	DiseaseClass	Osteochondrodysplasias
+D013122	DiseaseClass	Spinal Diseases
+C537356	SpecificDisease	Metatropic dwarfism
+D005736	SpecificDisease	Gardner Syndrome
+D019465	DiseaseClass	Craniofacial Abnormalities
+OMIM:217000	SpecificDisease	COMPLEMENT COMPONENT 2 DEFICIENCY
+OMIM:300624	SpecificDisease	Fragile X Syndrome
+D005600	SpecificDisease	Fragile X Syndrome
+D001008	Modifier	Anxiety Disorders
+D000795	SpecificDisease	Fabry Disease
+D008052	DiseaseClass	Lipid Metabolism, Inborn Errors
+D000794	SpecificDisease	Angiokeratoma
+D010292	SpecificDisease	Paresthesia
+D051437	SpecificDisease	Renal Insufficiency
+D014652	CompositeMention	Vascular Diseases
+D001714	SpecificDisease	Bipolar Disorder
+D041441	Modifier	Retinoschisis
+C531604	DiseaseClass	Primary visual agnosia
+D012175	Modifier	Retinoblastoma
+D058499	DiseaseClass	Retinal Dystrophies
+D015794	Modifier	Choroideremia
+D015785	DiseaseClass	Eye Diseases, Hereditary
+D006623	SpecificDisease	von Hippel-Lindau Disease
+D018325	SpecificDisease	Hemangioblastoma
+D002292	SpecificDisease	Carcinoma, Renal Cell
+D009386	DiseaseClass	Neoplastic Syndromes, Hereditary
+D009800	SpecificDisease	Oculocerebrorenal Syndrome
+D040181	DiseaseClass	Genetic Diseases, X-Linked
+D000015	CompositeMention	Abnormalities, Multiple
+D020388	SpecificDisease	Muscular Dystrophy, Duchenne
+D014947	DiseaseClass	Wounds and Injuries
+D009136	SpecificDisease	Muscular Dystrophies
+D008659	DiseaseClass	Metabolic Diseases
+D014842	SpecificDisease	von Willebrand Diseases
+D061325	Modifier	Hereditary Breast and Ovarian Cancer Syndrome
+D018567	SpecificDisease	Breast Neoplasms, Male
+OMIM:606824	SpecificDisease	Glucose-Galactose Malabsorption
+D013661	Modifier	Tay-Sachs Disease
+D017825	SpecificDisease	Canavan Disease
+D007966	SpecificDisease	Leukodystrophy, Metachromatic
+D003711	DiseaseClass	Demyelinating Diseases
+D015211	SpecificDisease	Zellweger Syndrome
+D018901	DiseaseClass	Peroxisomal Disorders
+OMIM:202370	SpecificDisease	PEROXISOME BIOGENESIS DISORDER 2B
+D017827	Modifier	Machado-Joseph Disease
+D000474	SpecificDisease	Alkaptonuria
+D009794	SpecificDisease	Ochronosis
+D013274	SpecificDisease	Stomach Neoplasms
+D018256	SpecificDisease	Adenomatous Polyps
+OMIM:613825	Modifier	C9 Deficiency
+D007153	DiseaseClass	Immunologic Deficiency Syndromes
+D007926	Modifier	Lesch-Nyhan Syndrome
+D020389	SpecificDisease	Muscular Dystrophy, Emery-Dreifuss
+D003286	CompositeMention	Contracture
+D009133	DiseaseClass	Muscular Atrophy
+D018908	DiseaseClass	Muscle Weakness
+D009202	SpecificDisease	Cardiomyopathies
+OMIM:115080	SpecificDisease	CARDIAC CONDUCTION DEFECT
+D006331	DiseaseClass	Heart Diseases
+D002278	DiseaseClass	Carcinoma in Situ
+D009362	DiseaseClass	Neoplasm Metastasis
+D009223	SpecificDisease	Myotonic Dystrophy
+D016537	Modifier	Gangliosidosis, GM1
+D016464	DiseaseClass	Lysosomal Storage Diseases
+D018376	DiseaseClass	Cardiovascular Abnormalities
+D020022	DiseaseClass	Genetic Predisposition to Disease
+D002386	SpecificDisease	Cataract
+D009222	DiseaseClass	Myotonia
+D009135	DiseaseClass	Muscular Diseases
+D006327	DiseaseClass	Heart Block
+D009139	DiseaseClass	Musculoskeletal Abnormalities
+OMIM:609536	SpecificDisease	Complement component 5 deficiency
+D008179	SpecificDisease	Lupus Erythematosus, Discoid
+D014923	Modifier	Wiskott-Aldrich Syndrome
+D013921	Modifier	Thrombocytopenia
+D014564	DiseaseClass	Urogenital Abnormalities
+D030321	SpecificDisease	Denys-Drash Syndrome
+D009396	Modifier	Wilms Tumor
+D008654	SpecificDisease	Mesothelioma
+D007938	SpecificDisease	Leukemia
+D004194	Modifier	Disease
+D005921	SpecificDisease	Glomerulonephritis
+D007674	SpecificDisease	Kidney Diseases
+C537346	SpecificDisease	Mesangial sclerosis, diffuse
+D012734	SpecificDisease	Disorders of Sex Development
+D005832	DiseaseClass	Genital Diseases, Male
+D005236	SpecificDisease	Favism
+D000743	SpecificDisease	Anemia, Hemolytic
+D016757	SpecificDisease	Death, Sudden, Cardiac
+D008223	DiseaseClass	Lymphoma
+D016393	SpecificDisease	Lymphoma, B-Cell
+D010282	DiseaseClass	Parathyroid Neoplasms
+D008288	Modifier	Malaria
+D013789	Modifier	Thalassemia
+D006461	SpecificDisease	Hemolysis
+D000799	SpecificDisease	Angioedema
+D009157	SpecificDisease	Myasthenia Gravis
+D008180	SpecificDisease	Lupus Erythematosus, Systemic
+D001327	DiseaseClass	Autoimmune Diseases
+OMIM:613779	SpecificDisease	Complement Component 3 Deficiency, Autosomal Recessive
+D001424	DiseaseClass	Bacterial Infections
+D011014	SpecificDisease	Pneumonia
+D007105	DiseaseClass	Immune Complex Diseases
+D007239	DiseaseClass	Infections
+D008661	DiseaseClass	Metabolism, Inborn Errors
+D001260	SpecificDisease	Ataxia Telangiectasia
+D005693	SpecificDisease	Galactosemias
+D009468	DiseaseClass	Neuromuscular Diseases
+C536528	SpecificDisease	Van der Woude syndrome
+D002972	SpecificDisease	Cleft Palate
+D008047	CompositeMention	Lip Diseases
+D002971	SpecificDisease	Cleft Lip
+C531732	SpecificDisease	Ascending aortic aneurysm, hypertelorism, bifid uvula, cleft palate, and arterial tortuosity
+D000848	SpecificDisease	Anodontia
+D007567	DiseaseClass	Jaundice, Neonatal
+OMIM:143470	SpecificDisease	HYPERALPHALIPOPROTEINEMIA 1
+D006937	SpecificDisease	Hypercholesterolemia
+D050197	SpecificDisease	Atherosclerosis
+C536648	Modifier	Pendred syndrome
+C537845	SpecificDisease	Nonsyndromic sensorineural hearing loss
+OMIM:600791	SpecificDisease	DEAFNESS, AUTOSOMAL RECESSIVE 4, WITH ENLARGED VESTIBULAR AQUEDUCT
+D006042	DiseaseClass	Goiter
+OMIM:261600	SpecificDisease	Phenylketonurias
+D017042	Modifier	Phenylketonuria, Maternal
+D010661	SpecificDisease	Phenylketonurias
+D056784	CompositeMention	Leukoencephalopathies
+D053840	SpecificDisease	Brugada Syndrome
+D008133	SpecificDisease	Long QT Syndrome
+C537034	SpecificDisease	Long QT syndrome type 3
+C537182	SpecificDisease	Paroxysmal ventricular fibrillation
+OMIM:125700	SpecificDisease	Diabetes Insipidus, Neurogenic
+D009410	DiseaseClass	Nerve Degeneration
+D020790	SpecificDisease	Diabetes Insipidus, Neurogenic
+D015783	SpecificDisease	Aniridia
+C537209	SpecificDisease	Knobloch syndrome
+C538225	DiseaseClass	Adams Oliver syndrome
+D012162	SpecificDisease	Retinal Degeneration
+D009216	SpecificDisease	Myopia
+D006972	SpecificDisease	Hypertelorism
+D007569	SpecificDisease	Jaw Abnormalities
+D006319	SpecificDisease	Hearing Loss, Sensorineural
+D003638	SpecificDisease	Deafness
+D007759	SpecificDisease	Labyrinth Diseases
+D015179	SpecificDisease	Colorectal Neoplasms
+C538265	Modifier	Attenuated familial adenomatous polyposis
+D000236	SpecificDisease	Adenoma
+D018222	SpecificDisease	Fibromatosis, Aggressive
+C536353	SpecificDisease	VLCAD deficiency
+D002312	SpecificDisease	Cardiomyopathy, Hypertrophic
+D006816	Modifier	Huntington Disease
+D019636	DiseaseClass	Neurodegenerative Diseases
+D016864	Modifier	Li-Fraumeni Syndrome
+D018239	SpecificDisease	Seminoma
+D008527	SpecificDisease	Medulloblastoma
+D002471	DiseaseClass	Cell Transformation, Neoplastic
+D000592	DiseaseClass	Amino Acid Metabolism, Inborn Errors
+C537849	Modifier	Norrie disease
+D038901	DiseaseClass	Mental Retardation, X-Linked
+D015223	SpecificDisease	Wolman Disease
+D049288	SpecificDisease	Muscular Dystrophies, Limb-Girdle
+D024182	SpecificDisease	Uniparental Disomy
+D012514	SpecificDisease	Sarcoma, Kaposi
+D004485	DiseaseClass	Eczema
+D008206	SpecificDisease	Lymphatic Diseases
+D013163	SpecificDisease	Splenomegaly
+D020031	SpecificDisease	Epstein-Barr Virus Infections
+D003586	SpecificDisease	Cytomegalovirus Infections
+D015658	SpecificDisease	HIV Infections
+D019294	SpecificDisease	Xanthomatosis, Cerebrotendinous
+D014973	DiseaseClass	Xanthomatosis
+OMIM:612446	SpecificDisease	Complement Component 6 Deficiency
+D015826	SpecificDisease	Langer-Giedion Syndrome
+D005621	SpecificDisease	Friedreich Ataxia
+D028361	SpecificDisease	Mitochondrial Diseases
+D000745	SpecificDisease	Anemia, Hemolytic, Congenital
+D006965	CompositeMention	Hyperplasia
+D054880	SpecificDisease	Aspartylglucosaminuria
+D017445	SpecificDisease	Skin Diseases, Vascular
+D018322	SpecificDisease	Angiofibroma
+D014402	SpecificDisease	Tuberous Sclerosis
+D007967	SpecificDisease	Leukoedema, Oral
+D019214	SpecificDisease	Gingival Overgrowth
+D009059	SpecificDisease	Mouth Diseases
+D017573	CompositeMention	Focal Epithelial Hyperplasia
+OMIM:174810	SpecificDisease	Polyostotic osteolytic dysplasia, hereditary expansile
+D001847	DiseaseClass	Bone Diseases
+D030981	SpecificDisease	Acro-Osteolysis
+C538098	SpecificDisease	Familial Paget's disease of bone
+C538243	SpecificDisease	Amelogenesis imperfecta, hypoplastic-hypomaturation, X-linked 1
+D014071	DiseaseClass	Tooth Abnormalities
+D011218	SpecificDisease	Prader-Willi Syndrome
+D002869	SpecificDisease	Chromosome Aberrations
+D003025	SpecificDisease	Clubfoot
+C535504	DiseaseClass	Epiphyseal dysplasia, multiple, 4
+C536016	SpecificDisease	Achondrogenesis type 1B
+C535395	SpecificDisease	Atelosteogenesis type 2
+D006618	SpecificDisease	Hip Dislocation, Congenital
+D004427	DiseaseClass	Ear Diseases
+C536903	DiseaseClass	Thumb deformity
+OMIM:132400	SpecificDisease	Epiphyseal dysplasia, multiple, 1
+OMIM:600204	SpecificDisease	Epiphyseal dysplasia, multiple, 2
+OMIM:226900	SpecificDisease	Epiphyseal dysplasia, multiple, 4
+D017511	SpecificDisease	Pyoderma Gangrenosum
+D034721	DiseaseClass	Mastocytosis, Systemic
+D008545	SpecificDisease	Melanoma
+D002524	SpecificDisease	Cerebellar Ataxia
+D001927	DiseaseClass	Brain Diseases
+D018232	Modifier	Rhabdomyosarcoma, Alveolar
+D009224	SpecificDisease	Myotonia Congenita
+OMIM:160800	DiseaseClass	MYOTONIA CONGENITA, AUTOSOMAL DOMINANT
+C536245	DiseaseClass	Nondystrophic myotonia
+C536106	SpecificDisease	Myostatin-related muscle hypertrophy
+D007863	SpecificDisease	Lecithin Cholesterol Acyltransferase Deficiency
+D003111	SpecificDisease	Colonic Polyps
+D003117	DiseaseClass	Color Vision Defects
+D003141	DiseaseClass	Communicable Diseases
+D000740	DiseaseClass	Anemia
+D007249	SpecificDisease	Inflammation
+C538249	SpecificDisease	Amyloidosis, familial visceral
+D011127	DiseaseClass	Polyps
+D005776	SpecificDisease	Gaucher Disease
+D009422	Modifier	Nervous System Diseases
+D007027	DiseaseClass	Hypothalamic Diseases
+D052456	DiseaseClass	Hypoalphalipoproteinemias
+D010214	SpecificDisease	Papillon-Lefevre Disease
+D007645	SpecificDisease	Keratoderma, Palmoplantar
+D010518	SpecificDisease	Periodontitis
+D010510	Modifier	Periodontal Diseases
+D056732	SpecificDisease	Prolidase Deficiency
+D012883	SpecificDisease	Skin Ulcer
+D008268	SpecificDisease	Macular Degeneration
+D012174	SpecificDisease	Retinitis Pigmentosa
+D012607	SpecificDisease	Scotoma
+C536309	SpecificDisease	Patterned dystrophy of retinal pigment epithelium
+OMIM:180020	DiseaseClass	Retinal Cone Dystrophy 1
+C535342	SpecificDisease	Cataract, zonular
+D004646	DiseaseClass	Emphysema
+D008107	DiseaseClass	Liver Diseases
+D009123	SpecificDisease	Muscle Hypotonia
+D002658	DiseaseClass	Developmental Disabilities
+D009765	DiseaseClass	Obesity
+D057215	DiseaseClass	Body Dysmorphic Disorders
+D006527	Modifier	Hepatolenticular Degeneration
+D015834	DiseaseClass	Cochlear Diseases
+D013959	SpecificDisease	Thyroid Diseases
+D001145	DiseaseClass	Arrhythmias, Cardiac
+D006946	SpecificDisease	Hyperinsulinism
+D058495	SpecificDisease	Sotos Syndrome
+D012859	SpecificDisease	Sjogren's Syndrome
+D001172	SpecificDisease	Arthritis, Rheumatoid
+D020162	SpecificDisease	Hyperargininemia
+C535331	SpecificDisease	Aarskog Syndrome
+D006130	DiseaseClass	Growth Disorders
+OMIM:300755	SpecificDisease	Bruton type agammaglobulinemia
+C538320	SpecificDisease	Histidinemia
+C537207	SpecificDisease	Kniest dysplasia
+C535964	DiseaseClass	Collagenopathy, type 2 alpha 1
+OMIM:610170	DiseaseClass	Kyphoscoliosis 1
+OMIM:300194	SpecificDisease	Alport Syndrome, Mental Retardation, Midface Hypoplasia, and Elliptocytosis
+D034381	DiseaseClass	Hearing Loss
+D001321	SpecificDisease	Autistic Disorder
+D012004	SpecificDisease	Rectal Neoplasms
+D000013	SpecificDisease	Congenital Abnormalities
+D058456	SpecificDisease	Retinal Telangiectasis
+D006949	CompositeMention	Hyperlipidemias
+D012163	DiseaseClass	Retinal Detachment
+C538037	SpecificDisease	Chromosome 15, trisomy mosaicism
+OMIM:313900	SpecificDisease	Thrombocytopenia 1
+D000853	SpecificDisease	Anophthalmos
+D009421	DiseaseClass	Nervous System Malformations
+OMIM:106210	SpecificDisease	Aniridia
+D003317	SpecificDisease	Corneal Dystrophies, Hereditary
+D013167	SpecificDisease	Spondylitis, Ankylosing
+D056769	SpecificDisease	Alstrom Syndrome
+D003924	SpecificDisease	Diabetes Mellitus, Type 2
+D002609	SpecificDisease	Chediak-Higashi Syndrome
+D051359	DiseaseClass	Lymphohistiocytosis, Hemophagocytic
+D018197	SpecificDisease	Hepatoblastoma
+D008113	DiseaseClass	Liver Neoplasms
+D008637	Modifier	Mesenchymoma
+D018205	DiseaseClass	Neoplasms, Adipose Tissue
+D008067	DiseaseClass	Lipoma
+D043171	DiseaseClass	Chromosomal Instability
+D015451	SpecificDisease	Leukemia, Lymphocytic, Chronic, B-Cell
+D002051	SpecificDisease	Burkitt Lymphoma
+OMIM:300100	DiseaseClass	Adrenoleukodystrophy
+D025063	DiseaseClass	Chromosome Disorders
+D016116	SpecificDisease	Piebaldism
+D018198	DiseaseClass	Mixed Tumor, Malignant
+C535918	SpecificDisease	Schmid-Fraccaro syndrome
+C535733	SpecificDisease	Emanuel syndrome
+D004062	SpecificDisease	DiGeorge Syndrome
+D058670	DiseaseClass	Tetrasomy
+D004814	SpecificDisease	Epidermal Cyst
+D010016	SpecificDisease	Osteoma
+D012164	SpecificDisease	Retinal Diseases
+D018455	SpecificDisease	Protein S Deficiency
+OMIM:300323	DiseaseClass	Gout, HPRT-Related
+D015210	SpecificDisease	Arthritis, Gouty
+D002836	Modifier	Hemophilia B
+D009393	SpecificDisease	Nephritis
+D011507	SpecificDisease	Proteinuria
+D006417	SpecificDisease	Hematuria
+D000303	CompositeMention	Adrenal Cortex Diseases
+D007499	SpecificDisease	Iris Diseases
+D005124	DiseaseClass	Eye Abnormalities
+D000857	SpecificDisease	Olfaction Disorders
+D015821	DiseaseClass	Eye Infections, Fungal
+D007571	DiseaseClass	Jaw Diseases
+D009810	SpecificDisease	Odontoma
+C535468	DiseaseClass	Copper deficiency, familial benign
+D020518	DiseaseClass	Focal Nodular Hyperplasia
+D010900	DiseaseClass	Pituitary Diseases
+D004700	DiseaseClass	Endocrine System Diseases
+C537243	Modifier	Prostate cancer, familial
+D011471	Modifier	Prostatic Neoplasms
+D003967	SpecificDisease	Diarrhea
+D003681	SpecificDisease	Dehydration
+D007154	DiseaseClass	Immune System Diseases
+D019337	DiseaseClass	Hematologic Neoplasms
+D006402	DiseaseClass	Hematologic Diseases
+D013118	SpecificDisease	Spinal Cord Diseases
+D002493	DiseaseClass	Central Nervous System Diseases
+D002908	DiseaseClass	Chronic Disease
+D020964	SpecificDisease	Embryo Loss
+D013132	DiseaseClass	Spinocerebellar Degenerations
+OMIM:255125	SpecificDisease	Myopathy with Lactic Acidosis, Hereditary
+D010534	SpecificDisease	Peritoneal Neoplasms
+D005185	SpecificDisease	Fallopian Tube Neoplasms
+D010190	CompositeMention	Pancreatic Neoplasms
+OMIM:604370	SpecificDisease	BREAST-OVARIAN CANCER, FAMILIAL, SUSCEPTIBILITY TO, 1
+D020141	DiseaseClass	Hemostatic Disorders
+D005076	DiseaseClass	Exanthema
+D018771	DiseaseClass	Arthralgia
+D017624	Modifier	WAGR Syndrome
+D020936	SpecificDisease	Epilepsy, Benign Neonatal
+D001284	SpecificDisease	Atrophy
+D003072	DiseaseClass	Cognition Disorders
+D008831	DiseaseClass	Microcephaly
+C536438	Modifier	Cohen syndrome
+D015862	DiseaseClass	Choroid Diseases
+D020158	SpecificDisease	Hyperglycinemia, Nonketotic
+D018319	SpecificDisease	Neurofibrosarcoma
+D004938	SpecificDisease	Esophageal Neoplasms
+D001859	CompositeMention	Bone Neoplasms
+D005910	SpecificDisease	Glioma
+D005909	SpecificDisease	Glioblastoma
+C538068	SpecificDisease	Fructosuria
+D015535	SpecificDisease	Arthritis, Psoriatic
+C538273	SpecificDisease	Autoimmune enteropathy
+D058566	SpecificDisease	Sacroiliitis
+D011565	SpecificDisease	Psoriasis
+D014606	SpecificDisease	Uveitis, Anterior
+D007592	SpecificDisease	Joint Diseases
+D015212	SpecificDisease	Inflammatory Bowel Diseases
+D006457	SpecificDisease	Hemoglobinuria, Paroxysmal
+D018335	DiseaseClass	Rhabdoid Tumor
+D020288	SpecificDisease	Papilloma, Choroid Plexus
+D017599	DiseaseClass	Neuroectodermal Tumors
+D004806	SpecificDisease	Ependymoma
+D012509	DiseaseClass	Sarcoma
+D052476	SpecificDisease	Hypobetalipoproteinemia, Familial, Apolipoprotein B
+D003323	DiseaseClass	Coronary Aneurysm
+OMIM:238600	SpecificDisease	Hyperlipoproteinemia Type I
+D009436	SpecificDisease	Neural Tube Defects
+D006849	SpecificDisease	Hydrocephalus
+D000746	SpecificDisease	Anemia, Hemolytic, Congenital Nonspherocytic
+D006689	SpecificDisease	Hodgkin Disease
+D000544	SpecificDisease	Alzheimer Disease
+D020271	DiseaseClass	Heredodegenerative Disorders, Nervous System
+D003919	DiseaseClass	Diabetes Insipidus
+D010181	CompositeMention	Pancreatic Cyst
+D010673	DiseaseClass	Pheochromocytoma
+D036821	DiseaseClass	Endometrial Stromal Tumors
+D003537	DiseaseClass	Cystadenoma
+D003093	SpecificDisease	Colitis, Ulcerative
+D013166	SpecificDisease	Spondylitis
+D018292	SpecificDisease	Cystadenoma, Papillary
+C538445	SpecificDisease	Clear-cell metastatic renal cell carcinoma
+D005402	SpecificDisease	Fistula
+D020371	SpecificDisease	Pelizaeus-Merzbacher Disease
+OMIM:222300	Modifier	Wolfram Syndrome
+D003922	SpecificDisease	Diabetes Mellitus, Type 1
+D009896	SpecificDisease	Optic Atrophy
+D001523	DiseaseClass	Mental Disorders
+D003920	SpecificDisease	Diabetes Mellitus
+D003456	SpecificDisease	Cryptorchidism
+D005317	DiseaseClass	Fetal Growth Retardation
+D010033	SpecificDisease	Otitis Media
+D000008	DiseaseClass	Abdominal Neoplasms
+D009358	DiseaseClass	Congenital, Hereditary, and Neonatal Diseases and Abnormalities
+OMIM:200100	SpecificDisease	Abetalipoproteinemia
+OMIM:109150	SpecificDisease	Machado-Joseph Disease
+OMIM:125370	SpecificDisease	Myoclonic Epilepsies, Progressive
+C537627	SpecificDisease	Keratosis palmoplantaris with periodontopathia and onychogryposis
+D054119	SpecificDisease	Arachnodactyly
+D009260	SpecificDisease	Nail Diseases
+D006226	SpecificDisease	Hand Deformities
+C537277	DiseaseClass	Glycosylphosphatidylinositol deficiency
+D057130	SpecificDisease	Leber Congenital Amaurosis
+C535916	SpecificDisease	Cartilage-hair hypoplasia
+D008228	SpecificDisease	Lymphoma, Non-Hodgkin
+D002280	SpecificDisease	Carcinoma, Basal Cell
+C536288	CompositeMention	Thymic aplasia
+C535464	SpecificDisease	Conotruncal cardiac defects
+D012512	SpecificDisease	Sarcoma, Ewing
+D001766	SpecificDisease	Blindness
+OMIM:610743	DiseaseClass	Spinocerebellar Ataxia, Autosomal Recessive 8
+OMIM:602482	CompositeMention	AXENFELD-RIEGER SYNDROME, TYPE 3
+C537775	DiseaseClass	Anterior segment mesenchymal dysgenesis
+C535679	SpecificDisease	Axenfeld-Rieger syndrome
+D005901	SpecificDisease	Glaucoma
+D000686	SpecificDisease	Amyloidosis
+D059352	SpecificDisease	Musculoskeletal Pain
+D035583	DiseaseClass	Rare Diseases
+D049932	SpecificDisease	Nijmegen Breakage Syndrome
+D017204	Modifier	Angelman Syndrome
+D018798	SpecificDisease	Anemia, Iron-Deficiency
+D003876	SpecificDisease	Dermatitis, Atopic
+D001249	SpecificDisease	Asthma
+D004827	SpecificDisease	Epilepsy
+D006951	SpecificDisease	Hyperlipoproteinemias
+D001112	SpecificDisease	Arcus Senilis
+OMIM:262400	SpecificDisease	Pituitary dwarfism 1
+OMIM:274400	DiseaseClass	Thyroid Dyshormonogenesis 1
+D003409	SpecificDisease	Congenital Hypothyroidism
+D020246	SpecificDisease	Venous Thrombosis
+D019851	DiseaseClass	Thrombophilia
+OMIM:612336	SpecificDisease	Thrombophilia, Hereditary, Due To Protein S Deficiency, Autosomal Dominant
+D013927	SpecificDisease	Thrombosis
+D051346	DiseaseClass	Mobility Limitation
+D005879	SpecificDisease	Tourette Syndrome
+OMIM:119500	SpecificDisease	Popliteal Pterygium Syndrome
+OMIM:119530	CompositeMention	Orofacial Cleft 1
+OMIM:253000	SpecificDisease	Mucopolysaccharidosis IV
+D009085	SpecificDisease	Mucopolysaccharidosis IV
+D054098	SpecificDisease	Thrombocytopenia, Neonatal Alloimmune
+OMIM:300842	Modifier	Neuroacanthocytosis, Mcleod Type
+D002819	DiseaseClass	Chorea
+D024741	SpecificDisease	Cardiomyopathy, Hypertrophic, Familial
+C536277	SpecificDisease	Idiopathic dilation cardiomyopathy
+D058405	SpecificDisease	Desmoplastic Small Round Cell Tumor
+D006456	SpecificDisease	Hemoglobinuria
+D007565	SpecificDisease	Jaundice
+D000782	SpecificDisease	Aneuploidy
+D008581	SpecificDisease	Meningitis
+C535700	DiseaseClass	Malignant mesenchymal tumor
+D006521	SpecificDisease	Hepatitis, Chronic
+OMIM:614380	SpecificDisease	Complement Component 4a Deficiency
+D018284	SpecificDisease	Cystadenocarcinoma, Serous
+D003123	SpecificDisease	Colorectal Neoplasms, Hereditary Nonpolyposis
+D006528	Modifier	Carcinoma, Hepatocellular
+D000567	DiseaseClass	Amelogenesis Imperfecta
+D016111	SpecificDisease	Sjogren-Larsson Syndrome
+D005235	DiseaseClass	Fatty Liver, Alcoholic
+D018149	SpecificDisease	Glucose Intolerance
+D015228	SpecificDisease	Hypertriglyceridemia
+D002318	SpecificDisease	Cardiovascular Diseases
+D000347	Modifier	Afibrinogenemia
+D033461	SpecificDisease	Hyperuricemia
+C537181	SpecificDisease	Paroxysmal nonkinesigenic dyskinesia
+D009128	SpecificDisease	Muscle Spasticity
+D004401	SpecificDisease	Dysarthria
+D052177	CompositeMention	Kidney Diseases, Cystic
+D056725	SpecificDisease	von Willebrand Disease, Type 1
+D003318	SpecificDisease	Corneal Opacity
+D003327	SpecificDisease	Coronary Disease
+C536575	Modifier	Borjeson-Forssman-Lehmann syndrome
+D011115	DiseaseClass	Polyneuropathies
+D010523	DiseaseClass	Peripheral Nervous System Diseases
+C548028	DiseaseClass	Inherited Peripheral Neuropathy
+D002607	SpecificDisease	Charcot-Marie-Tooth Disease
+OMIM:605253	SpecificDisease	Charcot-Marie-Tooth disease, Type 4E
+D025861	DiseaseClass	Blood Coagulation Disorders, Inherited
+D056728	Modifier	von Willebrand Disease, Type 2
+D016889	SpecificDisease	Endometrial Neoplasms
+D012141	SpecificDisease	Respiratory Tract Infections
+C536456	SpecificDisease	Craniofrontonasal dysplasia
+C538065	SpecificDisease	Frontonasal dysplasia
+C537369	SpecificDisease	Muenke Syndrome
+D013576	CompositeMention	Syndactyly
+C535884	SpecificDisease	Joint laxity, familial
+D020821	DiseaseClass	Dystonic Disorders
+D009069	DiseaseClass	Movement Disorders
+D004422	SpecificDisease	Dystonia Musculorum Deformans
+OMIM:314250	SpecificDisease	Dystonia 3, Torsion, X-Linked
+OMIM:304500	DiseaseClass	Deafness, X-Linked 1
+D012600	DiseaseClass	Scoliosis
+D005530	DiseaseClass	Foot Deformities
+D020886	DiseaseClass	Somatosensory Disorders
+D001745	DiseaseClass	Urinary Bladder Diseases
+OMIM:213700	SpecificDisease	Xanthomatosis, Cerebrotendinous
+D002526	DiseaseClass	Cerebellar Diseases
+D009120	DiseaseClass	Muscle Cramp
+C535506	SpecificDisease	Episodic Ataxia, Type 2
+D020325	SpecificDisease	Migraine with Aura
+OMIM:183086	SpecificDisease	Spinocerebellar Ataxias
+D008881	SpecificDisease	Migraine Disorders
+D044483	SpecificDisease	Intestinal Polyposis
+D019282	SpecificDisease	Wasting Syndrome
+D003645	SpecificDisease	Death, Sudden
+D052919	SpecificDisease	Refsum Disease, Infantile
+D012216	DiseaseClass	Rheumatic Diseases
+D005171	SpecificDisease	Factor X Deficiency
+D006474	DiseaseClass	Hemorrhagic Disorders
+D019042	SpecificDisease	Muscle Neoplasms
+OMIM:604391	SpecificDisease	Ataxia Telangiectasia Like Disorder
+D006501	SpecificDisease	Hepatic Encephalopathy
+D017093	SpecificDisease	Liver Failure
+D006323	SpecificDisease	Heart Arrest
+OMIM:310200	SpecificDisease	Muscular Dystrophy, Duchenne
+D006932	DiseaseClass	Hyperbilirubinemia
+D018268	SpecificDisease	Adrenocortical Carcinoma
+D004701	DiseaseClass	Endocrine Gland Neoplasms
+D002277	DiseaseClass	Carcinoma
+C535944	SpecificDisease	Desmoid disease, hereditary
+D009447	SpecificDisease	Neuroblastoma
+D015324	SpecificDisease	Pyruvate Carboxylase Deficiency Disease
+D000312	SpecificDisease	Adrenal Hyperplasia, Congenital
+C535764	SpecificDisease	Eunuchoidism, familial hypogonadotropic
+D006467	SpecificDisease	Hemophilia A
+D012516	SpecificDisease	Osteosarcoma
+D017202	SpecificDisease	Myocardial Ischemia
+D007246	DiseaseClass	Infertility
+D052159	SpecificDisease	Frasier Syndrome
+D020234	CompositeMention	Gait Ataxia
+D012021	DiseaseClass	Reflex, Abnormal
+D053421	CompositeMention	Hand-Arm Vibration Syndrome
+D028227	SpecificDisease	Amyloid Neuropathies, Familial
+D016512	DiseaseClass	Ankle Injuries
+D005221	DiseaseClass	Fatigue
+D007022	DiseaseClass	Hypotension
+D005313	DiseaseClass	Fetal Death
+D053632	DiseaseClass	X-Linked Combined Immunodeficiency Diseases
+D019767	DiseaseClass	Maxillofacial Abnormalities
+D009078	SpecificDisease	Mucocele
+D017496	DiseaseClass	Hypopigmentation
+D006069	SpecificDisease	Gonorrhea
+D016538	SpecificDisease	Mucopolysaccharidosis VII
+D016388	SpecificDisease	Tooth Loss
+D017488	SpecificDisease	Hyperkeratosis, Epidermolytic
+D007642	SpecificDisease	Keratosis
+D018302	DiseaseClass	Neoplasms, Neuroepithelial
+D016135	SpecificDisease	Spinal Dysraphism
+D000757	SpecificDisease	Anencephaly
+D056729	SpecificDisease	von Willebrand Disease, Type 3
+D016920	SpecificDisease	Meningitis, Bacterial
+D008586	SpecificDisease	Meningitis, Pneumococcal
+D004406	SpecificDisease	Dysgammaglobulinemia
+D000257	SpecificDisease	Adenoviridae Infections
+OMIM:230400	Modifier	Galactosemias
+D012257	SpecificDisease	Riboflavin Deficiency
+OMIM:260350	SpecificDisease	Pancreatic Neoplasms
+D015499	DiseaseClass	Renal Tubular Transport, Inborn Errors
+D013953	SpecificDisease	Thymus Neoplasms
+OMIM:208900	SpecificDisease	Ataxia Telangiectasia
+D019954	DiseaseClass	Neurobehavioral Manifestations
+OMIM:190350	SpecificDisease	Trichorhinophalangeal Syndrome, Type I
+OMIM:136880	SpecificDisease	Fundus Albipunctatus
+C537884	SpecificDisease	Peters anomaly
+OMIM:136520	SpecificDisease	O'Donnell Pappas syndrome
+D006058	SpecificDisease	Gonadal Disorders
+D006963	SpecificDisease	Hyperphagia
+D016472	SpecificDisease	Motor Neuron Disease
+D004660	DiseaseClass	Encephalitis
+D007057	DiseaseClass	Ichthyosis
+D007960	DiseaseClass	Leukocyte Disorders
+OMIM:312920	SpecificDisease	Spastic paraplegia 2, X-linked
+D013945	SpecificDisease	Thymoma
+D001932	CompositeMention	Brain Neoplasms
+D048629	SpecificDisease	Micronuclei, Chromosome-Defective
+D054508	SpecificDisease	Acute Radiation Syndrome
+D053842	SpecificDisease	Microsatellite Instability
+D003095	DiseaseClass	Collagen Diseases
+OMIM:255800	SpecificDisease	Osteochondrodysplasias
+D001848	DiseaseClass	Bone Diseases, Developmental
+C536252	SpecificDisease	Pyle disease
+C537502	SpecificDisease	Stuve-Wiedemann syndrome
+D004535	SpecificDisease	Ehlers-Danlos Syndrome
+D001019	SpecificDisease	Aortic Rupture
+D020417	DiseaseClass	Nystagmus, Congenital
+D014202	DiseaseClass	Tremor
+D003704	DiseaseClass	Dementia
+D010554	DiseaseClass	Personality Disorders
+D007680	SpecificDisease	Kidney Neoplasms
+D006059	DiseaseClass	Gonadal Dysgenesis
+D006106	SpecificDisease	Granulosa Cell Tumor
+D015470	SpecificDisease	Leukemia, Myeloid, Acute
+OMIM:300322	Modifier	Lesch-Nyhan Syndrome
+OMIM:160900	SpecificDisease	Myotonic Dystrophy
+D020966	SpecificDisease	Muscular Disorders, Atrophic
+D005355	SpecificDisease	Fibrosis
+D017034	SpecificDisease	Epilepsy, Frontal Lobe
+C537750	SpecificDisease	Oncocytoma, renal
+OMIM:222600	SpecificDisease	Diastrophic dysplasia
+D007248	SpecificDisease	Infertility, Male
+D009837	SpecificDisease	Oligodendroglioma
+D002296	SpecificDisease	Carcinosarcoma
+OMIM:145001	SpecificDisease	Hyperparathyroidism 2
+C536399	SpecificDisease	Nephroblastomatosis, fetal ascites, macrosomia and Wilms tumor
+D006961	SpecificDisease	Hyperparathyroidism
+D007573	SpecificDisease	Jaw Neoplasms
+D007690	SpecificDisease	Polycystic Kidney Diseases
+D049950	SpecificDisease	Hyperparathyroidism, Primary
+D009377	Modifier	Multiple Endocrine Neoplasia
+OMIM:131100	Modifier	Multiple Endocrine Neoplasia Type 1
+D018813	Modifier	Multiple Endocrine Neoplasia Type 2a
+D007890	SpecificDisease	Leiomyosarcoma
+D007965	SpecificDisease	Leukodystrophy, Globoid Cell
+OMIM:245200	SpecificDisease	Leukodystrophy, Globoid Cell
+D010264	DiseaseClass	Paraplegia
+OMIM:125852	SpecificDisease	Diabetes Mellitus, Insulin-Dependent, 2
+OMIM:607834	DiseaseClass	Anxiety Disorders
+OMIM:215600	Modifier	Cirrhosis, Familial
+C536185	SpecificDisease	Ectopia pupillae
+C537022	SpecificDisease	Keratitis, hereditary
+D006223	SpecificDisease	Hamartoma Syndrome, Multiple
+D013964	SpecificDisease	Thyroid Neoplasms
+D001941	DiseaseClass	Breast Diseases
+D058490	SpecificDisease	Disorder of Sex Development, 46,XY
+C536587	SpecificDisease	Alport syndrome, recessive type
+D020754	DiseaseClass	Spinocerebellar Ataxias
+OMIM:164400	CompositeMention	Spinocerebellar Ataxias
+OMIM:183090	SpecificDisease	Spinocerebellar Ataxias
+D009759	SpecificDisease	Nystagmus, Pathologic
+D015458	SpecificDisease	Leukemia, T-Cell
+D015461	SpecificDisease	Leukemia, Prolymphocytic, T-Cell
+D007945	DiseaseClass	Leukemia, Lymphoid
+D003643	SpecificDisease	Death
+C535662	SpecificDisease	Acromicric dysplasia
+C537966	SpecificDisease	Campomelia Cumming type
+D055036	SpecificDisease	Campomelic Dysplasia
+OMIM:613399	CompositeMention	BREAST-OVARIAN CANCER, FAMILIAL, SUSCEPTIBILITY TO, 3
+D019572	CompositeMention	Retinal Neoplasms
+C536210	Modifier	Congenital chloride diarrhea
+D020143	SpecificDisease	Gangliosidoses, GM2
+D002311	SpecificDisease	Cardiomyopathy, Dilated
+OMIM:101400	SpecificDisease	Acrocephalosyndactylia
+D003398	SpecificDisease	Craniosynostoses
+D017880	DiseaseClass	Limb Deformities, Congenital
+D005146	SpecificDisease	Facial Asymmetry
+D001763	SpecificDisease	Blepharoptosis
+D005532	SpecificDisease	Foot Deformities, Congenital
+C536852	SpecificDisease	Familial streblodactyly
+D005834	DiseaseClass	Genital Neoplasms, Male
+D046349	SpecificDisease	Coproporphyria, Hereditary
+D017094	SpecificDisease	Porphyrias, Hepatic
+D019189	DiseaseClass	Iron Metabolism Disorders
+C531844	SpecificDisease	Von willebrand factor, deficiency
+D057772	SpecificDisease	Vascular System Injuries
+OMIM:609814	SpecificDisease	Complement Factor H Deficiency
+D006463	SpecificDisease	Hemolytic-Uremic Syndrome
+D014693	SpecificDisease	Ventricular Fibrillation
+D016109	SpecificDisease	Epidermolysis Bullosa, Junctional
+D009456	SpecificDisease	Neurofibromatosis 1
+D019964	SpecificDisease	Mood Disorders
+D003866	SpecificDisease	Depressive Disorder
+D001304	DiseaseClass	Auditory Diseases, Central
+D014849	SpecificDisease	Waardenburg Syndrome
+OMIM:201400	SpecificDisease	ACTH Deficiency, Isolated
+D001768	SpecificDisease	Blister
+C538333	SpecificDisease	Nail dysplasia, isolated congenital
+C531609	SpecificDisease	Diffuse alopecia
+C536183	DiseaseClass	Ectodermal Dysplasia-Skin Fragility Syndrome
+D006330	DiseaseClass	Heart Defects, Congenital
+D018275	DiseaseClass	Carcinoma, Lobular
+D044584	SpecificDisease	Carcinoma, Ductal
+C537666	SpecificDisease	Becker muscular dystrophy
+C531610	SpecificDisease	AAT deficiency
+C538219	SpecificDisease	Dermatofibrosarcoma protuberans
+C538138	SpecificDisease	Complex Glycerol Kinase Deficiency
+D001405	DiseaseClass	Reflex, Babinski
+C531603	SpecificDisease	Congenital afibrinogenemia
+C531652	SpecificDisease	Tapeto-Choroidal Dystrophy
+C538392	SpecificDisease	Dejerine-Sottas syndrome
+C535804	SpecificDisease	fundus flavimaculatus
+C538554	DiseaseClass	diminished GALC activity
+OMIM:103600	SpecificDisease	ALBUMIN
+OMIM:102600	SpecificDisease	ADENINE PHOSPHORIBOSYLTRANSFERASE
+OMIM:600698	CompositeMention	HIGH MOBILITY GROUP AT-HOOK 2
+OMIM:164160	SpecificDisease	LEPTIN
