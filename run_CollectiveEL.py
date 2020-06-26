@@ -172,77 +172,40 @@ def train(args, model, tokenizer):
             model.train()
             batch = tuple(t.to(args.device) for t in batch)
             if args.use_hard_and_random_negatives:
-
-                inputs = {"args": args,
-                          "mention_token_ids": batch[0],
-                          "mention_token_masks": batch[1],
-                          "candidate_token_ids_1": batch[2],
-                          "candidate_token_masks_1": batch[3],
-                          "candidate_token_ids_2": batch[4],
-                          "candidate_token_masks_2": batch[5],
-                          "labels": batch[6]
-                          }
+                mention_inputs = {"args": args,
+                                  "mention_token_ids": batch[0],
+                                  "mention_token_masks": batch[1],
+                                  "mention_start_indices": batch[7],
+                                  "mention_end_indices": batch[8],
+                                  "candidate_token_ids_1": batch[2],
+                                  "candidate_token_masks_1": batch[3],
+                                  "candidate_token_ids_2": batch[4],
+                                  "candidate_token_masks_2": batch[5],
+                                  "labels": batch[6],
+                                  }
             else:
-
-                micro_batch_size = 1
-                # Get the number of mention for this document
-                num_mentions = batch[9][0].item()  # We stipulate the batch size per GPU to 1
-                num_micro_batches = math.ceil(num_mentions / micro_batch_size)
-
-                for m_idx in range(num_micro_batches):
-                    mention_inputs = {"args": args,
-                                      "mention_token_ids": batch[0],
-                                      "mention_token_masks": batch[1],
-                                      }
-                    mention_outputs = model(**mention_inputs)
-
-                    mention_start_indices = batch[7][:, :num_mentions]
-                    n_embd = mention_outputs.size(2)  # Get the embedding size
-
-                    # Pool the mention representations
-                    mention_start_indices = mention_start_indices.unsqueeze(-1).expand(-1, -1, n_embd)
-                    pooled_mention_outputs = mention_outputs.gather(1, mention_start_indices)
-
-                    # Get candidate representations
-                    idx_from = m_idx * micro_batch_size * args.num_candidates
-                    idx_to = (m_idx + 1) * micro_batch_size * args.num_candidates
-                    candidate_token_ids_1 = batch[2][:, idx_from:idx_to]
-                    candidate_token_masks_1 = batch[3][:, idx_from:idx_to]
-
-                    candidate_inputs = {"args": args,
-                                        "candidate_token_ids_1": candidate_token_ids_1,
-                                        "candidate_token_masks_1": candidate_token_masks_1,
-                                        }
-                    pooled_candidate_outputs = model(**candidate_inputs)
-                    pooled_candidate_outputs = pooled_candidate_outputs.reshape(-1, args.num_candidates, n_embd)
-
-                    # Fetch the mention representation
-                    idx_from = m_idx * micro_batch_size
-                    idx_to = (m_idx + 1) * micro_batch_size
-                    pooled_mention_output = pooled_mention_outputs[:, idx_from:idx_to, :].squeeze(0).unsqueeze(1)
-
-                    logits = torch.bmm(pooled_mention_output, pooled_candidate_outputs.transpose(1, 2))
-                    logits = logits.squeeze(1)
-
-                    labels = batch[6][0][idx_from:idx_to]  # We stipulate the batch size per GPU to 1
-                    loss = model.loss_fn(logits, labels)
-
-                    # For gradient accumulation across all the documents in the
-                    loss = loss / num_micro_batches
-
-                    loss.backward()
+                mention_inputs = {"args": args,
+                                  "mention_token_ids": batch[0],
+                                  "mention_token_masks": batch[1],
+                                  "mention_start_indices": batch[7],
+                                  "mention_end_indices": batch[8],
+                                  "candidate_token_ids_1": batch[2],
+                                  "candidate_token_masks_1": batch[3],
+                                  "labels": batch[6],
+                                  }
+            loss, logits = model(**mention_inputs)
 
             if args.n_gpu > 1:
                 loss = loss.mean()  # mean() to average on multi-gpu parallel training
             if args.gradient_accumulation_steps > 1:
                 loss = loss / args.gradient_accumulation_steps
 
-            # if args.fp16:
-            #     with amp.scale_loss(loss, optimizer) as scaled_loss:
-            #         scaled_loss.backward()
-            # else:
-            #     loss.backward()
-            # RuntimeError: invalid argument 7: equal number of batches expected at /opt/conda/conda-bld/pytorch_1565272271120/work/aten/src/THC/generic/THCTensorMathBlas.cu:493
+            if args.fp16:
+                with amp.scale_loss(loss, optimizer) as scaled_loss:
+                    scaled_loss.backward()
+            else:
+                loss.backward()
+
             tr_loss += loss.item()
 
             if (step + 1) % args.gradient_accumulation_steps == 0:
@@ -347,12 +310,20 @@ def evaluate(args, model, tokenizer, prefix=""):
                 entity_tokens_masks = all_entity_token_masks[i]
                 candidate_token_ids = torch.LongTensor([entity_tokens]).to(args.device)
                 candidate_token_masks = torch.LongTensor([entity_tokens_masks]).to(args.device)
-                candidate_outputs = model.bert_candidate.bert(
-                    input_ids=candidate_token_ids,
-                    attention_mask=candidate_token_masks,
-                )
+                if args.n_gpu > 1:
+                    candidate_outputs = model.module.bert_candidate.bert(
+                        input_ids=candidate_token_ids,
+                        attention_mask=candidate_token_masks,
+                    )
+                else:
+                    candidate_outputs = model.bert_candidate.bert(
+                        input_ids=candidate_token_ids,
+                        attention_mask=candidate_token_masks,
+                    )
                 candidate_embedding = candidate_outputs[1]
                 all_candidate_embeddings.append(candidate_embedding)
+                if (i+1) % 100 == 0:
+                    break
         all_candidate_embeddings = torch.cat(all_candidate_embeddings, dim=0)
         logger.info("INFO: Collected all candidate embeddings.")
         print("Tensor size = ", all_candidate_embeddings.size())
@@ -363,8 +334,6 @@ def evaluate(args, model, tokenizer, prefix=""):
     eval_loss = 0.0
     nb_eval_steps = 0
     results = {}
-    preds = None
-    out_label_ids = None
     p_1 = 0
     map = 0
     r_10 = 0
@@ -376,102 +345,42 @@ def evaluate(args, model, tokenizer, prefix=""):
 
         with torch.no_grad():
             if args.use_all_candidates:
-                micro_batch_size = 1
-                # Get the number of mention for this document
-                num_mentions = batch[9][0].item()  # We stipulate the batch size per GPU to 1
-                num_micro_batches = math.ceil(num_mentions / micro_batch_size)
-
-                for m_idx in range(num_micro_batches):
-                    mention_inputs = {"args": args,
-                                      "mention_token_ids": batch[0],
-                                      "mention_token_masks": batch[1],
-                                      }
-                    mention_outputs = model(**mention_inputs)
-
-                    mention_start_indices = batch[7][:, :num_mentions]
-                    n_embd = mention_outputs.size(2)  # Get the embedding size
-
-                    # Pool the mention representations
-                    mention_start_indices = mention_start_indices.unsqueeze(-1).expand(-1, -1, n_embd)
-                    pooled_mention_outputs = mention_outputs.gather(1, mention_start_indices)
-                    # Fetch the mention representation
-                    idx_from = m_idx * micro_batch_size
-                    idx_to = (m_idx + 1) * micro_batch_size
-                    pooled_mention_output = pooled_mention_outputs[:, idx_from:idx_to, :].squeeze(0)
-
-                    logits = torch.mm(pooled_mention_output, all_candidate_embeddings.t())
-                    # logits = logits.squeeze(1)
-
-                    preds = logits.detach().cpu().numpy()
-                    out_label_ids = batch[6][0][idx_from:idx_to].detach().cpu().numpy()
-                    sorted_preds = np.flip(np.argsort(preds), axis=1)
-
-                    for i, sorted_pred in enumerate(sorted_preds):
-                        if out_label_ids[i] != -100:
-                            rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
-                            map += 1 / rank
-                            if rank <= 10:
-                                r_10 += 1
-                                if rank == 1:
-                                    p_1 += 1
-                            nb_normalized += 1
-                    nb_samples += preds.shape[0]
+                pdb.set_trace()
+                mention_inputs = {"args": args,
+                                  "mention_token_ids": batch[0],
+                                  "mention_token_masks": batch[1],
+                                  "mention_start_indices": batch[7],
+                                  "mention_end_indices": batch[8],
+                                  "all_candidate_embeddings": all_candidate_embeddings,
+                                }
             else:
-                micro_batch_size = 1
-                # Get the number of mention for this document
-                num_mentions = batch[9][0].item()  # We stipulate the batch size per GPU to 1
-                num_micro_batches = math.ceil(num_mentions / micro_batch_size)
+                mention_inputs = {"args": args,
+                                  "mention_token_ids": batch[0],
+                                  "mention_token_masks": batch[1],
+                                  "mention_start_indices": batch[7],
+                                  "mention_end_indices": batch[8],
+                                  "candidate_token_ids_1": batch[2],
+                                  "candidate_token_masks_1": batch[3],
+                                  }
+            logits = model(**mention_inputs)
 
-                for m_idx in range(num_micro_batches):
-                    mention_inputs = {"args": args,
-                                      "mention_token_ids": batch[0],
-                                      "mention_token_masks": batch[1],
-                                      }
-                    mention_outputs = model(**mention_inputs)
+            pdb.set_trace()
+            preds = logits.detach().cpu().numpy()
+            out_label_ids = batch[6][0].detach().cpu().numpy() # batch size 1 on 1 gpu for the time being
+            sorted_preds = np.flip(np.argsort(preds), axis=1)
 
-                    mention_start_indices = batch[7][:, :num_mentions]
-                    n_embd = mention_outputs.size(2)  # Get the embedding size
-
-                    # Pool the mention representations
-                    mention_start_indices = mention_start_indices.unsqueeze(-1).expand(-1, -1, n_embd)
-                    pooled_mention_outputs = mention_outputs.gather(1, mention_start_indices)
-
-                    # Get candidate representations
-                    idx_from = m_idx * micro_batch_size * args.num_candidates
-                    idx_to = (m_idx + 1) * micro_batch_size * args.num_candidates
-                    candidate_token_ids_1 = batch[2][:, idx_from:idx_to]
-                    candidate_token_masks_1 = batch[3][:, idx_from:idx_to]
-
-                    candidate_inputs = {"args": args,
-                                        "candidate_token_ids_1": candidate_token_ids_1,
-                                        "candidate_token_masks_1": candidate_token_masks_1,
-                                        }
-                    pooled_candidate_outputs = model(**candidate_inputs)
-                    pooled_candidate_outputs = pooled_candidate_outputs.reshape(-1, args.num_candidates, n_embd)
-
-                    # Fetch the mention representation
-                    idx_from = m_idx * micro_batch_size
-                    idx_to = (m_idx + 1) * micro_batch_size
-                    pooled_mention_output = pooled_mention_outputs[:, idx_from:idx_to, :].squeeze(0).unsqueeze(1)
-
-                    logits = torch.bmm(pooled_mention_output, pooled_candidate_outputs.transpose(1, 2))
-                    logits = logits.squeeze(1)
-
-                    preds = logits.detach().cpu().numpy()
-                    out_label_ids = batch[6][0][idx_from:idx_to].detach().cpu().numpy()
-                    sorted_preds = np.flip(np.argsort(preds), axis=1)
-
-                    for i, sorted_pred in enumerate(sorted_preds):
-                        if out_label_ids[i] != -100:
-                            rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
-                            map += 1 / rank
-                            if rank <= 10:
-                                r_10 += 1
-                                if rank == 1:
-                                    p_1 += 1
+            # for b_idx in range(sorted_preds.size(0)):
+            for i, sorted_pred in enumerate(sorted_preds):
+                if out_label_ids[i] != -1:
+                    if out_label_ids[i] != -100:
+                        rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
+                        map += 1 / rank
+                        if rank <= 10:
+                            r_10 += 1
+                            if rank == 1:
+                                p_1 += 1
                             nb_normalized += 1
-                    nb_samples += preds.shape[0]
-
+                    nb_samples += 1
         nb_eval_steps += 1
 
     # Unnormalized precision
@@ -672,6 +581,7 @@ def main():
         help="Evaluate all checkpoints starting with the same prefix as model_name ending and ending with step number",
     )
     parser.add_argument("--no_cuda", action="store_true", help="Avoid using CUDA when available")
+    parser.add_argument("--n_gpu", type=int, default=1, help="Number of GPUs to use when available")
     parser.add_argument(
         "--overwrite_output_dir", action="store_true", help="Overwrite the content of the output directory"
     )
@@ -700,7 +610,7 @@ def main():
         "--num_candidates", type=int, default=10, help="Number of candidates to consider per mention"
     )
     parser.add_argument(
-        "--num_max_mentions", type=int, default=120, help="Maximum number of mentions in a document"
+        "--num_max_mentions", type=int, default=8, help="Maximum number of mentions in a document"
     )
 
     parser.add_argument(
@@ -753,7 +663,8 @@ def main():
     # Setup CUDA, GPU & distributed training
     if args.local_rank == -1 or args.no_cuda:
         device = torch.device("cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
-        args.n_gpu = 0 if args.no_cuda else 1 #torch.cuda.device_count()
+        if args.no_cuda:
+            args.n_gpu = 0
     else:  # Initializes the distributed backend which will take care of sychronizing nodes/GPUs
         torch.cuda.set_device(args.local_rank)
         device = torch.device("cuda", args.local_rank)
@@ -875,3 +786,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

@@ -87,6 +87,7 @@ def get_mention_window(mention_id, mentions, docs,  max_seq_length, tokenizer):
                       tokenizer.tokenize(suffix),
                       max_len_context)
 
+
 def get_marked_mentions(document_id, mentions, docs,  max_seq_length, tokenizer):
     for m in mentions[document_id]:
         assert m['content_document_id'] == document_id
@@ -121,7 +122,7 @@ def get_marked_mentions(document_id, mentions, docs,  max_seq_length, tokenizer)
 
     suffix = context_text[prev_end_index:]
     if len(suffix) > 0:
-        suffix_tokens = tokenizer.tokenize(prefix)
+        suffix_tokens = tokenizer.tokenize(suffix)
         tokenized_text += suffix_tokens
     tokenized_text += [tokenizer.sep_token]
 
@@ -471,9 +472,9 @@ def convert_examples_to_features(
                 label_ids[m_idx] = -100  # when target candidate not in candidate set
 
         # Pad the mention start and end indices
-        mention_start_indices = [-1] * args.num_max_mentions
+        mention_start_indices = [0] * args.num_max_mentions
         mention_start_indices[:num_mentions] = mention_start_markers
-        mention_end_indices = [-1] * args.num_max_mentions
+        mention_end_indices = [0] * args.num_max_mentions
         mention_end_indices[:num_mentions] = mention_end_markers
 
         # if ex_index < 3:
@@ -516,3 +517,15 @@ def convert_examples_to_features(
         f_hn.close()
 
     return features, (all_entities, all_entity_token_ids, all_entity_token_masks)
+
+# data_dir = './data/MM_full_CUI/collective_el_data_2'
+# mode = "test"
+#
+# examples, docs, entities = get_examples(data_dir, mode)
+# for doc_id in examples:
+#     print(len(examples[doc_id]))
+#     print(docs[doc_id])
+#
+#     print(">>>>>>>>")
+# print(len(entities))
+

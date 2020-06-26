@@ -19,12 +19,18 @@ class DualEncoderBert(BertPreTrainedModel):
         super().__init__(config)
         self.bert_mention = pretrained_bert
         self.bert_candidate = copy.deepcopy(pretrained_bert)
-        self.loss_fn = nn.CrossEntropyLoss()
+        self.hidden_size = config.hidden_size
+        self.mlp = nn.Sequential(nn.Linear(config.hidden_size*2, 512),
+                                 nn.ReLU(),
+                                 nn.Linear(512, config.hidden_size))
+        self.loss_fn = nn.CrossEntropyLoss(ignore_index=-1)
 
     def forward(self,
                 args,
                 mention_token_ids=None,
                 mention_token_masks=None,
+                mention_start_indices=None,
+                mention_end_indices=None,
                 candidate_token_ids_1=None,
                 candidate_token_masks_1=None,
                 candidate_token_ids_2=None,
@@ -43,12 +49,19 @@ class DualEncoderBert(BertPreTrainedModel):
             )
             last_hidden_states = mention_outputs[0]
 
-            return last_hidden_states
+            # Pool the mention representations
+            mention_start_indices = mention_start_indices.unsqueeze(-1).expand(-1, -1, self.hidden_size)
+            mention_end_indices = mention_end_indices.unsqueeze(-1).expand(-1, -1, self.hidden_size)
+            mention_start_embd = last_hidden_states.gather(1, mention_start_indices)
+            mention_end_embd = last_hidden_states.gather(1, mention_end_indices)
+
+            mention_embeddings = self.mlp(torch.cat([mention_start_embd, mention_end_embd], dim=2))
+            mention_embeddings = mention_embeddings.reshape(-1, 1, self.hidden_size)
 
         if candidate_token_ids_1 is not None:
             b_size, n_c, seq_len = candidate_token_ids_1.size()
-            candidate_token_ids_1 = candidate_token_ids_1.reshape(-1, seq_len)  # BC X L
-            candidate_token_masks_1 = candidate_token_masks_1.reshape(-1, seq_len)  # BC X L
+            candidate_token_ids_1 = candidate_token_ids_1.reshape(-1, seq_len)  # B(N*C) X L
+            candidate_token_masks_1 = candidate_token_masks_1.reshape(-1, seq_len)  # B(N*C) X L
 
             candidate_outputs = self.bert_candidate.bert(
                 input_ids=candidate_token_ids_1,
@@ -56,7 +69,15 @@ class DualEncoderBert(BertPreTrainedModel):
             )
             pooled_candidate_outputs = candidate_outputs[1]
 
-            return pooled_candidate_outputs
+            candidate_embeddings = pooled_candidate_outputs.reshape(-1, args.num_candidates, self.hidden_size) #BN X C X H
+
+            logits = torch.bmm(mention_embeddings, candidate_embeddings.transpose(1, 2))
+            logits = logits.squeeze(1)  # BN X C
+
+            labels = labels.reshape(-1)  # BN
+            loss = self.loss_fn(logits, labels)
+
+            return loss, logits
 
         # When a second set of candidates is present
         if candidate_token_ids_2 is not None:
@@ -77,3 +98,10 @@ class DualEncoderBert(BertPreTrainedModel):
             pooled_candidate_outputs = candidate_outputs[1]
 
             return pooled_candidate_outputs
+
+        if all_candidate_embeddings is not None:
+            b_size = mention_embeddings.size(0)
+            all_candidate_embeddings = all_candidate_embeddings.unsqueeze(0).expand(b_size, -1, -1)
+            logits = torch.bmm(mention_embeddings, all_candidate_embeddings.transpose(1, 2))
+            logits = logits.squeeze(1)  # BN X C
+            return logits

@@ -362,34 +362,20 @@ def evaluate(args, model, tokenizer, prefix=""):
             tmp_eval_loss, logits = outputs[:2]
             eval_loss += tmp_eval_loss.mean().item()
         nb_eval_steps += 1
-        if preds is None:
-            preds = logits.detach().cpu().numpy()
-            out_label_ids = inputs["labels"][:, 0].view(-1).detach().cpu().numpy()
-            sorted_preds = np.flip(np.argsort(preds), axis=1)
-            for i, sorted_pred in enumerate(sorted_preds):
-                if out_label_ids[i] != -100:
-                    rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
-                    map += 1 / rank
-                    if rank <= 10:
-                        r_10 += 1
-                        if rank == 1:
-                            p_1 += 1
-                    nb_normalized += 1
-            nb_samples += preds.shape[0]
-        else:
-            preds = logits.detach().cpu().numpy()
-            out_label_ids = inputs["labels"][:, 0].view(-1).detach().cpu().numpy()
-            sorted_preds = np.flip(np.argsort(preds), axis=1)
-            for i, sorted_pred in enumerate(sorted_preds):
-                if out_label_ids[i] != -100:
-                    rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
-                    map += 1 / rank
-                    if rank <= 10:
-                        r_10 += 1
-                        if rank == 1:
-                            p_1 += 1
-                    nb_normalized += 1
-            nb_samples += preds.shape[0]
+
+        preds = logits.detach().cpu().numpy()
+        out_label_ids = inputs["labels"][:, 0].view(-1).detach().cpu().numpy()
+        sorted_preds = np.flip(np.argsort(preds), axis=1)
+        for i, sorted_pred in enumerate(sorted_preds):
+            if out_label_ids[i] != -100:
+                rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
+                map += 1 / rank
+                if rank <= 10:
+                    r_10 += 1
+                    if rank == 1:
+                        p_1 += 1
+                nb_normalized += 1
+        nb_samples += preds.shape[0]
 
     eval_loss = eval_loss / nb_eval_steps
 
@@ -584,9 +570,11 @@ def main():
         help="Evaluate all checkpoints starting with the same prefix as model_name ending and ending with step number",
     )
     parser.add_argument("--no_cuda", action="store_true", help="Avoid using CUDA when available")
+    parser.add_argument("--n_gpu", type=int, default=1, help="Number of gpus to use when CUDA is available")
     parser.add_argument(
         "--overwrite_output_dir", action="store_true", help="Overwrite the content of the output directory"
     )
+
     parser.add_argument(
         "--overwrite_cache", action="store_true", help="Overwrite the cached training and evaluation sets"
     )
@@ -662,7 +650,7 @@ def main():
     # Setup CUDA, GPU & distributed training
     if args.local_rank == -1 or args.no_cuda:
         device = torch.device("cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
-        args.n_gpu = 0 if args.no_cuda else 1 #torch.cuda.device_count()
+        args.n_gpu = 0 if args.no_cuda else args.n_gpu #torch.cuda.device_count()
     else:  # Initializes the distributed backend which will take care of sychronizing nodes/GPUs
         torch.cuda.set_device(args.local_rank)
         device = torch.device("cuda", args.local_rank)

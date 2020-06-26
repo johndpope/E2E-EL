@@ -59,28 +59,46 @@ def get_window(prefix, mention, suffix, max_size):
 
     return window, mention_start_index, mention_end_index
 
-
 def get_mention_window(mention_id, mentions, docs,  max_seq_length, tokenizer):
-    max_len_context = max_seq_length - 2  # number of tokens
+    max_len_context = max_seq_length - 2 # number of characters
     # Get "enough" context from space-tokenized text.
     content_document_id = mentions[mention_id]['content_document_id']
     context_text = docs[content_document_id]['text']
-    context_tokens = tokenizer.tokenize(context_text)
     start_index = mentions[mention_id]['start_index']
     end_index = mentions[mention_id]['end_index']
+    prefix = context_text[max(0, start_index - max_len_context): start_index]
+    suffix = context_text[end_index: end_index + max_len_context]
+    extracted_mention = context_text[start_index: end_index]
 
-    start_token_index = len(tokenizer.tokenize(context_text[:start_index]))
-    end_token_index = len(tokenizer.tokenize(context_text[:end_index]))
-
-    extracted_mention = context_tokens[start_token_index: end_token_index]
-    prefix = context_tokens[max(0, start_token_index - max_len_context): start_token_index]
-    suffix = context_tokens[end_token_index:  end_token_index + max_len_context]
+    assert extracted_mention == mentions[mention_id]['text']
 
     # Get window under new tokenization.
-    return get_window(prefix,
-                      extracted_mention,
-                      suffix,
+    return get_window(tokenizer.tokenize(prefix),
+                      tokenizer.tokenize(extracted_mention),
+                      tokenizer.tokenize(suffix),
                       max_len_context)
+
+# def get_mention_window(mention_id, mentions, docs,  max_seq_length, tokenizer):
+#     max_len_context = max_seq_length - 2  # number of tokens
+#     # Get "enough" context from space-tokenized text.
+#     content_document_id = mentions[mention_id]['content_document_id']
+#     context_text = docs[content_document_id]['text']
+#     context_tokens = tokenizer.tokenize(context_text)
+#     start_index = mentions[mention_id]['start_index']
+#     end_index = mentions[mention_id]['end_index']
+#
+#     start_token_index = len(tokenizer.tokenize(context_text[:start_index]))
+#     end_token_index = len(tokenizer.tokenize(context_text[:end_index]))
+#
+#     extracted_mention = context_tokens[start_token_index: end_token_index]
+#     prefix = context_tokens[max(0, start_token_index - max_len_context): start_token_index]
+#     suffix = context_tokens[end_token_index:  end_token_index + max_len_context]
+#
+#     # Get window under new tokenization.
+#     return get_window(prefix,
+#                       extracted_mention,
+#                       suffix,
+#                       max_len_context)
 
 
 def get_entity_window(entity_text, max_entity_len, tokenizer):
@@ -190,7 +208,6 @@ def convert_examples_to_features(
                                                                             docs,
                                                                             max_seq_length,
                                                                             tokenizer)
-        pdb.set_trace()
         # [CLS] mention with context [SEP]
         mention_tokens = [tokenizer.cls_token] + mention_window + [tokenizer.sep_token]
         mention_tokens = tokenizer.convert_tokens_to_ids(mention_tokens)
