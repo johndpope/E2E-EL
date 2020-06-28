@@ -14,6 +14,7 @@ class PreDualEncoder(BertPreTrainedModel):
         self.bert = BertModel(config)
 
 
+
 class DualEncoderBert(BertPreTrainedModel):
     def __init__(self, config, pretrained_bert):
         super().__init__(config)
