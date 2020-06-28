@@ -322,11 +322,10 @@ def evaluate(args, model, tokenizer, prefix=""):
                     )
                 candidate_embedding = candidate_outputs[1]
                 all_candidate_embeddings.append(candidate_embedding)
-                if (i+1) % 100 == 0:
-                    break
         all_candidate_embeddings = torch.cat(all_candidate_embeddings, dim=0)
         logger.info("INFO: Collected all candidate embeddings.")
         print("Tensor size = ", all_candidate_embeddings.size())
+        all_candidate_embeddings = all_candidate_embeddings.unsqueeze(0).expand(args.eval_batch_size, -1, -1)
     # Eval!
     logger.info("***** Running evaluation {} *****".format(prefix))
     logger.info("  Num examples = %d", len(eval_dataset))
@@ -339,19 +338,20 @@ def evaluate(args, model, tokenizer, prefix=""):
     r_10 = 0
     nb_samples = 0
     nb_normalized = 0
+
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
         model.eval()
         batch = tuple(t.to(args.device) for t in batch)
 
         with torch.no_grad():
             if args.use_all_candidates:
-                pdb.set_trace()
                 mention_inputs = {"args": args,
                                   "mention_token_ids": batch[0],
                                   "mention_token_masks": batch[1],
                                   "mention_start_indices": batch[7],
                                   "mention_end_indices": batch[8],
                                   "all_candidate_embeddings": all_candidate_embeddings,
+                                  "labels": batch[6]
                                 }
             else:
                 mention_inputs = {"args": args,
@@ -361,12 +361,12 @@ def evaluate(args, model, tokenizer, prefix=""):
                                   "mention_end_indices": batch[8],
                                   "candidate_token_ids_1": batch[2],
                                   "candidate_token_masks_1": batch[3],
+                                  "labels": batch[6]
                                   }
             logits = model(**mention_inputs)
 
-            pdb.set_trace()
             preds = logits.detach().cpu().numpy()
-            out_label_ids = batch[6][0].detach().cpu().numpy() # batch size 1 on 1 gpu for the time being
+            out_label_ids = batch[6].reshape(-1).detach().cpu().numpy()
             sorted_preds = np.flip(np.argsort(preds), axis=1)
 
             # for b_idx in range(sorted_preds.size(0)):
@@ -379,7 +379,7 @@ def evaluate(args, model, tokenizer, prefix=""):
                             r_10 += 1
                             if rank == 1:
                                 p_1 += 1
-                            nb_normalized += 1
+                        nb_normalized += 1
                     nb_samples += 1
         nb_eval_steps += 1
 

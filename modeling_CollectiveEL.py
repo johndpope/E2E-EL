@@ -17,13 +17,22 @@ class PreDualEncoder(BertPreTrainedModel):
 class DualEncoderBert(BertPreTrainedModel):
     def __init__(self, config, pretrained_bert):
         super().__init__(config)
+        self.config = config
         self.bert_mention = pretrained_bert
         self.bert_candidate = copy.deepcopy(pretrained_bert)
         self.hidden_size = config.hidden_size
         self.mlp = nn.Sequential(nn.Linear(config.hidden_size*2, 512),
                                  nn.ReLU(),
                                  nn.Linear(512, config.hidden_size))
+        self.init_mlp()
         self.loss_fn = nn.CrossEntropyLoss(ignore_index=-1)
+
+    def init_mlp(self):
+        for module in self.mlp.modules():
+            if isinstance(module, nn.Linear):
+                module.weight.data.normal_(mean=0.0, std=self.config.initializer_range)
+            if isinstance(module, nn.Linear) and module.bias is not None:
+                module.bias.data.zero_()
 
     def forward(self,
                 args,
@@ -101,7 +110,7 @@ class DualEncoderBert(BertPreTrainedModel):
 
         if all_candidate_embeddings is not None:
             b_size = mention_embeddings.size(0)
-            all_candidate_embeddings = all_candidate_embeddings.unsqueeze(0).expand(b_size, -1, -1)
+            all_candidate_embeddings = all_candidate_embeddings[0].unsqueeze(0).expand(b_size, -1, -1)  # B X C_all X H
             logits = torch.bmm(mention_embeddings, all_candidate_embeddings.transpose(1, 2))
             logits = logits.squeeze(1)  # BN X C
             return logits
