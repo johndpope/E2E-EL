@@ -352,7 +352,6 @@ def evaluate(args, model, tokenizer, prefix=""):
                                   "mention_start_indices": batch[7],
                                   "mention_end_indices": batch[8],
                                   "all_candidate_embeddings": all_candidate_embeddings,
-                                  "labels": batch[6]
                                 }
             else:
                 mention_inputs = {"args": args,
@@ -362,10 +361,9 @@ def evaluate(args, model, tokenizer, prefix=""):
                                   "mention_end_indices": batch[8],
                                   "candidate_token_ids_1": batch[2],
                                   "candidate_token_masks_1": batch[3],
-                                  "labels": batch[6]
                                   }
-            logits = model(**mention_inputs)
 
+            _, logits = model(**mention_inputs)
             preds = logits.detach().cpu().numpy()
             out_label_ids = batch[6].reshape(-1).detach().cpu().numpy()
             sorted_preds = np.flip(np.argsort(preds), axis=1)

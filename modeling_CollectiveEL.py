@@ -14,7 +14,6 @@ class PreDualEncoder(BertPreTrainedModel):
         self.bert = BertModel(config)
 
 
-
 class DualEncoderBert(BertPreTrainedModel):
     def __init__(self, config, pretrained_bert):
         super().__init__(config)
@@ -22,9 +21,7 @@ class DualEncoderBert(BertPreTrainedModel):
         self.bert_mention = pretrained_bert
         self.bert_candidate = copy.deepcopy(pretrained_bert)
         self.hidden_size = config.hidden_size
-        self.mlp = nn.Sequential(nn.Linear(config.hidden_size*2, 512),
-                                 nn.ReLU(),
-                                 nn.Linear(512, config.hidden_size))
+        self.mlp = nn.Linear(config.hidden_size*2, config.hidden_size)
         self.init_mlp()
         self.loss_fn = nn.CrossEntropyLoss(ignore_index=-1)
 
@@ -84,9 +81,11 @@ class DualEncoderBert(BertPreTrainedModel):
             logits = torch.bmm(mention_embeddings, candidate_embeddings.transpose(1, 2))
             logits = logits.squeeze(1)  # BN X C
 
-            labels = labels.reshape(-1)  # BN
-            loss = self.loss_fn(logits, labels)
-
+            if labels is not None:
+                labels = labels.reshape(-1)  # BN
+                loss = self.loss_fn(logits, labels)
+            else:
+                loss = None
             return loss, logits
 
         # When a second set of candidates is present
@@ -114,4 +113,4 @@ class DualEncoderBert(BertPreTrainedModel):
             all_candidate_embeddings = all_candidate_embeddings[0].unsqueeze(0).expand(b_size, -1, -1)  # B X C_all X H
             logits = torch.bmm(mention_embeddings, all_candidate_embeddings.transpose(1, 2))
             logits = logits.squeeze(1)  # BN X C
-            return logits
+            return None, logits
