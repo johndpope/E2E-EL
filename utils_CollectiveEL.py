@@ -524,11 +524,11 @@ def convert_examples_to_features(
 
     return features, (all_entities, all_entity_token_ids, all_entity_token_masks)
 
-data_dir = './data/NCBI_Disease/collective_el_data_2'
-mode = "test"
+# data_dir = './data/NCBI_Disease/collective_el_data_2'
+# mode = "test"
 #
-examples, docs, entities = get_examples(data_dir, mode)
-print(entities)
+# examples, docs, entities = get_examples(data_dir, mode)
+# print(entities)
 # for doc_id in examples:
 #     print(len(examples[doc_id]))
 #     print(docs[doc_id])
