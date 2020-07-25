@@ -340,6 +340,111 @@ def evaluate(args, model, tokenizer, prefix=""):
     r_10 = 0
     nb_samples = 0
     nb_normalized = 0
+    tp = 0
+    fp = 0
+    fn = 0
+
+    def get_mention_spans(predicted_tags, doc_lens):
+        b_size = predicted_tags.size(0)
+        b_start_indices = []
+        b_end_indices = []
+        for b_idx in range(b_size):
+            tags = predicted_tags[b_idx].cpu().numpy()
+            start_indices = []
+            end_indices = []
+            start_index = 0
+            end_index = 0
+            for j in range(doc_lens[b_idx]):
+                if tags[j] == 1:  # If the token tag is 1, this is the beginning of a mention
+                    start_index = j
+                    end_index = j
+                elif tags[j] == 2:
+                    if j == 0: # It is the first token (ideally shouldn't be though as it corresponds to the [CLS] token
+                        start_index = j
+                        end_index = j
+                    else:
+                        if tags[j-1] == 1 or tags[j-1] == 2:  # If the previous token is 1, then it's a part of a mention
+                            end_index += 1
+                        elif tags[j-1] == 0:  # If the previous token is 0, it's the start of a mention (imperfect though)
+                            start_index = j
+                            end_index = j
+                elif tags[j] == 0 and (tags[j-1] == 1 or tags[j-1] == 2): # End of mention
+                    start_indices.append(start_index)
+                    end_indices.append(end_index)
+            b_start_indices.append(start_indices)
+            b_end_indices.append(end_indices)
+        return b_start_indices, b_end_indices
+
+    def find_partially_overlapping_spans(pred_mention_start_indices, pred_mention_end_indices,\
+                                         gold_mention_start_indices, gold_mention_end_indices, doc_lens):
+        b_size = gold_mention_start_indices.shape[0]
+        num_mentions = gold_mention_start_indices.shape[1]
+
+        # Get the Gold mention spans as tuples
+        gold_mention_spans = [[(gold_mention_start_indices[b_idx][j], gold_mention_end_indices[b_idx][j]) \
+                                         for j in range(num_mentions)]
+                              for b_idx in range(b_size)]
+
+        # Get the predicted mention spans as tuples
+        predicted_mention_spans = [[] for b_idx in range(b_size)]
+        for b_idx in range(b_size):
+            num_pred_mentions = len(pred_mention_start_indices[b_idx])
+            for j in range(num_pred_mentions):
+                predicted_mention_spans[b_idx].append((pred_mention_start_indices[b_idx][j], pred_mention_end_indices[b_idx][j]))
+
+        unmatched_gold_mentions = 0
+        extraneous_predicted_mentions = 0
+        b_overlapping_start_indices = []
+        b_overlapping_end_indices = []
+        b_which_gold_spans = []
+        for b_idx in range(b_size):
+            overlapping_start_indices = []
+            overlapping_end_indices = []
+            which_gold_spans = []
+            p_mention_spans = predicted_mention_spans[b_idx]
+            g_mention_spans = gold_mention_spans[b_idx]
+            for span_num, (g_s, g_e) in enumerate(g_mention_spans):
+                found_overlapping_pred = False
+                for (p_s, p_e) in p_mention_spans:
+                    if p_s >= doc_lens[b_idx]: # If the predicted start index is beyond valid tokens
+                        break
+                    elif g_s <= p_s <= g_e: # The beginning of prediction is within the gold span
+                        overlapping_start_indices.append(p_s)
+                        if g_e <= p_e:
+                            overlapping_end_indices.append(g_e)
+                        else:
+                            overlapping_end_indices.append(p_e)
+                        which_gold_spans.append(span_num)
+                        found_overlapping_pred = True
+                    elif g_s <= p_e <= g_e: # The end of the predicted span is within the gold span
+                        if g_s >= p_s:
+                            overlapping_start_indices.append(g_s)
+                        else:
+                            overlapping_start_indices.append(p_s)
+                        overlapping_end_indices.append(p_e)
+                        which_gold_spans.append(span_num)
+                        found_overlapping_pred = True
+                if not found_overlapping_pred:
+                    unmatched_gold_mentions += 1
+
+            for (p_s, p_e) in p_mention_spans:
+                if p_s >= doc_lens[b_idx]:  # If the start index is beyond valid tokens
+                    break
+                found_overlapping_pred = False
+                for (g_s, g_e) in g_mention_spans:
+                    if g_s <= p_s <= g_e:  # The beginning of prediction is withing the gold span
+                        found_overlapping_pred = True
+                    elif g_s <= p_e <= g_e:  # The end of the predicted span is within the gold span
+                        found_overlapping_pred = True
+                if not found_overlapping_pred:
+                    extraneous_predicted_mentions += 1
+
+            b_overlapping_start_indices.append(overlapping_start_indices)
+            b_overlapping_end_indices.append(overlapping_end_indices)
+            b_which_gold_spans.append(which_gold_spans)
+
+        return unmatched_gold_mentions, extraneous_predicted_mentions, \
+               b_overlapping_start_indices, b_overlapping_end_indices, b_which_gold_spans
 
 
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
@@ -347,22 +452,46 @@ def evaluate(args, model, tokenizer, prefix=""):
         batch = tuple(t.to(args.device) for t in batch)
 
         with torch.no_grad():
+            doc_input = {"args": args,
+                         "mention_token_ids": batch[0],
+                         "mention_token_masks": batch[1],
+                         }
+            tag_logits = model(**doc_input)
+            predicted_tags = torch.argmax(tag_logits, dim=2).detach() #.cpu().numpy()
+
+            # Find the length of the docs (number of tokens without [PAD])
+            mention_token_masks = batch[1]
+            doc_lens = torch.sum(mention_token_masks, dim=1).detach().cpu().numpy()
+
+            pred_mention_start_indices, pred_mention_end_indices = get_mention_spans(predicted_tags, doc_lens)
+            gold_mention_start_indices, gold_mention_end_indices = batch[7].detach().cpu().numpy(), batch[8].detach().cpu().numpy()
+
+            unmatched_gold_mentions, extraneous_predicted_mentions, \
+            overlapping_start_indices, overlapping_end_indices, which_gold_spans \
+                = find_partially_overlapping_spans(pred_mention_start_indices, pred_mention_end_indices,\
+                                             gold_mention_start_indices, gold_mention_end_indices, doc_lens)
+
+            # Update metric counts
+            fp += extraneous_predicted_mentions
+            fn += unmatched_gold_mentions
+
+            # Convert to tensors
+            overlapping_start_indices = torch.LongTensor(overlapping_start_indices).to(args.device)
+            overlapping_end_indices = torch.LongTensor(overlapping_end_indices).to(args.device)
+            which_gold_spans = torch.LongTensor(which_gold_spans).to(args.device)
+            predicted_tags = predicted_tags.to(args.device)
+            out_label_ids = torch.gather(batch[6], 1, which_gold_spans)
+
             if args.use_all_candidates:
                 mention_inputs = {"args": args,
                                   "mention_token_ids": batch[0],
                                   "mention_token_masks": batch[1],
-                                  "mention_start_indices": batch[7],
-                                  "mention_end_indices": batch[8],
+                                  "mention_start_indices": overlapping_start_indices,
+                                  "mention_end_indices": overlapping_end_indices,
                                   "all_candidate_embeddings": all_candidate_embeddings,
-                                }
+                                  "seq_tags": predicted_tags, # Not used during inference, just a place holder
+                                  }
             else:
-                doc_input = {"args": args,
-                             "mention_token_ids": batch[0],
-                             "mention_token_masks": batch[1],
-                             }
-                tag_logits = model(**doc_input)
-                predicted_tags = torch.argmax(tag_logits, dim=2).detach() #.cpu().numpy()
-
                 mention_inputs = {"args": args,
                                   "mention_token_ids": batch[0],
                                   "mention_token_masks": batch[1],
@@ -375,7 +504,7 @@ def evaluate(args, model, tokenizer, prefix=""):
 
             _, logits = model(**mention_inputs)
             preds = logits.detach().cpu().numpy()
-            out_label_ids = batch[6].reshape(-1).detach().cpu().numpy()
+            out_label_ids = out_label_ids.reshape(-1).detach().cpu().numpy()
             sorted_preds = np.flip(np.argsort(preds), axis=1)
 
             # for b_idx in range(sorted_preds.size(0)):
@@ -388,6 +517,11 @@ def evaluate(args, model, tokenizer, prefix=""):
                             r_10 += 1
                             if rank == 1:
                                 p_1 += 1
+                                tp += 1 # This entity resolution is sucessful
+                            else:
+                                fn += 1  # Unsuccessful entity resolution
+                        else:
+                            fn += 1 # Unsuccessful entity resolution
                         nb_normalized += 1
                     nb_samples += 1
         nb_eval_steps += 1
@@ -403,11 +537,20 @@ def evaluate(args, model, tokenizer, prefix=""):
     # Recall@10
     recall_10 = r_10 / nb_samples
 
+    # Precision, recall, F-1
+    macro_precision = tp / (tp + fp)
+    macro_recall = tp / (tp + fn)
+    macro_f1 = (2 * macro_precision * macro_recall) / (macro_precision + macro_recall)
+
     print("P@1 Unnormalized = ", p_1_unnormalized)
     print("MAP Unnormalized = ", map_unnormalized)
     print("P@1 Normaliized = ", p_1_normalized)
     print("MAP Normalized = ", map_normalized)
     print("Recall@10 = ", recall_10)
+    print("Macro-Precision = ", macro_precision)
+    print("Macro-Recall = ", macro_recall)
+    print("Marcro-F-1 = ", macro_f1)
+
 
     results["P@1"] = p_1_unnormalized
     results["MAP"] = map_unnormalized
