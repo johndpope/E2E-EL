@@ -9,7 +9,12 @@ import faiss
 import torch
 
 def get_examples(data_dir, mode):
-    entity_path = './data/MM_full_CUI/raw_data/entities.txt'
+    if 'NCBI' in data_dir:
+        entity_path = './data/NCBI_Disease/raw_data/entities.txt'
+    elif 'st21pv' in data_dir:
+        entity_path = './data/MM_st21pv_CUI/raw_data/entities.txt'
+    else:
+        entity_path = './data/MM_full_CUI/raw_data/entities.txt'
     entities = {}
     with open(entity_path, encoding='utf-8') as f:
         for line in f:
@@ -172,21 +177,27 @@ def convert_examples_to_features(
                     zip(all_entity_token_ids, all_entity_token_masks)):
                 candidate_token_ids = torch.LongTensor([entity_tokens]).to(args.device)
                 candidate_token_masks = torch.LongTensor([entity_tokens_masks]).to(args.device)
-                candidate_outputs = model.bert_candidate.bert(
-                    input_ids=candidate_token_ids,
-                    attention_mask=candidate_token_masks,
-                )
+                if hasattr(model, "module"):
+                    candidate_outputs = model.module.bert_candidate.bert(
+                        input_ids=candidate_token_ids,
+                        attention_mask=candidate_token_masks,
+                    )
+                else:
+                    candidate_outputs = model.bert_candidate.bert(
+                        input_ids=candidate_token_ids,
+                        attention_mask=candidate_token_masks,
+                    )
                 candidate_embedding = candidate_outputs[1]
                 all_candidate_embeddings.append(candidate_embedding)
 
         all_candidate_embeddings = torch.cat(all_candidate_embeddings, dim=0)
 
         # Indexing for faster search (using FAISS)
-        d = all_candidate_embeddings.size(1)
-        all_candidate_index = faiss.IndexFlatL2(d)  # build the index, d=size of vectors
+        # d = all_candidate_embeddings.size(1)
+        # all_candidate_index = faiss.IndexFlatL2(d)  # build the index, d=size of vectors
         # here we assume `all_candidate_embeddings` contains a n-by-d numpy matrix of type float32
-        all_candidate_embeddings = all_candidate_embeddings.cpu().detach().numpy()
-        all_candidate_index.add(all_candidate_embeddings)
+        # all_candidate_embeddings = all_candidate_embeddings.cpu().detach().numpy()
+        # all_candidate_index.add(all_candidate_embeddings)
 
     if args.use_hard_and_random_negatives:
         # Get the existing hard negatives per mention
@@ -225,6 +236,11 @@ def convert_examples_to_features(
 
         # Build list of candidates
         label_candidate_id = mentions[mention_id]['label_candidate_id']
+        if '|' in label_candidate_id: # In NCBI disease dataset, the target candidates can be more than 1 per mention
+            label_candidate_id = label_candidate_id.split('|')[0]
+        elif '+' in label_candidate_id:
+            label_candidate_id = label_candidate_id.split('+')[0]
+
         candidates = []
         candidates_2 = None
         if args.do_train:
@@ -249,16 +265,26 @@ def convert_examples_to_features(
                 input_token_masks = torch.LongTensor([mention_tokens_mask]).to(args.device)
                 # Forward pass through the mention encoder of the dual encoder
                 with torch.no_grad():
-                    mention_outputs = model.bert_mention.bert(
-                        input_ids=input_token_ids,
-                        attention_mask=input_token_masks,
-                    )
+                    if hasattr(model, "module"):
+                        mention_outputs = model.module.bert_mention.bert(
+                            input_ids=input_token_ids,
+                            attention_mask=input_token_masks,
+                        )
+                    else:
+                        mention_outputs = model.bert_mention.bert(
+                            input_ids=input_token_ids,
+                            attention_mask=input_token_masks,
+                        )
                 mention_embedding = mention_outputs[1]  # 1 X d
-                mention_embedding = mention_embedding.cpu().detach().numpy()
+                # mention_embedding = mention_embedding.cpu().detach().numpy()
 
                 # Perform similarity search
-                distance, candidate_indices = all_candidate_index.search(mention_embedding, args.num_candidates)
-                candidate_indices = candidate_indices[0]  # original size 1 X 10 -> 10
+                # distance, candidate_indices = all_candidate_index.search(mention_embedding, args.num_candidates)
+                # candidate_indices = candidate_indices[0]  # original size 1 X 10 -> 10
+
+                distance, candidate_indices = torch.topk(torch.dot(mention_embedding, all_candidate_embeddings.t()),
+                                                         k=args.num_candidates)
+                candidate_indices = candidate_indices[0].cpu().detach().numpy().tolist()
 
                 # Append the hard negative candidates to the list of all candidates
                 for i, c_idx in enumerate(candidate_indices):
@@ -287,16 +313,27 @@ def convert_examples_to_features(
                 input_token_masks = torch.LongTensor([mention_tokens_mask]).to(args.device)
                 # Forward pass through the mention encoder of the dual encoder
                 with torch.no_grad():
-                    mention_outputs = model.bert_mention.bert(
-                        input_ids=input_token_ids,
-                        attention_mask=input_token_masks,
-                    )
+                    if hasattr(model, "module"):
+                        mention_outputs = model.module.bert_mention.bert(
+                            input_ids=input_token_ids,
+                            attention_mask=input_token_masks,
+                        )
+                    else:
+                        mention_outputs = model.bert_mention.bert(
+                            input_ids=input_token_ids,
+                            attention_mask=input_token_masks,
+                        )
                 mention_embedding = mention_outputs[1]  # 1 X d
-                mention_embedding = mention_embedding.cpu().detach().numpy()
+                # mention_embedding = mention_embedding.cpu().detach().numpy()
 
                 # Perform similarity search
-                distance, candidate_indices = all_candidate_index.search(mention_embedding, args.num_candidates)
-                candidate_indices = candidate_indices[0]  # original size 1 X 10 -> 10
+                # distance, candidate_indices = all_candidate_index.search(mention_embedding, args.num_candidates)
+                # candidate_indices = candidate_indices[0]  # original size 1 X 10 -> 10
+
+                distance, candidate_indices = torch.topk(torch.mm(mention_embedding, all_candidate_embeddings.t()),
+                                                         k=args.num_candidates)
+                candidate_indices = candidate_indices[0].cpu().detach().numpy().tolist()
+
 
                 # Update the list of hard negatives for this `mention_id`
                 if mention_id not in mention_hard_negatives:
@@ -315,13 +352,13 @@ def convert_examples_to_features(
                             mention_hard_negatives[mention_id].append(c)
 
                 candidates_2 = []
-                candidates_2.append(label_candidate_id)  # positive candidate
+                # candidates_2.append(label_candidate_id)  # positive candidate
                 # Append hard negative candidates
-                if len(mention_hard_negatives[mention_id]) < args.num_candidates - 1:
+                if len(mention_hard_negatives[mention_id]) < args.num_candidates: # args.num_candidates - 1
                     negative_candidates = mention_hard_negatives[mention_id]
                 else:
                     candidate_pool = mention_hard_negatives[mention_id]
-                    negative_candidates = random.sample(candidate_pool, args.num_candidates - 1)
+                    negative_candidates = random.sample(candidate_pool, args.num_candidates) # args.num_candidates - 1
                 candidates_2 += negative_candidates
 
         elif args.do_eval:
