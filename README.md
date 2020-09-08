@@ -24,6 +24,40 @@ Download the pretrained BioBERT-base-cased model from here https://github.com/na
 ```
 
 # Training
+## BLINK
+```
+CUDA_VISIBLE_DEVICES=2,5 python run_FullTransformer.py --data_dir ./data/BC5CDR/el_data_copy/ --model_type bert --model_name_or_path ./biobert_v1.1_pubmed/model.ckpt-1000000 --retrieval_model_path /dresden/users/rb897/MedMentions/model_output_DE_random_HN_BC5CDR/ --output_dir /dresden/users/rb897/MedMentions/model_output_random_HN_FT_BC5CDR/ --config_name ./biobert_v1.1_pubmed/bert_config.json --tokenizer_name ./biobert_v1.1_pubmed/vocab.txt --do_train --use_dense_candidates --overwrite_output_dir --overwrite_cache --n_gpu 2 --num_train_epochs 10  --num_candidates 10 --save_steps 2000
+```
+## Dual Encoder w. Random and Hard Negatives
+### BC5CDR
+```
+python run_DualEncoder.py --data_dir ./data/BC5CDR/el_data/ --model_type bert --model_name_or_path ./biobert_v1.1_pubmed/model.ckpt-1000000 --output_dir /dresden/users/rb897/MedMentions/model_output_DE_random_HN_BC5CDR/ --config_name ./biobert_v1.1_pubmed/bert_config.json --tokenizer_name ./biobert_v1.1_pubmed/vocab.txt --do_train --use_hard_and_random_negatives --overwrite_output_dir --overwrite_cache --n_gpu 2 --per_gpu_train_batch_size 2 --num_train_epochs 20 --save_steps 2000 --gradient_accumulation_steps 2
+```
+
+# Evaluation
+## Full Transformer
+### MedMentions
+```
+CUDA_VISIBLE_DEVICES=2 python run_FullTransformer.py --data_dir ./data/MM_full_CUI/el_data/ --model_type bert --model_name_or_path ./biobert_v1.1_pubmed/model.ckpt-1000000 --output_dir /common/users/rb897/MedMentions/model_FT/ --config_name ./biobert_v1.1_pubmed/bert_config.json --tokenizer_name ./biobert_v1.1_pubmed/vocab.txt --do_eval --use_tfidf_candidates --overwrite_output_dir --overwrite_cache --n_gpu 1
+```
+### BC5CDR
+```
+CUDA_VISIBLE_DEVICES=2 python run_FullTransformer.py --data_dir ./data/BC5CDR/el_data_copy/ --model_type bert --model_name_or_path ./biobert_v1.1_pubmed/model.ckpt-1000000 --output_dir /dresden/users/rb897/MedMentions/model_FT_BC5CDR/ --config_name ./biobert_v1.1_pubmed/bert_config.json --tokenizer_name ./biobert_v1.1_pubmed/vocab.txt --do_eval --use_tfidf_candidates --overwrite_output_dir --overwrite_cache --n_gpu 1
+```
+### 
+
+
+## BLINK
+### MedMentions
+```
+CUDA_VISIBLE_DEVICES=2 python run_FullTransformer.py --data_dir ./data/MM_full_CUI/el_data/ --model_type bert --model_name_or_path ./biobert_v1.1_pubmed/model.ckpt-1000000 --retrieval_model_path /common/users/rb897/MedMentions/model_output_DE_random/checkpoint-270000/  --output_dir /common/users/rb897/MedMentions/model_output_random_FT --config_name ./biobert_v1.1_pubmed/bert_config.json --tokenizer_name ./biobert_v1.1_pubmed/vocab.txt --do_eval --use_dense_candidates --overwrite_output_dir --overwrite_cache --n_gpu 1
+```
+
+### BC5CDR
+```
+CUDA_VISIBLE_DEVICES=2 python run_FullTransformer.py --data_dir ./data/BC5CDR/el_data_copy/ --model_type bert --model_name_or_path ./biobert_v1.1_pubmed/model.ckpt-1000000 --retrieval_model_path /dresden/users/rb897/MedMentions/model_output_DE_random_HN_BC5CDR/ --output_dir /dresden/users/rb897/MedMentions/model_output_random_HN_FT_BC5CDR/ --config_name ./biobert_v1.1_pubmed/bert_config.json --tokenizer_na
+me ./biobert_v1.1_pubmed/vocab.txt --do_eval --use_dense_candidates --overwrite_output_dir --overwrite_cache --n_gpu 1
+```
 
 ## NER
 ### BioBERT + Linear
