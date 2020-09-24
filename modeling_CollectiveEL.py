@@ -2,11 +2,10 @@ import torch
 import torch.nn as nn
 from torch.nn import CrossEntropyLoss, MSELoss
 import copy
-
 from modeling_bert import BertPreTrainedModel
 from modeling_bert import BertModel
-
 import pdb
+
 
 class PreDualEncoder(BertPreTrainedModel):
     def __init__(self, config):
@@ -65,6 +64,8 @@ class DualEncoderBert(BertPreTrainedModel):
             mention_embeddings = self.mlp(torch.cat([mention_start_embd, mention_end_embd], dim=2))
             mention_embeddings = mention_embeddings.reshape(-1, 1, self.hidden_size)
 
+            # mention_embeddings = mention_start_embd.reshape(-1, 1, self.hidden_size)
+
         if candidate_token_ids_1 is not None:
             b_size, n_c, seq_len = candidate_token_ids_1.size()
             candidate_token_ids_1 = candidate_token_ids_1.reshape(-1, seq_len)  # B(N*C) X L
@@ -84,6 +85,9 @@ class DualEncoderBert(BertPreTrainedModel):
             if labels is not None:
                 labels = labels.reshape(-1)  # BN
                 loss = self.loss_fn(logits, labels)
+                # Normalize the loss
+                num_mentions = torch.where(labels >= 0)[0].size(0)
+                loss = loss / num_mentions
             else:
                 loss = None
             return loss, logits

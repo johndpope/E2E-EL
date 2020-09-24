@@ -69,11 +69,11 @@ def train(args, model, tokenizer):
 
         # Initial train dataloader
         if args.use_random_candidates:
-            train_dataset, _ = load_and_cache_examples(args, tokenizer)
+            train_dataset, _, _= load_and_cache_examples(args, tokenizer)
         elif args.use_hard_negatives or args.use_hard_and_random_negatives:
-            train_dataset, _ = load_and_cache_examples(args, tokenizer, model)
+            train_dataset, _, _ = load_and_cache_examples(args, tokenizer, model)
         else:
-            train_dataset, _ = load_and_cache_examples(args, tokenizer)
+            train_dataset, _, _ = load_and_cache_examples(args, tokenizer)
 
         args.train_batch_size = args.per_gpu_train_batch_size * max(1, args.n_gpu)
         train_sampler = RandomSampler(train_dataset) if args.local_rank == -1 else DistributedSampler(train_dataset)
@@ -195,7 +195,10 @@ def train(args, model, tokenizer):
                                   "labels": batch[6],
                                   "seq_tags": batch[10]
                                   }
-            loss, logits = model(**mention_inputs)
+            if args.only_tagging:
+                loss = model(**mention_inputs)
+            else:
+                loss, logits = model(**mention_inputs)
 
             if args.n_gpu > 1:
                 loss = loss.mean()  # mean() to average on multi-gpu parallel training
@@ -262,7 +265,7 @@ def train(args, model, tokenizer):
         # New data loader for the next epoch
         if args.use_random_candidates:
             # New data loader at every epoch for random sampler if we use random negative samples
-            train_dataset, _ = load_and_cache_examples(args, tokenizer)
+            train_dataset, _, _= load_and_cache_examples(args, tokenizer)
             args.train_batch_size = args.per_gpu_train_batch_size * max(1, args.n_gpu)
             train_sampler = RandomSampler(train_dataset) if args.local_rank == -1 else DistributedSampler(
                 train_dataset)
@@ -270,7 +273,7 @@ def train(args, model, tokenizer):
                                           batch_size=args.train_batch_size)
         elif args.use_hard_negatives or args.use_hard_and_random_negatives:
             # New data loader at every epoch for hard negative sampler if we use hard negative mining
-            train_dataset, _ = load_and_cache_examples(args, tokenizer, model)
+            train_dataset, _, _= load_and_cache_examples(args, tokenizer, model)
             args.train_batch_size = args.per_gpu_train_batch_size * max(1, args.n_gpu)
             train_sampler = RandomSampler(train_dataset) if args.local_rank == -1 else DistributedSampler(
                 train_dataset)
@@ -290,8 +293,9 @@ def train(args, model, tokenizer):
 def evaluate(args, model, tokenizer, prefix=""):
     eval_output_dir = args.output_dir
 
-    eval_dataset, (all_entities, all_entity_token_ids, all_entity_token_masks) = load_and_cache_examples(args,
-                                                                                                         tokenizer)
+    eval_dataset, (all_entities, all_entity_token_ids, all_entity_token_masks), \
+    (all_document_ids, all_label_candidate_ids) = load_and_cache_examples(args, tokenizer)
+
     if not os.path.exists(eval_output_dir) and args.local_rank in [-1, 0]:
          os.makedirs(eval_output_dir)
 
@@ -344,7 +348,7 @@ def evaluate(args, model, tokenizer, prefix=""):
     fp = 0
     fn = 0
 
-    def get_mention_spans(predicted_tags, doc_lens):
+    def get_mention_spans(mention_token_ids, predicted_tags, doc_lens):
         b_size = predicted_tags.size(0)
         b_start_indices = []
         b_end_indices = []
@@ -354,23 +358,53 @@ def evaluate(args, model, tokenizer, prefix=""):
             end_indices = []
             start_index = 0
             end_index = 0
-            for j in range(doc_lens[b_idx]):
-                if tags[j] == 1:  # If the token tag is 1, this is the beginning of a mention
+            # for j in range(doc_lens[b_idx]):
+            #     if tags[j] == 1:  # If the token tag is 1, this is the beginning of a mention
+            #         start_index = j
+            #         end_index = j
+            #     elif tags[j] == 2:
+            #         if j == 0: # It is the first token (ideally shouldn't be though as it corresponds to the [CLS] token
+            #             start_index = j
+            #             end_index = j
+            #         else:
+            #             if tags[j-1] == 1 or tags[j-1] == 2:  # If the previous token is 1, then it's a part of a mention
+            #                 end_index += 1
+            #             elif tags[j-1] == 0:  # If the previous token is 0, it's the start of a mention (imperfect though)
+            #                 start_index = j
+            #                 end_index = j
+            #     elif tags[j] == 0 and (tags[j-1] == 1 or tags[j-1] == 2): # End of mention
+            #         start_indices.append(start_index)
+            #         end_indices.append(end_index)
+            mention_found = False
+            for j in range(1, doc_lens[b_idx] - 1): # Excluding [CLS], [SEP]
+                if tags[j] == 1:  # If the token tag is 1, this is the beginning of a mention B
                     start_index = j
                     end_index = j
-                elif tags[j] == 2:
-                    if j == 0: # It is the first token (ideally shouldn't be though as it corresponds to the [CLS] token
-                        start_index = j
-                        end_index = j
-                    else:
-                        if tags[j-1] == 1 or tags[j-1] == 2:  # If the previous token is 1, then it's a part of a mention
+                    for k in range(j+1, doc_lens[b_idx] - 1):
+                        if tokenizer.convert_ids_to_tokens([mention_token_ids[b_idx][k]])[0].startswith('##'):
+                            j += 1
                             end_index += 1
-                        elif tags[j-1] == 0:  # If the previous token is 0, it's the start of a mention (imperfect though)
+                        else:
+                            break
+                    mention_found = True
+                elif tags[j] == 2:
+                    if tags[j-1] == 0:  # If the previous token is 0, it's the start of a mention (imperfect though)
                             start_index = j
                             end_index = j
-                elif tags[j] == 0 and (tags[j-1] == 1 or tags[j-1] == 2): # End of mention
+                    else:
+                        end_index += 1
+                    for k in range(j+1, doc_lens[b_idx] - 1):
+                        if tokenizer.convert_ids_to_tokens([mention_token_ids[b_idx][k]])[0].startswith('##'):
+                            j += 1
+                            end_index += 1
+                        else:
+                            break
+                    mention_found = True
+                elif tags[j] == 0 and mention_found: # End of mention
                     start_indices.append(start_index)
                     end_indices.append(end_index)
+                    mention_found = False
+
             b_start_indices.append(start_indices)
             b_end_indices.append(end_indices)
         return b_start_indices, b_end_indices
@@ -446,7 +480,11 @@ def evaluate(args, model, tokenizer, prefix=""):
         return unmatched_gold_mentions, extraneous_predicted_mentions, \
                b_overlapping_start_indices, b_overlapping_end_indices, b_which_gold_spans
 
+    # Files to write
+    gold_file = open('gold.csv', 'w+')
+    pred_file = open('pred.csv', 'w+')
 
+    num_mention_processed = 0
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
         model.eval()
         batch = tuple(t.to(args.device) for t in batch)
@@ -463,31 +501,39 @@ def evaluate(args, model, tokenizer, prefix=""):
             mention_token_masks = batch[1]
             doc_lens = torch.sum(mention_token_masks, dim=1).detach().cpu().numpy()
 
-            pred_mention_start_indices, pred_mention_end_indices = get_mention_spans(predicted_tags, doc_lens)
-            gold_mention_start_indices, gold_mention_end_indices = batch[7].detach().cpu().numpy(), batch[8].detach().cpu().numpy()
+            pred_mention_start_indices, pred_mention_end_indices = get_mention_spans(doc_input["mention_token_ids"],
+                                                                                     predicted_tags,
+                                                                                     doc_lens)
 
-            unmatched_gold_mentions, extraneous_predicted_mentions, \
-            overlapping_start_indices, overlapping_end_indices, which_gold_spans \
-                = find_partially_overlapping_spans(pred_mention_start_indices, pred_mention_end_indices,\
-                                             gold_mention_start_indices, gold_mention_end_indices, doc_lens)
+            # unmatched_gold_mentions, extraneous_predicted_mentions, \
+            # overlapping_start_indices, overlapping_end_indices, which_gold_spans \
+            #     = find_partially_overlapping_spans(pred_mention_start_indices, pred_mention_end_indices,\
+            #                                  gold_mention_start_indices, gold_mention_end_indices, doc_lens)
 
             # Update metric counts
-            fp += extraneous_predicted_mentions
-            fn += unmatched_gold_mentions
+            # fp += extraneous_predicted_mentions
+            # fn += unmatched_gold_mentions
 
             # Convert to tensors
-            overlapping_start_indices = torch.LongTensor(overlapping_start_indices).to(args.device)
-            overlapping_end_indices = torch.LongTensor(overlapping_end_indices).to(args.device)
-            which_gold_spans = torch.LongTensor(which_gold_spans).to(args.device)
-            predicted_tags = predicted_tags.to(args.device)
-            out_label_ids = torch.gather(batch[6], 1, which_gold_spans)
+            # overlapping_start_indices = torch.LongTensor(overlapping_start_indices).to(args.device)
+            # overlapping_end_indices = torch.LongTensor(overlapping_end_indices).to(args.device)
+            # which_gold_spans = torch.LongTensor(which_gold_spans).to(args.device)
+            # predicted_tags = predicted_tags.to(args.device)
+            # out_label_ids = torch.gather(batch[6], 1, which_gold_spans)
+
+
+
+            pred_mention_start_indices = torch.tensor(pred_mention_start_indices).long().to(args.device)
+            pred_mention_end_indices = torch.tensor(pred_mention_end_indices).long().to(args.device)
+
+
 
             if args.use_all_candidates:
                 mention_inputs = {"args": args,
                                   "mention_token_ids": batch[0],
                                   "mention_token_masks": batch[1],
-                                  "mention_start_indices": overlapping_start_indices,
-                                  "mention_end_indices": overlapping_end_indices,
+                                  "mention_start_indices": pred_mention_start_indices, # batch[7],  #overlapping_start_indices,
+                                  "mention_end_indices": pred_mention_end_indices, # batch[8], # overlapping_end_indices,
                                   "all_candidate_embeddings": all_candidate_embeddings,
                                   "seq_tags": predicted_tags, # Not used during inference, just a place holder
                                   }
@@ -504,56 +550,101 @@ def evaluate(args, model, tokenizer, prefix=""):
 
             _, logits = model(**mention_inputs)
             preds = logits.detach().cpu().numpy()
-            out_label_ids = out_label_ids.reshape(-1).detach().cpu().numpy()
+            # out_label_ids = batch[6]
+            # out_label_ids = out_label_ids.reshape(-1).detach().cpu().numpy()
             sorted_preds = np.flip(np.argsort(preds), axis=1)
+            predicted_entities = []
+            for i, sorted_pred in enumerate(sorted_preds):
+                predicted_entity_idx = sorted_preds[i][0]
+                predicted_entity = all_entities[predicted_entity_idx]
+                predicted_entities.append(predicted_entity)
+
+            # Write the gold entities
+            num_mentions = batch[9].detach().cpu().numpy()[0]
+            document_ids = all_document_ids[num_mention_processed:num_mention_processed + num_mentions]
+            assert all(doc_id == document_ids[0] for doc_id in document_ids)
+            gold_mention_start_indices = batch[7].detach().cpu().numpy()[0][:num_mentions]
+            gold_mention_end_indices = batch[8].detach().cpu().numpy()[0][:num_mentions]
+            gold_entities = all_label_candidate_ids[num_mention_processed:num_mention_processed + num_mentions]
+            for j in range(num_mentions):
+                # if gold_mention_start_indices[j] == gold_mention_end_indices[j]:
+                #     gold_mention_end_indices[j] += 1
+                if gold_mention_start_indices[j] > gold_mention_end_indices[j]:
+                    continue
+                gold_write = document_ids[j] + '\t' + str(gold_mention_start_indices[j]) \
+                                        + '\t' + str(gold_mention_end_indices[j]) \
+                                        + '\t' + gold_entities[j] \
+                                        + '\t' + str(1.0) \
+                                        + '\t' + 'NA' + '\n'
+                gold_file.write(gold_write)
+
+            # Write the predicted entities
+            doc_id_processed = document_ids[0]
+            num_pred_mentions = len(predicted_entities)
+            pred_mention_start_indices = pred_mention_start_indices.detach().cpu().numpy()[0]
+            pred_mention_end_indices = pred_mention_end_indices.detach().cpu().numpy()[0]
+            for j in range(num_pred_mentions):
+                # if pred_mention_start_indices[j] == pred_mention_end_indices[j]:
+                #     pred_mention_end_indices[j] += 1
+                if pred_mention_start_indices[j] > pred_mention_end_indices[j]:
+                    continue
+                pred_write = doc_id_processed + '\t' + str(pred_mention_start_indices[j]) \
+                                            + '\t' + str(pred_mention_end_indices[j]) \
+                                            + '\t' + predicted_entities[j] \
+                                            + '\t' + str(1.0) \
+                                            + '\t' + 'NA' + '\n'
+                pred_file.write(pred_write)
+
+            num_mention_processed += num_mentions
+
 
             # for b_idx in range(sorted_preds.size(0)):
-            for i, sorted_pred in enumerate(sorted_preds):
-                if out_label_ids[i] != -1:
-                    if out_label_ids[i] != -100:
-                        rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
-                        map += 1 / rank
-                        if rank <= 10:
-                            r_10 += 1
-                            if rank == 1:
-                                p_1 += 1
-                                tp += 1 # This entity resolution is sucessful
-                            else:
-                                fn += 1  # Unsuccessful entity resolution
-                        else:
-                            fn += 1 # Unsuccessful entity resolution
-                        nb_normalized += 1
-                    nb_samples += 1
-        nb_eval_steps += 1
-
-    # Unnormalized precision
-    p_1_unnormalized = p_1 / nb_samples
-    map_unnormalized = map / nb_samples
-
-    # Normalized precision
-    p_1_normalized = p_1 / nb_normalized
-    map_normalized = map / nb_normalized
-
-    # Recall@10
-    recall_10 = r_10 / nb_samples
-
-    # Precision, recall, F-1
-    macro_precision = tp / (tp + fp)
-    macro_recall = tp / (tp + fn)
-    macro_f1 = (2 * macro_precision * macro_recall) / (macro_precision + macro_recall)
-
-    print("P@1 Unnormalized = ", p_1_unnormalized)
-    print("MAP Unnormalized = ", map_unnormalized)
-    print("P@1 Normaliized = ", p_1_normalized)
-    print("MAP Normalized = ", map_normalized)
-    print("Recall@10 = ", recall_10)
-    print("Macro-Precision = ", macro_precision)
-    print("Macro-Recall = ", macro_recall)
-    print("Marcro-F-1 = ", macro_f1)
-
-
-    results["P@1"] = p_1_unnormalized
-    results["MAP"] = map_unnormalized
+    #         for i, sorted_pred in enumerate(sorted_preds):
+    #             if out_label_ids[i] != -1:
+    #                 if out_label_ids[i] != -100:
+    #                     rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
+    #                     map += 1 / rank
+    #                     if rank <= 10:
+    #                         r_10 += 1
+    #                         if rank == 1:
+    #                             p_1 += 1
+    #                             tp += 1 # This entity resolution is sucessful
+    #                         else:
+    #                             fn += 1  # Unsuccessful entity resolution
+    #                     else:
+    #                         fn += 1 # Unsuccessful entity resolution
+    #                     nb_normalized += 1
+    #                 nb_samples += 1
+    #     nb_eval_steps += 1
+    #
+    # # Unnormalized precision
+    # p_1_unnormalized = p_1 / nb_samples
+    # map_unnormalized = map / nb_samples
+    #
+    # # Normalized precision
+    # p_1_normalized = p_1 / nb_normalized
+    # map_normalized = map / nb_normalized
+    #
+    # # Recall@10
+    # recall_10 = r_10 / nb_samples
+    #
+    # # Precision, recall, F-1
+    # macro_precision = tp / (tp + fp)
+    # macro_recall = tp / (tp + fn)
+    # macro_f1 = (2 * macro_precision * macro_recall) / (macro_precision + macro_recall)
+    #
+    # print("P@1 Unnormalized = ", p_1_unnormalized)
+    # print("MAP Unnormalized = ", map_unnormalized)
+    # print("P@1 Normaliized = ", p_1_normalized)
+    # print("MAP Normalized = ", map_normalized)
+    # print("Recall@10 = ", recall_10)
+    # print("Macro-Precision = ", macro_precision)
+    # print("Macro-Recall = ", macro_recall)
+    # print("Marcro-F-1 = ", macro_f1)
+    #
+    #
+    # results["P@1"] = p_1_unnormalized
+    # results["MAP"] = map_unnormalized
 
     return results
 
@@ -576,10 +667,12 @@ def load_and_cache_examples(args, tokenizer, model=None):
         all_entities = np.load(os.path.join(args.data_dir, 'all_entities.npy'))
         all_entity_token_ids = np.load(os.path.join(args.data_dir, 'all_entity_token_ids.npy'))
         all_entity_token_masks = np.load(os.path.join(args.data_dir, 'all_entity_token_masks.npy'))
+        all_document_ids = np.load(os.path.join(args.data_dir, 'all_document_ids.npy'))
+        all_label_candidate_ids = np.load(os.path.join(args.data_dir, 'all_label_candidate_ids.npy'))
     else:
         logger.info("Creating features from dataset file at %s", args.data_dir)
         examples, docs, entities = get_examples(args.data_dir, mode)
-        features, (all_entities, all_entity_token_ids, all_entity_token_masks) = convert_examples_to_features(
+        features, (all_entities, all_entity_token_ids, all_entity_token_masks), (all_document_ids, all_label_candidate_ids) = convert_examples_to_features(
             examples,
             docs,
             entities,
@@ -597,6 +690,10 @@ def load_and_cache_examples(args, tokenizer, model=None):
                     np.array(all_entity_token_ids))
             np.save(os.path.join(args.data_dir, 'all_entity_token_masks.npy'),
                     np.array(all_entity_token_masks))
+            np.save(os.path.join(args.data_dir, 'all_document_ids.npy'),
+                    np.array(all_document_ids))
+            np.save(os.path.join(args.data_dir, 'all_label_candidate_ids.npy'),
+                    np.array(all_label_candidate_ids))
 
     if args.local_rank == 0 and not evaluate:
         torch.distributed.barrier()  # Make sure only the first process in distributed training process the dataset, and the others will use the cache
@@ -626,7 +723,7 @@ def load_and_cache_examples(args, tokenizer, model=None):
                             all_num_mentions,
                             all_seq_tag_ids,
                             )
-    return dataset, (all_entities, all_entity_token_ids, all_entity_token_masks)
+    return dataset, (all_entities, all_entity_token_ids, all_entity_token_masks), (all_document_ids, all_label_candidate_ids)
 
 
 def main():
@@ -712,7 +809,7 @@ def main():
         default=1,
         help="Number of updates steps to accumulate before performing a backward/update pass.",
     )
-    parser.add_argument("--learning_rate", default=5e-5, type=float, help="The initial learning rate for Adam.")
+    parser.add_argument("--learning_rate", default=1e-5, type=float, help="The initial learning rate for Adam.")
     parser.add_argument("--weight_decay", default=0.0, type=float, help="Weight decay if we apply some.")
     parser.add_argument("--adam_epsilon", default=1e-8, type=float, help="Epsilon for Adam optimizer.")
     parser.add_argument("--max_grad_norm", default=1.0, type=float, help="Max gradient norm.")
@@ -765,6 +862,9 @@ def main():
     )
     parser.add_argument(
         "--num_max_mentions", type=int, default=8, help="Maximum number of mentions in a document"
+    )
+    parser.add_argument(
+        "--only_tagging", type=bool, default=False, help="Model will perform only BIO tagging"
     )
 
     parser.add_argument(

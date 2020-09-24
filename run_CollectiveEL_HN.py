@@ -8,6 +8,7 @@ import glob
 import logging
 import os
 import random
+import math
 import json
 
 import numpy as np
@@ -15,6 +16,8 @@ import torch
 from torch.utils.data import DataLoader, RandomSampler, SequentialSampler, TensorDataset
 from torch.utils.data.distributed import DistributedSampler
 from tqdm import tqdm, trange
+
+import pdb
 
 from transformers import (
     WEIGHTS_NAME,
@@ -31,11 +34,12 @@ from transformers import (
     get_linear_schedule_with_warmup,
 )
 
-from utils_DualEncoder import get_examples, convert_examples_to_features, get_unseen_entity_ids
+from utils_CollectiveEL_HN import get_examples, convert_examples_to_features, get_unseen_entity_ids
+
 from modeling_bert import BertModel
 from tokenization_bert import BertTokenizer
 from configuration_bert import BertConfig
-from modeling_DualEncoder import DualEncoderBert, PreDualEncoder
+from modeling_CollectiveEL_HN import DualEncoderBert, PreDualEncoder
 
 
 from torch.utils.tensorboard import SummaryWriter
@@ -48,8 +52,6 @@ ALL_MODELS = sum(
 
 MODEL_CLASSES = {
     "bert": (BertConfig, BertModel, BertTokenizer),
-    # "xlm": (XLMConfig, XLMForSequenceClassification, XLMTokenizer),
-    # "distilbert": (DistilBertConfig, DistilBertForSequenceClassification, DistilBertTokenizer),
 }
 
 
@@ -171,29 +173,28 @@ def train(args, model, tokenizer):
             model.train()
             batch = tuple(t.to(args.device) for t in batch)
             if args.use_hard_and_random_negatives:
-
-                inputs = {"args": args,
-                          "mention_token_ids": batch[0],
-                          "mention_token_masks": batch[1],
-                          "candidate_token_ids_1": batch[2],
-                          "candidate_token_masks_1": batch[3],
-                          "candidate_token_ids_2": batch[4],
-                          "candidate_token_masks_2": batch[5],
-                          "labels": batch[6]
-                          }
+                mention_inputs = {"args": args,
+                                  "mention_token_ids": batch[0],
+                                  "mention_token_masks": batch[1],
+                                  "mention_start_indices": batch[7],
+                                  "mention_end_indices": batch[8],
+                                  "candidate_token_ids_1": batch[2],
+                                  "candidate_token_masks_1": batch[3],
+                                  "candidate_token_ids_2": batch[4],
+                                  "candidate_token_masks_2": batch[5],
+                                  "labels": batch[6],
+                                  }
             else:
-                inputs = {"args": args,
-                          "mention_token_ids": batch[0],
-                          "mention_token_masks": batch[1],
-                          "candidate_token_ids_1": batch[2],
-                          "candidate_token_masks_1": batch[3],
-                          "candidate_token_ids_2": None,
-                          "candidate_token_masks_2": None,
-                          "labels": batch[6]
-                          }
-
-            outputs = model(**inputs)
-            loss = outputs[0]  # model outputs are always tuple in transformers (see doc)
+                mention_inputs = {"args": args,
+                                  "mention_token_ids": batch[0],
+                                  "mention_token_masks": batch[1],
+                                  "mention_start_indices": batch[7],
+                                  "mention_end_indices": batch[8],
+                                  "candidate_token_ids_1": batch[2],
+                                  "candidate_token_masks_1": batch[3],
+                                  "labels": batch[6],
+                                  }
+            loss, logits = model(**mention_inputs)
 
             if args.n_gpu > 1:
                 loss = loss.mean()  # mean() to average on multi-gpu parallel training
@@ -207,6 +208,7 @@ def train(args, model, tokenizer):
                 loss.backward()
 
             tr_loss += loss.item()
+
             if (step + 1) % args.gradient_accumulation_steps == 0:
                 if args.fp16:
                     torch.nn.utils.clip_grad_norm_(amp.master_params(optimizer), args.max_grad_norm)
@@ -311,15 +313,22 @@ def evaluate(args, model, tokenizer, prefix=""):
                 entity_tokens_masks = all_entity_token_masks[i]
                 candidate_token_ids = torch.LongTensor([entity_tokens]).to(args.device)
                 candidate_token_masks = torch.LongTensor([entity_tokens_masks]).to(args.device)
-                candidate_outputs = model.bert_candidate.bert(
-                    input_ids=candidate_token_ids,
-                    attention_mask=candidate_token_masks,
-                )
+                if args.n_gpu > 1:
+                    candidate_outputs = model.module.bert_candidate.bert(
+                        input_ids=candidate_token_ids,
+                        attention_mask=candidate_token_masks,
+                    )
+                else:
+                    candidate_outputs = model.bert_candidate.bert(
+                        input_ids=candidate_token_ids,
+                        attention_mask=candidate_token_masks,
+                    )
                 candidate_embedding = candidate_outputs[1]
                 all_candidate_embeddings.append(candidate_embedding)
         all_candidate_embeddings = torch.cat(all_candidate_embeddings, dim=0)
         logger.info("INFO: Collected all candidate embeddings.")
         print("Tensor size = ", all_candidate_embeddings.size())
+        all_candidate_embeddings = all_candidate_embeddings.unsqueeze(0).expand(args.eval_batch_size, -1, -1)
     # Eval!
     logger.info("***** Running evaluation {} *****".format(prefix))
     logger.info("  Num examples = %d", len(eval_dataset))
@@ -327,8 +336,6 @@ def evaluate(args, model, tokenizer, prefix=""):
     eval_loss = 0.0
     nb_eval_steps = 0
     results = {}
-    preds = None
-    out_label_ids = None
     p_1 = 0
     map = 0
     r_10 = 0
@@ -337,56 +344,52 @@ def evaluate(args, model, tokenizer, prefix=""):
     unseen_p1 = 0
     nb_unseen_samples = 0
 
+
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
         model.eval()
         batch = tuple(t.to(args.device) for t in batch)
 
         with torch.no_grad():
             if args.use_all_candidates:
-                inputs = {"args": args,
-                          "mention_token_ids": batch[0],
-                          "mention_token_masks": batch[1],
-                          "candidate_token_ids_1": batch[2],
-                          "candidate_token_masks_1": batch[3],
-                          "labels": batch[6],
-                          "all_candidate_embeddings": all_candidate_embeddings,
-                          }
+                mention_inputs = {"args": args,
+                                  "mention_token_ids": batch[0],
+                                  "mention_token_masks": batch[1],
+                                  "mention_start_indices": batch[7],
+                                  "mention_end_indices": batch[8],
+                                  "all_candidate_embeddings": all_candidate_embeddings,
+                                }
             else:
-                inputs = {"args": args,
-                          "mention_token_ids": batch[0],
-                          "mention_token_masks": batch[1],
-                          "candidate_token_ids_1": batch[2],
-                          "candidate_token_masks_1": batch[3],
-                          "labels": batch[6],
-                          }
-            # if args.model_type != "distilbert":
-            #     inputs["token_type_ids"] = (
-            #         batch[2] if args.model_type in ["bert"] else None
-            #     )  # XLM and DistilBERT don't use segment_ids
-            outputs = model(**inputs)
-            tmp_eval_loss, logits = outputs[:2]
-            eval_loss += tmp_eval_loss.mean().item()
-        nb_eval_steps += 1
+                mention_inputs = {"args": args,
+                                  "mention_token_ids": batch[0],
+                                  "mention_token_masks": batch[1],
+                                  "mention_start_indices": batch[7],
+                                  "mention_end_indices": batch[8],
+                                  "candidate_token_ids_1": batch[2],
+                                  "candidate_token_masks_1": batch[3],
+                                  }
 
-        preds = logits.detach().cpu().numpy()
-        out_label_ids = inputs["labels"][:, 0].view(-1).detach().cpu().numpy()
-        sorted_preds = np.flip(np.argsort(preds), axis=1)
-        for i, sorted_pred in enumerate(sorted_preds):
-            if out_label_ids[i] != -100:
-                if out_label_ids[i] in unseen_entity_ids:
-                    nb_unseen_samples += 1
-                rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
-                map += 1 / rank
-                if rank <= 10:
-                    r_10 += 1
-                    if rank == 1:
-                        p_1 += 1
+            _, logits = model(**mention_inputs)
+            preds = logits.detach().cpu().numpy()
+            out_label_ids = batch[6].reshape(-1).detach().cpu().numpy()
+            sorted_preds = np.flip(np.argsort(preds), axis=1)
+
+            # for b_idx in range(sorted_preds.size(0)):
+            for i, sorted_pred in enumerate(sorted_preds):
+                if out_label_ids[i] != -1:
+                    if out_label_ids[i] != -100:
                         if out_label_ids[i] in unseen_entity_ids:
-                            unseen_p1 += 1
-                nb_normalized += 1
-        nb_samples += preds.shape[0]
-
-    eval_loss = eval_loss / nb_eval_steps
+                            nb_unseen_samples += 1
+                        rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
+                        map += 1 / rank
+                        if rank <= 10:
+                            r_10 += 1
+                            if rank == 1:
+                                p_1 += 1
+                                if out_label_ids[i] in unseen_entity_ids:
+                                    unseen_p1 += 1
+                        nb_normalized += 1
+                    nb_samples += 1
+        nb_eval_steps += 1
 
     # Unnormalized precision
     p_1_unnormalized = p_1 / nb_samples
@@ -401,7 +404,6 @@ def evaluate(args, model, tokenizer, prefix=""):
 
     # Unseen accuracy
     unseen_acc = unseen_p1 / nb_unseen_samples
-
 
     print("P@1 Unnormalized = ", p_1_unnormalized)
     print("MAP Unnormalized = ", map_unnormalized)
@@ -474,6 +476,9 @@ def load_and_cache_examples(args, tokenizer, model=None):
     all_candidate_token_ids_2 = torch.tensor([f.candidate_token_ids_2 if f.candidate_token_ids_2 is not None else [0] for f in features], dtype=torch.long)
     all_candidate_token_masks_2 = torch.tensor([f.candidate_token_masks_2 if f.candidate_token_masks_2 is not None else [0] for f in features], dtype=torch.long)
     all_labels = torch.tensor([f.label_ids for f in features], dtype=torch.long)
+    all_mention_start_indices = torch.tensor([f.mention_start_indices for f in features], dtype=torch.long)
+    all_mention_end_indices = torch.tensor([f.mention_end_indices for f in features], dtype=torch.long)
+    all_num_mentions = torch.tensor([f.num_mentions for f in features], dtype=torch.long)
 
     dataset = TensorDataset(all_mention_token_ids,
                             all_mention_token_masks,
@@ -481,7 +486,11 @@ def load_and_cache_examples(args, tokenizer, model=None):
                             all_candidate_token_masks_1,
                             all_candidate_token_ids_2,
                             all_candidate_token_masks_2,
-                            all_labels)
+                            all_labels,
+                            all_mention_start_indices,
+                            all_mention_end_indices,
+                            all_num_mentions,
+                            )
     return dataset, (all_entities, all_entity_token_ids, all_entity_token_masks)
 
 
@@ -544,7 +553,7 @@ def main():
     )
     parser.add_argument(
         "--max_seq_length",
-        default=128,
+        default=512,
         type=int,
         help="The maximum total input sequence length after tokenization. Sequences longer "
         "than this will be truncated, sequences shorter will be padded.",
@@ -558,7 +567,7 @@ def main():
         "--do_lower_case", action="store_true", default=False, help="Set this flag if you are using an uncased model."
     )
 
-    parser.add_argument("--per_gpu_train_batch_size", default=2, type=int, help="Batch size per GPU/CPU for training.")
+    parser.add_argument("--per_gpu_train_batch_size", default=1, type=int, help="Batch size per GPU/CPU for training.")
     parser.add_argument(
         "--per_gpu_eval_batch_size", default=1, type=int, help="Batch size per GPU/CPU for evaluation."
     )
@@ -568,7 +577,7 @@ def main():
         default=1,
         help="Number of updates steps to accumulate before performing a backward/update pass.",
     )
-    parser.add_argument("--learning_rate", default=5e-5, type=float, help="The initial learning rate for Adam.")
+    parser.add_argument("--learning_rate", default=1e-5, type=float, help="The initial learning rate for Adam.")
     parser.add_argument("--weight_decay", default=0.0, type=float, help="Weight decay if we apply some.")
     parser.add_argument("--adam_epsilon", default=1e-8, type=float, help="Epsilon for Adam optimizer.")
     parser.add_argument("--max_grad_norm", default=1.0, type=float, help="Max gradient norm.")
@@ -583,19 +592,18 @@ def main():
     )
     parser.add_argument("--warmup_steps", default=0, type=int, help="Linear warmup over warmup_steps.")
 
-    parser.add_argument("--logging_steps", type=int, default=10000, help="Log every X updates steps.")
-    parser.add_argument("--save_steps", type=int, default=10000, help="Save checkpoint every X updates steps.")
+    parser.add_argument("--logging_steps", type=int, default=5000, help="Log every X updates steps.")
+    parser.add_argument("--save_steps", type=int, default=5000, help="Save checkpoint every X updates steps.")
     parser.add_argument(
         "--eval_all_checkpoints",
         action="store_true",
         help="Evaluate all checkpoints starting with the same prefix as model_name ending and ending with step number",
     )
     parser.add_argument("--no_cuda", action="store_true", help="Avoid using CUDA when available")
-    parser.add_argument("--n_gpu", type=int, default=1, help="Number of gpus to use when CUDA is available")
+    parser.add_argument("--n_gpu", type=int, default=1, help="Number of GPUs to use when available")
     parser.add_argument(
         "--overwrite_output_dir", action="store_true", help="Overwrite the content of the output directory"
     )
-
     parser.add_argument(
         "--overwrite_cache", action="store_true", help="Overwrite the cached training and evaluation sets"
     )
@@ -619,6 +627,9 @@ def main():
     )
     parser.add_argument(
         "--num_candidates", type=int, default=10, help="Number of candidates to consider per mention"
+    )
+    parser.add_argument(
+        "--num_max_mentions", type=int, default=8, help="Maximum number of mentions in a document"
     )
 
     parser.add_argument(
@@ -671,7 +682,8 @@ def main():
     # Setup CUDA, GPU & distributed training
     if args.local_rank == -1 or args.no_cuda:
         device = torch.device("cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
-        args.n_gpu = 0 if args.no_cuda else args.n_gpu #torch.cuda.device_count()
+        if args.no_cuda:
+            args.n_gpu = 0
     else:  # Initializes the distributed backend which will take care of sychronizing nodes/GPUs
         torch.cuda.set_device(args.local_rank)
         device = torch.device("cuda", args.local_rank)
@@ -726,7 +738,6 @@ def main():
     pretrained_bert.resize_token_embeddings(len(tokenizer))
 
     model = DualEncoderBert(config, pretrained_bert)
-    # print(model)
 
     if args.local_rank == 0:
         torch.distributed.barrier()  # Make sure only the first process in distributed training will download model & vocab
@@ -777,7 +788,6 @@ def main():
         if args.eval_all_checkpoints:
             checkpoints = [ckpt for ckpt in os.listdir(args.output_dir) \
                            if os.path.isdir(os.path.join(args.output_dir, ckpt))]
-            checkpoints = checkpoints[:10]
             logging.getLogger("transformers.modeling_utils").setLevel(logging.WARN)  # Reduce logging
         logger.info("Evaluate the following checkpoints: %s", checkpoints)
         for checkpoint in checkpoints:
@@ -795,3 +805,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

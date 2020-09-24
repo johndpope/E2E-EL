@@ -33,7 +33,7 @@ from transformers import (
     get_linear_schedule_with_warmup,
 )
 
-from utils_FullTransformer import get_examples, convert_examples_to_features
+from utils_FullTransformer import get_examples, convert_examples_to_features, get_unseen_entity_ids
 
 from modeling_bert import BertModel
 from tokenization_bert import BertTokenizer
@@ -45,13 +45,11 @@ from torch.utils.tensorboard import SummaryWriter
 logger = logging.getLogger(__name__)
 
 ALL_MODELS = sum(
-    (tuple(conf.pretrained_config_archive_map.keys()) for conf in (BertConfig, DistilBertConfig, XLMConfig)), ()
+    (tuple(conf.pretrained_config_archive_map.keys()) for conf in [BertConfig]), ()
 )
 
 MODEL_CLASSES = {
     "bert": (BertConfig, BertModel, BertTokenizer),
-    "xlm": (XLMConfig, XLMForSequenceClassification, XLMTokenizer),
-    "distilbert": (DistilBertConfig, DistilBertForSequenceClassification, DistilBertTokenizer),
 }
 
 
@@ -256,6 +254,8 @@ def evaluate(args, config, model, tokenizer, prefix=""):
     if not os.path.exists(eval_output_dir) and args.local_rank in [-1, 0]:
          os.makedirs(eval_output_dir)
 
+    unseen_entity_ids = get_unseen_entity_ids(args.data_dir)
+
     args.eval_batch_size = args.per_gpu_eval_batch_size * max(1, args.n_gpu)
     # Note that DistributedSampler samples randomly
     eval_sampler = SequentialSampler(eval_dataset)
@@ -278,6 +278,9 @@ def evaluate(args, config, model, tokenizer, prefix=""):
     map = 0
     nb_samples = 0
     nb_normalized = 0
+    unseen_p1 = 0
+    nb_unseen_samples = 0
+
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
         model.eval()
         batch = tuple(t.to(args.device) for t in batch)
@@ -298,10 +301,14 @@ def evaluate(args, config, model, tokenizer, prefix=""):
             sorted_preds = np.flip(np.argsort(preds), axis=1)
             for i, sorted_pred in enumerate(sorted_preds):
                 if out_label_ids[i] != -100:
+                    if out_label_ids[i] in unseen_entity_ids:
+                        nb_unseen_samples += 1
                     rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
                     map += 1 / rank
                     if rank == 1:
                         p_1 += 1
+                        if out_label_ids[i] in unseen_entity_ids:
+                            unseen_p1 += 1
                     nb_normalized += 1
             nb_samples += preds.shape[0]
         else:
@@ -310,10 +317,14 @@ def evaluate(args, config, model, tokenizer, prefix=""):
             sorted_preds = np.flip(np.argsort(preds), axis=1)
             for i, sorted_pred in enumerate(sorted_preds):
                 if out_label_ids[i] != -100:
+                    if out_label_ids[i] in unseen_entity_ids:
+                        nb_unseen_samples += 1
                     rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
                     map += 1 / rank
                     if rank == 1:
                         p_1 += 1
+                        if out_label_ids[i] in unseen_entity_ids:
+                            unseen_p1 += 1
                     nb_normalized += 1
             nb_samples += preds.shape[0]
 
@@ -327,13 +338,22 @@ def evaluate(args, config, model, tokenizer, prefix=""):
     p_1_normalized = p_1 / nb_normalized
     map_normalized = map / nb_normalized
 
+    # Unseen accuracy
+    unseen_acc = unseen_p1 / nb_unseen_samples
+
     print("P@1 Unnormalized = ", p_1_unnormalized)
     print("MAP Unnormalized = ", map_unnormalized)
     print("P@1 Normaliized = ", p_1_normalized)
     print("MAP Normalized = ", map_normalized)
+    print("Unseen Accuracy = ", unseen_acc)
 
     results["P@1"] = p_1_unnormalized
     results["MAP"] = map_unnormalized
+    results["P@1_unmorm"] = p_1_unnormalized
+    results["MAP_unnorm"] = map_unnormalized
+    results["P@1_norm"] = p_1_normalized
+    results["MAP_norm"] = map_normalized
+    results["unseen_acc"] = unseen_acc
 
     return results
 
@@ -526,6 +546,7 @@ def main():
         help="Evaluate all checkpoints starting with the same prefix as model_name ending and ending with step number",
     )
     parser.add_argument("--no_cuda", action="store_true", help="Avoid using CUDA when available")
+    parser.add_argument("--n_gpu", type=int, default=1, help="Number of GPUs to use when available")
     parser.add_argument(
         "--overwrite_output_dir", action="store_true", help="Overwrite the content of the output directory"
     )
@@ -588,7 +609,7 @@ def main():
     # Setup CUDA, GPU & distributed training
     if args.local_rank == -1 or args.no_cuda:
         device = torch.device("cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
-        args.n_gpu = 0 if args.no_cuda else 1 #torch.cuda.device_count()
+        args.n_gpu = 0 if args.no_cuda else args.n_gpu #torch.cuda.device_count()
     else:  # Initializes the distributed backend which will take care of sychronizing nodes/GPUs
         torch.cuda.set_device(args.local_rank)
         device = torch.device("cuda", args.local_rank)

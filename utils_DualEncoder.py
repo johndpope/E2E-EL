@@ -11,6 +11,8 @@ import torch
 def get_examples(data_dir, mode):
     if 'NCBI' in data_dir:
         entity_path = './data/NCBI_Disease/raw_data/entities.txt'
+    elif 'BC5CDR' in data_dir:
+        entity_path = './data/BC5CDR/raw_data/entities.txt'
     elif 'st21pv' in data_dir:
         entity_path = './data/MM_st21pv_CUI/raw_data/entities.txt'
     else:
@@ -40,6 +42,71 @@ def get_examples(data_dir, mode):
         print("mentions {} dataset is done :)".format(mode))
 
     return ments, docs, entities
+
+def get_unseen_entity_ids(data_dir):
+    if 'NCBI' in data_dir:
+        entity_path = './data/NCBI_Disease/raw_data/entities.txt'
+        train_path = './data/NCBI_Disease/raw_data/train_corpus.txt'
+        dev_path = './data/NCBI_Disease/raw_data/dev_corpus.txt'
+        test_path = './data/NCBI_Disease/raw_data/test_corpus.txt'
+    elif 'BC5CDR' in data_dir:
+        entity_path = './data/BC5CDR/raw_data/entities.txt'
+        train_path = './data/BC5CDR/raw_data/train_corpus.txt'
+        dev_path = './data/BC5CDR/raw_data/dev_corpus.txt'
+        test_path = './data/BC5CDR/raw_data/test_corpus.txt'
+
+    elif 'st21pv' in data_dir:
+        entity_path = './data/MM_st21pv_CUI/raw_data/entities.txt'
+        train_path = './data/MM_st21pv_CUI/raw_data/train_corpus.txt'
+        dev_path = './data/MM_st21pv_CUI/raw_data/dev_corpus.txt'
+        test_path = './data/MM_st21pv_CUI/raw_data/test_corpus.txt'
+    else:
+        entity_path = './data/MM_full_CUI/raw_data/entities.txt'
+        train_path = './data/MM_full_CUI/raw_data/train_corpus.txt'
+        dev_path = './data/MM_full_CUI/raw_data/dev_corpus.txt'
+        test_path = './data/MM_full_CUI/raw_data/test_corpus.txt'
+
+    all_entities = {}
+    with open(entity_path) as f:
+        for line in f:
+            cols = line.strip().split('\t')
+            entity = cols[0]
+            all_entities[entity] = 1
+
+    seen_entities = {}
+    with open(train_path) as f:
+        for line in f:
+            cols = line.strip().split('\t')
+            if len(cols) == 6:
+                target_entity = cols[-1]
+                if target_entity not in seen_entities:
+                    seen_entities[target_entity] = 1
+
+    with open(dev_path) as f:
+        for line in f:
+            cols = line.strip().split('\t')
+            if len(cols) == 6:
+                target_entity = cols[-1]
+                if target_entity not in seen_entities:
+                    seen_entities[target_entity] = 1
+
+    unseen_entities = {}
+    with open(test_path) as f:
+        for line in f:
+            cols = line.strip().split('\t')
+            if len(cols) == 6:
+                target_entity = cols[-1]
+                if target_entity not in seen_entities:
+                    unseen_entities[target_entity] = 1
+
+    all_entities = list(all_entities.keys())
+
+    unseen_entity_ids = {}
+    for u_e in unseen_entities:
+        unseen_entity_ids[all_entities.index(u_e)] = None
+
+    return unseen_entity_ids
+
 
 def get_window(prefix, mention, suffix, max_size):
     if len(mention) >= max_size:
@@ -236,7 +303,7 @@ def convert_examples_to_features(
 
         # Build list of candidates
         label_candidate_id = mentions[mention_id]['label_candidate_id']
-        if '|' in label_candidate_id: # In NCBI disease dataset, the target candidates can be more than 1 per mention
+        if '|' in label_candidate_id:  # In NCBI disease dataset, the target candidates can be more than 1 per mention
             label_candidate_id = label_candidate_id.split('|')[0]
         elif '+' in label_candidate_id:
             label_candidate_id = label_candidate_id.split('+')[0]

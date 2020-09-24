@@ -9,6 +9,7 @@ import logging
 import os
 import random
 import math
+import json
 
 import numpy as np
 import torch
@@ -33,7 +34,7 @@ from transformers import (
     get_linear_schedule_with_warmup,
 )
 
-from utils_CollectiveEL import get_examples, convert_examples_to_features
+from utils_CollectiveEL import get_examples, convert_examples_to_features, get_unseen_entity_ids
 
 from modeling_bert import BertModel
 from tokenization_bert import BertTokenizer
@@ -292,6 +293,8 @@ def evaluate(args, model, tokenizer, prefix=""):
                                                                                                          tokenizer)
     if not os.path.exists(eval_output_dir) and args.local_rank in [-1, 0]:
          os.makedirs(eval_output_dir)
+        
+    unseen_entity_ids = get_unseen_entity_ids(args.data_dir)
 
     args.eval_batch_size = args.per_gpu_eval_batch_size * max(1, args.n_gpu)
     # Note that DistributedSampler samples randomly
@@ -338,6 +341,8 @@ def evaluate(args, model, tokenizer, prefix=""):
     r_10 = 0
     nb_samples = 0
     nb_normalized = 0
+    unseen_p1 = 0
+    nb_unseen_samples = 0
 
 
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
@@ -372,12 +377,16 @@ def evaluate(args, model, tokenizer, prefix=""):
             for i, sorted_pred in enumerate(sorted_preds):
                 if out_label_ids[i] != -1:
                     if out_label_ids[i] != -100:
+                        if out_label_ids[i] in unseen_entity_ids:
+                            nb_unseen_samples += 1
                         rank = np.where(sorted_pred == out_label_ids[i])[0][0] + 1
                         map += 1 / rank
                         if rank <= 10:
                             r_10 += 1
                             if rank == 1:
                                 p_1 += 1
+                                if out_label_ids[i] in unseen_entity_ids:
+                                    unseen_p1 += 1
                         nb_normalized += 1
                     nb_samples += 1
         nb_eval_steps += 1
@@ -393,14 +402,22 @@ def evaluate(args, model, tokenizer, prefix=""):
     # Recall@10
     recall_10 = r_10 / nb_samples
 
+    # Unseen accuracy
+    unseen_acc = unseen_p1 / nb_unseen_samples
+
     print("P@1 Unnormalized = ", p_1_unnormalized)
     print("MAP Unnormalized = ", map_unnormalized)
     print("P@1 Normaliized = ", p_1_normalized)
     print("MAP Normalized = ", map_normalized)
     print("Recall@10 = ", recall_10)
+    print("Unseen Accuracy = ", unseen_acc)
 
-    results["P@1"] = p_1_unnormalized
-    results["MAP"] = map_unnormalized
+    results["P@1_unmorm"] = p_1_unnormalized
+    results["MAP_unnorm"] = map_unnormalized
+    results["P@1_norm"] = p_1_normalized
+    results["MAP_norm"] = map_normalized
+    results["Recall@10"] = recall_10
+    results["unseen_acc"] = unseen_acc
 
     return results
 
@@ -409,7 +426,10 @@ def load_and_cache_examples(args, tokenizer, model=None):
     if args.local_rank not in [-1, 0] and not evaluate:
         torch.distributed.barrier()  # Make sure only the first process in distributed training process the dataset, and the others will use the cache
 
-    mode = 'train' if args.do_train else 'test'
+    if args.eval_all_checkpoints:
+        mode = 'dev'
+    else:
+        mode = 'train' if args.do_train else 'test'
     # Load data features from cache or dataset file
     cached_features_file = os.path.join(
         args.data_dir,
@@ -766,22 +786,22 @@ def main():
         tokenizer = tokenizer_class.from_pretrained(args.output_dir, do_lower_case=args.do_lower_case)
         checkpoints = [args.output_dir]
         if args.eval_all_checkpoints:
-            checkpoints = list(
-                os.path.dirname(c) for c in sorted(glob.glob(args.output_dir + "/**/" + WEIGHTS_NAME, recursive=True))
-            )
+            checkpoints = [ckpt for ckpt in os.listdir(args.output_dir) \
+                           if os.path.isdir(os.path.join(args.output_dir, ckpt))]
+            checkpoints = checkpoints[:10]
             logging.getLogger("transformers.modeling_utils").setLevel(logging.WARN)  # Reduce logging
         logger.info("Evaluate the following checkpoints: %s", checkpoints)
         for checkpoint in checkpoints:
             global_step = checkpoint.split("-")[-1] if len(checkpoints) > 1 else ""
             prefix = checkpoint.split("/")[-1] if checkpoint.find("checkpoint") != -1 else ""
-            model.load_state_dict(torch.load(os.path.join(checkpoint, 'pytorch_model-1000000.bin')))
+            model.load_state_dict(torch.load(os.path.join(args.output_dir, checkpoint, 'pytorch_model-1000000.bin')))
             model.to(args.device)
             result = evaluate(args, model, tokenizer, prefix=prefix)
             result = dict((k + "_{}".format(global_step), v) for k, v in result.items())
             results.update(result)
-
+    with open(os.path.join(args.output_dir, 'results.json'), 'w+') as f:
+        json.dump(results, f)
     return results
-
 
 if __name__ == "__main__":
     main()
