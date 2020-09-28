@@ -126,7 +126,7 @@ def get_marked_mentions(document_id, mentions, docs,  max_seq_length, tokenizer)
         # Tokenize the mention and add it to the tokenized text
         mention_tokens = tokenizer.tokenize(extracted_mention)
         tokenized_text += mention_tokens
-        # Sequence tags for mention tokens -- first token B, other okens I
+        # Sequence tags for mention tokens -- first token B, other tokens I
         for j, token in enumerate(mention_tokens):
             if j == 0:
                 sequence_tags.append('B')

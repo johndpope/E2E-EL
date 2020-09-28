@@ -171,34 +171,46 @@ def train(args, model, tokenizer):
 
             model.train()
             batch = tuple(t.to(args.device) for t in batch)
+
+            ner_inputs = {"args": args,
+                          "mention_token_ids": batch[0],
+                          "mention_token_masks": batch[1],
+                          "seq_tags": batch[10],
+                          "mode": 'ner',
+                          }
+
             if args.use_hard_and_random_negatives:
-                mention_inputs = {"args": args,
-                                  "mention_token_ids": batch[0],
-                                  "mention_token_masks": batch[1],
-                                  "mention_start_indices": batch[7],
-                                  "mention_end_indices": batch[8],
-                                  "candidate_token_ids_1": batch[2],
-                                  "candidate_token_masks_1": batch[3],
-                                  "candidate_token_ids_2": batch[4],
-                                  "candidate_token_masks_2": batch[5],
-                                  "labels": batch[6],
-                                  "seq_tags": batch[10],
-                                  }
+                ned_inputs = {"args": args,
+                              "mention_token_ids": batch[0],
+                              "mention_token_masks": batch[1],
+                              "mention_start_indices": batch[7],
+                              "mention_end_indices": batch[8],
+                              "candidate_token_ids_1": batch[2],
+                              "candidate_token_masks_1": batch[3],
+                              "candidate_token_ids_2": batch[4],
+                              "candidate_token_masks_2": batch[5],
+                              "labels": batch[6]
+                              }
             else:
-                mention_inputs = {"args": args,
-                                  "mention_token_ids": batch[0],
-                                  "mention_token_masks": batch[1],
-                                  "mention_start_indices": batch[7],
-                                  "mention_end_indices": batch[8],
-                                  "candidate_token_ids_1": batch[2],
-                                  "candidate_token_masks_1": batch[3],
-                                  "labels": batch[6],
-                                  "seq_tags": batch[10]
-                                  }
+                ned_inputs = {"args": args,
+                              "mention_token_ids": batch[0],
+                              "mention_token_masks": batch[1],
+                              "mention_start_indices": batch[7],
+                              "mention_end_indices": batch[8],
+                              "candidate_token_ids_1": batch[2],
+                              "candidate_token_masks_1": batch[3],
+                              "labels": batch[6],
+                              "mode": 'ned',
+                              }
+
             if args.only_tagging:
-                loss = model(**mention_inputs)
+                loss = model.forward(**ner_inputs)
             else:
-                loss, logits = model(**mention_inputs)
+                # Randomly choose whether to do tagging or NED for the current batch
+                if random.random() <= 0.5:
+                    loss = model.forward(**ner_inputs)
+                else:
+                    loss, _ = model.forward(**ned_inputs)
 
             if args.n_gpu > 1:
                 loss = loss.mean()  # mean() to average on multi-gpu parallel training
@@ -405,6 +417,11 @@ def evaluate(args, model, tokenizer, prefix=""):
                     end_indices.append(end_index)
                     mention_found = False
 
+            # If the last token(s) are a mention
+            if mention_found:
+                start_indices.append(start_index)
+                end_indices.append(end_index)
+
             b_start_indices.append(start_indices)
             b_end_indices.append(end_indices)
         return b_start_indices, b_end_indices
@@ -493,8 +510,9 @@ def evaluate(args, model, tokenizer, prefix=""):
             doc_input = {"args": args,
                          "mention_token_ids": batch[0],
                          "mention_token_masks": batch[1],
+                         "mode": 'ner',
                          }
-            tag_logits = model(**doc_input)
+            tag_logits = model.forward(**doc_input)
             predicted_tags = torch.argmax(tag_logits, dim=2).detach() #.cpu().numpy()
 
             # Find the length of the docs (number of tokens without [PAD])
@@ -535,7 +553,7 @@ def evaluate(args, model, tokenizer, prefix=""):
                                   "mention_start_indices": pred_mention_start_indices, # batch[7],  #overlapping_start_indices,
                                   "mention_end_indices": pred_mention_end_indices, # batch[8], # overlapping_end_indices,
                                   "all_candidate_embeddings": all_candidate_embeddings,
-                                  "seq_tags": predicted_tags, # Not used during inference, just a place holder
+                                  "mode": 'ned',
                                   }
             else:
                 mention_inputs = {"args": args,
@@ -545,7 +563,7 @@ def evaluate(args, model, tokenizer, prefix=""):
                                   "mention_end_indices": batch[8],
                                   "candidate_token_ids_1": batch[2],
                                   "candidate_token_masks_1": batch[3],
-                                  "seq_tags": predicted_tags,
+                                  "mode": 'ned',
                                   }
 
             _, logits = model(**mention_inputs)
