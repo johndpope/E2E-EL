@@ -84,7 +84,8 @@ class DualEncoderBert(BertPreTrainedModel):
                 mention_embeddings = self.mlp(torch.cat([mention_start_embd, mention_end_embd], dim=2))
                 mention_embeddings = mention_embeddings.reshape(-1, 1, self.hidden_size)
 
-            if candidate_token_ids_1 is not None:
+            ''' For random negative training and  For tf-idf candidates based training and evaluation'''
+            if all_candidate_embeddings is None and candidate_token_ids_2 is None:
                 b_size, n_c, seq_len = candidate_token_ids_1.size()
                 candidate_token_ids_1 = candidate_token_ids_1.reshape(-1, seq_len)  # B(N*C) X L
                 candidate_token_masks_1 = candidate_token_masks_1.reshape(-1, seq_len)  # B(N*C) X L
@@ -111,25 +112,57 @@ class DualEncoderBert(BertPreTrainedModel):
 
                 return linking_loss, linker_logits
 
-            # When a second set of candidates is present
-            if candidate_token_ids_2 is not None:
-                b_size, n_c, seq_len = candidate_token_ids_2.size()
+            # For hard and random negative training
+            elif candidate_token_ids_1 is not None and candidate_token_ids_2 is not None:
+                # Concatenate hard negative candidates with random negatives
+                b_size, _, seq_len = candidate_token_ids_1.size()
+                candidate_token_ids_1 = candidate_token_ids_1.reshape(b_size, -1, args.num_candidates, seq_len)
+                candidate_token_masks_1 = candidate_token_masks_1.reshape(b_size, -1, args.num_candidates, seq_len)
+                candidate_token_ids_2 = candidate_token_ids_2.reshape(b_size, -1, args.num_candidates, seq_len)
+                candidate_token_masks_2 = candidate_token_masks_2.reshape(b_size, -1, args.num_candidates, seq_len)
 
-                # Mask off the padding candidates
-                candidate_mask = torch.sum(candidate_token_ids_2, dim=2)  # B X C
+                candidate_token_ids = torch.cat([candidate_token_ids_1, candidate_token_ids_2], dim=2)
+                candidate_token_masks = torch.cat([candidate_token_masks_1, candidate_token_masks_2], dim=2)
+
+                candidate_token_ids = candidate_token_ids.reshape(b_size, -1, seq_len)
+                candidate_token_masks = candidate_token_masks.reshape(b_size, -1, seq_len)
+
+                b_size, n_c, seq_len = candidate_token_ids.size()
+
+                # Mask off the padding candidates (because there maybe less than 'num_candidates' hard negatives)
+                candidate_mask = torch.sum(candidate_token_ids, dim=2)  # B X C
                 non_zeros = torch.where(candidate_mask > 0)
                 candidate_mask[non_zeros] = 1  # B X C
+                candidate_mask = candidate_mask.float()
 
-                candidate_token_ids_2 = candidate_token_ids_2.reshape(-1, seq_len)  # BC X L
-                candidate_token_masks_2 = candidate_token_masks_2.reshape(-1, seq_len)  # BC X L
+                candidate_token_ids = candidate_token_ids.reshape(-1, seq_len)  # BC X L
+                candidate_token_masks = candidate_token_masks.reshape(-1, seq_len)  # BC X L
 
                 candidate_outputs = self.bert_candidate.bert(
-                    input_ids=candidate_token_ids_2,
-                    attention_mask=candidate_token_masks_2,
+                    input_ids=candidate_token_ids,
+                    attention_mask=candidate_token_masks,
                 )
                 pooled_candidate_outputs = candidate_outputs[1]
 
-                return pooled_candidate_outputs
+                candidate_embeddings = pooled_candidate_outputs.reshape(-1, 2 * args.num_candidates,
+                                                                        self.hidden_size)  # BN X 2*C X H
+
+                linker_logits = torch.bmm(mention_embeddings, candidate_embeddings.transpose(1, 2))
+                linker_logits = linker_logits.squeeze(1)  # BN X C
+
+                # logits = logits.reshape(b_size, n_c)  # B X C
+
+                # Mask off the padding candidates
+                candidate_mask = candidate_mask.reshape(-1, 2 * args.num_candidates)
+                linker_logits = linker_logits - (1.0 - candidate_mask) * 1e31
+
+                labels = labels.reshape(-1)
+
+                linker_loss = self.loss_fn(linker_logits, labels)
+                # Normalize the loss
+                num_mentions = torch.where(labels >= 0)[0].size(0)
+                linker_loss = linker_loss / num_mentions
+                return linker_loss, linker_logits
 
             if all_candidate_embeddings is not None:
                 b_size = mention_embeddings.size(0)

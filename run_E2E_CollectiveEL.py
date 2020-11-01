@@ -189,7 +189,8 @@ def train(args, model, tokenizer):
                               "candidate_token_masks_1": batch[3],
                               "candidate_token_ids_2": batch[4],
                               "candidate_token_masks_2": batch[5],
-                              "labels": batch[6]
+                              "labels": batch[6],
+                              "mode": 'ned',
                               }
             else:
                 ned_inputs = {"args": args,
@@ -203,14 +204,20 @@ def train(args, model, tokenizer):
                               "mode": 'ned',
                               }
 
-            if args.only_tagging:
+            if args.ner:
                 loss = model.forward(**ner_inputs)
-            else:
+            elif args.alternate_batch:
                 # Randomly choose whether to do tagging or NED for the current batch
                 if random.random() <= 0.5:
                     loss = model.forward(**ner_inputs)
                 else:
                     loss, _ = model.forward(**ned_inputs)
+            elif args.ner_and_ned:
+                ner_loss = model.forward(**ner_inputs)
+                ned_loss, _ = model.forward(**ned_inputs)
+                loss = ner_loss + ned_loss
+            else:
+                logger.info(" Specify a training protocol from (ner, alternate_batch, ner_and_ned)")
 
             if args.n_gpu > 1:
                 loss = loss.mean()  # mean() to average on multi-gpu parallel training
@@ -882,7 +889,13 @@ def main():
         "--num_max_mentions", type=int, default=8, help="Maximum number of mentions in a document"
     )
     parser.add_argument(
-        "--only_tagging", type=bool, default=False, help="Model will perform only BIO tagging"
+        "--ner", type=bool, default=False, help="Model will perform only BIO tagging"
+    )
+    parser.add_argument(
+        "--alternate_batch", type=bool, default=False, help="Model will perform either BIO tagging or entity linking per batch during training"
+    )
+    parser.add_argument(
+        "--ner_and_ned", type=bool, default=True, help="Model will perform both BIO tagging and entity linking per batch during training"
     )
 
     parser.add_argument(
