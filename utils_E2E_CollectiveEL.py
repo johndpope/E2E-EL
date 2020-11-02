@@ -245,11 +245,11 @@ def convert_examples_to_features(
         all_candidate_embeddings = torch.cat(all_candidate_embeddings, dim=0)
 
         # Indexing for faster search (using FAISS)
-        d = all_candidate_embeddings.size(1)
-        all_candidate_index = faiss.IndexFlatL2(d)  # build the index, d=size of vectors
+        # d = all_candidate_embeddings.size(1)
+        # all_candidate_index = faiss.IndexFlatL2(d)  # build the index, d=size of vectors
         # here we assume `all_candidate_embeddings` contains a n-by-d numpy matrix of type float32
-        all_candidate_embeddings = all_candidate_embeddings.cpu().detach().numpy()
-        all_candidate_index.add(all_candidate_embeddings)
+        # all_candidate_embeddings = all_candidate_embeddings.cpu().detach().numpy()
+        # all_candidate_index.add(all_candidate_embeddings)
 
     if args.use_hard_and_random_negatives:
         # Get the existing hard negatives per mention
