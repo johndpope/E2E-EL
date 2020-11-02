@@ -551,8 +551,6 @@ def evaluate(args, model, tokenizer, prefix=""):
             pred_mention_start_indices = torch.tensor(pred_mention_start_indices).long().to(args.device)
             pred_mention_end_indices = torch.tensor(pred_mention_end_indices).long().to(args.device)
 
-
-
             if args.use_all_candidates:
                 mention_inputs = {"args": args,
                                   "mention_token_ids": batch[0],

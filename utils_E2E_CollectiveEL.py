@@ -312,31 +312,33 @@ def convert_examples_to_features(
         candidates = []
         candidates_2 = None
         if args.do_train:
-            for m_idx, m in enumerate(mentions[document_id]):
-                m_candidates = []
-                m_candidates.append(label_candidate_ids[m_idx])  # positive candidate
-
-                if args.use_random_candidates:  # Random negatives
+            if args.use_random_candidates:  # Random negatives
+                for m_idx, m in enumerate(mentions[document_id]):
+                    m_candidates = []
+                    m_candidates.append(label_candidate_ids[m_idx])  # positive candidate
                     candidate_pool = set(entities.keys()) - set([label_candidate_ids[m_idx]])
                     negative_candidates = random.sample(candidate_pool, args.num_candidates - 1)
                     m_candidates += negative_candidates
                     candidates.append(m_candidates)
 
-                elif args.use_tfidf_candidates:  # TF-IDF negatives
+            elif args.use_tfidf_candidates:  # TF-IDF negatives
+                for m_idx, m in enumerate(mentions[document_id]):
+                    m_candidates = []
+                    m_candidates.append(label_candidate_ids[m_idx])  # positive candidate
                     for c in m["tfidf_candidates"]:
                         if c != label_candidate_ids[m_idx] and len(m_candidates) < args.num_candidates:
                             m_candidates.append(c)
                     candidates.append(m_candidates)
 
-                elif args.use_hard_and_random_negatives:  # Hard and random negatives
-                    # First get the random negatives
-                    for m_idx, m in enumerate(mentions[document_id]):
-                        m_candidates = []
-                        m_candidates.append(label_candidate_ids[m_idx])  # positive candidate
-                        candidate_pool = set(entities.keys()) - set([label_candidate_ids[m_idx]])
-                        negative_candidates = random.sample(candidate_pool, args.num_candidates - 1)
-                        m_candidates += negative_candidates
-                        candidates.append(m_candidates)
+            elif args.use_hard_and_random_negatives:
+                # First get the random negatives
+                for m_idx, m in enumerate(mentions[document_id]):
+                    m_candidates = []
+                    m_candidates.append(label_candidate_ids[m_idx])  # positive candidate
+                    candidate_pool = set(entities.keys()) - set([label_candidate_ids[m_idx]])
+                    negative_candidates = random.sample(candidate_pool, args.num_candidates - 1)
+                    m_candidates += negative_candidates
+                    candidates.append(m_candidates)
 
                     # Then get the hard negative
                     if model is None:
