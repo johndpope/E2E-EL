@@ -235,10 +235,16 @@ def convert_examples_to_features(
                     zip(all_entity_token_ids, all_entity_token_masks)):
                 candidate_token_ids = torch.LongTensor([entity_tokens]).to(args.device)
                 candidate_token_masks = torch.LongTensor([entity_tokens_masks]).to(args.device)
-                candidate_outputs = model.bert_candidate.bert(
-                    input_ids=candidate_token_ids,
-                    attention_mask=candidate_token_masks,
-                )
+                if hasattr(model, "module"):
+                    candidate_outputs = model.module.bert_candidate.bert(
+                        input_ids=candidate_token_ids,
+                        attention_mask=candidate_token_masks,
+                    )
+                else:
+                    candidate_outputs = model.bert_candidate.bert(
+                        input_ids=candidate_token_ids,
+                        attention_mask=candidate_token_masks,
+                    )
                 candidate_embedding = candidate_outputs[1]
                 all_candidate_embeddings.append(candidate_embedding)
 
