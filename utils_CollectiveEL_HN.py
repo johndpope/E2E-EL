@@ -16,6 +16,8 @@ def get_examples(data_dir, mode):
         entity_path = './data/BC5CDR/raw_data/entities.txt'
     elif 'st21pv' in data_dir:
         entity_path = './data/MM_st21pv_CUI/raw_data/entities.txt'
+    elif 'aida' in data_dir:
+        entity_path = './data/aida-yago2-dataset/raw_data/entities.txt'
     else:
         entity_path = './data/MM_full_CUI/raw_data/entities.txt'
     entities = {}
