@@ -1,0 +1,5598 @@
+11867	N/A	Germany
+31717	N/A	United Kingdom
+3708	N/A	Brussels
+9974	N/A	European Commission
+9317	N/A	European Union
+626779	N/A	Franz Fischler
+5843419	N/A	France
+19344418	N/A	Bovine spongiform encephalopathy
+26667	N/A	Spain
+6394317	N/A	Loyola de Palacio
+9239	N/A	Europe
+3295	N/A	Bonn
+16095	N/A	Jimi Hendrix
+17867	N/A	London
+3434750	N/A	United States
+9316	N/A	England
+39470	N/A	Nottingham
+4689264	N/A	Australia
+5405	N/A	People\u0027s Republic of China
+25734	N/A	Republic of China
+18603746	N/A	Beijing
+57648	N/A	Taipei
+91052	N/A	Taiwan Strait
+31750	N/A	Ukraine
+140551	N/A	Lien Chan
+7453497	N/A	Ministry of Foreign Affairs of the People\u0027s Republic of China
+18998750	N/A	Reuters
+263168	N/A	Xinhua News Agency
+921919	N/A	Association for Relations Across the Taiwan Straits
+10992	N/A	Frankfurt am Main
+32413	N/A	Volkswagen
+22284	N/A	Opel
+12102	N/A	General Motors
+11095	N/A	Ford Motor Company
+24365	N/A	Porsche
+12108	N/A	Greece
+1216	N/A	Athens
+393824	N/A	Costas Simitis
+13871790	N/A	Kostas Skandalidis
+2092024	N/A	HypoVereinsbank
+5058739	N/A	Sweden
+7515849	N/A	Syria
+879212	N/A	Tartus
+9282173	N/A	Israel
+16043	N/A	Jerusalem
+17944843	N/A	Itamar Rabinovich
+108956	N/A	Washington\u002c D\u002eC\u002e
+2820017	N/A	Kol Yisrael
+8320263	N/A	Eliyahu Ben\u002dElissar
+8087628	N/A	Egypt
+206984	N/A	Likud
+70843	N/A	Hafez al\u002dAssad
+1256116	N/A	David Levy \u0028Israeli politician\u0029
+56472	N/A	Benjamin Netanyahu
+7515865	N/A	Golan Heights
+19323	N/A	Middle East
+5042765	N/A	God
+3550889	N/A	Channel 2 \u0028Israel\u0029
+25391	N/A	Russia
+22936	N/A	Poland
+17633	N/A	Libya
+57659	N/A	Tunis
+14653	N/A	Iran
+4492	N/A	Baghdad
+7515928	N/A	Iraq
+17068	N/A	Kurdish people
+5557401	N/A	Massoud Rajavi
+3197182	N/A	Democratic Party of Iranian Kurdistan
+83933	N/A	Resistance movement
+24993749	N/A	Iranian Kurdistan
+679693	N/A	Iraqi Kurdistan
+70789	N/A	Patriotic Union of Kurdistan
+25659771	N/A	Kurdistan Democratic Party
+7515890	N/A	Kuwait
+182000	N/A	Gulf War
+5544058	N/A	Qasr\u002de Shirin
+653537	N/A	Sulaymaniyah
+349303	N/A	Saudi Arabia
+20481	N/A	Manama
+34289	N/A	Yasser Arafat
+241405	N/A	State of Palestine
+48569	N/A	Shimon Peres
+44132	N/A	Ramallah
+12047	N/A	Gaza Strip
+4847484	N/A	Allenby Bridge
+47910	N/A	Jordan River
+14895674	N/A	Erez
+737	N/A	Afghanistan
+69328	N/A	United Arab Emirates
+30635	N/A	Taliban
+211583	N/A	Dubai
+18950756	N/A	Abu Dhabi
+210589	N/A	Sharjah \u0028emirate\u0029
+17260	N/A	Kandahar
+16826	N/A	Kabul
+4611	N/A	Burhanuddin Rabbani
+8821238	N/A	Abu Dhabi \u0028emirate\u0029
+67135	N/A	Tatarstan
+738	N/A	Albania
+29490	N/A	Saddam Hussein
+392566	N/A	Vladimir Zhirinovsky
+82288	N/A	Duma
+31769	N/A	United Nations
+200154	N/A	Umm Qasr
+24761	N/A	Persian Gulf
+17771	N/A	Lebanon
+37428	N/A	Beirut
+2180853	N/A	An\u002dNahar
+13919	N/A	Hezbollah
+4131343	N/A	As\u002dSafir
+4273826	N/A	Ad\u002dDiyar
+23235	N/A	Pakistan
+1812373	N/A	Maronite Church
+351631	N/A	Chicago Mercantile Exchange
+6886	N/A	Chicago
+57690	N/A	Montgomery\u002c Alabama
+303	N/A	Alabama
+2563851	N/A	KinderCare Learning Centers
+885075	N/A	Lehman Brothers
+340894	N/A	Southern New England Telecommunications
+49121	N/A	Phoenix\u002c Arizona
+127071	N/A	Le Monde
+22989	N/A	Paris
+5334607	N/A	Africa
+434931	N/A	Alain Jupp\u00e9
+786920	N/A	National Liberation Front of Corsica
+5714828	N/A	Corsica
+2073198	N/A	Bally Shoe
+3969921	N/A	Sud\u002dPTT
+54314	N/A	France T\u00e9l\u00e9com
+2594976	N/A	Heidrun oil field
+11866976	N/A	Statoil
+22309	N/A	Oslo
+10577	N/A	Finland
+13696	N/A	Helsinki
+850543	N/A	Bank of Finland
+21148	N/A	Netherlands
+844	N/A	Amsterdam
+12701	N/A	Greenwich Mean Time
+262201	N/A	ZDF
+1536678	N/A	World Series of Golf
+129842	N/A	Akron\u002c Ohio
+22199	N/A	Ohio
+1527695	N/A	WGC\u002dBridgestone Invitational
+6280981	N/A	Paul Goydos
+2080225	N/A	Billy Mayfair
+2114665	N/A	Hidemichi Tanaka
+15573	N/A	Japan
+2310551	N/A	Steve Stricker
+1507170	N/A	Justin Leonard
+2295891	N/A	Mark Brooks \u0028golfer\u0029
+5242796	N/A	Tim Herron
+1781343	N/A	Duffy Waldorf
+1388818	N/A	Davis Love III
+4377636	N/A	Anders Forsbrand
+759285	N/A	Nick Faldo
+2810777	N/A	John Cook \u0028golfer\u0029
+1924538	N/A	Steve Jones \u0028golfer\u0029
+592392	N/A	Phil Mickelson
+157447	N/A	Greg Norman
+230467	N/A	Ernie Els
+17416221	N/A	South Africa
+3396339	N/A	Scott Hoch
+8385080	N/A	Clarence Rose
+2567564	N/A	Loren Roberts
+1646050	N/A	Fred Funk
+4337089	N/A	Sven Str\u00fcver
+2080183	N/A	Alex \u010cejka
+654136	N/A	Hal Sutton
+1516564	N/A	Tom Lehman
+5653062	N/A	D\u002e A\u002e Weibring
+4450518	N/A	Brad Bryant
+3738086	N/A	Craig Parry
+5418317	N/A	Stewart Ginn
+1530024	N/A	Corey Pavin
+1261748	N/A	Craig Stadler
+1221065	N/A	Fred Couples
+6189303	N/A	Paul Stankowski
+2157151	N/A	Costantino Rocca
+14532	N/A	Italy
+247955	N/A	Jim Furyk
+21138421	N/A	Satoshi Higashi
+7018258	N/A	Willie Wood \u0028golfer\u0029
+414220	N/A	Shigeki Maruyama
+5845032	N/A	Scott McCarron
+5206729	N/A	Wayne Westner
+585794	N/A	Tom Watson \u0028golfer\u0029
+2384775	N/A	ACF Gloria 1922 Bistri\u0163a
+415846	N/A	Bistri\u0163a
+25445	N/A	Romania
+19137	N/A	Malta
+88178	N/A	UEFA Cup Winners\u0027 Cup
+10424084	N/A	Gilbert Agius
+34361	N/A	York
+25674876	N/A	Mark Prescott
+727606	N/A	Nunthorpe Stakes
+7183198	N/A	George Duffield
+1204250	N/A	Longchamp Racecourse
+826248	N/A	Ascot Racecourse
+18983954	N/A	Jason Weaver \u0028jockey\u0029
+158390	N/A	Newmarket\u002c Suffolk
+24238381	N/A	Southern California Open
+108030	N/A	Carlsbad\u002c California
+5407	N/A	California
+534624	N/A	Arantxa S\u00e1nchez Vicario
+495296	N/A	Kimiko Date Krumm
+3127711	N/A	Sandrine Testud
+1514559	N/A	Ai Sugiyama
+1028366	N/A	Nathalie Tauziat
+15340120	N/A	Wang Shi\u002dting
+127266	N/A	Commack\u002c New York
+8210131	N/A	New York
+391834	N/A	Michael Chang
+913625	N/A	Sergi Bruguera
+4026170	N/A	Michael Joyce \u0028tennis\u0029
+871728	N/A	Richey Reneberg
+4026614	N/A	Martin Damm
+5321	N/A	Czech Republic
+2090929	N/A	Younes El Aynaoui
+19291	N/A	Morocco
+3039956	N/A	Karol Ku\u010dera
+26830	N/A	Slovakia
+2508144	N/A	Hicham Arazi
+16919	N/A	Kenny Dalglish
+298599	N/A	Blackburn Rovers F\u002eC\u002e
+683599	N/A	County Championship
+24597350	N/A	Clarence Park\u002c Weston\u002dsuper\u002dMare
+1176371	N/A	Durham County Cricket Club
+1622178	N/A	Somerset County Cricket Club
+11568817	N/A	Castle Park Cricket Ground
+1622322	N/A	Gloucestershire County Cricket Club
+18417732	N/A	J\u002e Russell \u0028Essex cricketer\u0029
+1622252	N/A	Essex County Cricket Club
+5882	N/A	Cardiff
+1177719	N/A	Kent County Cricket Club
+1622320	N/A	Glamorgan County Cricket Club
+51155	N/A	Leicester
+1622318	N/A	Leicestershire County Cricket Club
+1919370	N/A	Hampshire County Cricket Club
+63734	N/A	Northampton
+1763691	N/A	Sussex County Cricket Club
+530308	N/A	Northamptonshire County Cricket Club
+849500	N/A	Trent Bridge
+667341	N/A	Nottinghamshire County Cricket Club
+766575	N/A	Surrey County Cricket Club
+58681	N/A	Worcester
+667292	N/A	Warwickshire County Cricket Club
+1156428	N/A	Worcestershire County Cricket Club
+1876060	N/A	Headingley Stadium
+869945	N/A	Yorkshire County Cricket Club
+749919	N/A	Lancashire County Cricket Club
+759125	N/A	England cricket team
+759295	N/A	Pakistan national cricket team
+387687	N/A	The Oval
+894433	N/A	Waqar Younis
+896405	N/A	Mushtaq Ahmed
+894437	N/A	Saeed Anwar
+1958830	N/A	Mohammad Akram
+501393	N/A	Wasim Akram
+938863	N/A	Ijaz Ahmed \u0028cricketer\u0029
+896403	N/A	Inzamam\u002dul\u002dHaq
+938861	N/A	Saleem Malik
+3976606	N/A	Asif Mujtaba
+554132	N/A	Moin Khan
+848405	N/A	Duncan Ferguson
+578101	N/A	Scotland national football team
+68736	N/A	Glasgow
+91155	N/A	Everton F\u002eC\u002e
+19961	N/A	Manchester United F\u002eC\u002e
+26994	N/A	Scotland
+69713	N/A	Rangers F\u002eC\u002e
+838461	N/A	Ally McCoist
+126460	N/A	1998 FIFA World Cup
+695226	N/A	Austria national football team
+55866	N/A	Vienna
+883369	N/A	Craig Brown \u0028footballer\u0029
+69708	N/A	Celtic F\u002eC\u002e
+1585914	N/A	Jackie McNamara
+413261	N/A	Roy Keane
+14560	N/A	Republic of Ireland
+11237	N/A	FA Cup
+43223	N/A	Alex Ferguson
+1872219	N/A	Rogers Cup \u0028tennis\u0029
+64646	N/A	Toronto
+998494	N/A	Daniel Nestor
+5042916	N/A	Canada
+166170	N/A	Thomas Muster
+26964606	N/A	Austria
+3943969	N/A	Mikael Tillstr\u00f6m
+194244	N/A	Goran Ivani\u0161evi\u0107
+5573	N/A	Croatia
+1723516	N/A	Wayne Ferreira
+1554049	N/A	Ji\u0159\u00ed Nov\u00e1k
+483554	N/A	Marcelo R\u00edos
+5489	N/A	Chile
+1804967	N/A	Kenneth Carlsen
+76972	N/A	Denmark
+873616	N/A	MaliVai Washington
+17733765	N/A	\u00c0lex Corretja
+871725	N/A	Todd Martin
+3929800	N/A	Renzo Furlan
+261368	N/A	Mark Philippoussis
+1717291	N/A	Marc Rosset
+26748	N/A	Switzerland
+979076	N/A	C\u00e9dric Pioline
+20083437	N/A	Gr\u00e9gory Carraz
+23297	N/A	Patrick Rafter
+1728009	N/A	Alberto Berasategui
+1439769	N/A	Petr Korda
+4076952	N/A	Francisco Clavet
+3930665	N/A	Daniel Vacek
+2598440	N/A	Jason Stoltenberg
+1547951	N/A	Todd Woodbridge
+1954361	N/A	S\u00e9bastien Lareau
+1869714	N/A	Byron Black
+34399	N/A	Zimbabwe
+2805841	N/A	Bohdan Ulihrach
+3929637	N/A	Andrea Gaudenzi
+262030	N/A	Tim Henman
+2515285	N/A	Chris Woodruff
+10300919	N/A	David Millns
+5570494	N/A	Boland cricket team
+6653	N/A	Cape Town
+11402216	N/A	International cricketers of South African origin
+2047474	N/A	Phillip DeFreitas
+31075	N/A	Tirana
+6573050	N/A	Flamurtari Vlor\u00eb
+6156831	N/A	1\u002e HFC Humenn\u00e9
+2990151	N/A	Valletta F\u002eC\u002e
+1009065	N/A	Malta national football team
+74612	N/A	Chorz\u00f3w
+677685	N/A	Ruch Chorz\u00f3w
+771860	N/A	Poland national football team
+300136	N/A	The New Saints F\u002eC\u002e
+580291	N/A	Wales national football team
+2996295	N/A	Arkadiusz B\u0105k
+287852	N/A	Larnaca
+3550878	N/A	AEK Larnaca
+722717	N/A	Cyprus national football team
+11371765	N/A	FC Kotayk Abovian
+695292	N/A	Armenia national football team
+404466	N/A	\u0160iauliai
+6492937	N/A	FK Kareda Kaunas
+17675	N/A	Lithuania
+1061075	N/A	FC Sion
+681862	N/A	Switzerland national football team
+1213985	N/A	Vinnytsia
+1008682	N/A	Ukraine national football team
+6680744	N/A	JK Tallinna Sadam
+28222445	N/A	Estonia
+7010481	N/A	PFC Nyva Vinnytsia
+56494	N/A	Bergen
+192068	N/A	SK Brann
+21241	N/A	Norway
+830612	N/A	Shelbourne F\u002eC\u002e
+147575	N/A	Ireland
+3118127	N/A	Mons Ivar Mjelde
+13926052	N/A	Jan Ove Pedersen
+6056077	N/A	Mark Rutherford \u0028footballer\u0029
+57644	N/A	Sofia
+893469	N/A	PFC Levski Sofia
+3415	N/A	Bulgaria
+27792964	N/A	NK Olimpija Ljubljana \u00281911\u0029
+27338	N/A	Slovenia
+754336	N/A	Rheinpark Stadion
+827884	N/A	FC Vaduz
+652703	N/A	Liechtenstein national football team
+17514	N/A	Latvia
+57035	N/A	Luxembourg \u0028city\u0029
+5337201	N/A	Union Luxembourg
+17515	N/A	Luxembourg
+1561948	N/A	NK Vara\u017edin
+715240	N/A	Croatia national football team
+43979	N/A	T\u00f3rshavn
+831312	N/A	Havnar B\u00f3ltfelag
+1011425	N/A	Faroe Islands national football team
+6581309	N/A	FC Dinamo Batumi
+48768	N/A	Georgia \u0028country\u0029
+23844	N/A	Prague
+861331	N/A	Sparta Prague
+729739	N/A	Czech Republic national football team
+828172	N/A	Glentoran F\u002eC\u002e
+426388	N/A	Northern Ireland national football team
+5363309	N/A	Horst Siegl
+12633520	N/A	Zden\u011bk Svoboda
+5364238	N/A	Petr Gabriel
+9602	N/A	Edinburgh
+302212	N/A	Heart of Midlothian F\u002eC\u002e
+361966	N/A	Red Star Belgrade
+34244	N/A	Yugoslavia
+6789447	N/A	Dave McPherson \u0028footballer\u0029
+23671907	N/A	Vinko Marinovi\u0107
+5897396	N/A	Hapoel Ironi Rishon LeZion F\u002eC\u002e
+833887	N/A	FC Tiraspol
+1011292	N/A	Moldova national football team
+2079306	N/A	MYPA
+655906	N/A	Azerbaijan national football team
+29618	N/A	Skopje
+828168	N/A	FK Sloga Jugomagnat
+23564616	N/A	Republic of Macedonia
+833965	N/A	Budapest Honv\u00e9d FC
+13275	N/A	Hungary
+475370	N/A	IFK G\u00f6teborg
+861261	N/A	Ferencv\u00e1rosi TC
+249510	N/A	UEFA European Football Championship
+36787	N/A	Budapest
+44220	N/A	UEFA Champions League
+6810641	N/A	Ferenc Horv\u00e1th
+2918991	N/A	Andreas Andersson
+3383	N/A	Brazil
+25936	N/A	Rio de Janeiro
+187328	N/A	Esporte Clube Bahia
+187346	N/A	Clube Atl\u00e9tico Paranaense
+187241	N/A	Sport Club Corinthians Paulista
+1367196	N/A	Guarani Futebol Clube
+1550341	N/A	Coritiba Foot Ball Club
+187305	N/A	Clube Atl\u00e9tico Mineiro
+187301	N/A	Cruzeiro Esporte Clube
+187310	N/A	Esporte Clube Vit\u00f3ria
+21682157	N/A	Esporte Clube Flamengo
+1577507	N/A	Esporte Clube Juventude
+1577470	N/A	Goi\u00e1s Esporte Clube
+604575	N/A	Sport Club do Recife
+18564144	N/A	Gr\u00eamio Foot\u002dBall Porto Alegrense
+1861824	N/A	Clube Atl\u00e9tico Bragantino
+187243	N/A	Sociedade Esportiva Palmeiras
+8805153	N/A	Associa\u00e7\u00e3o Desportiva Vasco da Gama
+1742904	N/A	Associa\u00e7\u00e3o Portuguesa de Desportos
+311141	N/A	Paran\u00e1 Clube
+481779	N/A	John Newcombe
+227983	N/A	Davis Cup
+27862	N/A	Sydney
+9663393	N/A	Croatia Davis Cup team
+91195	N/A	Wimbledon Championships
+870020	N/A	Tony Roche
+18952408	N/A	Split \u0028city\u0029
+172311	N/A	The Daily Telegraph \u0028Australia\u0029
+9656856	N/A	Australia Davis Cup team
+2199552	N/A	Neale Fraser
+27566	N/A	Summer Olympic Games
+1918850	N/A	Mark Woodforde
+9663079	N/A	Germany Davis Cup team
+10145751	N/A	Malaysia Open \u0028badminton\u0029
+16854	N/A	Kuala Lumpur
+27019	N/A	South Korea
+3607937	N/A	Malaysia
+14579	N/A	Indonesia
+9521761	N/A	Hermawan Susanto
+14504169	N/A	Fung Permadi
+927529	N/A	Wang Chen \u0028badminton\u0029
+19927785	N/A	Meluawati
+2491066	N/A	Gong Zhichao
+4913064	N/A	New Zealand
+14938322	N/A	Christine Magnusson
+927560	N/A	Zhang Ning
+82729	N/A	US Open \u0028tennis\u0029
+645042	N/A	New York City
+65961	N/A	Pete Sampras
+4036370	N/A	Adrian Voinea
+1728546	N/A	Magnus Larsson
+1856445	N/A	Alexander Vladimirovich Volkov
+3930485	N/A	Andrei Olhovskiy
+1723684	N/A	Roberto Carretero
+14891740	N/A	Jordi Burillo
+1964402	N/A	Jonas Bj\u00f6rkman
+10250905	N/A	David Rikl
+2493300	N/A	Sjeng Schalken
+20856583	N/A	Gilbert Schaller
+4026564	N/A	Grant Stafford
+1723582	N/A	Guy Forget
+2989127	N/A	Fernando Meligeni
+489963	N/A	Yevgeny Kafelnikov
+1723532	N/A	Andrei Chesnokov
+3983307	N/A	Scott Draper
+441573	N/A	Galo Blanco
+1408278	N/A	Thomas Johansson
+517430	N/A	Greg Rusedski
+702849	N/A	Andriy Medvedev
+4026812	N/A	Jean\u002dPhilippe Fleurian
+3930155	N/A	J\u00e1n Kro\u0161l\u00e1k
+2575718	N/A	Shuzo Matsuoka
+4025956	N/A	Doug Flach
+200446	N/A	Mats Wilander
+2186352	N/A	Paul Haarhuis
+13355036	N/A	Michael Tebbutt
+3079144	N/A	Jonathan Stark
+15290626	N/A	Bernd Karbacher
+391932	N/A	Stefan Edberg
+161972	N/A	Richard Krajicek
+595	N/A	Andre Agassi
+20694823	N/A	Mauricio Hadad
+5222	N/A	Colombia
+3930413	N/A	Marcos Ondruska
+1723559	N/A	F\u00e9lix Mantilla Botella
+669421	N/A	Carlos Moy\u00e1
+20867776	N/A	Scott Humphries
+2876758	N/A	Jan Siemerink
+3254714	N/A	Carl\u002dUwe Steeb
+1829027	N/A	David Wheaton
+2075801	N/A	Kevin Kim
+2817661	N/A	Nicol\u00e1s Lapentti
+9334	N/A	Ecuador
+3930942	N/A	Karim Alami
+933709	N/A	Thomas Enqvist
+22577800	N/A	St\u00e9phane Simian
+3930324	N/A	Guillaume Raoux
+3004535	N/A	Filip Dewulf
+3343	N/A	Belgium
+2261491	N/A	Mark Knowles
+3451	N/A	The Bahamas
+2936118	N/A	Marcelo Filippini
+31843	N/A	Uruguay
+979088	N/A	Michael Stich
+20930737	N/A	Chuck Adams
+3930198	N/A	Javier Frana
+18951905	N/A	Argentina
+685780	N/A	Jim Courier
+420527	N/A	Javier S\u00e1nchez
+1915197	N/A	Jim Grabb
+3823337	N/A	Sandon Stolle
+3930788	N/A	Stefano Pescosolido
+3930278	N/A	Arnaud Boetsch
+3929855	N/A	Nicol\u00e1s Pereira
+32374	N/A	Venezuela
+2785107	N/A	Carlos Costa
+2793059	N/A	Magnus Gustafsson
+1862751	N/A	Jeff Tarango
+4026041	N/A	Alex R\u0103dulescu
+3056059	N/A	Jared Palmer
+3929963	N/A	Hern\u00e1n Gumy
+2987792	N/A	Nicklas Kulti
+1727962	N/A	Jakob Hlasek
+10980025	N/A	Cecil Mamiit
+1574767	N/A	Vince Spadea
+3930698	N/A	David Prinosil
+13833030	N/A	Tom\u00e1s Carbonell
+4340	N/A	Baltimore Orioles
+652850	N/A	Davey Johnson
+26997138	N/A	Baltimore
+27660	N/A	Seattle Mariners
+1928809	N/A	Andy Etchebarren
+1360083	N/A	Los Angeles Angels of Anaheim
+2226049	N/A	John McNamara \u0028baseball\u0029
+1035828	N/A	NewYork\u2013Presbyterian Hospital
+1731893	N/A	Phil Regan \u0028baseball\u0029
+6671	N/A	Cincinnati Reds
+21728	N/A	New York Mets
+23489161	N/A	World Series
+4848143	N/A	New York Yankees
+2004582	N/A	American League East
+38776	N/A	Major League Baseball
+4339	N/A	Boston Red Sox
+30847	N/A	Toronto Blue Jays
+8579	N/A	Detroit Tigers
+2456377	N/A	National League Central
+6652	N/A	Cleveland Indians
+6654	N/A	Chicago Cubs
+20050	N/A	Minnesota Twins
+20152	N/A	Milwaukee Brewers
+16883	N/A	Kansas City Royals
+2456474	N/A	National League West
+30857	N/A	Texas Rangers \u0028baseball\u0029
+22523	N/A	Oakland Athletics
+2456294	N/A	National League East
+2140	N/A	Atlanta Braves
+20153	N/A	Montreal Expos
+11278	N/A	Florida Marlins
+23741	N/A	Philadelphia Phillies
+13894	N/A	Houston Astros
+5945	N/A	Chicago White Sox
+24270	N/A	Pittsburgh Pirates
+28417	N/A	San Diego Padres
+6669	N/A	Colorado Rockies
+28416	N/A	San Francisco Giants
+64777	N/A	American League
+64290	N/A	National League
+2070208	N/A	Rusty Greer
+5951	N/A	Cleveland
+2407111	N/A	Juli\u00e1n Tav\u00e1rez
+552153	N/A	Iv\u00e1n Rodr\u00edguez
+161226	N/A	Mickey Cochrane
+16581	N/A	Johnny Bench
+1261670	N/A	Terry Kennedy
+329401	N/A	Progressive Field
+1264752	N/A	Kenny Lofton
+2733958	N/A	Ed Vosberg
+2644877	N/A	Dean Palmer
+153856	N/A	Cal Ripken\u002c Jr\u002e
+905899	N/A	Bobby Bonilla
+6333369	N/A	Sterling Hitchcock
+386384	N/A	Randy Johnson
+6725	N/A	Cy Young Award
+1915655	N/A	Scott Erickson
+212472	N/A	Alex Rodriguez
+2765457	N/A	Chris Hoiles
+931528	N/A	Jason Dickson
+1547794	N/A	Chili Davis
+218947	N/A	Derek Jeter
+385773	N/A	Jimmy Key
+24437894	N/A	Boston
+2400192	N/A	Mike Stanley
+395171	N/A	Mo Vaughn
+877552	N/A	Scott Brosius
+8687	N/A	Detroit
+1838414	N/A	Brad Ausmus
+17454	N/A	Kansas City\u002c Missouri
+3139393	N/A	Juan Guzm\u00e1n \u0028baseball\u0029
+19590	N/A	Minnesota
+2787747	N/A	John Jaha
+2406308	N/A	Jos\u00e9 Valent\u00edn
+1295837	N/A	Phillip Cocu
+79820	N/A	PSV Eindhoven
+834154	N/A	N\u002eE\u002eC\u002e \u0028football club\u0029
+1218987	N/A	Arthur Numan
+2945257	N/A	Luc Nilis
+2273	N/A	AFC Ajax
+505173	N/A	NAC Breda
+5298672	N/A	Adrian Knup
+12521	N/A	Geneva
+23608452	N/A	Galatasaray S\u002eK\u002e \u0028football team\u0029
+4566	N/A	Baku
+2695399	N/A	Artur Jorge \u0028footballer\u0029
+20120965	N/A	Rolf Fringer
+555876	N/A	UEFA Euro 1996
+5298205	N/A	Marco Pascolo
+1116811	N/A	Cagliari Calcio
+5160306	N/A	Pascal Zuberb\u00fchler
+1573615	N/A	Grasshopper Club Z\u00fcrich
+557033	N/A	St\u00e9phane Henchoz
+535879	N/A	Hamburger SV
+5298238	N/A	Marc Hottiger
+5298407	N/A	Yvan Quentin
+4596587	N/A	Ramon Vega
+1173543	N/A	Rapha\u00ebl Wicky
+5728580	N/A	Alexandre Comisetti
+19302946	N/A	Antonio Esposito
+5728499	N/A	S\u00e9bastien Fournier
+737608	N/A	VfB Stuttgart
+5298163	N/A	Christophe Ohrel
+2092159	N/A	FC Lausanne\u002dSport
+4993766	N/A	Patrick Sylvestre
+5728607	N/A	David Sesa
+893512	N/A	Servette FC
+3921056	N/A	Ciriaco Sforza
+15116	N/A	F\u002eC\u002e Internazionale Milano
+383529	N/A	Murat Yakin
+2645823	N/A	Kubilay T\u00fcrkyilmaz
+7377696	N/A	Christophe Bonvin
+1287233	N/A	St\u00e9phane Chapuisat
+331715	N/A	Borussia Dortmund
+4488686	N/A	German Open \u0028golf\u0029
+28565	N/A	Stuttgart
+1688190	N/A	Paul Broadhurst
+4375906	N/A	Raymond Russell
+5340073	N/A	David J Russell
+2141373	N/A	Michael Campbell
+1034991	N/A	Ian Woosnam
+575815	N/A	Bernhard Langer
+1519060	N/A	Ronan Rafferty
+4919505	N/A	Mats Lanner
+5243170	N/A	Wayne Riley
+2770292	N/A	Eamonn Darcy
+28343641	N/A	Per Nyman
+4291546	N/A	Russell Claydon
+4353394	N/A	Mark Roe
+630525	N/A	Retief Goosen
+11818919	N/A	Carl Suneson
+1564436	N/A	Paul Lawrie
+5088382	N/A	Iain Pyman
+4347331	N/A	Miles Tunnicliff
+4380538	N/A	Christian C\u00e9va\u00ebr
+5193762	N/A	Des Smyth
+4344819	N/A	David Carter \u0028golfer\u0029
+667682	N/A	Lee Westwood
+5243345	N/A	Greg Chalmers
+5022198	N/A	Miguel \u00c1ngel Mart\u00edn \u0028golfer\u0029
+1891067	N/A	Thomas Bj\u00f8rn
+5555797	N/A	Derrick Cooper
+1157761	N/A	P\u00e1draig Harrington
+1342124	N/A	Paul McGinley
+2167716	N/A	Gary Orr
+4455122	N/A	Jos\u00e9 Maria Ca\u00f1izares
+5242970	N/A	Michael Jonzon
+4435993	N/A	Paul Eales
+2150917	N/A	Andrew Coltart
+5272617	N/A	Jonathan Lomas
+4996266	N/A	Jos\u00e9 Rivero
+1988802	N/A	Robert Karlsson
+5285076	N/A	Pedro Linhart
+3535223	N/A	Jamie Spence
+22856557	N/A	Terry Price \u0028golfer\u0029
+4384175	N/A	Mark Mouland
+32332	N/A	UEFA
+232175	N/A	UEFA Europa League
+17238607	N/A	Faroe Islands
+69894	N/A	Wales
+3457	N/A	Belarus
+14531	N/A	Iceland
+19260	N/A	Moldova
+23033	N/A	Portugal
+21265	N/A	Northern Ireland
+5593	N/A	Cyprus
+10918072	N/A	Armenia
+374833	N/A	Australia national cricket team
+56636	N/A	Colombo
+26750	N/A	Sri Lanka
+407754	N/A	India national cricket team
+759317	N/A	Zimbabwe national cricket team
+462001	N/A	Ricky Ponting
+1516661	N/A	Geoff Marsh
+274597	N/A	Ruse\u002c Bulgaria
+193500	N/A	Veliko Tarnovo
+120211	N/A	Minnetonka\u002c Minnesota
+70235	N/A	United States district court
+6097240	N/A	Minneapolis
+58353	N/A	Medicare \u0028United States\u0029
+16001392	N/A	Oppenheimer Holdings
+2691905	N/A	Best Products
+53274	N/A	Richmond\u002c Virginia
+63522	N/A	Crohn\u0027s disease
+19990546	N/A	Andrew Wakefield
+1250182	N/A	Royal Free Hospital
+7946227	N/A	Uppsala University Hospital
+31784	N/A	Uppsala
+463899	N/A	The Lancet
+1165269	N/A	Confederation of British Industry
+31797	N/A	University of Oxford
+1489428	N/A	British Heart Foundation
+18956035	N/A	Caribbean
+19281	N/A	Montserrat
+376904	N/A	Plymouth\u002c Montserrat
+247311	N/A	Department for International Development
+2962836	N/A	Lynda Chalker\u002c Baroness Chalker of Wallasey
+197638	N/A	Grand Slam \u0028tennis\u0029
+164640	N/A	Steffi Graf
+2672548	N/A	Yayuk Basuki
+97851	N/A	Australian Open
+916019	N/A	Natasha Zvereva
+300468	N/A	Monica Seles
+147724	N/A	French Open
+1443478	N/A	Anke Huber
+784152	N/A	Conchita Mart\u00ednez
+52828	N/A	Lindsay Davenport
+1951841	N/A	Amanda Coetzer
+19047	N/A	Martina Hingis
+307050	N/A	Jana Novotn\u00e1
+4038121	N/A	Ruxandra Dragomir
+57707	N/A	Indianapolis
+19159283	N/A	Seoul
+1927490	N/A	Anyang LG Cheetahs
+1054817	N/A	Suwon Samsung Bluewings
+1056366	N/A	Pohang Steelers
+1056425	N/A	Ulsan Hyundai FC
+27278	N/A	Senegal
+44251	N/A	Dakar
+1606283	N/A	Kaolack
+21383	N/A	Nigeria
+17791	N/A	Liberia
+1618193	N/A	Economic Community of West African States Monitoring Group
+285213	N/A	Monrovia
+25574898	N/A	John Mark Inienger
+1561416	N/A	Tubmanburg
+2534235	N/A	United Liberation Movement of Liberia for Democracy \u2013 Johnson faction
+56823	N/A	Abuja
+36848	N/A	Economic Community of West African States
+56638	N/A	Conakry
+392412	N/A	Lansana Cont\u00e9
+47725	N/A	Organisation of the Islamic Conference
+36922	N/A	Qur\u0027an
+1904053	N/A	Marxism
+391481	N/A	Ahmed S\u00e9kou Tour\u00e9
+58893	N/A	Johannesburg
+21492751	N/A	Nelson Mandela
+14301875	N/A	Sandusky\u002c Ohio
+271052	N/A	Rottweiler
+1413961	N/A	Vanderbijlpark
+24565776	N/A	Duff \u0026 Phelps
+164386	N/A	Standard \u0026 Poor\u0027s
+19004	N/A	Moscow
+140790	N/A	Grozny
+4921404	N/A	Interfax
+6095	N/A	Chechnya
+354620	N/A	Interior ministry
+431579	N/A	Alexander Lebed
+340963	N/A	Aslan Maskhadov
+12099	N/A	Gda\u0144sk
+21666402	N/A	Sierakowice\u002c Pomeranian Voivodeship
+1683932	N/A	Czech National Bank
+4813770	N/A	Novye Atagi
+23278520	N/A	Boris Yeltsin
+434852	N/A	Information Telegraph Agency of Russia
+381075	N/A	Moscow Kremlin
+37664	N/A	Bosnia
+26786	N/A	Sarajevo
+751324	N/A	Oslobo\u0111enje
+28912	N/A	Srebrenica
+29265	N/A	Serbia
+751326	N/A	Dnevni Avaz
+42374	N/A	Ljubljana
+20670	N/A	Maribor
+211271	N/A	Bogot\u00e1
+146790	N/A	Coast guard
+5418443	N/A	Gorgona\u002c Colombia
+7996627	N/A	Buenaventura\u002c Valle del Cauca
+255919	N/A	Buenos Aires
+170691	N/A	Peru
+85423	N/A	Lima
+28521	N/A	Shining Path
+481609	N/A	Abimael Guzm\u00e1n
+26828	N/A	Suriname
+57370	N/A	Paramaribo
+2418398	N/A	Moengo
+105961	N/A	D\u00e9si Bouterse
+21350970	N/A	French Guiana
+30128	N/A	Thailand
+56615	N/A	Bangkok
+13404	N/A	Hong Kong
+712796	N/A	Pattaya
+331078	N/A	Alexander Downer
+728119	N/A	Qian Qichen
+31516	N/A	Tibet
+20238168	N/A	14th Dalai Lama
+51983	N/A	Canberra
+233369	N/A	Nablus
+45007	N/A	Amman
+7515964	N/A	Jordan
+18247304	N/A	Edward Said
+6310	N/A	Columbia University
+24093	N/A	Palestinian National Authority
+7073056	N/A	Patrick Seale
+25955086	N/A	Jews
+3391396	N/A	Istanbul
+6293	N/A	Cairo
+319357	N/A	EgyptAir
+18933266	N/A	Boeing
+8569916	N/A	English language
+27421	N/A	Sudan
+51884	N/A	Hosni Mubarak
+31956	N/A	United Nations Security Council
+187749	N/A	Ethiopia
+1088372	N/A	Hassan al\u002dTurabi
+1580709	N/A	National Islamic Front
+150340	N/A	Miss Universe
+125874	N/A	Las Cruces\u002c New Mexico
+693474	N/A	Alicia Machado
+21649	N/A	New Mexico
+18110	N/A	Los Angeles
+47737	N/A	Las Vegas\u002c Nevada
+202835	N/A	Jack Kevorkian
+118786	N/A	Pontiac\u002c Michigan
+19571	N/A	Missouri
+150725	N/A	Lee\u0027s Summit\u002c Missouri
+1957839	N/A	Geoffrey Fieger
+29810	N/A	Texas
+19381762	N/A	Lou Gehrig
+1645518	N/A	Massachusetts
+135693	N/A	Fairview\u002c Texas
+13467	N/A	Hamburg
+54361	N/A	Neo\u002dNazism
+17653	N/A	Lincoln\u002c Nebraska
+21647	N/A	Nebraska
+11884	N/A	German language
+2731583	N/A	Adolf Hitler
+21212	N/A	Nazi Germany
+8517538	N/A	Manfred Kanther
+60585	N/A	Social Democratic Party of Germany
+21736	N/A	Nazi Party
+18404036	N/A	Nazism
+2570087	N/A	NSDAP\u002fAO
+42277	N/A	Aryan race
+1271160	N/A	Yasushi Akashi
+358	N/A	Algeria
+6037917	N/A	Islam
+606848	N/A	Catholic Church
+145335	N/A	Oran
+595568	N/A	Herv\u00e9 de Charette
+1644	N/A	Algiers
+3354	N/A	Berlin
+271834	N/A	Berlin Tegel Airport
+271851	N/A	Berlin Tempelhof Airport
+500570	N/A	Bremen Airport
+917790	N/A	Dresden Airport
+248285	N/A	Frankfurt Airport
+900545	N/A	Hamburg Airport
+5454926	N/A	Leipzig\u002fHalle Airport
+266998	N/A	Munich Airport
+1789618	N/A	Nuremberg Airport
+270015	N/A	Stuttgart Airport
+564293	N/A	BNP Paribas
+2186512	N/A	Aegon
+3356	N/A	Bill Clinton
+991564	N/A	Ballybunion
+8504	N/A	Dublin
+264116	N/A	Dick Spring
+5043544	N/A	Democratic Party \u0028United States\u0029
+7957	N/A	Kennedy family
+2253457	N/A	Foreign Office \u0028Germany\u0029
+72676	N/A	Wolfgang Ischinger
+520754	N/A	Yevgeny Primakov
+666485	N/A	Klaus Kinkel
+14533	N/A	India
+51585	N/A	New Delhi
+373750	N/A	Inder Kumar Gujral
+7851	N/A	Comprehensive Nuclear\u002dTest\u002dBan Treaty
+56656	N/A	Dhaka
+3454	N/A	Bangladesh
+21175158	N/A	Commonwealth of Nations
+357375	N/A	Liam Fox
+171166	N/A	Nepal
+216091	N/A	House of Commons
+631179	N/A	Criminal Investigation Department
+17337	N/A	Kashmir
+294148	N/A	Srinagar
+7140547	N/A	Indrajit Gupta
+373742	N/A	H\u002e D\u002e Deve Gowda
+4450516	N/A	Dhaka Stock Exchange
+15156528	N/A	National Bank \u0028Bangladesh\u0029
+277069	N/A	Reserve Bank of India
+8312860	N/A	C\u002e Rangarajan
+19189	N/A	Mumbai
+347105	N/A	Mother Teresa
+47905	N/A	Kolkata
+26230922	N/A	Nobel Peace Prize
+236912	N/A	Bharat Ratna
+13393	N/A	Holy See
+345921	N/A	Missionaries of Charity
+25458	N/A	Rome
+2927	N/A	Albanians
+392006	N/A	Sisters of Loreto
+1222409	N/A	Teresa
+1095706	N/A	Jesus
+26091	N/A	Rupert Murdoch
+52389	N/A	Independence Day \u0028film\u0029
+113422	N/A	News Corporation
+46252	N/A	Fox Broadcasting Company
+18717338	N/A	United States dollar
+21902133	N/A	First Pacific
+26146987	N/A	The Sun \u0028United Kingdom\u0029
+39127	N/A	The Times
+188834	N/A	TV Guide
+253375	N/A	HarperCollins
+49728	N/A	San Francisco
+492355	N/A	Reserve Bank of Australia
+1051313	N/A	Coalition \u0028Australia\u0029
+765639	N/A	Bank of New Zealand
+33804	N/A	Wellington
+161585	N/A	New Zealand dollar
+4689460	N/A	Victoria \u0028Australia\u0029
+11197621	N/A	Australian people
+30057	N/A	Tokyo
+22014010	N/A	Ka Wah Bank
+309734	N/A	Hong Kong dollar
+1143836	N/A	Bernama
+16429740	N/A	Chua Jui Meng
+16275	N/A	Jakarta
+1010736	N/A	Indonesian Democratic Party
+237564	N/A	Megawati Sukarnoputri
+47361	N/A	Dow Jones Industrial Average
+212635	N/A	Surabaya
+497717	N/A	FTSE 100 Index
+40293	N/A	Nikkei 225
+23476353	N/A	Hang Seng Index
+585629	N/A	Kiev
+9787373	N/A	Government of Russia
+26779	N/A	Soviet Union
+746	N/A	Azerbaijan
+30108	N/A	Tajikistan
+383797	N/A	Leonid Kuchma
+1609192	N/A	Post\u002dSoviet states
+15251	N/A	International Monetary Fund
+5865	N/A	Council of Europe
+21133	N/A	NATO
+462415	N/A	Vatican Library
+18940550	N/A	Albanian language
+333292	N/A	Gjon Buzuku
+24580262	N/A	Viacom \u00281971\u20132005\u0029
+22918	N/A	Paramount Pictures
+31460	N/A	Tom Cruise
+22101487	N/A	Variety \u0028magazine\u0029
+41528	N/A	Forrest Gump
+324	N/A	Academy Award
+33904	N/A	William Goldman
+4216	N/A	Brian De Palma
+156618	N/A	Crawley
+2930949	N/A	John Crawley
+10854	N/A	Formula One
+948477	N/A	Circuit de Spa\u002dFrancorchamps
+343833	N/A	Gerhard Berger
+445741	N/A	Benetton Formula
+19636733	N/A	David Coulthard
+20994	N/A	McLaren
+64258	N/A	Jacques Villeneuve
+34104	N/A	WilliamsF1
+63073	N/A	Mika H\u00e4kkinen
+756775	N/A	Heinz\u002dHarald Frentzen
+341553	N/A	Jean Alesi
+78249	N/A	Damon Hill
+20396	N/A	Michael Schumacher
+341560	N/A	Martin Brundle
+458472	N/A	Jordan Grand Prix
+252989	N/A	Rubens Barrichello
+342991	N/A	Johnny Herbert
+3158734	N/A	Sauber
+414513	N/A	Olivier Panis
+24726570	N/A	Equipe Ligier
+782187	N/A	Gabriela Sabatini
+4038174	N/A	\u00c5sa Svensson
+15290332	N/A	Katar\u00edna Studen\u00edkov\u00e1
+3062115	N/A	Karina Hab\u0161udov\u00e1
+564301	N/A	Portsmouth F\u002eC\u002e
+84588	N/A	Queens Park Rangers F\u002eC\u002e
+69219	N/A	Tranmere Rovers F\u002eC\u002e
+451129	N/A	Grimsby Town F\u002eC\u002e
+817230	N/A	East Stirlingshire F\u002eC\u002e
+330072	N/A	Weston\u002dsuper\u002dMare
+264105	N/A	Colchester
+437832	N/A	Headingley
+897244	N/A	Shaun Pollock
+2036840	N/A	Dominic Cork
+1160680	N/A	Robert Croft
+8319566	N/A	Lewis Gunn
+2222543	N/A	Alan Mullally
+2416655	N/A	Ian Salisbury
+2189648	N/A	Fabrizio Ravanelli
+298603	N/A	Middlesbrough F\u002eC\u002e
+7473	N/A	Chelsea F\u002eC\u002e
+157294	N/A	Nottingham Forest F\u002eC\u002e
+345428	N/A	Bryan Robson
+53825	N/A	New Haven\u002c Connecticut
+25405	N/A	Rugby union
+21833605	N/A	Japie Mulder
+154957	N/A	New Zealand national rugby union team
+25002	N/A	Pretoria
+313650	N/A	Durban
+376115	N/A	South Africa national rugby union team
+2485308	N/A	Gary Teichmann
+1709031	N/A	Andre Markgraaff
+8904211	N/A	Northerns cricket team
+8357907	N/A	Andre Snyman
+8278861	N/A	Ong Ewe Hock
+1496412	N/A	Chanda Rubin
+1178132	N/A	United States Tennis Association
+754866	N/A	Mary Pierce
+14979526	N/A	Meredith McGrath
+201049	N/A	Boris Becker
+3328363	N/A	Paul Sorrento
+1661437	N/A	Jamie Moyer
+4440986	N/A	Mike Devereaux
+390266	N/A	Brady Anderson
+2428651	N/A	Norm Charlton
+63493	N/A	Ken Griffey\u002c Jr\u002e
+572954	N/A	Edgar Mart\u00ednez
+18939619	N/A	Rocky Coppinger
+385914	N/A	Jay Buhner
+26074	N/A	Roger Clemens
+88499	N/A	Matt Stairs
+5355977	N/A	Lee Tinsley
+2806775	N/A	Terry Steinbach
+18370398	N/A	Mark Acre
+1458407	N/A	Garret Anderson
+2406277	N/A	Gary DiSarcina
+881905	N/A	Jim Edmonds
+599018	N/A	Kenny Rogers \u0028baseball\u0029
+869667	N/A	Chuck Finley
+2406202	N/A	Travis Fryman
+9717489	N/A	Melvin Nieves
+2406257	N/A	Damion Easley
+2747849	N/A	Justin Thompson
+3651486	N/A	Tim Belcher
+5085409	N/A	Ken Hill \u0028baseball\u0029
+2372135	N/A	Erik Hanson
+2375798	N/A	Alex Fernandez \u0028baseball\u0029
+10381057	N/A	Jacob Brumfield
+1135016	N/A	Otis Nixon
+769618	N/A	Sporting Clube de Portugal
+18091	N/A	Lisbon
+7308787	N/A	S\u002eC\u002e Espinho
+24204394	N/A	Nail Be\u0161irovi\u0107
+5947406	N/A	Jos\u00e9 Lu\u00eds Vidigal
+1152430	N/A	Mustapha Hadji
+172589	N/A	F\u002eC\u002e Porto
+574076	N/A	S\u002eL\u002e Benfica
+909545	N/A	Portuguese Liga
+881244	N/A	FC St\u002e Pauli
+686142	N/A	Fu\u00dfball\u002dBundesliga
+410348	N/A	FC Schalke 04
+20978193	N/A	Andr\u00e9 Trulsen
+5208200	N/A	Martin Max
+21093872	N/A	Christian Springer
+599978	N/A	F\u002eC\u002e Hansa Rostock
+20996083	N/A	Karsten B\u00e4ron
+20948640	N/A	Harald Sp\u00f6rl
+3580285	N/A	Salah Hissou
+616517	N/A	Haile Gebrselassie
+118459	N/A	Hengelo
+20928096	N/A	Martin Driller
+17177695	N/A	Thomas Sobotzik
+4909208	N/A	Olaf Thon
+1386277	N/A	Marc Wilmots
+1640855	N/A	AS Nancy
+357488	N/A	Paris Saint\u002dGermain F\u002eC\u002e
+613736	N/A	Svetlana Masterkova
+34453	N/A	Z\u00fcrich
+19301	N/A	Mozambique
+66748	N/A	Maria Mutola
+72311	N/A	1996 Summer Olympics
+4214597	N/A	Christine Wachtel
+5271765	N/A	Diego Borrego
+780871	N/A	Stephen Ames
+23115502	N/A	Robert Coles \u0028golfer\u0029
+4380250	N/A	Roger Chapman \u0028golfer\u0029
+5222898	N/A	Carl Mason
+2167839	N/A	Barry Lane
+4375908	N/A	Steve Webster
+1148663	N/A	Dennis Mitchell
+67116	N/A	Donovan Bailey
+67118	N/A	Linford Christie
+67127	N/A	Carl Lewis
+96607	N/A	Ato Boldon
+802066	N/A	Allen Johnson
+789006	N/A	Colin Jackson
+3138	N/A	Atlanta
+804243	N/A	Roger Kingdom
+923379	N/A	Ludmila Engquist
+4273494	N/A	Brigita Bukovec
+15660	N/A	Jamaica
+39173	N/A	Commonwealth Games
+6829072	N/A	Michelle Freeman
+5042481	N/A	Cuba
+3020050	N/A	Aliuska L\u00f3pez
+993078	N/A	Derrick Adkins
+72654	N/A	Gail Devers
+558060	N/A	Merlene Ottey
+882492	N/A	Gwen Torrence
+2738276	N/A	Ilke Wyludda
+2731709	N/A	Ellina Zvereva
+3196764	N/A	Franka Dietzsch
+3909612	N/A	Natalya Sadova
+8481614	N/A	Mette Bergmann
+3026832	N/A	Nicoleta Grasu
+3518703	N/A	Olga Chernyavskaya
+2913184	N/A	Iryna Yatchenko
+6827139	N/A	Patricia Girard
+11849304	N/A	Emilio Valle
+21957117	N/A	Sven Pieters
+7885102	N/A	Stephen Brown \u0028athlete\u0029
+2689445	N/A	Roberta Brunet
+1787811	N/A	Fernanda Ribeiro
+2531356	N/A	Sally Barsosio
+188171	N/A	Kenya
+228240	N/A	Paula Radcliffe
+2456590	N/A	Pauline Konga
+2732799	N/A	Davidson Ezinwa
+1157765	N/A	Jon Drummond
+940384	N/A	Bruny Surin
+3020977	N/A	Samuel Matete
+34415	N/A	Zambia
+12295262	N/A	Rohan Robinson
+2530948	N/A	Torrance Zellner
+7457007	N/A	Calvin Davis
+11880301	N/A	Laurent Ottoz
+2722641	N/A	Mary Onyali\u002dOmagbemi
+6812537	N/A	Chryste Gaines
+2573684	N/A	Zhanna Pintusevich\u002dBlock
+49242	N/A	Irina Privalova
+6756205	N/A	Juliet Cuthbert
+6192340	N/A	Regina Jacobs
+2373750	N/A	Carla Sacramento
+3857148	N/A	Yekaterina Podkopayeva
+13926383	N/A	Leah Pells
+21758160	N/A	Sarah Thorsett
+1036695	N/A	Joseph Keter
+4603285	N/A	Patrick Sang
+857479	N/A	Moses Kiptanui
+9577738	N/A	Bernard Barmasai
+653621	N/A	Michael Johnson \u0028athlete\u0029
+1676095	N/A	Derek Mills
+1676098	N/A	Anthuan Maybank
+2434413	N/A	Davis Kamoga
+31816	N/A	Uganda
+773005	N/A	Jamie Baulch
+2738815	N/A	Sunday Bada
+289809	N/A	Samson Kitur
+7652893	N/A	Mark Richardson \u0028athlete\u0029
+13121324	N/A	Jason Rouser
+71410	N/A	Frankie Fredericks
+21292	N/A	Namibia
+27446348	N/A	Jeff Williams \u0028athlete\u0029
+13974630	N/A	Patrick Stevens
+681338	N/A	Michael Marsh \u0028athlete\u0029
+2688112	N/A	Iv\u00e1n Garc\u00eda
+1676088	N/A	LaMont Smith
+21285670	N/A	Ma\u0142gorzata Rydz
+1031484	N/A	Inger Miller
+6812531	N/A	Marina Trandenkova
+2511007	N/A	Chandra Sturrup
+3524541	N/A	Galina Malchugina
+66002	N/A	Cathy Freeman
+66161	N/A	Marie\u002dJos\u00e9 P\u00e9rec
+2489403	N/A	Falilat Ogunkoya
+3670385	N/A	Pauline Davis\u002dThompson
+673604	N/A	Daniel Komen
+3517130	N/A	Khalid Boulami
+3058737	N/A	Bob Kennedy \u0028athlete\u0029
+2736339	N/A	Tom Nyariki
+492499	N/A	Noureddine Morceli
+3908095	N/A	Lars Riedel
+6781457	N/A	Anthony Washington
+3310705	N/A	Vladimir Dubrovshchik
+3918291	N/A	J\u00fcrgen Schult
+3026211	N/A	Michael M\u00f6llenbeck
+52056	N/A	Jonathan Edwards \u0028athlete\u0029
+3241060	N/A	Yoelbi Quesada
+2690829	N/A	Brian Wellman
+3460	N/A	Bermuda
+2645623	N/A	Kenny Harrison
+5912006	N/A	Francis Agyepong
+9788550	N/A	Rogel Nachum
+8485751	N/A	Sigurd Njerve
+492488	N/A	Hicham El Guerrouj
+8903845	N/A	Isaac Viciosa
+815988	N/A	William Tanui
+13182495	N/A	John Mayock
+6261028	N/A	Laban Rotich
+826515	N/A	Stefka Kostadinova
+6299154	N/A	Inha Babakova
+3905854	N/A	Alina Astafei
+8278156	N/A	Tatyana Babashkina
+8277997	N/A	Svetlana Zalevskaya
+16642	N/A	Kazakhstan
+8278273	N/A	Yelena Gulyayeva
+10906630	N/A	Nel\u0117 \u017dilinskien\u0117
+597066	N/A	Paul Tergat
+7080613	N/A	Paul Koech
+7190467	N/A	Alo\u00ffs Nizigama
+21490998	N/A	Burundi
+7190531	N/A	Mathias Ntawulikura
+25645	N/A	Rwanda
+3552171	N/A	Abel Ant\u00f3n
+8380236	N/A	Kamiel Maase
+576328	N/A	Portugal national football team
+1469201	N/A	Paulo Sousa
+16415	N/A	Juventus F\u002eC\u002e
+1965301	N/A	Ant\u00f3nio Lu\u00eds Alves Ribeiro Oliveira
+670993	N/A	V\u00edtor Ba\u00eda
+9390856	N/A	Rui Correia
+670891	N/A	Jorge Costa
+7595668	N/A	Paulinho Santos
+4935997	N/A	H\u00e9lder Crist\u00f3v\u00e3o
+5571094	N/A	Carlos Secret\u00e1rio
+2135282	N/A	Dimas Teixeira
+772771	N/A	Fernando Couto
+353781	N/A	Lu\u00eds Figo
+3381791	N/A	Rui Barros
+612521	N/A	Rui Costa
+3304564	N/A	Oceano da Cruz
+3933665	N/A	Ricardo S\u00e1 Pinto
+1254376	N/A	Jo\u00e3o Vieira Pinto
+3526090	N/A	Jorge Cadete
+7611575	N/A	Ant\u00f3nio Folha
+775222	N/A	Berti Vogts
+250204	N/A	Germany national football team
+72873	N/A	Zabrze
+7598082	N/A	SV Werder Bremen
+10104303	N/A	Jens Todt
+971550	N/A	Matthias Sammer
+3640696	N/A	Steffen Freund
+5659152	N/A	Ren\u00e9 Schneider \u0028footballer\u0029
+11370	N/A	FIFA World Cup
+347547	N/A	Oliver Kahn
+2255217	N/A	Andreas K\u00f6pke
+5659106	N/A	Oliver Reck
+1265241	N/A	Markus Babbel
+2568262	N/A	Thomas Helmer
+3428316	N/A	J\u00fcrgen Kohler
+5104668	N/A	Stefan Reuter
+3272105	N/A	Mario Basler
+3524294	N/A	Marco Bode
+3631581	N/A	Dieter Eilts
+1462547	N/A	Thomas H\u00e4\u00dfler
+1462717	N/A	Andreas M\u00f6ller
+1120394	N/A	Mehmet Scholl
+1681297	N/A	Thomas Strunz
+1462512	N/A	Christian Ziege
+1129681	N/A	Oliver Bierhoff
+2194769	N/A	Fredi Bobic
+525141	N/A	J\u00fcrgen Klinsmann
+3660396	N/A	Stefan Kuntz
+990655	N/A	AEK Athens F\u002eC\u002e
+1229550	N/A	Olympiacos F\u002eC\u002e
+1053145	N/A	Panathinaikos F\u002eC\u002e
+677536	N/A	Legia Warszawa
+1117976	N/A	Lyngby Boldklub
+1216600	N/A	Be\u015fikta\u015f J\u002eK\u002e
+1452159	N/A	R\u002eW\u002eD\u002e Molenbeek
+1167720	N/A	FC Alania Vladikavkaz
+397246	N/A	Sri Lanka national cricket team
+20905	N/A	Muttiah Muralitharan
+1160705	N/A	Arjuna Ranatunga
+7239	N/A	Cricket World Cup
+23538966	N/A	WSC World XI
+928267	N/A	Ian Healy
+701	N/A	Angola
+18402	N/A	Luanda
+245423	N/A	UNITA
+4014249	N/A	National Assembly of Angola
+12271472	N/A	Lusaka Protocol
+15895358	N/A	Calgary
+22219	N/A	Ottawa
+427533	N/A	Lloyd Axworthy
+211518	N/A	Warren Buffett
+46159	N/A	Omaha\u002c Nebraska
+314333	N/A	Berkshire Hathaway
+53846	N/A	Miami
+1042296	N/A	AMR Corporation
+2386	N/A	American Airlines
+4162678	N/A	New York City Department of Transportation
+11186	N/A	Federal Aviation Administration
+82195	N/A	Avianca
+487878	N/A	ACES Colombia
+26191	N/A	Red Sea
+7971634	N/A	Indian Oil Corporation
+318083	N/A	Pacific Rim
+22477	N/A	Okinawa Prefecture
+68074	N/A	Incheon
+19006	N/A	Mediterranean Sea
+3386	N/A	Black Sea
+265716	N/A	Constan\u0163a
+23298531	N/A	Inia\u002c Paphos
+116906	N/A	Pembroke\u002c Massachusetts
+73162	N/A	Western Hemisphere
+229431	N/A	Saint Croix\u002c U\u002eS\u002e Virgin Islands
+18998720	N/A	BP
+9177773	N/A	Samsung Heavy Industries
+1132575	N/A	Marubeni
+689	N/A	Asia
+27318	N/A	Singapore
+323111	N/A	Ulsan
+386393	N/A	Yeosu
+80628	N/A	Eleusina
+2363110	N/A	Butch Harmon
+176725	N/A	The Open Championship
+159433	N/A	Arab World
+19486919	N/A	Hapoel Tayibe F\u002eC\u002e
+275297	N/A	Poles
+322831	N/A	Romanians
+17929012	N/A	Taibe\u002c Galilee
+1755537	N/A	Beitar Jerusalem F\u002eC\u002e
+2185	N/A	Arab people
+229168	N/A	Hebrew University of Jerusalem
+492331	N/A	Arab citizens of Israel
+31453	N/A	Tel Aviv
+181296	N/A	Israelis
+3567921	N/A	Mark Kennedy \u0028footballer\u0029
+5348141	N/A	Terry Phelan
+13373575	N/A	Football Association of Ireland
+18119	N/A	Liverpool F\u002eC\u002e
+17810	N/A	Liechtenstein
+23279581	N/A	Damian Lynch
+656932	N/A	SK Rapid Wien
+979542	N/A	Fenerbah\u00e7e S\u002eK\u002e
+19450529	N/A	Turin
+660592	N/A	Old Trafford
+68187	N/A	FC Barcelona
+8913012	N/A	Wembley Stadium
+61588	N/A	King Baudouin Stadium
+85232	N/A	Lagos
+537175	N/A	Sokoto
+21482	N/A	Nairobi
+76762	N/A	Democratic Republic of the Congo
+1405778	N/A	Republican Rally for Democracy in Rwanda
+55906	N/A	Zagreb
+10601955	N/A	HINA
+292128	N/A	Zadar
+59512	N/A	Serbs
+526399	N/A	Republic of Serbian Krajina
+2395098	N/A	Hungarian National Bank
+32908	N/A	Warsaw
+1853823	N/A	Polish Press Agency
+8356016	N/A	Zbigniew Siemi\u0105tkowski
+41896	N/A	Helmut Kohl
+186191	N/A	T\u002d72
+55904	N/A	Belgrade
+4829	N/A	Balkans
+1192234	N/A	Mate Grani\u0107
+4151905	N/A	Tanjug
+21208200	N/A	Western world
+2402376	N/A	Indigenous peoples of the Americas
+209982	N/A	Quito
+1750198	N/A	Abdal\u00e1 Bucaram
+1701	N/A	Amazon River
+4752	N/A	Bras\u00edlia
+409573	N/A	Bel\u00e9m
+336773	N/A	Donald Tsang
+217513	N/A	Suharto
+354563	N/A	Finance minister
+2488298	N/A	Ali Alatas
+362227	N/A	Jim Bolger
+331647	N/A	Don McKinnon
+595530	N/A	Bill Birch
+80608	N/A	Hussein of Jordan
+307576	N/A	Al Karak
+740	N/A	Allah
+166957	N/A	Ba\u0027ath Party
+802	N/A	Ankara
+30205	N/A	Turkish Armed Forces
+854	N/A	Anatolia
+69680	N/A	Kurdistan Workers\u0027 Party
+63685	N/A	Van\u002c Turkey
+10541472	N/A	\u015e\u0131rnak Province
+1372482	N/A	Hakk\u00e2ri Province
+12545276	N/A	Kurdish nationalism
+31975	N/A	United States Department of State
+8122677	N/A	Massoud Barzani
+440244	N/A	Jalal Talabani
+18299389	N/A	Robert Pelletreau
+80777	N/A	Kurdistan
+91342	N/A	Chesapeake\u002c Virginia
+9696755	N/A	Camelot\u002c Chesapeake\u002c Virginia
+32432	N/A	Virginia
+772726	N/A	Dan Glickman
+70896	N/A	United States Department of Agriculture
+32070	N/A	Republican Party \u0028United States\u0029
+505437	N/A	William Weld
+5122699	N/A	John Kerry
+843793	N/A	WBUR
+5685	N/A	Cambridge\u002c Massachusetts
+10979	N/A	Franklin D\u002e Roosevelt
+2001979	N/A	Roosevelt family
+4406149	N/A	Susan Roosevelt Weld
+30535	N/A	Theodore Roosevelt
+97733	N/A	Lufthansa
+4096004	N/A	Sri Lankan Tamil people
+18606	N/A	Liberation Tigers of Tamil Eelam
+17168	N/A	Kathmandu
+313169	N/A	Birendra of Nepal
+95871	N/A	Jiang Zemin
+44533	N/A	Li Peng
+15532150	N/A	Prakash Chandra Lohani
+37966	N/A	Himalayas
+238741	N/A	Lhasa
+171752	N/A	Chongqing
+274294	N/A	Deutsche Bundesbank
+335244	N/A	Goldman Sachs
+1604474	N/A	Continental AG
+88160	N/A	Deutsche Mark
+24095	N/A	Diana\u002c Princess of Wales
+125248	N/A	Charles\u002c Prince of Wales
+566384	N/A	Duhok\u002c Iraq
+1328699	N/A	Necmettin Erbakan
+2886010	N/A	Solidere
+9848049	N/A	Beirut Stock Exchange
+27417693	N/A	Eternit
+899786	N/A	Zenith Electronics
+21560	N/A	New York Stock Exchange
+37398	N/A	The Walt Disney Company
+335382	N/A	BellSouth
+26213969	N/A	SBC Communications
+111071	N/A	Woodridge\u002c Illinois
+14849	N/A	Illinois
+217560	N/A	Chihuahua\u002c Chihuahua
+3966054	N/A	Mexico
+32012	N/A	Natural Law Party \u0028United States\u0029
+42734	N/A	Transcendental Meditation
+16077	N/A	John Hagelin
+34064	N/A	Windows 95
+11388236	N/A	Seattle
+19001	N/A	Microsoft
+26558	N/A	Redmond\u002c Washington
+9736	N/A	Empire State Building
+18890	N/A	Microsoft Windows
+4920586	N/A	Rob Enderle
+250363	N/A	Gartner
+21291483	N/A	Windows NT
+795680	N/A	Windows NT 4\u002e0
+461620	N/A	Straits of Florida
+33127	N/A	Wisconsin
+217709	N/A	Tommy Thompson
+202354	N/A	Vietnam
+624	N/A	Alaska
+7004698	N/A	Anchorage\u002c Alaska
+105698	N/A	Whittier\u002c Alaska
+385576	N/A	Prince Rupert\u002c British Columbia
+3392	N/A	British Columbia
+197927	N/A	Prince William Sound
+1930	N/A	Arkansas
+18520327	N/A	Little Rock\u002c Arkansas
+19579	N/A	Mississippi River
+7945316	N/A	Arkansas State Police
+11127	N/A	Federal Bureau of Investigation
+107167	N/A	Camden\u002c Arkansas
+1665223	N/A	SunGard
+108124	N/A	San Mateo\u002c California
+107667	N/A	Paramount\u002c California
+230965	N/A	ING Group
+15842094	N/A	Royal Boskalis Westminster
+121173	N/A	Papendrecht
+349084	N/A	Konstantinos Stephanopoulos
+57664	N/A	Valletta
+1595031	N/A	Sliema
+172065	N/A	Deutsche Bahn
+39431	N/A	New Scientist
+847620	N/A	Moss Landing Marine Laboratories
+20518076	N/A	United States Navy
+40444	N/A	Monterey\u002c California
+4689709	N/A	John Howard
+18453	N/A	Liberal Party of Australia
+31532	N/A	Telstra
+171629	N/A	Australian Greens
+1943	N/A	Australian Democrats
+1495	N/A	Australian Labor Party
+6764585	N/A	Toyota Australia
+17306237	N/A	Melbourne
+22943	N/A	Papua New Guinea
+6368544	N/A	Lihir Island
+876553	N/A	Yonsei University
+21255	N/A	North Korea
+27643	N/A	Shanghai
+1331885	N/A	Yingkou
+223968	N/A	London Metal Exchange
+1831418	N/A	The Sumitomo Bank
+146080	N/A	Holding company
+538325	N/A	Limited company
+370229	N/A	SoftBank
+4687132	N/A	Kingston Technology
+2688005	N/A	Les \u00c9chos \u0028France\u0029
+305874	N/A	Metro AG
+21470795	N/A	Lidl
+8240811	N/A	Dia \u0028supermarket chain\u0029
+404177	N/A	Aldi
+169544	N/A	Irish Independent
+144087	N/A	County Tipperary
+1003019	N/A	CRH plc
+147378	N/A	The Irish Times
+46761	N/A	County Antrim
+958473	N/A	Dunnes Stores
+243710	N/A	Merrill Lynch
+173817	N/A	Jiangxi
+412742	N/A	Juha Kankkunen
+1109927	N/A	Colin McRae
+258746	N/A	Jyv\u00e4skyl\u00e4
+30984	N/A	Toyota
+944600	N/A	Marcus Gr\u00f6nholm
+203872	N/A	Mitsubishi Motors
+23901899	N/A	Subaru
+8020810	N/A	Derek Ringer
+1085647	N/A	David Richards \u0028racing\u0029
+11175992	N/A	Ford World Rally Team
+407139	N/A	Carlos Sainz
+8958042	N/A	Bruno Thiry
+1123283	N/A	1996 Belgian Grand Prix
+173009	N/A	Scuderia Ferrari
+424417	N/A	Eddie Irvine
+1157079	N/A	Mika Salo
+342015	N/A	Tyrrell Racing
+1226332	N/A	Pedro Diniz
+1148735	N/A	Jos Verstappen
+800001	N/A	Arrows
+520249	N/A	Ukyo Katayama
+1226544	N/A	Ricardo Rosset
+909656	N/A	Pedro Lamy
+40479	N/A	Minardi
+1228421	N/A	Giovanni Lavaggi
+25735	N/A	Rugby league
+22751937	N/A	Super League
+5690457	N/A	Paris Saint Germain \u0028rugby league team\u0029
+1095011	N/A	Bradford Bulls
+1095029	N/A	Wigan Warriors
+3646900	N/A	Workington Town
+1095032	N/A	St Helens RLFC
+852392	N/A	Warrington Wolves
+629563	N/A	London Wasps
+3367769	N/A	Sheffield Eagles
+1196374	N/A	Halifax RLFC
+1216025	N/A	Castleford Tigers
+1098719	N/A	Oldham Roughyeds
+1095024	N/A	Leeds Rhinos
+2856979	N/A	Neil Williams \u0028cricketer\u0029
+3445394	N/A	Mark Ilott
+1829984	N/A	Derbyshire County Cricket Club
+6136803	N/A	Matthew Windows
+928264	N/A	Andrew Symonds
+6105387	N/A	Dominic Hewson
+3551407	N/A	Tim Hancock
+413176	N/A	Graham Gooch
+5921843	N/A	Paul Prichard
+26057429	N/A	Ali Brown
+24080381	N/A	Gordon Parsons
+3605301	N/A	Vince Wells
+660597	N/A	Old Trafford Cricket Ground
+413178	N/A	Darren Gough
+1224723	N/A	Neil Fairbrother
+896414	N/A	Alec Stewart
+682925	N/A	Nasser Hussain
+2625808	N/A	Mike Watkinson
+176747	N/A	Hibernian F\u002eC\u002e
+451181	N/A	Dunfermline Athletic F\u002eC\u002e
+405663	N/A	Kilmarnock F\u002eC\u002e
+880348	N/A	Raith Rovers F\u002eC\u002e
+215398	N/A	Motherwell F\u002eC\u002e
+331074	N/A	Dundee United F\u002eC\u002e
+237019	N/A	Aberdeen F\u002eC\u002e
+1216952	N/A	Airdrieonians F\u002eC\u002e
+451245	N/A	East Fife F\u002eC\u002e
+1347678	N/A	Clydebank F\u002eC\u002e
+880388	N/A	Stirling Albion F\u002eC\u002e
+306504	N/A	Dundee F\u002eC\u002e
+367890	N/A	Greenock Morton F\u002eC\u002e
+560087	N/A	Falkirk F\u002eC\u002e
+226415	N/A	Partick Thistle F\u002eC\u002e
+783089	N/A	St\u002e Mirren F\u002eC\u002e
+393756	N/A	St\u002e Johnstone F\u002eC\u002e
+451242	N/A	Berwick Rangers F\u002eC\u002e
+653922	N/A	Stenhousemuir F\u002eC\u002e
+451241	N/A	Brechin City F\u002eC\u002e
+451240	N/A	Ayr United F\u002eC\u002e
+309502	N/A	Hamilton Academical F\u002eC\u002e
+451243	N/A	Clyde F\u002eC\u002e
+880354	N/A	Queen of the South F\u002eC\u002e
+443155	N/A	Dumbarton F\u002eC\u002e
+880391	N/A	Stranraer F\u002eC\u002e
+451183	N/A	Livingston F\u002eC\u002e
+451237	N/A	Alloa Athletic F\u002eC\u002e
+451238	N/A	Arbroath F\u002eC\u002e
+451244	N/A	Cowdenbeath F\u002eC\u002e
+408985	N/A	Forfar Athletic F\u002eC\u002e
+743540	N/A	Inverness Caledonian Thistle F\u002eC\u002e
+880380	N/A	Ross County F\u002eC\u002e
+57802	N/A	Newcastle United F\u002eC\u002e
+177538	N/A	Sheffield Wednesday F\u002eC\u002e
+9904	N/A	England national football team
+58682	N/A	Alan Shearer
+346979	N/A	Kevin Keegan
+1004542	N/A	Dejan Stefanovi\u0107
+1041521	N/A	Faustino Asprilla
+4249924	N/A	Peter Atherton
+1053382	N/A	Mark Pembridge
+2592473	N/A	Guy Whittingham
+36637	N/A	Yorkshire
+526001	N/A	Les Ferdinand
+184474	N/A	Sunderland A\u002eF\u002eC\u002e
+68198	N/A	Tottenham Hotspur F\u002eC\u002e
+1509963	N/A	Frank Leboeuf
+932030	N/A	Gianluca Vialli
+435021	N/A	Coventry City F\u002eC\u002e
+2174	N/A	Arsenal F\u002eC\u002e
+298602	N/A	Leicester City F\u002eC\u002e
+42173	N/A	Aston Villa F\u002eC\u002e
+4721303	N/A	Derby County F\u002eC\u002e
+46417	N/A	West Ham United F\u002eC\u002e
+81576	N/A	Southampton F\u002eC\u002e
+7609513	N/A	Leeds United A\u002eF\u002eC\u002e
+740757	N/A	Wimbledon F\u002eC\u002e
+298601	N/A	Bolton Wanderers F\u002eC\u002e
+248083	N/A	Norwich City F\u002eC\u002e
+6720	N/A	Charlton Athletic F\u002eC\u002e
+33921	N/A	West Bromwich Albion F\u002eC\u002e
+385313	N/A	Crystal Palace F\u002eC\u002e
+451131	N/A	Oldham Athletic A\u002eF\u002eC\u002e
+352843	N/A	Ipswich Town F\u002eC\u002e
+168007	N/A	Reading F\u002eC\u002e
+451165	N/A	Oxford United F\u002eC\u002e
+451168	N/A	Southend United F\u002eC\u002e
+314933	N/A	Sheffield United F\u002eC\u002e
+185196	N/A	Birmingham City F\u002eC\u002e
+203434	N/A	Stoke City F\u002eC\u002e
+165813	N/A	Manchester City F\u002eC\u002e
+74291	N/A	Swindon Town F\u002eC\u002e
+203456	N/A	Port Vale F\u002eC\u002e
+217730	N/A	Wolverhampton Wanderers F\u002eC\u002e
+431144	N/A	Bradford City A\u002eF\u002eC\u002e
+333188	N/A	Barnsley F\u002eC\u002e
+236211	N/A	Huddersfield Town F\u002eC\u002e
+451122	N/A	Brentford F\u002eC\u002e
+18367	N/A	Luton Town F\u002eC\u002e
+4392	N/A	Bristol City F\u002eC\u002e
+245357	N/A	Blackpool F\u002eC\u002e
+376725	N/A	Burnley F\u002eC\u002e
+359501	N/A	Walsall F\u002eC\u002e
+451126	N/A	Chesterfield F\u002eC\u002e
+451156	N/A	Bury F\u002eC\u002e
+451132	N/A	Peterborough United F\u002eC\u002e
+69438	N/A	Crewe Alexandra F\u002eC\u002e
+429092	N/A	Preston North End F\u002eC\u002e
+241161	N/A	Bristol Rovers F\u002eC\u002e
+386362	N/A	Rotherham United F\u002eC\u002e
+451207	N/A	Shrewsbury Town F\u002eC\u002e
+451135	N/A	Stockport County F\u002eC\u002e
+448599	N/A	Notts County F\u002eC\u002e
+85099	N/A	Watford F\u002eC\u002e
+435024	N/A	Millwall F\u002eC\u002e
+413286	N/A	Wrexham F\u002eC\u002e
+23857	N/A	Plymouth Argyle F\u002eC\u002e
+451136	N/A	Wycombe Wanderers F\u002eC\u002e
+165278	N/A	Gillingham F\u002eC\u002e
+451170	N/A	York City F\u002eC\u002e
+451121	N/A	A\u002eF\u002eC\u002e Bournemouth
+451173	N/A	Barnet F\u002eC\u002e
+367030	N/A	Wigan Athletic F\u002eC\u002e
+5624949	N/A	Cardiff City F\u002eC\u002e
+69455	N/A	Brighton \u0026 Hove Albion F\u002eC\u002e
+451157	N/A	Carlisle United F\u002eC\u002e
+451358	N/A	Hull City A\u002eF\u002eC\u002e
+451195	N/A	Chester City F\u002eC\u002e
+243970	N/A	Cambridge United F\u002eC\u002e
+451159	N/A	Darlington F\u002eC\u002e
+451169	N/A	Swansea City A\u002eF\u002eC\u002e
+347780	N/A	Exeter City F\u002eC\u002e
+946449	N/A	Scarborough F\u002eC\u002e
+451130	N/A	Hartlepool United F\u002eC\u002e
+11228	N/A	Fulham F\u002eC\u002e
+451201	N/A	Hereford United F\u002eC\u002e
+451160	N/A	Doncaster Rovers F\u002eC\u002e
+451163	N/A	Lincoln City F\u002eC\u002e
+451162	N/A	Leyton Orient F\u002eC\u002e
+425750	N/A	Northampton Town F\u002eC\u002e
+451164	N/A	Mansfield Town F\u002eC\u002e
+451166	N/A	Rochdale A\u002eF\u002eC\u002e
+451127	N/A	Colchester United F\u002eC\u002e
+451167	N/A	Scunthorpe United F\u002eC\u002e
+193049	N/A	Torquay United F\u002eC\u002e
+905152	N/A	Jeff Wilson \u0028sportsman\u0029
+21904572	N/A	Ruben Kruger
+1748767	N/A	Joost van der Westhuizen
+690902	N/A	Joel Stransky
+740724	N/A	Zinzan Brooke
+21991758	N/A	Hannes Strydom
+5210833	N/A	Simon Culhane
+12587188	N/A	FK Hajduk Beograd
+4827027	N/A	FK Borac \u010ca\u010dak
+4826904	N/A	FK Zemun
+1132478	N/A	FK Rad
+381658	N/A	FK Partizan
+2652716	N/A	FK Vojvodina
+2652690	N/A	FK Budu\u0107nost Podgorica
+12576085	N/A	FK Proleter Zrenjanin
+5769234	N/A	FK Sutjeska Nik\u0161i\u0107
+1940216	N/A	FK Sloboda Tuzla
+17634183	N/A	FK Kikinda
+20517361	N/A	FK Spartak Zlatibor Voda
+2424381	N/A	OFK Beograd
+12821345	N/A	FK Sutjeska Fo\u010da
+5077936	N/A	NK Rudar Velenje
+677540	N/A	Amica Wronki
+805862	N/A	Hutnik Krak\u00f3w
+677622	N/A	Lech Pozna\u0144
+8538149	N/A	Rak\u00f3w Cz\u0119stochowa
+10410246	N/A	OKS 1945 Olsztyn
+677524	N/A	Wis\u0142a Krak\u00f3w
+677580	N/A	G\u00f3rnik Zabrze
+772146	N/A	\u015al\u0105sk Wroc\u0142aw
+677572	N/A	Odra Wodzis\u0142aw
+677596	N/A	GKS Katowice
+677603	N/A	Polonia Warszawa
+677663	N/A	Zag\u0142\u0119bie Lubin
+677683	N/A	\u0141KS \u0141\u00f3d\u017a
+677651	N/A	GKS Be\u0142chat\u00f3w
+23440	N/A	Philippines
+364158	N/A	Philippine Basketball Association
+4047853	N/A	Alaska Aces \u0028PBA\u0029
+3647082	N/A	Barangay Ginebra Kings
+4092880	N/A	Shell Turbo Chargers
+4086558	N/A	Hanwha Eagles
+7954681	N/A	Montreal
+1629082	N/A	C\u002eF\u002e Os Belenenses
+927845	N/A	Boavista F\u002eC\u002e
+745757	N/A	SC Heerenveen
+1332105	N/A	Eredivisie
+1098285	N/A	Breda
+7363720	N/A	John Veldman
+685906	N/A	Edwin van der Sar
+5960297	N/A	M\u00e1rcio Roberto dos Santos
+3109995	N/A	Winston Bogarde
+539123	N/A	Jari Litmanen
+645628	N/A	Marc Overmars
+735169	N/A	Jon Dahl Tomasson
+1103112	N/A	FC Groningen
+990794	N/A	Standard Li\u00e8ge
+26584259	N/A	R\u002eS\u002eC\u002e Anderlecht
+1437580	N/A	K\u002eS\u002eC\u002e Lokeren Oost\u002dVlaanderen
+1434036	N/A	Cercle Brugge K\u002eS\u002eV\u002e
+1434546	N/A	R\u002eE\u002e Mouscron
+1520840	N/A	Royal Antwerp FC
+3470620	N/A	K\u002eF\u002eC\u002e Lommel S\u002eK\u002e
+1521107	N/A	K\u002eA\u002eA\u002e Gent
+1537131	N/A	V\u002eC\u002e Eendracht Aalst 2002
+842033	N/A	Lierse S\u002eK\u002e
+1433845	N/A	R\u002e Charleroi S\u002eC\u002e
+1437246	N/A	K\u002e Sint\u002dTruidense V\u002eV\u002e
+8809288	N/A	Anto Drobnjak
+1256442	N/A	SC Bastia
+10326208	N/A	Xavier Gravelaine
+492068	N/A	Olympique de Marseille
+13449225	N/A	Miladin Be\u010danovi\u0107
+990757	N/A	Lille OSC
+52265	N/A	Enzo Scifo
+222981	N/A	AS Monaco FC
+549482	N/A	Vladim\u00edr \u0160micer
+1075697	N/A	RC Lens
+2839275	N/A	Christopher Wreh
+1693070	N/A	En Avant de Guingamp
+1135276	N/A	FC Nantes
+704478	N/A	OGC Nice
+11527631	N/A	James Debbah
+1004187	N/A	Stade Rennais F\u002eC\u002e
+1135285	N/A	FC Girondins de Bordeaux
+990753	N/A	AJ Auxerre
+1135310	N/A	FC Metz
+9425024	N/A	Mariano Bombarda
+1256446	N/A	RC Strasbourg
+15098218	N/A	David Zitelli
+3658991	N/A	Le Havre AC
+1256445	N/A	Stade Malherbe Caen
+15273188	N/A	Anthony Bancarel
+979521	N/A	Olympique Lyonnais
+11576169	N/A	Alain Caveglia
+1640865	N/A	Montpellier HSC
+2237150	N/A	AS Cannes
+7044971	N/A	Laurent Charvet
+1107824	N/A	RKC Waalwijk
+834275	N/A	Willem II \u0028football club\u0029
+1336325	N/A	Fortuna Sittard
+79818	N/A	Sparta Rotterdam
+800033	N/A	FC Twente
+834256	N/A	Vitesse
+834226	N/A	FC Utrecht
+47707	N/A	Feyenoord
+834196	N/A	Roda JC
+2202202	N/A	FC Volendam
+2289	N/A	AZ \u0028football club\u0029
+513623	N/A	VfL Bochum
+19577963	N/A	Mathias Jack
+1145228	N/A	Arminia Bielefeld
+263466	N/A	Borussia M\u00f6nchengladbach
+740855	N/A	Patrik Andersson
+1734592	N/A	Karlsruher SC
+3373736	N/A	Sean Dundee
+10634409	N/A	Marc Keller
+12266793	N/A	Miroslav Votava
+1007441	N/A	TSV 1860 M\u00fcnchen
+20976647	N/A	Manfred Schwabl
+9901734	N/A	Michael Zorc
+5570243	N/A	J\u00f6rg Heinrich
+502005	N/A	Bayer 04 Leverkusen
+1949688	N/A	Fortuna D\u00fcsseldorf
+16089537	N/A	Thomas Seeliger
+1438835	N/A	SC Freiburg
+21062203	N/A	Andreas Zeyer
+497888	N/A	1\u002e FC K\u00f6ln
+1518363	N/A	Toni Polster
+172326	N/A	FC Bayern Munich
+1586579	N/A	MSV Duisburg
+5644199	N/A	FC Linz
+887879	N/A	Grazer AK
+895568	N/A	FK Austria Wien
+1595328	N/A	SK Sturm Graz
+5644175	N/A	LASK Linz
+5599205	N/A	FC Tirol Innsbruck
+2163477	N/A	FC Red Bull Salzburg
+3004699	N/A	SV Ried
+1348	N/A	AK\u002d47
+2448	N/A	Action Against Hunger
+21592637	N/A	Swerford
+268796	N/A	Tripoli\u002c Lebanon
+3582046	N/A	Pemberton\u002c British Columbia
+31716	N/A	Utah
+32706	N/A	Vancouver
+19088	N/A	Malawi
+213567	N/A	Hastings Banda
+642604	N/A	Blantyre\u002c Malawi
+56680	N/A	Harare
+2509550	N/A	Public utilities commission
+5023832	N/A	International Committee of the Red Cross
+1759823	N/A	Victoria Falls\u002c Zimbabwe
+17380298	N/A	Robert Mugabe
+56690	N/A	Kigali
+59537	N/A	Hutu
+1210483	N/A	Goma
+67050	N/A	Tutsi
+420869	N/A	Kengo Wa Dondo
+1200745	N/A	Kivu
+1863662	N/A	Gisenyi
+7161613	N/A	Hintsa kaKhawuta
+19997199	N/A	Xhosa
+28894	N/A	Scottish Highlands
+144968	N/A	Inverness
+17320	N/A	Khartoum
+17238590	N/A	Eritrea
+767657	N/A	Kassala \u0028state\u0029
+1504036	N/A	Kassala
+2068118	N/A	National Democratic Alliance \u0028Sudan\u0029
+56827	N/A	Asmara
+401469	N/A	Socialist Party of Albania
+15865800	N/A	Z\u00ebri i Popullit
+393701	N/A	Fatos Nano
+267929	N/A	Sali Berisha
+28153727	N/A	Servet P\u00ebllumbi
+16743	N/A	Karl Marx
+21362	N/A	Nicaragua
+57042	N/A	Managua
+264238	N/A	Violeta Chamorro
+737850	N/A	China Daily
+57654	N/A	Tehran
+39622	N/A	Shiraz
+24976888	N/A	Resalat \u0028newspaper\u0029
+30188	N/A	Tunisia
+403110	N/A	Movement of Socialist Democrats
+57064	N/A	Nicosia
+841314	N/A	Islamic Republic News Agency
+24534207	N/A	Arbil
+211193	N/A	Boutros Boutros\u002dGhali
+270067	N/A	Islamic Republic of Iran
+328399	N/A	Aqaba
+198957	N/A	Babel \u0028newspaper\u0029
+55846	N/A	Bob Dole
+31756	N/A	United States Congress
+16099	N/A	Janet Reno
+33057	N/A	White House
+32905	N/A	West Virginia
+16846	N/A	Kentucky
+18859	N/A	Michigan
+21883857	N/A	Indiana
+284483	N/A	Mike McCurry \u0028press secretary\u0029
+3589067	N/A	Hurricane Edouard \u00281996\u0029
+255317	N/A	National Hurricane Center
+3343855	N/A	Lixion Avila
+9926	N/A	ETA
+683036	N/A	Basque Country \u0028greater region\u0029
+747568	N/A	Volker R\u00fche
+374695	N/A	IFOR
+237183	N/A	Bild
+842061	N/A	Umberto Bossi
+221674	N/A	Orvieto
+72845	N/A	Etruria
+46344	N/A	Roberto Benigni
+29376	N/A	Sardinia
+51590	N/A	Umbria
+11525	N/A	Florence
+357391	N/A	Lega Nord
+263991	N/A	Verona
+10088602	N/A	Agenzia Nazionale Stampa Associata
+592728	N/A	Adige
+154694	N/A	Marc Dutroux
+17703371	N/A	Ransart\u002c Belgium
+17703335	N/A	Mont\u002dsur\u002dMarchienne
+175228	N/A	Charleroi
+18933194	N/A	Bratislava
+1104698	N/A	Stefaan De Clerck
+4074715	N/A	El Watan
+15012	N/A	Islamism
+28223454	N/A	Malta Freeport
+20514897	N/A	Basque Country \u0028autonomous community\u0029
+18642444	N/A	Madrid
+539568	N/A	El Mundo \u0028Spain\u0029
+404727	N/A	People\u0027s Party \u0028Spain\u0029
+125315	N/A	Lahore
+51153	N/A	Islamabad
+24751	N/A	Punjab\u002c Pakistan
+676299	N/A	Jamaat\u002de\u002dIslami
+815456	N/A	Ravi River
+1100160	N/A	Chenab River
+15881	N/A	Java \u0028programming language\u0029
+108161	N/A	Mountain View\u002c California
+26980	N/A	Sun Microsystems
+2828841	N/A	Bessemer Venture Partners
+105222	N/A	Menlo Park\u002c California
+301240	N/A	RSA Security
+319632	N/A	VeriSign
+856	N/A	Apple Inc\u002e
+33139	N/A	World Wide Web
+26976	N/A	Silicon Valley
+299967	N/A	Kleiner Perkins Caufield \u0026 Byers
+18622259	N/A	IBM
+30107	N/A	Taiwan
+2661979	N/A	PSINet
+23546455	N/A	PGA Tour
+6554040	N/A	Luke Jensen
+6371949	N/A	Murphy Jensen
+1119339	N/A	Mitsubishi Lancer
+172542	N/A	Toyota Celica
+20730137	N/A	Jarmo Kyt\u00f6lehto
+79937	N/A	Ford Escort
+1411702	N/A	Kenneth Eriksson
+527976	N/A	Subaru Impreza
+1019545	N/A	Landskrona
+6369246	N/A	Jo\u00ebl Smets
+3347463	N/A	Husaberg
+18781780	N/A	Peter Johansson \u0028motorcyclist\u0029
+13504069	N/A	Husqvarna Motorcycles
+13729	N/A	Honda
+14948713	N/A	Jacky Martens
+243320	N/A	KTM
+18769304	N/A	Shayne King
+1226329	N/A	Stefan Johansson
+4430749	N/A	Holzgerlingen
+4632360	N/A	Sebastien Tortelli
+15398376	N/A	Kawasaki Motors Racing
+332378	N/A	Yamaha Motor Company
+6527836	N/A	Honda Racing Corporation
+748984	N/A	Suzuka Circuit
+5691770	N/A	James Weaver \u0028racing driver\u0029
+1226512	N/A	Olivier Grouillard
+1877657	N/A	Thomas Bscher
+12576820	N/A	Peter Kox
+1233974	N/A	Jean\u002dDenis D\u00e9l\u00e9traz
+1237455	N/A	Pierre\u002dHenri Raphanel
+1148454	N/A	David Brabham
+1234917	N/A	Jean\u002dMarc Gounon
+1219780	N/A	\u00c9ric Bernard
+1235361	N/A	Paul Belmondo
+5166757	N/A	Ralf Kelleners
+5075311	N/A	St\u00e9phane Ortelli
+3650116	N/A	Bob Wollek
+5166840	N/A	Franz Konrad
+23507562	N/A	Cornelius Euser
+1228226	N/A	Bernard Collomb
+88885	N/A	Sheffield
+2390745	N/A	\u0160\u00e1rka Ka\u0161p\u00e1rkov\u00e1
+1709004	N/A	Ashia Hansen
+6397642	N/A	Deon Hemmings
+9831365	N/A	Isel L\u00f3pez
+3874782	N/A	Louise Currey
+3910212	N/A	Silke Renk
+6855453	N/A	Gillian Russell
+6734797	N/A	Charmaine Crooks
+2736349	N/A	Inez Turner
+24234976	N/A	Margaret Crowley \u0028athlete\u0029
+6245295	N/A	Pat Manson
+3917330	N/A	Tim Lobinger
+14086432	N/A	Tom Pukstys
+412057	N/A	Steve Backley
+4856056	N/A	Nick Nieland
+2645833	N/A	Kim Graham
+2679515	N/A	Phylis Smith
+3373156	N/A	John Regis \u0028athlete\u0029
+3909733	N/A	Charles Austin
+3450852	N/A	Tim Forsyth
+2254671	N/A	Patrik Sj\u00f6berg
+3552049	N/A	Benson Koech
+805864	N/A	Roger Black
+2736304	N/A	Osmond Ezinwa
+9573077	N/A	Footwork Arrows
+11225	N/A	Ferrari
+7364013	N/A	Thomas R\u00e5dstr\u00f6m
+2592660	N/A	Noriyuki Haga
+27816654	N/A	Wataru Yoshikawa
+2591706	N/A	Troy Corser
+8653	N/A	Ducati
+6249661	N/A	John Kocinski
+6020107	N/A	Aaron Slight
+5307316	N/A	Carl Fogarty
+7727384	N/A	Akira Ry\u014d
+59592	N/A	Kawasaki Heavy Industries
+15961118	N/A	Takuma Aoki
+2224069	N/A	Colin Edwards
+7459553	N/A	Simon Crafar
+7452235	N/A	Anthony Gobert
+2885630	N/A	Neil Hodgson
+614614	N/A	Suzuki
+12080858	N/A	Ducati Corse
+14836984	N/A	Haruchika Aoki
+25402	N/A	Rugby football
+1042270	N/A	Harlequins Rugby League
+2966347	N/A	David Byas
+3733975	N/A	Andy Hinchcliffe
+552843	N/A	Glenn Hoddle
+1089164	N/A	Darren Anderton
+1771982	N/A	Jordi Cruyff
+194455	N/A	Ole Gunnar Solskj\u00e6r
+3385586	N/A	Paul Warhurst
+1882023	N/A	Lars Bohinen
+1732971	N/A	Chris Lewis \u0028cricketer\u0029
+159024	N/A	Mike Atherton
+397259	N/A	Graham Thorpe
+994718	N/A	Nick Knight
+3750666	N/A	Graham Lloyd
+2512623	N/A	Matthew Maynard
+2053953	N/A	Ronnie Irani
+2037175	N/A	Adam Hollioake
+2062354	N/A	Peter Martin \u0028cricketer\u0029
+672220	N/A	Dean Headley
+1080720	N/A	Togo national football team
+1047784	N/A	Congo national football team
+250680	N/A	Africa Cup of Nations
+57067	N/A	Lom\u00e9
+1089708	N/A	Ethiopia national football team
+1092055	N/A	Uganda national football team
+6885117	N/A	FK Rudar Pljevlja
+21327266	N/A	S\u0142awomir Wojciechowski
+21381761	N/A	Jacek Dembi\u0144ski
+677613	N/A	Widzew \u0141\u00f3d\u017a
+8424753	N/A	Marcin Mi\u0119ciel
+8581102	N/A	Ryszard Wieczorek
+3000120	N/A	Marek Citko
+21075419	N/A	Adam Fedoruk
+13122882	N/A	Tomasz Moskal
+19739035	N/A	Krzysztof Pisku\u0142a
+23958681	N/A	Emmanuel Tetteh
+36877	N/A	Bucharest
+2958305	N/A	FC Ceahl\u0103ul Piatra Neam\u0163
+3569554	N/A	FC O\u0163elul Gala\u0163i
+2498018	N/A	FC Sportul Studen\u0163esc Bucure\u015fti
+2384859	N/A	FC Universitatea Craiova
+3574206	N/A	CS Jiul Petro\u015fani
+861358	N/A	FC Dinamo Bucure\u015fti
+2554958	N/A	FC Universitatea Cluj
+1240318	N/A	FC Rapid Bucure\u015fti
+893411	N/A	FC Steaua Bucure\u015fti
+5503838	N/A	FC Zhemchuzhina\u002dSochi
+5808153	N/A	FC Baltika Kaliningrad
+891213	N/A	FC Zenit Saint Petersburg
+1612159	N/A	FC Rostov
+1135247	N/A	FC Lokomotiv Moscow
+1443555	N/A	FC Torpedo Moscow
+3108494	N/A	FC Rotor Volgograd
+968856	N/A	FC Dynamo Moscow
+861274	N/A	PFC CSKA Moscow
+5826257	N/A	FC Lada Togliatti
+929190	N/A	FC Spartak Moscow
+1343724	N/A	FC Krylia Sovetov Samara
+5652475	N/A	FC Lokomotiv Nizhny Novgorod
+5683235	N/A	FC Ural Sverdlovsk Oblast
+5702383	N/A	FC Tekstilshchik Kamyshin
+2403	N/A	Australian rules football
+100978	N/A	Adelaide Football Club
+90407	N/A	Collingwood Football Club
+295230	N/A	West Coast Eagles
+97831	N/A	Melbourne Football Club
+100040	N/A	Richmond Football Club
+210973	N/A	Fitzroy Football Club
+89853	N/A	Carlton Football Club
+34094	N/A	Western Bulldogs
+10257	N/A	Essendon Football Club
+29210	N/A	Sydney Swans
+92922	N/A	St Kilda Football Club
+12941233	N/A	Hawthorn Football Club
+5026	N/A	Brisbane Lions
+312661	N/A	Fremantle Football Club
+22106	N/A	North Melbourne Football Club
+13007	N/A	Geelong Football Club
+516739	N/A	Canterbury\u002dBankstown Bulldogs
+2444787	N/A	South Queensland Crushers
+5025	N/A	Brisbane Broncos
+2444560	N/A	Gold Coast Chargers
+693234	N/A	North Sydney Bears
+1079930	N/A	South Sydney Rabbitohs
+853881	N/A	Illawarra Steelers
+471314	N/A	Penrith Panthers
+853089	N/A	St\u002e George Dragons
+995013	N/A	North Queensland Cowboys
+885301	N/A	Manly\u002dWarringah Sea Eagles
+1532351	N/A	Western Suburbs Magpies
+869062	N/A	Parramatta Eels
+1464504	N/A	Balmain Tigers
+797018	N/A	Newcastle Knights
+2015377	N/A	WA Reds
+454452	N/A	Canberra Raiders
+702650	N/A	New Zealand Warriors
+424878	N/A	Sydney Roosters
+525034	N/A	Cronulla\u002dSutherland Sharks
+1613020	N/A	Gold Coast Titans
+11545746	N/A	Marlene Thomsen
+11545810	N/A	Lisbeth Stuer\u002dLauridsen
+14737607	N/A	Yap Kim Hock
+12250787	N/A	Cheah Soon Kit
+928104	N/A	Lee Wan Wah
+230185	N/A	Rafael Palmeiro
+384099	N/A	Roberto Alomar
+15475685	N/A	Kyle Abbott
+4233756	N/A	Darren Bragg
+1647990	N/A	Kevin Seitzer
+18940106	N/A	David Hulse \u0028baseball\u0029
+1567114	N/A	Bob Wickman
+1547330	N/A	Marty Cordova
+1637805	N/A	Matt Lawton
+6230681	N/A	Frank Rodriguez
+9580179	N/A	Wally Whitehurst
+23408844	N/A	St\u002e Louis Cardinals
+2407601	N/A	Jos\u00e9 Rosado
+1649286	N/A	Michael Tucker \u0028baseball\u0029
+205905	N/A	Fred McGriff
+4258501	N/A	Brad Clontz
+5399	N/A	Colorado
+9045614	N/A	Mark Thompson \u0028baseball\u0029
+932084	N/A	Ellis Burks
+933906	N/A	Vinny Castilla
+419550	N/A	Dante Bichette
+425563	N/A	Kevin Brown \u0028right\u002dhanded pitcher\u0029
+6276814	N/A	Kurt Abbott
+1581778	N/A	Tom Candiotti
+182778	N/A	Mike Piazza
+1813259	N/A	Todd Hollandsworth
+18213	N/A	Los Angeles Dodgers
+28504	N/A	San Diego
+10388259	N/A	Joey Hamilton
+65453	N/A	Rickey Henderson
+24630	N/A	Pedro Mart\u00ednez
+2806454	N/A	David Segui
+13774	N/A	Houston
+6085940	N/A	Orlando Miller
+2572256	N/A	Todd Stottlemyre
+4526365	N/A	Shane Reynolds
+766470	N/A	M\u00e1rio Jardel
+8295532	N/A	Chiquinho Conde
+990671	N/A	S\u002eC\u002e Braga
+3860806	N/A	Valdo Filho
+18884152	N/A	Paulo Roberto do Carmo
+1445352	N/A	Jo\u00e3o Domingos Pinto
+1127372	N/A	Vit\u00f3ria S\u002eC\u002e
+1629212	N/A	Gil Vicente F\u002eC\u002e
+3165	N/A	ACF Fiorentina
+557154	N/A	Gabriel Batistuta
+36511	N/A	Milan
+1281200	N/A	Coppa Italia
+15496	N/A	Serie A
+18940588	N/A	A\u002eC\u002e Milan
+1896409	N/A	Stefan Schwarz
+10855	N/A	Franco Baresi
+592964	N/A	Montenegrins
+3307429	N/A	Dejan Savi\u0107evi\u0107
+1372000	N/A	Francesco Toldo
+413244	N/A	Marcel Desailly
+401877	N/A	Boca Juniors
+9158864	N/A	\u00d3scar Tab\u00e1rez
+616629	N/A	George Weah
+362466	N/A	Italy national football team
+25624	N/A	Roberto Baggio
+252130	N/A	Edgar Davids
+3035684	N/A	Supercoppa Italiana
+1171960	N/A	KIL Toppfotball
+337678	N/A	V\u00e5lerenga Fotball
+1029557	N/A	Skeid Fotball
+318926	N/A	Stab\u00e6k Fotball
+176800	N/A	Molde FK
+214192	N/A	Viking FK
+181412	N/A	Moss FK
+1214850	N/A	IK Start
+86945	N/A	Rosenborg BK
+4663524	N/A	FC Aarau
+861367	N/A	BSC Young Boys
+2841074	N/A	FC Luzern
+5728757	N/A	FC Lugano
+1607312	N/A	FC St\u002e Gallen
+841827	N/A	PGA European Tour
+379616	N/A	Colin Montgomerie
+1983254	N/A	Robert Allenby
+1601826	N/A	Mark McNulty
+2487707	N/A	Frank Nobilo
+5000237	N/A	Peter Mitchell \u0028golfer\u0029
+4449258	N/A	Jim Payne \u0028golfer\u0029
+2036254	N/A	UCI Road World Cup
+14056108	N/A	Andrea Ferrigato
+2912926	N/A	Michele Bartoli
+859159	N/A	Johan Museeuw
+23243880	N/A	Lance Armstrong
+2204856	N/A	Francesco Casagrande
+2399432	N/A	Frank Vandenbroucke \u0028cyclist\u0029
+12841333	N/A	Fabio Baldato
+4010271	N/A	Maurizio Fondriest
+909249	N/A	Laurent Jalabert
+6232798	N/A	Stefano Zanini
+17143953	N/A	Alexander Gontchenkov
+15464425	N/A	Gabriele Colombo
+2547354	N/A	Andrei Tchmil
+11438071	N/A	Max Sciandri
+14016488	N/A	Wincanton Classic
+3369900	N/A	Oerlikon \u0028Z\u00fcrich\u0029
+19097669	N/A	British people
+5276824	N/A	Greg Turner
+5412184	N/A	Gary Emerson
+4308246	N/A	Peter Baker \u0028golfer\u0029
+9420	N/A	Eindhoven
+7632263	N/A	Dean Gorr\u00e9
+9426084	N/A	Ernest Faber
+1456550	N/A	Ronald Waterreus
+2212066	N/A	\u017deljko Petrovi\u0107
+4287016	N/A	Raymond Atteveld
+5824381	N/A	Gaston Taument
+9420663	N/A	Pablo S\u00e1nchez
+1433871	N/A	K\u002eR\u002eC\u002e Genk
+563623	N/A	Club Brugge K\u002eV\u002e
+3462714	N/A	K\u002eR\u002eC\u002e Zuid\u002dWest\u002dVlaanderen
+564514	N/A	KV Mechelen
+17554690	N/A	Nico\u002dJan Hoogma
+9423088	N/A	Richard Roelofsen
+20868248	N/A	Edwin Godee
+9306596	N/A	Ronald Hamming
+821908	N/A	Danny Blind
+2161974	N/A	Algemeen Nederlands Persbureau
+9647657	N/A	Netherlands national football team
+157232	N/A	1990 FIFA World Cup
+558990	N/A	UEFA Euro 1992
+583231	N/A	Navjot Singh Sidhu
+1724500	N/A	Press Trust of India
+564006	N/A	Board of Control for Cricket in India
+1329327	N/A	Mohali
+211915	N/A	Chandigarh
+20206	N/A	Manchester
+86690	N/A	Mohammad Azharuddin
+57570	N/A	Sachin Tendulkar
+1724515	N/A	United News of India
+4286852	N/A	St\u002e George Illawarra Dragons
+1444074	N/A	Sean Fitzpatrick
+3185516	N/A	New Zealand Press Association
+2498157	N/A	Loftus Versfeld Stadium
+691024	N/A	England national rugby union team
+526056	N/A	1995 Rugby World Cup
+1809625	N/A	Justin Marshall
+6093538	N/A	Frank Bunce
+1286042	N/A	New Zealanders
+4996900	N/A	John Hart \u0028rugby coach\u0029
+4732785	N/A	Australian Football League
+8401973	N/A	Desmond Tutu
+11479	N/A	F\u002e W\u002e de Klerk
+2503	N/A	African National Congress
+31350	N/A	Thabo Mbeki
+14059389	N/A	Brian Currin
+11288911	N/A	Dirk Coetzee
+383252	N/A	P\u002e W\u002e Botha
+390975	N/A	National Party \u0028South Africa\u0029
+449582	N/A	Freedom Front Plus
+2030631	N/A	Constand Viljoen
+320467	N/A	University of the Witwatersrand
+28384119	N/A	Matuzi\u0107i
+294608	N/A	Doboj
+21710997	N/A	NATO intervention in Bosnia
+168269	N/A	Dayton Agreement
+21386224	N/A	Ejup Gani\u0107
+375905	N/A	Independent State of Croatia
+4142015	N/A	Shatoy
+6054747	N/A	Movladi Udugov
+18987	N/A	Mexico City
+1529105	N/A	Popular Revolutionary Army
+338760	N/A	La Jornada
+195816	N/A	Guerrero
+2948082	N/A	Mexican Army
+87066	N/A	Zapatista Army of National Liberation
+6787	N/A	Chiapas
+185251	N/A	Antioquia Department
+340197	N/A	Medell\u00edn
+26100	N/A	Revolutionary Armed Forces of Colombia
+19457	N/A	Burma
+1723280	N/A	Mae Sot
+16657986	N/A	Democratic Karen Buddhist Army
+57404	N/A	Yangon
+504351	N/A	Karen National Union
+615208	N/A	Karen people
+63698	N/A	Egyptians
+37535	N/A	Metropolitan Museum of Art
+235539	N/A	Canopic jar
+292602	N/A	Middle Kingdom of Egypt
+21021	N/A	Mecca
+3150792	N/A	The Jordan Times
+18933277	N/A	Bahrain
+18968435	N/A	Al Rai
+673848	N/A	Ezer Weizman
+450450	N/A	Yedioth Ahronoth
+64878	N/A	Haaretz
+1114732	N/A	Palestine
+736051	N/A	Bank of Israel
+55387	N/A	Gaza
+374605	N/A	Maariv \u0028newspaper\u0029
+343508	N/A	East Jerusalem
+184764	N/A	The Jerusalem Post
+556603	N/A	Saeb Erekat
+5952590	N/A	Avigdor Kahalani
+3530849	N/A	Caesarea
+368881	N/A	Israeli Labor Party
+8706816	N/A	Towers Perrin
+32927	N/A	World War II
+28341707	N/A	Li\u00e8ge
+39764	N/A	Jacques Chirac
+266388	N/A	French Riviera
+2745	N/A	Azad Kashmir
+1119495	N/A	Muzaffarabad
+4918169	N/A	Kunar River
+14555341	N/A	Garhi Habibullah
+18037690	N/A	Salang\u002c Afghanistan
+285790	N/A	Radio Kabul
+2376	N/A	Abdul Rashid Dostum
+6742	N/A	Central Asia
+518768	N/A	Hezbi Islami
+161917	N/A	Gulbuddin Hekmatyar
+623439	N/A	Sheikh Hasina
+2247892	N/A	Bogra
+404861	N/A	Bangladesh Awami League
+9116632	N/A	Janakantha
+309760	N/A	Bangladesh Nationalist Party
+393763	N/A	Khaleda Zia
+432397	N/A	Deere \u0026 Company
+15641	N/A	Joseph Stalin
+19593040	N/A	Celsius
+1521351	N/A	Lonmin
+127918	N/A	Creedmoor\u002c North Carolina
+13861	N/A	Hampshire
+101739	N/A	Tijuana
+2955912	N/A	Philip Morris International
+21559	N/A	NASDAQ
+53667	N/A	United States Department of the Treasury
+1103627	N/A	St Helens\u002c Merseyside
+21050680	N/A	Challenge Cup
+4480036	N/A	Knowsley Road
+17339451	N/A	Alan Hunte
+12581580	N/A	Tommy Martyn
+12583751	N/A	Anthony Sullivan
+12515088	N/A	Paul Newlove
+3662052	N/A	Bobbie Goulding
+2227750	N/A	Ford Escort \u0028Europe\u0029
+1427983	N/A	Subaru Impreza WRX STI
+11835420	N/A	Sebastian Lindholm
+21213756	N/A	Rui Madeira
+12743920	N/A	Subaru World Rally Team
+23166492	N/A	Lee Sharpe
+8262427	N/A	Leeds
+413277	N/A	Ian Rush
+760599	N/A	Howard Wilkinson
+413184	N/A	Imran Khan
+288197	N/A	Kapil Dev
+66143	N/A	Richard Hadlee
+15524	N/A	Ian Botham
+897249	N/A	Malcolm Marshall
+294567	N/A	British West Indies
+894415	N/A	Dennis Lillee
+1351354	N/A	Bob Willis
+2579761	N/A	Lance Gibbs
+413202	N/A	Fred Trueman
+252677	N/A	Courtney Walsh
+822103	N/A	Middlesex County Cricket Club
+880408	N/A	Montrose F\u002eC\u002e
+1014478	N/A	Costa Rica national football team
+697710	N/A	Chile national football team
+5551	N/A	Costa Rica
+424153	N/A	Marcelo Salas
+27288	N/A	Seychelles
+25873962	N/A	Mark Gleeson \u0028journalist\u0029
+1205110	N/A	Mauritius national football team
+1263594	N/A	Seychelles national football team
+11049	N/A	FIFA
+19201	N/A	Mauritius
+1198154	N/A	Malawi national football team
+1132599	N/A	Mozambique national football team
+1045380	N/A	Zambia national football team
+1199910	N/A	Namibia national football team
+1158358	N/A	Botswana national football team
+57669	N/A	Windhoek
+1005798	N/A	Cameroon national football team
+1109291	N/A	Gabon national football team
+1105751	N/A	Kenya national football team
+14716002	N/A	Bachirou Salou
+30138	N/A	Togo
+1080283	N/A	Liberia national football team
+1202658	N/A	Tanzania national football team
+1030243	N/A	Congo DR national football team
+1083920	N/A	Angola national football team
+1234981	N/A	Mauritania national football team
+1198472	N/A	Benin national football team
+51592	N/A	Nouakchott
+1263067	N/A	Central African Republic national football team
+1212797	N/A	Burundi national football team
+889025	N/A	FC Dynamo Kyiv
+7009763	N/A	FC Kremin Kremenchuk
+3536552	N/A	FC Vorskla Poltava
+7010381	N/A	FC Nyva Ternopil
+7011579	N/A	FC Torpedo Zaporizhya
+861305	N/A	FC Shakhtar Donetsk
+4388256	N/A	FC Karpaty Lviv
+11225904	N/A	FSC Prykarpattya Ivano\u002dFrankivsk
+3435061	N/A	FC Chornomorets Odesa
+3517746	N/A	FC Metalurh Zaporizhya
+895551	N/A	FC Dnipro Dnipropetrovsk
+5056113	N/A	FC CSKA Kyiv
+17864564	N/A	FK Metalurg Skopje
+3325822	N/A	SC Tavriya Simferopol
+3800152	N/A	FC Kryvbas Kryvyi Rih
+915621	N/A	Alexander Popov \u0028swimmer\u0029
+998231	N/A	NTV \u0028Russia\u0029
+18898893	N/A	Vitali Smirnov
+1217591	N/A	National Olympic Committee
+4414525	N/A	FK Inter Bratislava
+1664787	N/A	\u0160K Slovan Bratislava
+6155772	N/A	1\u002e FC Tatran Pre\u0161ov
+895533	N/A	MFK Petr\u017ealka
+6157701	N/A	FK DAC 1904 Dunajsk\u00e1 Streda
+4403792	N/A	FC Spartak Trnava
+827800	N/A	FK Dukla Bansk\u00e1 Bystrica
+4783760	N/A	FC Nitra
+861349	N/A	M\u0160K \u017dilina
+5508993	N/A	MFK Ko\u0161ice
+6155152	N/A	M\u0160K Rimavsk\u00e1 Sobota
+16963970	N/A	FC Lokomot\u00edva Ko\u0161ice
+4414792	N/A	MFK Dubnica
+3205346	N/A	MTK Hung\u00e1ria FC
+5798281	N/A	BVSC Budapest
+9837826	N/A	Csepel SC
+1688457	N/A	Zalaegerszegi TE
+2139341	N/A	Debreceni VSC
+896074	N/A	\u00dajpest FC
+4719597	N/A	Vasas SC
+2235024	N/A	Videoton FC
+5798733	N/A	Gy\u0151ri ETO FC
+1650918	N/A	FK Drnovice
+1650901	N/A	FC Slovan Liberec
+896034	N/A	Slavia Prague
+4746509	N/A	SK Dynamo \u010cesk\u00e9 Bud\u011bjovice
+4991040	N/A	FK Baumit Jablonec
+3752998	N/A	FK Viktoria \u017di\u017ekov
+1138124	N/A	FC Ban\u00edk Ostrava
+1650910	N/A	FK Teplice
+3310797	N/A	FC Zbrojovka Brno
+895511	N/A	SK Sigma Olomouc
+1004409	N/A	Bohemians 1905
+5347958	N/A	FC Hradec Kr\u00e1lov\u00e9
+8146110	N/A	SFC Opava
+4036422	N/A	FC Viktoria Plze\u0148
+7445919	N/A	Atlante F\u002eC\u002e
+859774	N/A	Club Atlas
+847584	N/A	Cruz Azul
+4147317	N/A	Club Le\u00f3n
+20878980	N/A	C\u002eD\u002e Guadalajara
+1025920	N/A	Club Am\u00e9rica
+547412	N/A	C\u002eF\u002e Monterrey
+1193316	N/A	Tiburones Rojos de Veracruz
+17567911	N/A	C\u002eF\u002e Pachuca
+1361541	N/A	Deportivo Toluca F\u002eC\u002e
+1511135	N/A	Puebla F\u002eC\u002e
+553186	N/A	Club Universidad Nacional
+1217587	N/A	Club Santos Laguna
+1035876	N/A	Monarcas Morelia
+1511138	N/A	Estudiantes Tecos
+8619326	N/A	Toros Neza
+1221360	N/A	Club Necaxa
+187246	N/A	Santos FC
+425696	N/A	Club Celaya
+187274	N/A	S\u00e3o Paulo FC
+6189919	N/A	Narciso dos Santos
+390875	N/A	S\u00e3o Paulo
+681926	N/A	Brazilian Football Confederation
+149286	N/A	Brazil national football team
+25127146	N/A	Russia national football team
+8817274	N/A	Jean Carlo Witte
+187291	N/A	Sport Club Internacional
+439002	N/A	Curitiba
+187238	N/A	Botafogo de Futebol e Regatas
+2335808	N/A	T\u00falio Costa
+1081561	N/A	Estudiantes de La Plata
+2149745	N/A	Ferro Carril Oeste
+1121856	N/A	Club Atl\u00e9tico Independiente
+3954167	N/A	Club Atl\u00e9tico Platense
+2433314	N/A	Club Atl\u00e9tico Hurac\u00e1n
+1133768	N/A	Club Atl\u00e9tico Lan\u00fas
+1255902	N/A	Uni\u00f3n de Santa Fe
+1482035	N/A	Club Atl\u00e9tico V\u00e9lez S\u00e1rsfield
+1404901	N/A	Racing Club de Avellaneda
+1100763	N/A	Rosario Central
+740900	N/A	Club Atl\u00e9tico River Plate
+783031	N/A	San Lorenzo de Almagro
+1822348	N/A	Club Atl\u00e9tico Banfield
+7213236	N/A	Deportivo Espa\u00f1ol
+13394	N/A	Honduras
+25994100	N/A	Tegucigalpa
+1013983	N/A	Honduras national football team
+1024940	N/A	Cuba national football team
+1125764	N/A	Carlos Pav\u00f3n
+187324	N/A	CR Vasco da Gama
+187313	N/A	Fluminense Football Club
+187239	N/A	Clube de Regatas do Flamengo
+1737058	N/A	Crici\u00fama Esporte Clube
+57400	N/A	Rabat
+1689806	N/A	Raja Casablanca
+6230254	N/A	Chabab Massira
+1690796	N/A	Wydad Casablanca
+6230182	N/A	Olympique Khouribga
+4930399	N/A	Hassania Agadir
+21967242	N/A	Tuscany
+1111175	N/A	Magdalena Maleeva
+12450241	N/A	\u00c1ngeles Montolio
+963152	N/A	Spanish people
+2211473	N/A	USTA Billie Jean King National Tennis Center
+107656	N/A	Manhattan Beach\u002c California
+152735	N/A	Germans
+22207361	N/A	Aleksandra Olsza
+5462144	N/A	Arantxa Parra Santonja
+3484709	N/A	Brenda Schultz\u002dMcCarthy
+1920271	N/A	Helena Sukov\u00e1
+3128583	N/A	Barbara Paulus
+1118005	N/A	Tommy Haas
+627107	N/A	Association of Tennis Professionals
+4450757	N/A	Anne\u002dGa\u00eblle Sidot
+3845884	N/A	Janette Hus\u00e1rov\u00e1
+15107593	N/A	Nana Miyagi
+4027836	N/A	Ram\u00f3n Delgado
+23420	N/A	Paraguay
+6498487	N/A	Gala Le\u00f3n Garc\u00eda
+26375250	N/A	Gloria Pizzichini
+2516435	N/A	Barbara Schett
+1729072	N/A	Sabine Appelmans
+15035484	N/A	Sabine Hack
+4038084	N/A	Irina Sp\u00eerlea
+22881243	N/A	Peter Tramacchi
+890	N/A	Anna Kournikova
+27682452	N/A	Ludmila Richterov\u00e1
+12556787	N/A	Debbie Graham
+12668474	N/A	Barbara Rittner
+1301702	N/A	Kristina Brandi
+15290458	N/A	Andrea Glass
+6501697	N/A	In\u00e9s Gorrochategui
+4542840	N/A	Magdalena Grzybowska
+3931197	N/A	Jaime Oncins
+2629651	N/A	Corina Morariu
+15442936	N/A	Linda Wild
+15339834	N/A	Park Sung\u002dhee
+3127732	N/A	Sarah Pitkowski\u002dMalcor
+1547567	N/A	Meghann Shaughnessy
+2620429	N/A	Dally Randriantefy
+18964	N/A	Madagascar
+20877000	N/A	Elena Makarova
+3004436	N/A	Laurence Courtois
+293444	N/A	Leander Paes
+4026099	N/A	Neville Godwin
+4224688	N/A	Alexandra Fusai
+2442075	N/A	Jill Craybas
+1953990	N/A	Nathalie Dechy
+1944281	N/A	Els Callens
+11642302	N/A	Nicole Bradtke
+11510693	N/A	Jana Kandarr
+6082884	N/A	Brian McRae
+9713764	N/A	Tyler Houston
+9713559	N/A	Kevin Foster \u0028baseball\u0029
+394237	N/A	Larry Walker
+300747	N/A	Run \u0028baseball\u0029
+12572554	N/A	Marc Wilkins \u0028baseball\u0029
+849629	N/A	Edgar Renter\u00eda
+18604283	N/A	Jes\u00fas Tav\u00e1rez
+3947815	N/A	John Boles \u0028baseball\u0029
+5107869	N/A	Trenidad Hubbard
+4516364	N/A	Greg Gagne \u0028baseball\u0029
+1821553	N/A	Chad Curtis
+3005044	N/A	Bill Russell \u0028baseball\u0029
+1035796	N/A	Steve Finley
+2379644	N/A	Jody Reed
+857813	N/A	Ken Caminiti
+390781	N/A	Jeff Bagwell
+6333192	N/A	Donne Wall
+4375	N/A	Barry Bonds
+26920	N/A	Sammy Sosa
+2295002	N/A	Wim Jonk
+26049	N/A	Rotterdam
+1345240	N/A	Guus Hiddink
+9420542	N/A	Jean\u002dPaul van Gastel
+1290197	N/A	Ronald de Boer
+45497	N/A	Dennis Bergkamp
+3097068	N/A	Ed de Goey
+685945	N/A	Frank de Boer
+754207	N/A	Jaap Stam
+756415	N/A	Michael Reiziger
+5836737	N/A	Johan de Kock
+5823946	N/A	Richard Witschge
+1298502	N/A	Aron Winter
+616584	N/A	Clarence Seedorf
+26413	N/A	Real Madrid C\u002eF\u002e
+876551	N/A	Supercopa de Espa\u00f1a
+4443	N/A	Barcelona
+84197	N/A	Atl\u00e9tico Madrid
+66164	N/A	Ronaldo
+2647669	N/A	Giovanni Silva de Oliveira
+2706494	N/A	Juan Antonio Pizzi
+28357832	N/A	Singer World Series
+4036552	N/A	Andy Whittall
+156123	N/A	Steve Waugh
+2156908	N/A	Alistair Campbell \u0028cricketer\u0029
+11900310	N/A	Denis Streak
+3966081	N/A	Eddo Brandes
+897195	N/A	Heath Streak
+733585	N/A	Andy Flower
+4036464	N/A	Ali Shah
+1384007	N/A	Brad Hogg
+423488	N/A	Glenn McGrath
+2383377	N/A	Paul Reiffel
+151606	N/A	Mark Waugh
+896423	N/A	Michael Slater
+2047175	N/A	Stuart Law
+284900	N/A	Michael Bevan
+897202	N/A	Grant Flower
+2195319	N/A	Guy Whittall
+2877538	N/A	Craig Evans
+3751758	N/A	Paul Strang
+2878441	N/A	Craig Wishart
+3022177	N/A	Mark Dekker
+57044	N/A	Maputo
+138007	N/A	Kirkland\u002c Washington
+13015878	N/A	Washington \u0028U\u002eS\u002e state\u0029
+6036380	N/A	Lamonts
+12166	N/A	Guernsey
+5643	N/A	Channel Islands
+15693	N/A	Jersey
+4378291	N/A	Kurt Schork
+19468532	N/A	House of Representatives
+349662	N/A	Party of Democratic Action
+19792942	N/A	People of the United States
+3114713	N/A	Bosnia \u0028region\u0029
+3795700	N/A	S\u00f8ren Jessen\u002dPetersen
+482420	N/A	Viktor Chernomyrdin
+7516389	N/A	Security Council of Russia
+482121	N/A	North Caucasus
+13411146	N/A	Sergey Yastrzhembsky
+8370927	N/A	Zastava Arms
+20760	N/A	Montenegro
+147111	N/A	Kragujevac
+417429	N/A	Socialist Party of Serbia
+262416	N/A	Balkan Bulgarian Airlines
+11101932	N/A	Central Clinical Hospital
+2038354	N/A	Mostostal
+219665	N/A	San Jos\u00e9\u002c Costa Rica
+1656551	N/A	Dutch people
+21205898	N/A	Bancomext
+368549	N/A	Ryutaro Hashimoto
+18524	N/A	Latin America
+218873	N/A	Johns Hopkins Hospital
+249847	N/A	Maracaibo
+265839	N/A	Lake Maracaibo
+180390	N/A	Bank of Mexico
+12927156	N/A	Public Transport Corporation
+88918	N/A	Preston
+18660332	N/A	Auckland
+350800	N/A	North Shore City
+384076	N/A	Radio New Zealand
+1049625	N/A	International Petroleum Exchange
+840431	N/A	Singapore International Monetary Exchange
+515101	N/A	United States Senate Committee on Armed Services
+801696	N/A	United States Senate Select Committee on Intelligence
+367801	N/A	Arlen Specter
+152783	N/A	William Perry
+51554	N/A	Riyadh
+22316	N/A	Oman
+6838977	N/A	Dhahran
+19186951	N/A	Abdullah of Saudi Arabia
+403248	N/A	Sultan\u002c Crown Prince of Saudi Arabia
+277718	N/A	Jeddah
+2902711	N/A	Saudi Press Agency
+20740978	N/A	The Pentagon
+23332	N/A	Pennsylvania
+21810686	N/A	Louis Freeh
+383994	N/A	Sudan Airways
+4063907	N/A	Rowanduz
+201993	N/A	Amr Moussa
+61770	N/A	Bedouin
+8530	N/A	Dead Sea
+469729	N/A	New York Mercantile Exchange
+104697	N/A	Midwestern United States
+323202	N/A	Rio Tinto Alcan
+978322	N/A	Noranda \u0028mining company\u0029
+541026	N/A	ASARCO
+109028	N/A	Fort Lauderdale\u002c Florida
+917589	N/A	Strobe Talbott
+3037636	N/A	Georgiy Mammadov
+13373	N/A	Haiti
+19156272	N/A	Labor Day
+5042706	N/A	Al Gore
+179187	N/A	Newt Gingrich
+468102	N/A	Democratic National Convention
+16200	N/A	Jack Kemp
+31737	N/A	Supreme Court of the United States
+73626	N/A	Christopher Reeve
+1850769	N/A	Sarah Brady
+165912	N/A	Dick Gephardt
+30930	N/A	Tom Daschle
+25433	N/A	Ronald Reagan
+214323	N/A	James Brady
+222294	N/A	John Hinckley\u002c Jr\u002e
+362719	N/A	Superman \u0028film\u0029
+137552	N/A	Culpeper\u002c Virginia
+736403	N/A	Mr\u002e Clean
+27687	N/A	St\u002e Louis\u002c Missouri
+26746	N/A	South Dakota
+2547	N/A	Agent Orange
+32611	N/A	Vietnam War
+32090	N/A	United States Air Force
+53838	N/A	Dallas
+22489	N/A	Oklahoma
+17123	N/A	Karachi
+1466645	N/A	Karachi Stock Exchange
+1965945	N/A	KSE 100 Index
+1076420	N/A	Repsol YPF
+3704829	N/A	Puertollano
+58185	N/A	Antwerp
+437251	N/A	Canadian Prairies
+100730	N/A	Winnipeg
+18051	N/A	Labour Day
+272329	N/A	Environment Canada
+717	N/A	Alberta
+16593248	N/A	Sprague\u002c Manitoba
+331545	N/A	North Battleford
+329344	N/A	Grande Prairie
+749287	N/A	Peace River \u0028Canada\u0029
+8372532	N/A	Brush Engineered Materials
+30680	N/A	The New York Times
+1043102	N/A	Salomon Brothers
+306926	N/A	Valero Energy Corporation
+138476	N/A	Fairmont\u002c West Virginia
+16350825	N/A	Steptoe \u0026 Johnson
+138420	N/A	Clarksburg\u002c West Virginia
+57861	N/A	Charleston\u002c West Virginia
+102226	N/A	The Washington Post
+200683	N/A	Chelsea Clinton
+129782	N/A	Chillicothe\u002c Ohio
+5043192	N/A	Hillary Rodham Clinton
+93552	N/A	Huntington\u002c West Virginia
+925473	N/A	Sidwell Friends School
+1371940	N/A	AEX index
+2875996	N/A	SBM Offshore
+2186586	N/A	Numico
+324853	N/A	Bernard Tapie
+925369	N/A	Claude Lelouch
+1840470	N/A	Europe 1
+1615074	N/A	Philippe S\u00e9guin
+220021	N/A	Court of Cassation \u0028France\u0029
+71486	N/A	Marseille
+239898	N/A	Jacques Toubon
+42622	N/A	European Court of Human Rights
+749262	N/A	Banque de France
+465956	N/A	Rabobank
+8526629	N/A	Herman Wijffels
+3141209	N/A	Ipsos
+87110	N/A	SNCF
+18360207	N/A	Belga \u0028news agency\u0029
+7147085	N/A	Banharn Silpa\u002darcha
+1476804	N/A	Thai Nation Party
+72340	N/A	Metro Manila
+5141314	N/A	La Presse \u0028French newspaper\u0029
+1090060	N/A	Le Temps
+1403425	N/A	B\u00e9ja
+25837	N/A	Rolf Ek\u00e9us
+173504	N/A	United Nations Special Commission
+13608542	N/A	Boutros Harb
+1090391	N/A	Omar Karami
+592775	N/A	Nabih Berri
+1510400	N/A	Nasrallah Boutros Sfeir
+394985	N/A	Rafic Hariri
+5694041	N/A	In\u002dNazzjon
+5694096	N/A	L\u002dOrizzont
+1174987	N/A	Alfred Sant
+404834	N/A	Labour Party \u0028Malta\u0029
+300548	N/A	Tamil people
+34153	N/A	DAX
+65456	N/A	London Stansted Airport
+12152512	N/A	Amalgamated Roadstone Corporation
+1786946	N/A	Hanson plc
+9934632	N/A	Building \u0028magazine\u0029
+3204747	N/A	Costain Group
+125325	N/A	Newbury\u002c Berkshire
+18743234	N/A	The Land is Ours
+277942	N/A	Twyford Down
+9004141	N/A	Construction Industry Council
+25866628	N/A	UBS
+9058746	N/A	Tarmac \u0028company\u0029
+241103	N/A	Notting Hill Carnival
+5717195	N/A	The Jakarta Post
+5044785	N/A	Bank Indonesia
+740993	N/A	Severiano Ballesteros
+1519481	N/A	Jos\u00e9 Mar\u00eda Olaz\u00e1bal
+4097	N/A	Bordeaux
+91198	N/A	Ryder Cup
+386721	N/A	Be\u0142chat\u00f3w
+3248501	N/A	Krzysztof Warzycha
+355074	N/A	Kirkcaldy
+23213228	N/A	Jimmy Thomson \u0028footballer\u0029
+226426	N/A	Scottish Premier League
+888197	N/A	Griqualand West
+313628	N/A	Kimberley\u002c Northern Cape
+11940740	N/A	Glen Osborne
+899013	N/A	Alan Ball\u002c Jr\u002e
+3311473	N/A	Mark Ealham
+3733951	N/A	Simon Brown \u0028cricketer\u0029
+896396	N/A	Andrew Caddick
+668698	N/A	Graeme Hick
+894438	N/A	Rashid Latif
+3976883	N/A	Shadab Kabir
+3976751	N/A	Ata\u002dur\u002dRehman
+9568	N/A	Essex
+1354358	N/A	Keith Fletcher
+1285207	N/A	Miron Cozma
+5210442	N/A	D\u0103nu\u0163 Lupu
+502696	N/A	Petre Roman
+2525758	N/A	Jansher Khan
+3428114	N/A	Brett Martin
+3671790	N/A	David Evans \u0028squash player\u0029
+7555328	N/A	Mark Cairns \u0028squash player\u0029
+3428265	N/A	Del Harris \u0028squash player\u0029
+7434417	N/A	Mark Chaloner
+8230495	N/A	Martin Heath
+6849383	N/A	Joe Kneipp
+3523882	N/A	National Tennis Centre \u0028United Kingdom\u0029
+3930825	N/A	Jimy Szymanski
+1723598	N/A	Andrei Pavel
+650360	N/A	Olympic sports
+2805420	N/A	Judith Wiesner
+928220	N/A	Iva Majoli
+16570128	N/A	Alexia Dechaume\u002dBalleret
+10119577	N/A	Mariaan de Swardt
+1849753	N/A	Dominique Monami
+3128595	N/A	Florencia Labat
+4077090	N/A	Kathy Rinaldi
+9789214	N/A	Ang\u00e9lica Gavald\u00f3n
+705473	N/A	Paola Su\u00e1rez
+15113825	N/A	Marianne Werdel
+15097221	N/A	Ann Grossman
+524346	N/A	Silvia Farina Elia
+18330817	N/A	Elena Pampoulova
+237455	N/A	Gigi Fern\u00e1ndez
+2527532	N/A	Kristie Boogert
+12695931	N/A	Joannette Kruger
+10679190	N/A	Laxmi Poruri
+435558	N/A	Pat Cash
+3929692	N/A	Christian Ruud
+27388154	N/A	Karin Kschwendt
+14851318	N/A	Sandra Kleinov\u00e1
+325049	N/A	Jennifer Capriati
+4038024	N/A	Nicole Arendt
+15290311	N/A	Sandra Cacic
+2350072	N/A	Elena Likhovtseva
+27399536	N/A	Ky\u014dko Nagatsuka
+1399994	N/A	Pam Shriver
+6426517	N/A	Kimberly Po
+1858321	N/A	Virginia Ruano Pascual
+5504097	N/A	Rika Hiraki
+19609793	N/A	Petra Langrov\u00e1
+2783800	N/A	Tami Whitlinger
+14979843	N/A	Sandra Cecchini
+26914284	N/A	Francesca Lubiani
+2634301	N/A	Amy Frazier
+3877687	N/A	Larisa Neiland
+2199290	N/A	Lisa Raymond
+6426781	N/A	Lori McNeil
+1028356	N/A	Zina Garrison
+2631927	N/A	Naoko Sawamatsu
+2482750	N/A	Rennae Stubbs
+2527510	N/A	Miriam Oremans
+15443594	N/A	Radka Zrub\u00e1kov\u00e1
+4026677	N/A	Gianluca Pozzi
+12871566	N/A	David \u0160koch
+1823095	N/A	Glenallen Hill
+762127	N/A	Andr\u00e9s Galarraga
+4335606	N/A	Andy Benes
+4551616	N/A	Royce Clayton
+3342240	N/A	Art Howe
+331205	N/A	Tim Wakefield
+3279577	N/A	Cal Eldred
+18939866	N/A	Angel Miranda
+726320	N/A	Jim Thome
+2406184	N/A	Charles Nagy
+698835	N/A	Felipe Lira
+301648	N/A	Joe Carter
+300684	N/A	Carlos Delgado
+978947	N/A	Mary Joe Fernandez
+2419849	N/A	Karl\u002dHeinz Riedle
+9998002	N/A	Ren\u00e9 Tretschok
+9383177	N/A	Harry Decheiver
+1728044	N/A	Krassimir Balakov
+20883767	N/A	Matthias Hagner
+5109955	N/A	Michael Jeffrey
+3989180	N/A	Igor Korneev
+950383	N/A	Finland men\u0027s national ice hockey team
+949898	N/A	Czech Republic men\u0027s national ice hockey team
+263861	N/A	World Cup of Hockey
+3078614	N/A	Ville Peltonen
+6277048	N/A	Juha Yl\u00f6nen
+264865	N/A	Teemu Sel\u00e4nne
+1182657	N/A	Jyrki Lumme
+11299099	N/A	Janne Ojanen
+4570035	N/A	Christian Ruuttu
+569462	N/A	Radek Bonk
+3651889	N/A	Robert Reichel
+4077824	N/A	Ji\u0159\u00ed Dopita
+747522	N/A	Sweden men\u0027s national ice hockey team
+952624	N/A	Germany men\u0027s national ice hockey team
+494581	N/A	Neuch\u00e2tel
+11942980	N/A	Jean\u002dPierre Cyprien
+2228737	N/A	Neuch\u00e2tel Xamax
+403902	N/A	St\u002e Gallen
+10533315	N/A	Gilbert Gress
+2043091	N/A	Gianni Bugno
+1988710	N/A	Tour de Suisse
+6187	N/A	Cologne
+63278	N/A	Haarlem
+11065220	N/A	Ronde van Nederland
+102081	N/A	Gouda
+1484348	N/A	Robbie McEwen
+2354465	N/A	Rabobank \u0028cycling team\u0029
+17022543	N/A	Jans Koerts
+10612540	N/A	Tom Steels
+11099260	N/A	Endrio Leoni
+13573637	N/A	Johan Capiot
+6932095	N/A	Cycle Collstrop
+11066258	N/A	Jeroen Blijlevens
+2642474	N/A	TVM \u0028cycling team\u0029
+2290911	N/A	7\u002dEleven \u0028cycling team\u0029
+13153870	N/A	Tristan Hoffman
+1257631	N/A	George Hincapie
+11016419	N/A	John Talen
+10922103	N/A	Ina\u002dYoko Teutenberg
+2332279	N/A	Prague Stock Exchange
+9815359	N/A	Komer\u010dn\u00ed banka
+15878109	N/A	OKD
+10611734	N/A	Metropolitan Fiber Systems
+1488	N/A	American Stock Exchange
+1351813	N/A	Chicago Board Options Exchange
+230088	N/A	Pacific Exchange
+125778	N/A	Elizabeth\u002c New Jersey
+21648	N/A	New Jersey
+1438647	N/A	Paul McGrath \u0028footballer\u0029
+195258	N/A	Mick McCarthy
+59036	N/A	Vaduz
+2621992	N/A	Alan Kernaghan
+2189984	N/A	Liam Daish
+2767206	N/A	Gary Kelly \u0028footballer born 1974\u0029
+706736	N/A	Elland Road
+180733	N/A	Jack Charlton
+8298264	N/A	Alan Kelly\u002c Sr\u002e
+610477	N/A	Shay Given
+1114589	N/A	Denis Irwin
+4248883	N/A	Phil Babb
+5278717	N/A	Curtis Fleming
+1234641	N/A	Gary Breen
+3489770	N/A	Ian Harte
+1331171	N/A	Kenny Cunningham
+1227638	N/A	Steve Staunton
+2255163	N/A	Andy Townsend
+1219053	N/A	Ray Houghton
+3501484	N/A	Gareth Farrelly
+3163529	N/A	Alan McLoughlin
+1929564	N/A	Jason McAteer
+7211100	N/A	Alan Moore \u0028footballer\u0029
+2429090	N/A	Tony Cascarino
+605913	N/A	Niall Quinn
+3589053	N/A	David Kelly \u0028footballer\u0029
+8324621	N/A	Eugene de Kock
+1580059	N/A	Rumbek
+27968837	N/A	Christian theology
+347422	N/A	Republika Srpska
+2711386	N/A	Telegraph Agency of the Soviet Union
+150186	N/A	Aleksander Kwa\u015bniewski
+429893	N/A	Milan Ku\u010dan
+162779	N/A	Janez Drnov\u0161ek
+189451	N/A	Ion Iliescu
+407177	N/A	Social Democratic Party \u0028Romania\u0029
+1969239	N/A	Romanian National Unity Party
+395061	N/A	Adrian N\u0103stase
+1184425	N/A	Gheorghe Funar
+31577	N/A	Tallinn
+379531	N/A	Lennart Meri
+341466	N/A	Arnold R\u00fc\u00fctel
+424689	N/A	Estonian Reform Party
+51231	N/A	Wiltshire
+23275478	N/A	Adriatic Sea
+263530	N/A	Durr\u00ebs
+32152	N/A	Ural Mountains
+389777	N/A	Perm
+2539671	N/A	Ten Commandments
+5007152	N/A	Antonio Quarracino
+3390	N/A	Bible
+4315911	N/A	AES Eletropaulo
+26825	N/A	Spanish language
+4277114	N/A	Corporaci\u00f3n Venezolana de Guayana
+55289	N/A	Caracas
+22013617	N/A	SIDOR
+2660398	N/A	Radical Cause
+2226978	N/A	Matagalpa
+7443389	N/A	El Nuevo Diario
+229422	N/A	S\u00e3o Paulo \u0028state\u0029
+2093729	N/A	O Globo
+917127	N/A	Central Bank of Brazil
+3386439	N/A	M\u00e1rio Covas
+63299	N/A	V\u00e1clav Havel
+82491	N/A	Fernando Henrique Cardoso
+3179999	N/A	Kim Young\u002dsam
+339667	N/A	Alejandro Agust\u00edn Lanusse
+23486968	N/A	Juan Per\u00f3n
+339668	N/A	Roberto M\u002e Levingston
+242379	N/A	Peronism
+1671729	N/A	Vicente Solano Lima
+155516	N/A	Liaoning
+250109	N/A	Dalian
+50821	N/A	Tianjin
+1585055	N/A	Tang Jiaxuan
+230930	N/A	New Territories
+166412	N/A	Jiangsu
+25887840	N/A	Hasan Muratovi\u0107
+166093	N/A	S\u00fcleyman Demirel
+753267	N/A	Tansu \u00c7iller
+19599929	N/A	Republic of the Congo
+27358	N/A	Somalia
+16716	N/A	Kansas
+114560	N/A	Dodge City\u002c Kansas
+703518	N/A	Tony P\u002e Hall
+619184	N/A	Robert P\u002e Casey
+14812059	N/A	Kate Michelman
+770112	N/A	NARAL Pro\u002dChoice America
+48830	N/A	Georgia \u0028U\u002eS\u002e state\u0029
+392017	N/A	Cynthia McKinney
+19978	N/A	Montana
+21651	N/A	North Dakota
+63503	N/A	Duluth\u002c Minnesota
+150045	N/A	Red River of the North
+123654	N/A	Billings\u002c Montana
+123412	N/A	Havre\u002c Montana
+123438	N/A	Rudyard\u002c Montana
+123602	N/A	Wolf Point\u002c Montana
+23503	N/A	Portland\u002c Oregon
+130965	N/A	Pendleton\u002c Oregon
+137900	N/A	Waterville\u002c Washington
+137842	N/A	Wenatchee\u002c Washington
+87241	N/A	YMCA
+61404	N/A	Sylvester Stallone
+1045992	N/A	Jennifer Flavin
+45772	N/A	Rocky
+380769	N/A	Rambo \u0028film series\u0029
+62027	N/A	American Broadcasting Company
+43505	N/A	Ross Perot
+295504	N/A	Reform Party of the United States of America
+23041	N/A	Puerto Rico
+50585	N/A	Philadelphia
+151296	N/A	Eau Claire\u002c Wisconsin
+12327134	N/A	Robert W\u002e Baird
+51928	N/A	Amtrak
+41992	N/A	Montpelier\u002c Vermont
+260221	N/A	St\u002e Albans \u0028city\u0029\u002c Vermont
+137418	N/A	Roxbury\u002c Vermont
+92402	N/A	Springfield\u002c Massachusetts
+67537	N/A	Paralympic Games
+324659	N/A	French Democratic Confederation of Labour
+27116031	N/A	F\u00e9d\u00e9ration Syndicale Unitaire
+285262	N/A	Elf Aquitaine
+355334	N/A	Eurotunnel
+579744	N/A	International Union of Railways
+1047741	N/A	Prudential plc
+6052688	N/A	Bollor\u00e9
+3207071	N/A	Essilor
+1904028	N/A	Virakesari
+2088911	N/A	Tamil Eelam Liberation Organization
+566463	N/A	Trincomalee
+24586489	N/A	Chavakacheri
+24585728	N/A	Jaffna
+427503	N/A	United National Party
+504790	N/A	Daily News \u0028New York\u0029
+307535	N/A	Chandrika Kumaratunga
+26165781	N/A	Divaina
+20937676	N/A	Dinamina
+23805	N/A	Pope John Paul II
+1150534	N/A	The Statesman
+34040	N/A	West Bengal
+354551	N/A	Malcolm Rifkind
+403399	N/A	Islamic Salvation Front
+13913	N/A	Hamas
+19271	N/A	Mongolia
+2176	N/A	Ahmad Shah Massoud
+8953	N/A	Dana Rohrabacher
+407212	N/A	Bagram
+16274	N/A	Jalalabad
+403685	N/A	Unified Communist Party of Nepal \u0028Maoist\u0029
+392573	N/A	Baburam Bhattarai
+364670	N/A	Nepali Congress
+365670	N/A	Indore
+1278576	N/A	Bhavnagar
+906379	N/A	Dewas
+954847	N/A	Mandsaur
+1923904	N/A	Neemuch
+740431	N/A	Mhow
+954785	N/A	Ratlam
+5706727	N/A	Ashta
+911235	N/A	Dhar
+901117	N/A	Ujjain
+2001103	N/A	Jaora
+509811	N/A	Khandwa
+2293572	N/A	Ashoknagar
+12804134	N/A	Humayun Rashid Choudhury
+21112335	N/A	Helibor
+867647	N/A	Barrick Gold
+979015	N/A	Peter Munk
+132982	N/A	Allentown\u002c Pennsylvania
+1165422	N/A	Vtm
+14197	N/A	Hanover
+1397	N/A	AOL
+140740	N/A	Bertelsmann
+344859	N/A	New media
+25079983	N/A	CeBIT
+4170	N/A	Benelux
+520367	N/A	Swiss Bank Corporation
+4526656	N/A	Dominion Bond Rating Service
+1210336	N/A	Erzincan
+1376207	N/A	Sivas
+34484	N/A	Zionism
+4062633	N/A	Intellectual Property Owners Association
+22658078	N/A	Remington Model 8
+83239	N/A	Uzi
+18717883	N/A	Jodie Foster
+70101	N/A	National Rifle Association
+10825	N/A	Free Democratic Party \u0028Germany\u0029
+12246	N/A	Alliance \u002790\u002fThe Greens
+10038362	N/A	Allensbach
+19902641	N/A	Forsa institute
+23326	N/A	Party of Democratic Socialism \u0028Germany\u0029
+13595	N/A	London Heathrow Airport
+101359	N/A	Gatwick Airport
+24355	N/A	Perth\u002c Western Australia
+33613	N/A	Western Australia
+30158	N/A	Tonga
+62046	N/A	North Island
+264528	N/A	Tauranga
+466743	N/A	Sakai\u002c Osaka
+365175	N/A	Naoto Kan
+52230	N/A	Osaka
+12027	N/A	Gabon
+50883	N/A	United Nations Commission on Human Rights
+392403	N/A	Omar Bongo
+5478	N/A	Central African Republic
+317153	N/A	Foreign minister
+302972	N/A	Old City \u0028Jerusalem\u0029
+902148	N/A	Arthur Levitt
+37274	N/A	Wall Street
+4277016	N/A	Alfred Berkeley
+26909	N/A	Silvio Berlusconi
+1579765	N/A	Mediaset
+55856	N/A	Linz
+923444	N/A	Steyr
+8025738	N/A	Saskatchewan Wheat Pool
+26840	N/A	Saskatchewan
+1412053	N/A	Rovereto
+2805926	N/A	Heike Drechsler
+2668040	N/A	Fiona May
+11880368	N/A	Andrea Giaconi
+3572926	N/A	Natalya Pomoshchnikova\u002dVoronova
+2450892	N/A	Sergey Alexandrovich Makarov
+7712972	N/A	Peter Blank
+18283614	N/A	Stefano Tilli
+8169661	N/A	Marco Vaccari
+8216969	N/A	Kennedy Ochieng
+2466432	N/A	Ana Fidelia Quirot
+2556569	N/A	Letitia Vriesde
+3451457	N/A	Natalya Shikolenko
+7771507	N/A	Natalya Torshina\u002dAlimzhanova
+7754964	N/A	Luke Kipkosgei
+6815464	N/A	Alessandro Lambruschini
+1929870	N/A	British Masters
+11052655	N/A	Collingtree Park
+2156041	N/A	Jos\u00e9 C\u00f3ceres
+2028738	N/A	David Gilford
+5337735	N/A	Stuart Cage
+2401223	N/A	Emanuele Canonica
+1343807	N/A	David Howell \u0028golfer\u0029
+4377532	N/A	Peter Hedblom
+5177483	N/A	Ove Sellberg
+2032221	N/A	Joakim Haeggman
+28186295	N/A	Klas Eriksson
+5120820	N/A	Mark Davis \u0028golfer\u0029
+2126111	N/A	Pierre Fulke
+2033326	N/A	Niclas Fasth
+5217669	N/A	Tony Johnstone
+5190083	N/A	Ross McFarlane
+5411795	N/A	Mike Harwood
+23282177	N/A	Brenden Pappas
+2054489	N/A	Jean Van de Velde
+5266169	N/A	Stephen McAllister
+4167427	N/A	Shane Kelly
+9145159	N/A	Jan van Eijden
+6558171	N/A	Max van Heeswijk
+118444	N/A	Almere
+796027	N/A	Discovery Channel Pro Cycling Team
+921007	N/A	Erik Zabel
+917770	N/A	Chris Boardman
+18894901	N/A	Francis Moreau
+17826490	N/A	Andrea Collinelli
+12752327	N/A	Alexei Markov
+6691361	N/A	S\u00f6ren Lausberg
+14689876	N/A	Jos\u00e9 Antonio Escuredo
+6376819	N/A	Craig MacLean
+30619	N/A	Keirin
+5940960	N/A	Marty Nothstein
+11438632	N/A	Gary Neiwand
+23236017	N/A	Fr\u00e9d\u00e9ric Magn\u00e9
+16745041	N/A	Pavel Buran
+19109147	N/A	Michael H\u00fcbner
+16732280	N/A	Laurent Gan\u00e9
+11438203	N/A	Marco Villa
+22665655	N/A	Scott McGrory
+23728468	N/A	Stephen Pate
+11003628	N/A	Andreas Kappes
+14671526	N/A	Carsten Wolf
+20417509	N/A	Kurt Betschart
+15169629	N/A	Bruno Risi
+11435812	N/A	Gabriel Curuchet
+11435903	N/A	Juan Curuchet
+12935832	N/A	Joan Llaneras
+30498	N/A	Tour de France
+1258234	N/A	Cr\u00e9dit Agricole \u0028cycling team\u0029
+1210552	N/A	Graeme Obree
+24395210	N/A	Eduard Gritsun
+24207	N/A	Portsmouth
+293089	N/A	Chester\u002dle\u002dStreet
+346075	N/A	Robbie Fowler
+1412864	N/A	Steve McManaman
+56635	N/A	Chi\u015fin\u0103u
+2201395	N/A	Steve Howey \u0028footballer\u0029
+413242	N/A	Paul Gascoigne
+1421688	N/A	David Batty
+152120	N/A	Pontefract
+68032	N/A	St\u002e Leger Stakes
+742031	N/A	Doncaster Cup
+68030	N/A	2\u002c000 Guineas Stakes
+201245	N/A	Steve Redgrave
+71432	N/A	2000 Summer Olympics
+219303	N/A	Matthew Pinsent
+1789550	N/A	Liam Botham
+413174	N/A	Mike Gatting
+7920751	N/A	Southampton
+2410399	N/A	John Stephenson \u0028cricketer\u002c born 1965\u0029
+413137	N/A	Greg Chappell
+531810	N/A	Will Carling
+775184	N/A	Jeremy Guscott
+544435	N/A	Rory Underwood
+17340321	N/A	Dean Richards \u0028rugby union\u0029
+696501	N/A	Rugby Football Union
+228180	N/A	Hideo Nomo
+4417184	N/A	Mike Williams \u0028baseball\u0029
+102264	N/A	Benito Santiago
+25101	N/A	Pittsburgh
+3463887	N/A	Al Martin
+4212649	N/A	Denny Neagle
+391489	N/A	John Smoltz
+1038021	N/A	Gary Sheffield
+2536720	N/A	Devon White \u0028baseball\u0029
+3526509	N/A	Mark Hutton
+7999625	N/A	Mark Petkovsek
+1105870	N/A	Bobby Valentine
+1046058	N/A	Wally Joyner
+8773129	N/A	Tony Eusebio
+9689206	N/A	Alex Arias
+3594202	N/A	Hal Morris
+1766916	N/A	Eric Davis \u0028baseball\u0029
+4359711	N/A	John Smiley
+6203994	N/A	Armando Reynoso
+605895	N/A	Barry Larkin
+643395	N/A	Kevin Mitchell \u0028baseball\u0029
+860422	N/A	Andrew Mehrtens
+5974513	N/A	Ian Jones \u0028rugby union\u0029
+264230	N/A	Jonah Lomu
+3439181	N/A	Eric Rush
+346051	N/A	Christian Cullen
+27620822	N/A	Walter Little \u0028rugby player\u0029
+1309540	N/A	Josh Kronfeld
+1294466	N/A	Michael Jones \u0028rugby union\u0029
+9033319	N/A	Robin Brooke
+5821690	N/A	Olo Brown
+15821736	N/A	Craig Dowd
+193596	N/A	KwaZulu\u002dNatal
+18523612	N/A	South Africa national field hockey team
+897189	N/A	Herschelle Gibbs
+6904363	N/A	Western Province cricket team
+759263	N/A	South Africa national cricket team
+1051029	N/A	Kenya national cricket team
+1485764	N/A	Bob Woolmer
+307442	N/A	Marylebone Cricket Club
+571857	N/A	Jacques Kallis
+1677731	N/A	Paul Adams \u0028cricketer\u0029
+3060990	N/A	Nicky Boje
+4305466	N/A	Derek Crookes
+13961	N/A	Hansie Cronje
+3831183	N/A	Craig Matthews
+3182138	N/A	Dave Richardson
+3635821	N/A	Brian McMillan
+897261	N/A	Gary Kirsten
+3026499	N/A	Andrew Hudson
+3060256	N/A	Pat Symcox
+4287169	N/A	Jonty Rhodes
+629053	N/A	Allan Donald
+3174359	N/A	Fanie de Villiers
+3490162	N/A	Daryll Cullinan
+5604103	N/A	KK Crvena zvezda
+5551651	N/A	KK Partizan
+3450530	N/A	Pallacanestro Treviso
+6004170	N/A	Yuriy Nikiforov
+3428311	N/A	Rodney Eyles
+2947276	N/A	Peter Nicol
+24449519	N/A	Derek Ryan
+3451294	N/A	Simon Parke
+3672106	N/A	Chris Walker \u0028squash player\u0029
+1529068	N/A	Jonathon Power
+3672222	N/A	Ahmed Barada
+3451400	N/A	Amr Shabana
+3671720	N/A	John White \u0028squash player\u0029
+7434625	N/A	Paul Johnson \u0028squash player\u0029
+10400096	N/A	Hapoel Tzafririm Holon F\u002eC\u002e
+2301245	N/A	Hapoel Tel Aviv F\u002eC\u002e
+319872	N/A	Maccabi Haifa F\u002eC\u002e
+5834227	N/A	Hapoel Jerusalem F\u002eC\u002e
+5166496	N/A	Hapoel Petah Tikva F\u002eC\u002e
+893539	N/A	Maccabi Petah Tikva F\u002eC\u002e
+2869548	N/A	Hapoel Haifa F\u002eC\u002e
+5333420	N/A	Maccabi Herzliya F\u002eC\u002e
+2809984	N/A	Pilot Pen Tennis
+26327557	N/A	Bob Brett
+3858	N/A	Major League Baseball Most Valuable Player Award
+16001137	N/A	Marcelo Silva Ramos
+9464508	N/A	Ren\u00e9 Eijkelkamp
+240952	N/A	Henrik Larsson
+68685	N/A	Bobby Robson
+3250276	N/A	Albert Ferrer
+9279674	N/A	Julen Lopetegui
+5431085	N/A	Milinko Panti\u0107
+570925	N/A	Hristo Stoichkov
+1786727	N/A	Sergi Barju\u00e1n
+8146787	N/A	Juan Esn\u00e1ider
+69802	N/A	Community of Madrid
+225760	N/A	Santiago Bernab\u00e9u Stadium
+615769	N/A	Patrick Kluivert
+19834644	N/A	Mariano Juan
+2803637	N/A	Tijani Babangida
+3521904	N/A	Daniel da Cruz Carvalho
+62611	N/A	Parma F\u002eC\u002e
+2358	N/A	A\u002eS\u002e Roma
+149877	N/A	Udinese Calcio
+4918282	N/A	1996\u201397 UEFA Cup
+1136866	N/A	Empoli F\u002eC\u002e
+1142794	N/A	Carlo Ancelotti
+1527955	N/A	Enrico Chiesa
+18424280	N/A	Alessandro Melli
+520651	N/A	U\u002eS\u002e Citt\u00e0 di Palermo
+1687460	N/A	Carlos Bianchi
+3319700	N/A	Arrigo Sacchi
+1138777	N/A	A\u002eC\u002e Cesena
+1691772	N/A	U\u002eS\u002e Cremonese
+4462898	N/A	Cosenza Calcio 1914
+3073616	N/A	A\u002eS\u002e Andria BAT
+1136763	N/A	Piacenza Calcio
+210482	N/A	Atalanta B\u002eC\u002e
+1135354	N/A	U\u002eS\u002e Lecce
+3149150	N/A	Genoa C\u002eF\u002eC\u002e
+574307	N/A	U\u002eC\u002e Sampdoria
+3085203	N/A	A\u002eS\u002eG\u002e Nocerina
+2592452	N/A	Perugia Calcio
+5071886	N/A	Paulo S\u00e9rgio Silvestre do Nascimento
+2431610	N/A	Alexander Zickler
+7560958	N/A	Ruggiero Rizzitelli
+14466734	N/A	Markus Feldhoff
+3071399	N/A	SPAL 1907
+3070366	N/A	A\u002eC\u002e Reggiana 1919
+2883907	N/A	A\u002eS\u002e Lucchese Libertas 1905
+1136820	N/A	Vicenza Calcio
+81238	N/A	Bologna F\u002eC\u002e 1909
+19450750	N/A	Torino F\u002eC\u002e
+28984	N/A	S\u002eS\u002e Lazio
+1138693	N/A	A\u002eS\u002e Bari
+14035	N/A	Hellas Verona F\u002eC\u002e
+1411049	N/A	Delfino Pescara 1936
+2870603	N/A	A\u002eC\u002e Monza Brianza 1912
+1130620	N/A	S\u002eS\u002eC\u002e Napoli
+6903	N/A	A\u002eC\u002e ChievoVerona
+2876568	N/A	Ravenna Calcio
+9649414	N/A	Jonathan Akpoborie
+21064133	N/A	Dietmar Hirsch
+553772	N/A	Robert Pir\u00e8s
+220160	N/A	Thierry Henry
+253764	N/A	Marc\u002dVivien Fo\u00e9
+3254011	N/A	Patrice Loko
+1435187	N/A	St\u00e9phane Guivarc\u0027h
+5447	N/A	Cameroon
+250197	N/A	France national football team
+2937139	N/A	Aim\u00e9 Jacquet
+808402	N/A	Mexico national football team
+761302	N/A	Parc des Princes
+13121884	N/A	Kader Ferhaoui
+6026473	N/A	Tony Vairelles
+7189794	N/A	Beno\u00eet Cauet
+22997	N/A	Panama
+5887619	N/A	Julio Dely Vald\u00e9s
+24901774	N/A	Dick Schreuder
+9712886	N/A	Ferdi Vierklau
+9343903	N/A	G\u00e9rard de Nooijer
+23592721	N/A	Edwin Vurens
+1706459	N/A	Ludovic Giuly
+7213440	N/A	Bruno Rodriguez
+7737628	N/A	Patrick Colleter
+46827	N/A	Jesse Owens
+39721	N/A	1936 Summer Olympics
+67299	N/A	Allan Wells
+397266	N/A	Sanath Jayasuriya
+894385	N/A	Romesh Kaluwitharana
+2138844	N/A	Aravinda de Silva
+3105984	N/A	Kumar Dharmasena
+252735	N/A	Rahul Dravid
+274600	N/A	Anil Kumble
+3140804	N/A	Ravindra Pushpakumara
+6699670	N/A	Asanka Gurusinha
+1671083	N/A	Roshan Mahanama
+198062	N/A	Chaminda Vaas
+3060336	N/A	Venkatesh Prasad
+492474	N/A	Javagal Srinath
+3965321	N/A	Aashish Kapoor
+3369198	N/A	Ajay Jadeja
+529681	N/A	Sourav Ganguly
+564046	N/A	Vinod Kambli
+3059959	N/A	Nayan Mongia
+18298102	N/A	Princeton N\u002e Lyman
+13699261	N/A	Bailundo
+264097	N/A	Jonas Savimbi
+934562	N/A	Turkish Cypriots
+19058	N/A	Munich
+53839	N/A	Fort Worth\u002c Texas
+2302768	N/A	Morinville\u002c Alberta
+5103900	N/A	Nordegg\u002c Alberta
+380532	N/A	Biogen Idec
+4383256	N/A	Bayer HealthCare Pharmaceuticals
+2091870	N/A	Schering AG
+2858017	N/A	Interferon beta\u002d1b
+1184467	N/A	Chiron Corporation
+3709121	N/A	FDA \u0028trade union\u0029
+21835440	N/A	Mark Lawrence Wolf
+11076522	N/A	Michael J\u002e Astrue
+67234	N/A	Newark\u002c New Jersey
+21804225	N/A	John Winslow Bissell
+10819	N/A	Federal Reserve System
+985804	N/A	Codelco
+133365	N/A	Harleysville\u002c Pennsylvania
+1596	N/A	Alexander III of Scotland
+5963679	N/A	Ren\u00e9 \u0028novella\u0029
+44012	N/A	Anton Bruckner
+216066	N/A	Second French Empire
+62581	N/A	Napoleon III
+2702049	N/A	Skeleton Canyon
+21883824	N/A	Arizona
+221765	N/A	Geronimo
+21217	N/A	Native Americans in the United States
+1291705	N/A	Nelson A\u002e Miles
+85267	N/A	Darius Milhaud
+1968469	N/A	La cr\u00e9ation du monde
+161242	N/A	Madame Bovary
+169382	N/A	Max Delbr\u00fcck
+21201	N/A	Nobel Prize
+9514	N/A	Edvard Grieg
+555554	N/A	Peer Gynt
+382196	N/A	Edward Dmytryk
+42106	N/A	Crossfire \u0028film\u0029
+53849	N/A	Hollywood
+93961	N/A	Crystal Palace\u002c London
+102298	N/A	Wilhelmina of the Netherlands
+80481	N/A	Juliana of the Netherlands
+374183	N/A	Robert Schuman
+144607	N/A	Forth Road Bridge
+1029	N/A	Albert Schweitzer
+9906294	N/A	Johann Sebastian Bach
+83112	N/A	1972 Summer Olympics
+66265	N/A	Mark Spitz
+332902	N/A	Olympiad
+13058	N/A	East Germany
+2514850	N/A	Small Is Beautiful
+182032	N/A	Georges Simenon
+69445	N/A	Jules Maigret
+37008	N/A	Communist party
+276706	N/A	Todor Zhivkov
+8551	N/A	David
+3523938	N/A	Fourth World Conference on Women
+553623	N/A	Great Hall of the People
+94089	N/A	Heathrow\u002c London
+26308489	N/A	Five Nations XV
+321943	N/A	Sky Digital \u0028UK \u0026 Ireland\u0029
+19344654	N/A	BBC
+14300052	N/A	Tom Kiernan
+86654	N/A	Hamilton\u002c New Zealand
+628782	N/A	Christchurch
+628345	N/A	Dunedin
+478115	N/A	New Zealand national cricket team
+15674115	N/A	Sharjah \u0028city\u0029
+715265	N/A	Confederation of African Football
+56617	N/A	Bangui
+1076998	N/A	Guinea national football team
+1145024	N/A	Sierra Leone national football team
+1029953	N/A	Tunisia national football team
+233978	N/A	The Vancouver Sun
+201835	N/A	Chris Patten\u002c Baron Patten of Barnes
+57744	N/A	C\u00f4te d\u0027Ivoire
+21371767	N/A	Abidjan
+418112	N/A	Henri Konan B\u00e9di\u00e9
+2870067	N/A	ASEC Mimosas
+334800	N/A	Orlando Pirates FC
+27308	N/A	Sierra Leone
+56661	N/A	Freetown
+14659758	N/A	Foindu
+298010	N/A	Revolutionary United Front
+285508	N/A	Frederick Chiluba
+3770586	N/A	Sidya Tour\u00e9
+1981141	N/A	Ruth Perry
+241458	N/A	Charles Taylor \u0028Liberia\u0029
+26327468	N/A	Academic Staff Union of Universities
+2596054	N/A	Topo\u013e\u010dany
+4530919	N/A	Agnieszka Kotlarska
+33603	N/A	Wroc\u0142aw
+318870	N/A	Gianni Versace
+341903	N/A	Vogue \u0028magazine\u0029
+657945	N/A	Gazeta Wyborcza
+152449	N/A	Trans World Airlines
+7191778	N/A	Russian Trading System
+1619047	N/A	RAO UES
+412602	N/A	American Depositary Receipt
+320489	N/A	Gazprom
+26006064	N/A	Mosenergo
+7208255	N/A	Rostelecom
+1027881	N/A	Lukoil
+27830610	N/A	Koha Jon\u00eb
+151876	N/A	Bulgarians
+11274042	N/A	Nagyat\u00e1d
+8253	N/A	Dayton\u002c Ohio
+1473586	N/A	Toomas Savi
+776028	N/A	Dariusz Rosati
+1170078	N/A	Nicaraguans
+974131	N/A	Ernesto Samper
+406013	N/A	Colombian Liberal Party
+19467352	N/A	Richter magnitude scale
+1873300	N/A	Vale \u0028mining company\u0029
+96665	N/A	Palestinian territories
+1157753	N/A	Palestinian Legislative Council
+252171	N/A	Operation Provide Comfort
+8550616	N/A	National Iraqi News Agency
+108340	N/A	Ventura\u002c California
+37988	N/A	National Guard of the United States
+21181	N/A	Nancy Reagan
+2154	N/A	African American
+343170	N/A	Pete Wilson
+11955	N/A	George H\u002e W\u002e Bush
+2356523	N/A	High Plains \u0028United States\u0029
+323078	N/A	Oklahoma State University\u2013Stillwater
+59749	N/A	Dust Bowl
+323072	N/A	University of Oklahoma
+317673	N/A	Texas Panhandle
+60613	N/A	Jacksonville\u002c Florida
+59418	N/A	Amoco
+350939	N/A	Yemen
+27308038	N/A	Middle East Economic Survey
+718749	N/A	South Yemen
+720778	N/A	North Yemen
+30118	N/A	Tanzania
+358637	N/A	Julius Nyerere
+616447	N/A	Pierre Buyoya
+3464	N/A	Botswana
+5268497	N/A	Juan Somav\u00eda
+8334599	N/A	Karl Inderfurth
+49749	N/A	Bern
+164065	N/A	Fribourg
+735427	N/A	Ahold
+383976	N/A	ABN AMRO
+297545	N/A	Le Canard encha\u00een\u00e9
+842695	N/A	Credit Suisse
+193737	N/A	Benazir Bhutto
+993655	N/A	Asif Ali Zardari
+374012	N/A	Nawaz Sharif
+409053	N/A	Pakistan Muslim League \u0028N\u0029
+4687	N/A	Balochistan\u002c Pakistan
+93764	N/A	Quetta
+1030551	N/A	Muttahida Qaumi Movement
+265059	N/A	Partition of India
+2395785	N/A	ACC Limited
+3500360	N/A	Nanabhoy Palkhivala
+2181900	N/A	KBC Bank
+236852	N/A	London Interbank Offered Rate
+12545216	N/A	Axis Bank
+53707	N/A	Gujarat
+373154	N/A	Rameswaram
+29918	N/A	Tamil Nadu
+479912	N/A	M\u002e Karunanidhi
+373152	N/A	Palk Strait
+12977962	N/A	Pesalai
+37410	N/A	Dresden
+32652	N/A	Volkswagen Group
+554356	N/A	Volkswagen Passat
+5481658	N/A	Miltiadis Evert
+197867	N/A	London Stock Exchange
+3970	N/A	British Airways
+324642	N/A	General Confederation of Labour \u0028France\u0029
+4694582	N/A	Euronext Paris
+188155	N/A	Bank of Japan
+661174	N/A	Frankfurt Stock Exchange
+147042	N/A	ISO 9000
+13946091	N/A	Bureau Veritas
+2417	N/A	Alicante
+68029	N/A	Bilbao
+37770	N/A	Seville
+63861	N/A	Valencia\u002c Spain
+803	N/A	Arabic language
+4312	N/A	Bethlehem
+65759	N/A	Al\u002dAqsa Mosque
+1399016	N/A	Dennis Ross
+232595	N/A	Mahmoud Abbas
+1070942	N/A	Dore Gold
+38577	N/A	Hebron
+1860312	N/A	Yitzhak Mordechai
+10283896	N/A	Ministry of Foreign Affairs \u0028Turkey\u0029
+197983	N/A	Romano Prodi
+291275	N/A	Tunceli Province
+2463135	N/A	Hakk\u00e2ri
+18133296	N/A	Ministry of Foreign Affairs \u0028Israel\u0029
+107104	N/A	Paris\u002c Arkansas
+125107	N/A	Avalon\u002c New Jersey
+949828	N/A	Richard Lamm
+62028	N/A	CNN
+1520690	N/A	Donaldson\u002c Lufkin \u0026 Jenrette
+4659852	N/A	Equitas
+70228	N/A	United States courts of appeals
+428324	N/A	United States Court of Appeals for the Fourth Circuit
+285196	N/A	Gale Norton
+21287	N/A	Nuremberg
+3764	N/A	Bavaria
+49112	N/A	Potsdam
+2865375	N/A	Theodoros Pangalos
+19261	N/A	Monaco
+1708370	N/A	Daniel Ducruet
+19843098	N/A	Gente \u0028magazine\u0029
+154987	N/A	Rainier III\u002c Prince of Monaco
+292511	N/A	Caroline\u002c Princess of Hanover
+235952	N/A	Albert II\u002c Prince of Monaco
+42620	N/A	Grace Kelly
+137721	N/A	Monte Carlo
+28395	N/A	Saxony
+1981235	N/A	Auchan
+307855	N/A	Billa \u0028supermarket\u0029
+2346687	N/A	Anita Gradin
+26741	N/A	Stockholm
+679519	N/A	Eurostat
+277229	N/A	Bu\u00f1ol
+424225	N/A	New Democracy \u0028Greece\u0029
+405559	N/A	Panhellenic Socialist Movement
+430783	N/A	Athens Metro
+464282	N/A	Konstantinos Mitsotakis
+1040592	N/A	Stagecoach Group
+232036	N/A	Nobina Sverige
+1798576	N/A	Newcrest Mining
+22088081	N/A	Telfer Mine
+22097576	N/A	Boddington Gold Mine
+59051	N/A	Queensland
+192093	N/A	Brisbane
+29944	N/A	Tasmania
+265537	N/A	Port Arthur\u002c Tasmania
+402737	N/A	Pudong
+26769	N/A	South America
+1160532	N/A	Ieng Sary
+24326	N/A	Pol Pot
+334751	N/A	Cambodia
+222456	N/A	Ta Mok
+868969	N/A	Son Sen
+1429661	N/A	Khmer people
+51591	N/A	Phnom Penh
+1493374	N/A	Mil Mi\u002d17
+12219062	N/A	Ieng Mouly
+6658821	N/A	Stung Treng
+870389	N/A	Ministry of Finance \u0028Japan\u0029
+387050	N/A	New Party Sakigake
+23634266	N/A	Masayoshi Takemura
+164231	N/A	Liberal Democratic Party \u0028Japan\u0029
+375454	N/A	Social Democratic Party \u0028Japan\u0029
+2687269	N/A	Yukio Hatoyama
+105059	N/A	Anhui
+13270	N/A	Hawaii
+346226	N/A	Wen Wei Po
+268276	N/A	Ming Pao
+397335	N/A	Democratic Party \u0028Hong Kong\u0029
+175780	N/A	South China Morning Post
+5751	N/A	Chinese language
+348517	N/A	Hong Kong Economic Times
+2286075	N/A	Legal Department
+444409	N/A	El Pa\u00eds
+6822	N/A	Catalonia
+6242592	N/A	Diario 16
+2629368	N/A	Grupo Santander
+6517516	N/A	Expansi\u00f3n
+399571	N/A	Abulhassan Banisadr
+14883	N/A	Iberian Peninsula
+774454	N/A	George Joulwan
+8640622	N/A	John J\u002e Sheehan
+5166	N/A	Copenhagen
+9578	N/A	European Economic Community
+43427	N/A	Nature \u0028journal\u0029
+5617	N/A	Creutzfeldt\u2013Jakob disease
+2371253	N/A	Daniel Chopra
+5179238	N/A	Philip Walton
+2119368	N/A	Eduardo Romero
+1569625	N/A	Miguel \u00c1ngel Jim\u00e9nez
+5340359	N/A	Paul Curry \u0028golfer\u0029
+24997138	N/A	Paul Affleck
+118600	N/A	Doetinchem
+2611279	N/A	Rolf S\u00f8rensen
+914182	N/A	Viatcheslav Ekimov
+934261	N/A	Erik Dekker
+2234080	N/A	Erik Breukink
+10711801	N/A	Wilfried Peeters
+11066143	N/A	Bart Voskamp
+11100004	N/A	Michael Andersson
+11099892	N/A	Marco Lietti
+11100389	N/A	Maarten den Bakker
+2107369	N/A	Olaf Ludwig
+118651	N/A	Zevenaar
+118556	N/A	Venray
+23203050	N/A	Darryn Hill
+6473320	N/A	Jens Fiedler \u0028cyclist\u0029
+11438472	N/A	Florian Rousseau
+6519486	N/A	F\u00e9licia Ballanger
+6691515	N/A	Oksana Grishina
+11451462	N/A	Tanya Dubnicoff
+6691583	N/A	Annett Neumann
+1436501	N/A	Aamer Sohail
+473185	N/A	Saqlain Mushtaq
+2641030	N/A	Edgbaston Cricket Ground
+13882056	N/A	Birmingham
+3064824	N/A	Giovanni Lombardi
+12164194	N/A	Team Polti
+8638361	N/A	Servais Knaven
+10877349	N/A	Nevill Ground
+2642672	N/A	County Cricket Ground\u002c Hove
+2311656	N/A	Riverside Ground
+10756265	N/A	Queen\u0027s Park\u002c Chesterfield
+2642664	N/A	County Cricket Ground\u002c Bristol
+1218828	N/A	Jim Telfer
+951941	N/A	Great Britain national rugby league team
+758049	N/A	Scotland national rugby union team
+1211786	N/A	Ian McGeechan
+26547	N/A	Six Nations Championship
+82755	N/A	1992 Summer Olympics
+663785	N/A	Bruce Grobbelaar
+1083858	N/A	Zimbabwe national football team
+1095575	N/A	Sudan national football team
+3588980	N/A	Hans Segers
+3830902	N/A	John Fashanu
+15820924	N/A	Dynamo Sports Club
+7447334	N/A	Dan Jenson
+8858091	N/A	Tina Kri\u017ean
+1918847	N/A	Terry Mulholland
+634056	N/A	Kingdome
+6694505	N/A	John Marzano
+6184750	N/A	Don Wengert
+960136	N/A	Jos\u00e9 Herrera \u00281990s outfielder\u0029
+1974033	N/A	James Baldwin \u0028baseball\u0029
+933727	N/A	Ray Durham
+540550	N/A	Ozzie Guill\u00e9n
+2271683	N/A	Dave Nilsson
+2183067	N/A	Jos\u00e9 Offerman
+608740	N/A	Johnny Damon
+12174734	N/A	Rick Huisman
+383370	N/A	Pat Hentgen
+493988	N/A	Orel Hershiser
+1251621	N/A	Albert Belle
+89050	N/A	Flushing Meadows \u2013 Corona Park
+45470	N/A	Manhattan
+12142087	N/A	Ron Wright \u0028baseball\u0029
+1050189	N/A	Greenville Braves
+1655051	N/A	Eugene Emeralds
+486632	N/A	Terry Pendleton
+5158901	N/A	Luis Polonia
+875934	N/A	Andruw Jones
+19716558	N/A	Yassine Abdellaoui
+9560139	N/A	Maurice Graef
+7108659	N/A	European Cup \u0028athletics\u0029
+68251	N/A	Harrison Dillard
+69112	N/A	Lindy Remigino
+67837	N/A	Jim Hines
+452912	N/A	Trinidad
+67506	N/A	Hasely Crawford
+2273335	N/A	Jonathan Bachini
+6085283	N/A	Albert Emon
+47088	N/A	Nice
+1466668	N/A	Giovanni van Bronckhorst
+40471	N/A	Thessaloniki
+48189	N/A	Surrey
+1485260	N/A	Julia Carling
+45773	N/A	Kinshasa
+446958	N/A	North Kivu
+446959	N/A	South Kivu
+446957	N/A	Maniema
+1917423	N/A	Bandundu
+64240	N/A	Mobutu Sese Seko
+1190018	N/A	Tom Ikimi
+330970	N/A	Ken Saro\u002dWiwa
+80482	N/A	Beatrix of the Netherlands
+334090	N/A	Idriss D\u00e9by
+405963	N/A	Patriotic Salvation Movement
+7362858	N/A	Le Jour
+1714456	N/A	Zvornik
+1435264	N/A	Berovo
+7600227	N/A	John C\u002e Kornblum
+25862556	N/A	Slobodan Milo\u0161evi\u0107
+385109	N/A	Banja Luka
+158677	N/A	Biljana Plav\u0161i\u0107
+17391	N/A	Kosovo
+777359	N/A	Podujevo
+14431526	N/A	\u010celopek
+495612	N/A	Victor Babe\u015f
+63927	N/A	Cartagena\u002c Colombia
+255932	N/A	Buenos Aires Province
+2122632	N/A	La Naci\u00f3n
+690287	N/A	National Congress of Brazil
+156896	N/A	Oaxaca
+195822	N/A	Chilpancingo
+20822084	N/A	Acatepec
+2685480	N/A	National Human Rights Commission \u0028Mexico\u0029
+26099	N/A	Red Brigades
+772540	N/A	Rede Globo
+3359076	N/A	Supreme Federal Court
+229521	N/A	Par\u00e1
+8284063	N/A	Lucas Moreira Neves
+534654	N/A	Independent Commission Against Corruption \u0028Hong Kong\u0029
+372983	N/A	Chinese people
+1863118	N/A	Chatichai Choonhavan
+2014560	N/A	Chavalit Yongchaiyudh
+2095269	N/A	New Aspiration Party
+80830	N/A	Ahmed Yassin
+323256	N/A	Ramla
+4512052	N/A	Skhirat
+410355	N/A	Hassan II of Morocco
+1068374	N/A	Dick Morris
+224672	N/A	Dianne Feinstein
+108139	N/A	Santa Barbara\u002c California
+2136403	N/A	Piper Jaffray
+31793	N/A	University of Pennsylvania
+952282	N/A	Cargill
+290271	N/A	Mitsui
+54998	N/A	Bunge Limited
+21139	N/A	North America
+4338197	N/A	The Conference Board
+21531764	N/A	New England
+920048	N/A	West South Central States
+920073	N/A	East North Central States
+106211	N/A	Atlantic City\u002c New Jersey
+8955445	N/A	O\u002e J\u002e Simpson
+430434	N/A	Nicole Brown Simpson
+430438	N/A	Ronald Goldman
+4315	N/A	Buffalo Bills
+272590	N/A	Pro Football Hall of Fame
+102227	N/A	New York Post
+61024	N/A	Charleston\u002c South Carolina
+109061	N/A	Pembroke Pines\u002c Florida
+607797	N/A	The Miami Herald
+17349325	N/A	United States Marine Corps
+21780	N/A	NBC
+111543	N/A	Decatur\u002c Illinois
+1300085	N/A	\u00c9cu
+46132	N/A	Rennes
+105031	N/A	Cherbourg\u002dOcteville
+90576	N/A	Indre
+929985	N/A	Dawn \u0028newspaper\u0029
+4175901	N/A	Tando Allahyar
+288090	N/A	Hyderabad\u002c Sindh
+3536877	N/A	Business Recorder
+7409873	N/A	Sui Southern Gas Company
+1305365	N/A	Financial Post
+2782484	N/A	Gujar Khan
+252976	N/A	The Nation
+4665846	N/A	Muslim Commercial Bank
+11042310	N/A	Sindh High Court
+385441	N/A	HALO Trust
+2377	N/A	Andhra Pradesh
+20715492	N/A	Madhumalla
+4418894	N/A	Himalaya Kingdom
+4126071	N/A	Vavuniya
+8522	N/A	Denver
+94341	N/A	Boulder\u002c Colorado
+50413	N/A	Sierra Nevada \u0028U\u002eS\u002e\u0029
+53446	N/A	San Jose\u002c California
+17476047	N/A	Hambrecht \u0026 Quist
+790369	N/A	PMC\u002dSierra
+74384	N/A	Morgan Stanley
+5201333	N/A	Irvine\u002c California
+161515	N/A	Oasis \u0028band\u0029
+178326	N/A	Liam Gallagher
+194961	N/A	Noel Gallagher
+882447	N/A	Patsy Kensit
+7028227	N/A	SEGRO
+1771497	N/A	British Land
+2049638	N/A	Land Securities
+2928064	N/A	Hammerson
+2587583	N/A	Nigel Mobbs
+186760	N/A	Statistics Canada
+6226592	N/A	Petra News Agency
+530357	N/A	West Azarbaijan province
+860964	N/A	Pan\u002dTurkism
+16749	N/A	Korea
+22326	N/A	Old Testament
+7614001	N/A	Al Akhbar \u0028Lebanon\u0029
+19623898	N/A	Islamic Museum
+909551	N/A	Wyche Fowler
+7712661	N/A	Keane \u0028company\u0029
+173070	N/A	The Wall Street Journal
+22093	N/A	National Basketball Association
+213137	N/A	James Baker
+509001	N/A	Republican National Convention
+136974	N/A	Atlantic Highlands\u002c New Jersey
+18315	N/A	Long Island
+4472857	N/A	Island Beach State Park
+21840	N/A	National Transportation Safety Board
+863	N/A	American Civil War
+307	N/A	Abraham Lincoln
+32087	N/A	United States Army
+91268	N/A	Petersburg\u002c Virginia
+27426216	N/A	John Y\u002e Simon
+476592	N/A	Southern Illinois University Carbondale
+31752	N/A	Ulysses S\u002e Grant
+508127	N/A	American studies
+80734	N/A	American University
+7023	N/A	Confederate States of America
+178621	N/A	United Daughters of the Confederacy
+161535	N/A	National Park Service
+112436	N/A	Michigan City\u002c Indiana
+2640	N/A	Ajaccio
+1512904	N/A	Jean\u002dLouis Debr\u00e9
+3017887	N/A	France Soir
+17780202	N/A	Place Beauvau
+871703	N/A	Minister of the Interior \u0028France\u0029
+80770	N/A	Le Figaro
+4693197	N/A	Gorleben
+44776	N/A	Catania
+27619	N/A	Sicily
+8468733	N/A	Benedetto Santapaola
+56885	N/A	Limerick
+66513	N/A	Genoa
+5069516	N/A	AIDS
+36971	N/A	Arctic
+337405	N/A	Longyearbyen
+466256	N/A	Barentsburg
+16035441	N/A	Royal Meteorological Institute
+156847	N/A	Turnhout
+17703237	N/A	Jumet
+68836	N/A	Tampere
+2423598	N/A	Iltalehti
+848	N/A	Audi
+208251	N/A	Ingolstadt
+62049	N/A	South Island
+369460	N/A	Television New Zealand
+2859334	N/A	Waiau\u002c Canterbury
+61978	N/A	Nelson\u002c New Zealand
+18143347	N/A	Siam Commercial Bank
+2823064	N/A	The Bank of Tokyo\u002dMitsubishi UFJ
+306128	N/A	Daewoo
+3109012	N/A	LG Telecom
+2917433	N/A	Antara \u0028news agency\u0029
+320443	N/A	East Java
+12360951	N/A	Imam Utomo
+24071884	N/A	Haneda Airport
+24086495	N/A	Osaka International Airport
+7097642	N/A	Supreme Court of the Republic of China
+3467272	N/A	Caltex
+284749	N/A	Chevron Corporation
+604654	N/A	Bank of Spain
+4199619	N/A	Industrial Production Index
+539739	N/A	Grupos Antiterroristas de Liberaci\u00f3n
+401572	N/A	ABC \u0028newspaper\u0029
+197618	N/A	Jos\u00e9 Mar\u00eda Aznar
+976292	N/A	Lenzing AG
+5380456	N/A	British Jews
+614418	N/A	Robert Rubin
+54537	N/A	Cabinet \u0028government\u0029
+299257	N/A	Lloyd Bentsen
+161947	N/A	Alan Greenspan
+4745273	N/A	Amstetten\u002c Lower Austria
+21478893	N/A	Austria national under\u002d21 football team
+4683429	N/A	Scotland national under\u002d21 football team
+24425438	N/A	Ewald Brenner
+19220665	N/A	Ronald Brunmayr
+654427	N/A	San Marino national football team
+1251024	N/A	Barry\u002c Vale of Glamorgan
+5082938	N/A	Wales national under\u002d21 football team
+1062932	N/A	John Hartson
+8908579	N/A	Scott Young \u0028footballer\u0029
+17825936	N/A	Nathalie Lancien
+18078979	N/A	Tatiana Stiajkina
+2196613	N/A	Judith Arndt
+24910123	N/A	Tea Vikstedt\u002dNyman
+14800477	N/A	Sally Boyden \u0028cyclist\u0029
+8964356	N/A	Antoine Kombouar\u00e9
+1177084	N/A	Scottish League Cup
+1317776	N/A	Roy Aitken
+1438258	N/A	David Ginola
+27248	N/A	San Marino
+916593	N/A	Imola
+20108	N/A	Michael Doohan
+6042632	N/A	Jean\u002dMichel Bayle
+2857412	N/A	Norifumi Abe
+2035694	N/A	Luca Cadalora
+6018692	N/A	\u00c0lex Crivill\u00e9
+8564874	N/A	Scott Russell \u0028motorcyclist\u0029
+6018963	N/A	Tadayuki Okada
+2993392	N/A	Carlos Checa
+12185077	N/A	Shinichi Itoh
+3528782	N/A	Bob May \u0028golfer\u0029
+9923018	N/A	Bradley Hughes \u0028golfer\u0029
+3379941	N/A	West Indies cricket team
+2518836	N/A	Phil Simmons
+2641188	N/A	Grace Road
+2807425	N/A	Peter Such
+896385	N/A	Mark Butcher
+994715	N/A	Tom Moody
+1933990	N/A	Chris Adams \u0028cricketer\u0029
+6459613	N/A	Paul Johnson \u0028cricketer\u0029
+3741478	N/A	Martin McCague
+349538	N/A	Royal Tunbridge Wells
+68203	N/A	Hove
+148950	N/A	Chesterfield
+36741	N/A	Bristol
+1132	N/A	The Ashes
+8263709	N/A	British Universities cricket team
+142267	N/A	Arundel
+541838	N/A	Edgbaston
+22308	N/A	Oxford
+88261	N/A	Tony Adams \u0028footballer\u0029
+718785	N/A	David Platt \u0028footballer\u0029
+526155	N/A	Teddy Sheringham
+679755	N/A	Romania national football team
+655953	N/A	Lithuania national football team
+5452605	N/A	Romania national under\u002d21 football team
+17674262	N/A	Lithuania national under\u002d21 football team
+5230728	N/A	Cosmin Contra
+6257354	N/A	Mihai Tararache
+22257982	N/A	FC Volgograd
+63328	N/A	Roberto Dur\u00e1n
+57361	N/A	Panama City
+86735	N/A	H\u00e9ctor Camacho
+4027077	N/A	Hendrik Dreekmann
+2062900	N/A	1996 Wimbledon Championships
+21211	N/A	National Football League
+741338	N/A	Randall Cunningham
+23339	N/A	Philadelphia Eagles
+274117	N/A	Pro Bowl
+3268856	N/A	Jeffrey Lurie
+53117	N/A	Milwaukee
+5215321	N/A	U\u002eS\u002e Bank Championship in Milwaukee
+6498314	N/A	Brown Deer Park Golf Course
+5730434	N/A	Nolan Henke
+5841428	N/A	Bob Estes
+2022409	N/A	Billy Andrade
+1175904	N/A	Jesper Parnevik
+7017475	N/A	Neal Lancaster
+5882058	N/A	Dave Barr \u0028golfer\u0029
+6828058	N/A	Mike Sullivan \u0028golfer\u0029
+7193430	N/A	Russ Cochran
+1544297	N/A	Mark Calcavecchia
+349744	N/A	Payne Stewart
+5704624	N/A	Ken Green \u0028golfer\u0029
+2151007	N/A	Jerry Kelly
+6312110	N/A	Tim Simpson
+2080151	N/A	Olin Browne
+5893843	N/A	Mike Hulbert
+5352855	N/A	Brian Henninger
+43356	N/A	Tiger Woods
+1510466	N/A	United States Amateur Championship \u0028golf\u0029
+5964779	N/A	Andrew Magee
+5208246	N/A	AT\u0026T Classic
+4978045	N/A	Valero Texas Open
+5221418	N/A	Chrysler Classic of Tucson
+223854	N/A	U\u002eS\u002e Open \u0028golf\u0029
+700197	N/A	Mario Silva
+3142043	N/A	Mauro Silva
+3161179	N/A	Michael Green \u0028sprinter\u0029
+3004756	N/A	Mark Crear
+795714	N/A	Tony Jarrett
+2645530	N/A	Florian Schwarthoff
+13721547	N/A	Falk Balzer
+6437190	N/A	Frank Busemann
+6311518	N/A	Jack Pierce \u0028athlete\u0029
+2042626	N/A	Geir Moen
+3801326	N/A	Astrid Kumbernuss
+3459606	N/A	Irina Korzhanenko
+11729966	N/A	Valentina Fedyushina
+13721022	N/A	Stephanie Storp
+833487	N/A	V\u00e9nuste Niyongabo
+10894635	N/A	Marko Koers
+2525121	N/A	Virgilijus Alekna
+15385210	N/A	Andreas Seelig
+2445851	N/A	Gabriela Szabo
+3332284	N/A	Gete Wami
+18039438	N/A	Rose Cheruiyot
+23702605	N/A	Annemari Sandell\u002dHyv\u00e4rinen
+604477	N/A	Tegla Loroupe
+8552202	N/A	Gunhild Haugen
+5961566	N/A	Fabrizio Mori
+15331790	N/A	Sven Nylander
+25826152	N/A	Eric Thomas \u0028athlete\u0029
+6737829	N/A	Jearl Miles Clark
+6734490	N/A	Fatima Yusuf
+6822591	N/A	Anja R\u00fccker
+2645586	N/A	Olabisi Afolabi
+2645843	N/A	Linda Kisabaka
+13260808	N/A	Karin Janke
+12070766	N/A	Marc Blume
+618111	N/A	Wilson Kipketer
+3242583	N/A	Norberto T\u00e9llez
+2420584	N/A	Nico Motchebon
+3240580	N/A	Igor Trandenkov
+5734854	N/A	Maksim Tarasov
+2690682	N/A	Igor Potapovich
+2390458	N/A	Jean Galfione
+2670770	N/A	Dmitri Markov
+2597305	N/A	Hanne Haugland
+6729117	N/A	Shem Kororia
+3685193	N/A	Brahim Lahlafi
+2690277	N/A	Fita Bayisa
+972840	N/A	Mike Conley\u002c Sr\u002e
+4531486	N/A	Armen Martirosyan \u0028athlete\u0029
+2604006	N/A	Carlos Calado
+13721629	N/A	Tanja Damaske
+3909808	N/A	Heli Rantanen
+5403402	N/A	Xiomara Rivero
+15446487	N/A	Georgios Panagiotopoulos
+616358	N/A	UEFA Intertoto Cup
+7616645	N/A	Guy Hellers
+8283887	N/A	Roberto Bisconti
+86444	N/A	International Association of Athletics Federations
+24168650	N/A	1996 IAAF Grand Prix Final
+4893181	N/A	Dominique Baratelli
+1914355	N/A	Gianluigi Lentini
+1938426	N/A	La Gazzetta dello Sport
+665012	N/A	Fabio Capello
+7393320	N/A	Emiliano Mondonico
+896434	N/A	Upul Chandana
+22829445	N/A	U\u002e Chandana
+409561	N/A	Jason Gillespie
+994713	N/A	Darren Lehmann
+30853	N/A	Transylvania
+1239605	N/A	National Bank of Poland
+3230405	N/A	Bank of Canada
+84504	N/A	St\u002e Petersburg\u002c Florida
+1618621	N/A	Levothyroxine
+68036	N/A	Institute for Supply Management
+628925	N/A	Eurodollar
+593155	N/A	Federal Open Market Committee
+1591582	N/A	Lawrence B\u002e Lindsey
+223441	N/A	CNBC
+118331	N/A	Farmington Hills\u002c Michigan
+517035	N/A	Magna International
+179318	N/A	Markham\u002c Ontario
+1359818	N/A	Johnson Controls
+230102	N/A	Chicago Stock Exchange
+1258170	N/A	Stansted Mountfitchet
+469008	N/A	United States Treasury security
+429110	N/A	Chicago Board of Trade
+191354	N/A	Tokyo Stock Exchange
+190972	N/A	Kansai International Airport
+325187	N/A	Frank Bruno
+39027	N/A	Mike Tyson
+2602721	N/A	Oliver McCall
+596136	N/A	Wembley Arena
+1695608	N/A	Uyo
+655377	N/A	Nagoum Yamassoum
+3899542	N/A	Khasavyurt
+196318	N/A	Alija Izetbegovi\u0107
+5202920	N/A	Batajnica
+2184645	N/A	Sur\u010din
+51593	N/A	Minsk
+156589	N/A	Alexander Lukashenko
+11674855	N/A	Tavildara
+498462	N/A	Pamir Mountains
+56658	N/A	Dushanbe
+1161355	N/A	Ministry of Foreign Affairs \u0028Poland\u0029
+297809	N/A	Socialist Federal Republic of Yugoslavia
+10853787	N/A	Naina Yeltsina
+14881514	N/A	Barvikha
+622772	N/A	Chechen people
+2114707	N/A	Budapest Stock Exchange
+1007531	N/A	Kecskem\u00e9t
+9545709	N/A	Casa de Nari\u00f1o
+80051	N/A	Norodom Sihanouk
+972359	N/A	Norodom Ranariddh
+393779	N/A	Hun Sen
+28741	N/A	Southeast Asia
+1809170	N/A	Mona Eltahawy
+53029	N/A	Muammar al\u002dGaddafi
+81024	N/A	Pan American World Airways
+14410202	N/A	Lockerbie
+21373	N/A	Niger
+12067	N/A	Ghana
+317442	N/A	Idris I of Libya
+204114	N/A	Benghazi
+42172	N/A	Walter Mondale
+174376	N/A	Whitewater controversy
+170992	N/A	S\u0026P 500
+70243	N/A	United States Department of Commerce
+31740	N/A	University of Michigan
+33873	N/A	World Trade Organization
+195805	N/A	Michoac\u00e1n
+304082	N/A	Joseph Bernardin
+18522615	N/A	Cincinnati
+694503	N/A	NationsBank
+1042702	N/A	Commerce Bancshares
+6242503	N/A	A\u002e G\u002e Edwards
+3346024	N/A	Norwest
+418241	N/A	Bank One Corporation
+12961620	N/A	First Chicago Bank
+2497737	N/A	KeyBank
+154191	N/A	Louis Farrakhan
+21709	N/A	Nation of Islam
+583459	N/A	Million Man March
+5409919	N/A	Pan Am Flight 103
+253089	N/A	Governor of South Carolina
+1429506	N/A	Carroll A\u002e Campbell\u002c Jr\u002e
+899023	N/A	Commission on Presidential Debates
+392704	N/A	League of Women Voters
+19285924	N/A	RMS Titanic
+26304966	N/A	Newfoundland \u0028island\u0029
+14998012	N/A	Air France
+105927	N/A	Paris\u002dCharles de Gaulle Airport
+10480786	N/A	Christian Blanc
+5615128	N/A	Velten
+50118	N/A	Groningen \u0028city\u0029
+18002900	N/A	Martela
+8914	N/A	Damascus
+4757052	N/A	Elakhbar
+13450	N/A	Hebrew language
+11311204	N/A	A\u002dRam
+3244672	N/A	Michigan National Bank
+1922153	N/A	Raymond James
+3070563	N/A	New York Cotton Exchange
+49662	N/A	Pirelli
+3615109	N/A	CITIC Pacific
+427264	N/A	Wuxi
+155837	N/A	Flavio Cotti
+467475	N/A	Zelimkhan Yandarbiyev
+101594	N/A	El Al
+30269	N/A	The Hague
+23689452	N/A	Annemarie Jorritsma
+1000530	N/A	Nagorno\u002dKarabakh Republic
+4237609	N/A	OSCE Minsk Group
+1249958	N/A	Pyramiden
+9424	N/A	Ericsson
+65109	N/A	Guangdong
+41268	N/A	Intelligent network
+2383951	N/A	Kompas
+2821886	N/A	Moro National Liberation Front
+2780681	N/A	Media Indonesia
+1086927	N/A	Tanjung Priok
+203912	N/A	Kia Motors
+9971445	N/A	Republika \u0028Indonesian newspaper\u0029
+19546038	N/A	Huize County
+166410	N/A	Yunnan
+651583	N/A	Changi Prison
+3748742	N/A	Central Narcotics Bureau
+5489697	N/A	David Peleg
+500409	N/A	A Coru\u00f1a
+454123	N/A	Roberto Carlos \u0028footballer\u0029
+200764	N/A	Deportivo de La Coru\u00f1a
+6384006	N/A	Donato Gama da Silva
+12345223	N/A	Luis Milla
+1148506	N/A	John Toshack
+8222430	N/A	Wigan
+769536	N/A	Israel national football team
+679770	N/A	Bulgaria national football team
+6077360	N/A	Israel national under\u002d21 football team
+6872188	N/A	Bulgaria national under\u002d21 football team
+21377823	N/A	Nir Sivilia
+578510	N/A	Republic of Ireland national football team
+992919	N/A	Eschen
+4038081	N/A	Phillip Price
+5223086	N/A	Adam Hunter \u0028golfer\u0029
+681620	N/A	Slovakia national football team
+1235399	N/A	Toftir
+3528223	N/A	\u013dubom\u00edr Morav\u010d\u00edk
+3501496	N/A	Peter Dubovsk\u00fd
+118532	N/A	Landgraaf
+118544	N/A	Roermond
+2634115	N/A	Jesper Skibby
+17825695	N/A	Antonella Bellutti
+23205992	N/A	Marion Clignet
+17606351	N/A	Lucy Tyler\u002dSharman
+17889043	N/A	Yvonne McGregor
+24399876	N/A	Anton Shantyr
+27766344	N/A	Philippe Ermenault
+14671986	N/A	Guido Fulst
+7239338	N/A	Danilo Hondo
+15410058	N/A	Olga Slyusareva
+18980043	N/A	Wendy Everson
+9144941	N/A	Roberto Chiappa
+95815	N/A	Arlington\u002c Texas
+392799	N/A	Juan Gonz\u00e1lez \u0028baseball\u0029
+5675896	N/A	Chad Ogea
+2161754	N/A	Mickey Rivers
+1263890	N/A	Rub\u00e9n Sierra
+1324548	N/A	Johnny Oates
+2797625	N/A	Roger Pavlik
+2803232	N/A	Jeff Russell
+1261724	N/A	Brian Giles
+2455768	N/A	American League Central
+2455857	N/A	American League West
+882800	N/A	Tino Martinez
+636308	N/A	Andy Pettitte
+3832783	N/A	Mariano Duncan
+189407	N/A	Darryl Strawberry
+2728715	N/A	Jim Leyritz
+341814	N/A	Mariano Rivera
+6184589	N/A	Randy Velarde
+2437666	N/A	Pete Incaviglia
+430866	N/A	Eddie Murray
+4335169	N/A	Kevin Tapani
+372723	N/A	Frank Thomas \u0028baseball\u002c born 1968\u0029
+419404	N/A	Harold Baines
+651932	N/A	Robin Ventura
+1662972	N/A	Danny Tartabull
+50548	N/A	Oakland\u002c California
+18937796	N/A	Dave Telgheder
+20548	N/A	Mark McGwire
+2054278	N/A	Buddy Groom
+2733991	N/A	Todd Van Poppel
+926313	N/A	Tony Clark
+6331203	N/A	Marc Newfield
+12932042	N/A	Jos\u00e9 Parra \u0028baseball\u0029
+4268483	N/A	Mike Fetters
+10397316	N/A	Richard Kettleborough
+2044715	N/A	Tim Munton
+3623431	N/A	Dave Gilbert \u0028cricketer\u0029
+897229	N/A	Dean Jones \u0028cricketer\u0029
+963537	N/A	Gloucester Rugby
+486954	N/A	London Irish
+1463014	N/A	Bristol Rugby
+629560	N/A	Northampton Saints
+11169920	N/A	West Hartlepool R\u002eF\u002eC\u002e
+3543483	N/A	Orrell R\u002eU\u002eF\u002eC\u002e
+321027	N/A	Bath Rugby
+21392239	N/A	Sale Sharks
+629561	N/A	Saracens F\u002eC\u002e
+309332	N/A	Leicester Tigers
+6474240	N/A	Bridgend Ravens
+2697758	N/A	Llanelli RFC
+5564304	N/A	Dunvant RFC
+9952855	N/A	Ebbw Vale RFC
+13744592	N/A	Treorchy RFC
+9952886	N/A	Newbridge RFC
+242108	N/A	Newport RFC
+2795095	N/A	Caerphilly RFC
+2593827	N/A	Swansea RFC
+1359751	N/A	Cardiff RFC
+3283715	N/A	Boroughmuir RFC
+3019571	N/A	Hawick RFC
+3019619	N/A	Currie RFC
+4062976	N/A	Jed\u002dForest RFC
+3019555	N/A	Watsonians RFC
+2330627	N/A	Melrose RFC
+1152622	N/A	Dean Saunders
+938712	N/A	Mark Hughes
+3638336	N/A	Andy Melville
+4410583	N/A	John Robinson \u0028footballer\u0029
+5046	N/A	Belfast
+2606164	N/A	Serhiy Rebrov
+2126377	N/A	Michael Lynagh
+1214593	N/A	Bob Dwyer
+620967	N/A	Australia national rugby union team
+2126410	N/A	Philippe Sella
+1138932	N/A	Kyran Bracken
+963556	N/A	Harlequin F\u002eC\u002e
+21113445	N/A	Laurent Cabannes
+20872164	N/A	Laurent B\u00e9n\u00e9zech
+954340	N/A	Inverness Thistle F\u002eC\u002e
+141947	N/A	Stranraer
+8511358	N/A	IndyCar Series
+348734	N/A	Alex Zanardi
+1048955	N/A	Michael Andretti
+693427	N/A	Bobby Rahal
+2283430	N/A	Bryan Herta
+1448545	N/A	Jimmy Vasser
+350364	N/A	Paul Tracy
+768194	N/A	Al Unser\u002c Jr\u002e
+5421344	N/A	Andr\u00e9 Ribeiro
+1226502	N/A	Maur\u00edcio Gugelmin
+1442773	N/A	Gil de Ferran
+1028241	N/A	Panama national football team
+95405	N/A	Edmonton
+15577036	N/A	CONCACAF Champions League
+6408015	N/A	Geoff Aunger
+1773647	N/A	Paul Peschisolido
+1390679	N/A	Ellis Park Stadium
+6446446	N/A	Andr\u00e9 Joubert
+11653198	N/A	Henry Honiball
+11228605	N/A	Mark Andrews \u0028rugby player\u0029
+752894	N/A	Fritz van Heerden
+22031689	N/A	Kobus Wiese
+21884669	N/A	Marius Hurter
+21851679	N/A	James Dalton \u0028rugby player\u0029
+21917363	N/A	Garry Pagel
+5334828	N/A	Alama Ieremia
+18778516	N/A	Mauritania
+4827125	N/A	FK Hajduk Kula
+1940309	N/A	FK Rudar Ugljevik
+1332660	N/A	Paul Ince
+2052733	N/A	Viorel Moldovan
+1054568	N/A	Dan Petrescu
+3245754	N/A	Constantin G\u00e2lc\u0103
+34352	N/A	Yerevan
+22388947	N/A	Vidadi Rzayev
+578468	N/A	Sweden national football team
+711598	N/A	Latvia national football team
+25508	N/A	Riga
+18169707	N/A	Joakim Persson
+2840429	N/A	Daniel Andersson \u0028footballer born 1977\u0029
+1009113	N/A	Belarus national football team
+1006164	N/A	Estonia national football team
+4745500	N/A	Bruce Dyer
+5920053	N/A	Darren Eadie
+1210559	N/A	Professional Squash Association
+16552094	N/A	Greg Kraft
+1662630	N/A	Stuart Appleby
+11050672	N/A	1997 Fed Cup
+1108893	N/A	Fed Cup
+11233291	N/A	Spain Fed Cup team
+9479975	N/A	United States Fed Cup team
+2707548	N/A	Belgium Fed Cup team
+11280801	N/A	Netherlands Fed Cup team
+11233379	N/A	Germany Fed Cup team
+10829679	N/A	Czech Republic Fed Cup team
+11233202	N/A	France Fed Cup team
+11233243	N/A	Japan Fed Cup team
+113080	N/A	Billie Jean King
+11233341	N/A	Austria Fed Cup team
+40335	N/A	Salzburg
+61720	N/A	Nagoya
+582488	N/A	United States men\u0027s national soccer team
+1017349	N/A	El Salvador national football team
+1050322	N/A	Joe\u002dMax Moore
+926151	N/A	Eric Wynalda
+2026862	N/A	Ray Knight
+65459	N/A	Nolan Ryan
+1710233	N/A	Delino DeShields
+6701523	N/A	Jeff Parrett
+3275867	N/A	Darren Dreifort
+1919854	N/A	Todd Worrell
+3909317	N/A	Billy Ashley
+303018	N/A	Ryne Sandberg
+398025	N/A	Tom Glavine
+4860203	N/A	Chipper Jones
+2085508	N/A	Jos\u00e9 Hern\u00e1ndez \u0028baseball\u0029
+2528904	N/A	Mike Mordecai
+5884588	N/A	Scott Sanders \u0028baseball\u0029
+18939576	N/A	Mike Oquist
+1076614	N/A	Marvin Benard
+3902338	N/A	Shawn Estes
+4666813	N/A	Pete Harnisch
+1742131	N/A	Rod Beck
+654115	N/A	\u00c1lvaro Espinoza
+1335171	N/A	Brent Mayne
+1656547	N/A	Tom Pagnozzi
+5877584	N/A	Alan Benes
+1725789	N/A	Ray Lankford
+4702225	N/A	Eric Anthony
+6070938	N/A	Sean Berry
+302577	N/A	Ivan Lendl
+23664487	N/A	Naseem Hamed
+93729	N/A	World Boxing Organization
+2360828	N/A	Manuel Medina \u0028boxer\u0029
+20617737	N/A	Stephan Marasek
+5570397	N/A	Markus Schopp
+5570526	N/A	Michael Konsel
+1586620	N/A	Gary McAllister
+5570541	N/A	Andreas Heraf
+2969434	N/A	Dietmar K\u00fchbauer
+2282543	N/A	Herbert Prohaska
+5570553	N/A	Peter Sch\u00f6ttel
+5223180	N/A	Anton Pfeffer
+5223135	N/A	Wolfgang Feiersinger
+20617959	N/A	Dieter Ramusch
+5570636	N/A	Andreas Ogris
+19221613	N/A	Herfried Sabitzer
+961517	N/A	Andreas Herzog
+1083631	N/A	Andy Goram
+2803163	N/A	Craig Burley
+835173	N/A	Tom Boyd \u0028footballer\u0029
+4534352	N/A	Colin Calderwood
+840970	N/A	Colin Hendry
+4250002	N/A	Stuart McCall
+4058979	N/A	Gordon Durie
+1082043	N/A	John Collins \u0028footballer\u0029
+6920798	N/A	Tom Johnson \u0028boxer\u0029
+8484278	N/A	International Boxing Association
+10513615	N/A	Nicolas Ou\u00e9dec
+1028629	N/A	Youri Djorkaeff
+4905159	N/A	Ricardo Pel\u00e1ez
+77880	N/A	Zinedine Zidane
+6583316	N/A	RCD Espanyol
+5293190	N/A	Joaqu\u00edn del Olmo
+5272863	N/A	Bernard Lama
+615841	N/A	Lilian Thuram
+5432598	N/A	Sabri Lamouchi
+1129727	N/A	Laurent Blanc
+779033	N/A	Bixente Lizarazu
+1422124	N/A	Christian Karembeu
+615832	N/A	Didier Deschamps
+5301328	N/A	Reynald Pedros
+8861486	N/A	Florian Maurice
+2278161	N/A	P\u00e1vel Pardo
+1007636	N/A	Claudio Su\u00e1rez
+2590161	N/A	Duilio Davino
+2606322	N/A	Germ\u00e1n Villa
+2477286	N/A	Herculez Gomez
+761865	N/A	Cuauht\u00e9moc Blanco
+1513512	N/A	Alberto Garc\u00eda Aspe
+1360541	N/A	Ram\u00f3n Ram\u00edrez
+1257251	N/A	Jes\u00fas Arellano
+6987514	N/A	Enrique Alfaro
+2171348	N/A	Francisco Palencia
+1780045	N/A	Luis Garc\u00eda Postigo
+679716	N/A	Belgium national football team
+743577	N/A	Turkey national football team
+2511968	N/A	Filip De Wilde
+4335051	N/A	David Elleray
+2575626	N/A	Marc Degryse
+3073508	N/A	Dirk Medved
+27565952	N/A	Luis Oliveira
+5665421	N/A	Og\u00fcn Temizkano\u011flu
+2603684	N/A	Arif Erdem
+9391030	N/A	Orhan \u00c7\u0131k\u0131r\u0131k\u00e7\u0131
+2944515	N/A	Bertrand Crasson
+3073500	N/A	Pascal Renier
+2887691	N/A	Geoffrey Claeys
+20877693	N/A	Gunther Schepens
+3044729	N/A	Nico van Kerckhoven
+3044765	N/A	Gert Verheyen
+17404992	N/A	Fr\u00e9d\u00e9ric Peiremans
+2935331	N/A	Gilles De Bilde
+5665150	N/A	Hakan \u00dcnsal
+5048594	N/A	Recep \u00c7etin
+1060911	N/A	Alpay \u00d6zalan
+5665283	N/A	Abdullah Ercan
+5665561	N/A	Tolunay Kafkas
+2259996	N/A	O\u011fuz \u00c7etin
+5994529	N/A	Tayfun Korkut
+914828	N/A	Hakan \u015e\u00fck\u00fcr
+9390943	N/A	Saffet Sancakl\u0131
+3568744	N/A	Wilfried Van Moer
+2220698	N/A	Paul Van Himst
+24947598	N/A	Roberto Carlos \u0028Spanish footballer\u0029
+6647379	N/A	Nate Miller
+28148156	N/A	James Heath \u0028Boxer\u0029
+10447472	N/A	Curragh Racecourse
+11047345	N/A	Richard Hannon
+884389	N/A	S\u00fcddeutsche Zeitung
+675126	N/A	DFB\u002dPokal
+3241723	N/A	Borussia Neunkirchen
+19831	N/A	Margaret Thatcher
+23299	N/A	Provisional Irish Republican Army
+446696	N/A	The Sunday Telegraph
+32113	N/A	Conservative Party \u0028UK\u0029
+1164434	N/A	Bernard Ingham
+17745794	N/A	My Turn \u0028memoir\u0029
+10128	N/A	Elizabeth I of England
+14187	N/A	Henry VIII of England
+39356	N/A	Anne Boleyn
+407950	N/A	Kingdom of England
+1559513	N/A	House of Orl\u00e9ans
+187221	N/A	Austrians
+9679	N/A	Prince Eugene of Savoy
+2843060	N/A	Treaty of Baden
+25507	N/A	Roman Empire
+151094	N/A	Charles VI\u002c Holy Roman Emperor
+33604	N/A	War of the Spanish Succession
+48129	N/A	Alsace
+37407	N/A	Strasbourg
+1784099	N/A	Breisach
+1171482	N/A	Kehl
+101832	N/A	Freiburg im Breisgau
+20611504	N/A	Russian Empire
+251000	N/A	Mikhail Kutuzov
+69880	N/A	Napoleon I
+858577	N/A	Borodino \u0028village\u0029\u002c Mozhaysky District\u002c Moscow Oblast
+269405	N/A	Empire of Brazil
+230578	N/A	Portuguese Empire
+81480	N/A	Pedro I of Brazil
+199116	N/A	Henry Campbell\u002dBannerman
+4482	N/A	Liberal Party \u0028UK\u0029
+240868	N/A	Transvaal Province
+21486576	N/A	Giuseppe Garibaldi
+55880	N/A	Naples
+266894	N/A	Austrian Empire
+25310	N/A	Qing Dynasty
+960804	N/A	Boxer Protocol
+42874	N/A	Elia Kazan
+156625	N/A	Viva Zapata\u0021
+42361	N/A	On the Waterfront
+674846	N/A	Anthony Quayle
+639729	N/A	Ice\u002dCold in Alex
+43452	N/A	Lawrence of Arabia \u0028film\u0029
+255286	N/A	James Van Allen
+61150	N/A	Baudouin of Belgium
+59765	N/A	Leopold III of Belgium
+13487	N/A	Hermann G\u00f6ring
+294240	N/A	Jackie Stewart
+1214	N/A	Anglicanism
+31853	N/A	Uzbekistan
+11447	N/A	Flag of the United States
+350224	N/A	Worthing
+2701987	N/A	Scottish Labour Party
+61311	N/A	Stirling
+19279158	N/A	Labour Party \u0028UK\u0029
+3301347	N/A	Tony Blair
+15898	N/A	John Major
+28887	N/A	Scottish National Party
+70767	N/A	Iraqi National Congress
+447008	N/A	Northern Cape
+18947965	N/A	Afrikaner
+2162	N/A	Afrikaans
+15608060	N/A	Mahala
+524638	N/A	Tuzla
+2925479	N/A	Urus\u002dMartan
+735397	N/A	Dzhokhar Dudayev
+23189278	N/A	Alla Dudayeva
+3934866	N/A	Doku Zavgayev
+140311	N/A	Hachette Filipacchi M\u00e9dias
+10924566	N/A	\u017bycie Warszawy
+16717205	N/A	Zygmunt Solorz\u002d\u017bak
+13646048	N/A	Anthony Raine Barker
+461225	N/A	Sergiyev Posad
+49719	N/A	Havana
+3335905	N/A	Granma \u0028newspaper\u0029
+38301	N/A	Fidel Castro
+235003	N/A	Santiago de Cuba
+50206	N/A	Fulgencio Batista
+15117224	N/A	Prensa Latina
+133249	N/A	Madeleine Albright
+51572	N/A	Santiago\u002c Chile
+1261512	N/A	Jos\u00e9 Miguel Insulza
+3462	N/A	Bolivia
+872602	N/A	Cochabamba
+17238567	N/A	Guatemala
+195810	N/A	Morelia
+1485822	N/A	Xiao Qiang
+277646	N/A	Human Rights in China \u0028organization\u0029
+7175	N/A	Communist Party of China
+8205	N/A	Deng Xiaoping
+18947898	N/A	Amnesty International
+158185	N/A	Hangzhou
+378466	N/A	Fidel V\u002e Ramos
+20546	N/A	Mindanao
+2847	N/A	Aung San Suu Kyi
+410553	N/A	National League for Democracy
+13480009	N/A	Insein Prison
+4223826	N/A	Insein Township
+309668	N/A	Dow Chemical Company
+20708	N/A	Mobil
+468593	N/A	Shell Oil Company
+174467	N/A	Yonhap
+96602	N/A	Zhejiang
+420115	N/A	Democracy Wall
+21193952	N/A	Tiananmen Square
+2305259	N/A	High Court \u0028Hong Kong\u0029
+82138	N/A	Wuhan
+83319	N/A	Hubei
+12537	N/A	Guangzhou
+3927422	N/A	Naqoura
+787766	N/A	United Nations Interim Force in Lebanon
+200692	N/A	Tariq Aziz
+3718821	N/A	Habib Boular\u00e8s
+390745	N/A	Zine El Abidine Ben Ali
+75275	N/A	Interstate 95
+84143	N/A	Interstate 80
+78066	N/A	Interstate 5
+6578575	N/A	New Hampshire\u002c Ohio
+124931	N/A	Rochester\u002c New Hampshire
+197352	N/A	USS Carl Vinson \u0028CVN\u002d70\u0029
+194856	N/A	USS Enterprise \u0028CVN\u002d65\u0029
+7279897	N/A	United States Department of Defense
+135317	N/A	Troy\u002c Tennessee
+30395	N/A	Tennessee
+2448042	N/A	Staou\u00e9li
+15727384	N/A	Le Matin \u0028France\u0029
+210137	N/A	Der Spiegel
+928520	N/A	Lamberto Dini
+1402612	N/A	Howard Wolpe
+12010	N/A	Great Lakes
+175747	N/A	Nandrin
+14732	N/A	Irish Republican Army
+32616	N/A	Venice
+315569	N/A	Neil Jordan
+26609228	N/A	Michael Collins \u0028film\u0029
+32497	N/A	Venice Film Festival
+64182	N/A	Liam Neeson
+16553	N/A	Julia Roberts
+97509	N/A	Michael Collins \u0028Irish leader\u0029
+34052	N/A	Warner Bros\u002e
+30581	N/A	The Crying Game
+19527	N/A	Mao Zedong
+168208	N/A	Yitzhak Shamir
+23245410	N/A	Academy Award for Best Actor
+1092898	N/A	Aidan Quinn
+1249082	N/A	Harry Boland
+1667088	N/A	Kitty Kiernan
+993546	N/A	Japan national football team
+887850	N/A	China PR national football team
+212131	N/A	Al Ain
+1013464	N/A	1996 AFC Asian Cup
+1131669	N/A	Syria national football team
+1032413	N/A	Uzbekistan national football team
+12394021	N/A	Igor Shkvyrin
+250683	N/A	AFC Asian Cup
+3285394	N/A	1994 Asian Games
+7612409	N/A	Takuya Takagi
+8330373	N/A	Hiroshige Yanagimoto
+21828137	N/A	Hassan Abbas
+9087957	N/A	Shu Kamo
+1044396	N/A	United Arab Emirates national football team
+1041857	N/A	Kuwait national football team
+1018627	N/A	Korea Republic national football team
+1044538	N/A	Indonesia national football team
+10022163	N/A	Marcello Cuttitta
+957326	N/A	Italy national rugby union team
+1210642	N/A	Murrayfield Stadium
+871456	N/A	Twickenham Stadium
+25406	N/A	Rugby World Cup
+10022372	N/A	Paolo Vaccari
+3995741	N/A	Ivan Francescato
+795068	N/A	Diego Dom\u00ednguez
+20646405	N/A	Francesco Mazzariol
+3959842	N/A	Alessandro Troncon
+10022272	N/A	Carlo Checchinato
+20448350	N/A	Massimo Cuttitta
+22445279	N/A	Nicola Mazzucato
+4469569	N/A	Alessandro Moscardi
+8330331	N/A	Kenichi Shimokawa
+733681	N/A	Kazuyoshi Miura
+5321373	N/A	Naoki Soma
+2993525	N/A	Masami Ihara
+5321394	N/A	Norio Omura
+5321414	N/A	Motohiro Yamaguchi
+6987618	N/A	Masakiyo Maezono
+7880722	N/A	Yasuto Honda
+1637082	N/A	Hiroshi Nanami
+5321709	N/A	Hiroaki Morishima
+5321669	N/A	Masayuki Okano
+9422068	N/A	Tarek Jabban
+21768821	N/A	Khaled Al Zaher
+1607928	N/A	Tignes
+25450443	N/A	FIS Freestyle Skiing World Cup
+4255507	N/A	Jean\u002dLuc Brassard
+16534698	N/A	Tatjana Mittermayer
+12950213	N/A	Tae Satoya
+13785186	N/A	Donna Weinbrecht
+16529836	N/A	Elizabeth McIntyre
+401000	N/A	Sialkot
+3976922	N/A	Zahoor Elahi
+573470	N/A	Chris Cairns
+3107713	N/A	Craig Spearman
+2911777	N/A	Justin Vaughan
+2283116	N/A	Lee Germon
+1300429	N/A	Nathan Astle
+1327033	N/A	Chris Harris \u0028cricketer\u0029
+554074	N/A	Shahid Afridi
+2799529	N/A	Simon Doull
+8243662	N/A	Regi Blinker
+1683327	N/A	Lee Bowyer
+540056	N/A	Euroleague Basketball
+4431555	N/A	PBC CSKA Moscow
+630196	N/A	Maccabi Tel Aviv B\u002eC\u002e
+1973041	N/A	CSP Limoges
+13615982	N/A	Panionios B\u002eC\u002e
+630298	N/A	Fortitudo Bologna
+3730799	N/A	KK Cibona
+4739242	N/A	ALBA Berlin
+3227322	N/A	CB Estudiantes
+13615830	N/A	Spirou Charleroi
+7116249	N/A	Panathinaikos BC
+1969800	N/A	ASVEL Lyon\u002dVilleurbanne
+3313915	N/A	FC Barcelona B\u00e0squet
+4920157	N/A	KK Split
+7097184	N/A	Bayer Giants Leverkusen
+1396057	N/A	Efes Pilsen S\u002eK\u002e
+3830347	N/A	\u00c9lan B\u00e9arnais Pau\u002dOrthez
+630309	N/A	Virtus Bologna
+4127601	N/A	CB Sevilla
+7740223	N/A	MBC Dynamo Moscow
+1586411	N/A	David Campese
+5180077	N/A	Jason Little \u0028rugby union\u0029
+569077	N/A	Barbarian F\u002eC\u002e
+5197375	N/A	Daniel Herbert
+2417447	N/A	Owen Finegan
+770930	N/A	Wales national rugby union team
+1220289	N/A	Rob Andrew
+955500	N/A	Ireland national rugby union team
+755746	N/A	Tim Stimpson
+703237	N/A	Tony Underwood
+13434277	N/A	Norm Hewitt
+935042	N/A	Nigel Walker
+8130863	N/A	Allan Bateman
+1331043	N/A	Gregor Townsend
+1161967	N/A	Rob Howley
+1183693	N/A	Scott Quinnell
+701751	N/A	Neil Back
+842434	N/A	Dale McIntosh
+218205	N/A	Pontypridd
+1180347	N/A	Craig Quinnell
+779873	N/A	Darren Garforth
+8138158	N/A	Nick Popplewell
+899371	N/A	Matt Burke
+1748774	N/A	Joe Roff
+1748709	N/A	Tim Horan
+757847	N/A	Pat Howard
+15154926	N/A	Dave Wilson \u0028rugby union\u0029
+6692356	N/A	David Giffin
+5746768	N/A	Dan Crowley
+20542532	N/A	Zimbabwe Open
+22683590	N/A	Des Terblanche
+22683986	N/A	Steve van Vuuren
+1132021	N/A	Nick Price
+22686364	N/A	Justin Hobday
+21382967	N/A	Desvonde Botes
+5351825	N/A	Clinton Whitelaw
+23211215	N/A	Brett Liddle
+2710665	N/A	Hugh Baiocchi
+22825585	N/A	Adilson da Silva
+5349118	N/A	Trevor Dodds
+679799	N/A	Macedonia national football team
+2101520	N/A	Anghel Iord\u0103nescu
+11714570	N/A	Viorel Ion
+5404812	N/A	Liviu Ciobotariu
+2384790	N/A	AFC Progresul Bucure\u015fti
+2102165	N/A	Adrian Ilie
+5210193	N/A	Bogdan Stelea
+5209993	N/A	Florin Prunea
+5211984	N/A	Daniel Prodan
+5212074	N/A	Anton Dobo\u015f
+5404881	N/A	Iulian Filipescu
+12276	N/A	Gheorghe Hagi
+1477888	N/A	Gheorghe Popescu
+6388264	N/A	Basarab Panduru
+2809797	N/A	Dorinel Munteanu
+5997909	N/A	Ovidiu St\u00e2ng\u0103
+5679874	N/A	Gheorghe Craioveanu
+6733790	N/A	Ionel D\u0103nciulescu
+4367	N/A	Brian Lara
+185047	N/A	World Series Cricket
+2533835	N/A	Greg Blewett
+22590160	N/A	Shane Warne
+624962	N/A	Clive Lloyd
+897186	N/A	Shivnarine Chanderpaul
+2112133	N/A	Carl Hooper
+58099	N/A	Curtly Ambrose
+19765	N/A	Melbourne Cricket Ground
+1585656	N/A	Sheffield Shield
+13699	N/A	Hobart
+613023	N/A	Tasmanian Tigers
+1147963	N/A	Victorian Bushrangers
+613019	N/A	Bellerive Oval
+610312	N/A	David Boon
+2534170	N/A	Shaun Young
+2991704	N/A	Michael Di Venuto
+773497	N/A	Sydney Cricket Ground
+87018	N/A	Mark Taylor \u0028cricketer\u0029
+3076020	N/A	Sherwin Campbell
+3904344	N/A	Robert Samuels
+1026319	N/A	Jimmy Adams
+1026344	N/A	Junior Murray
+2913858	N/A	Nixon McLean
+3099485	N/A	Kenneth Benjamin
+3077139	N/A	Roland Holder
+8735759	N/A	World Badminton Grand Prix
+4147	N/A	Bali
+11945017	N/A	Dong Jiong
+6605440	N/A	Thomas Stuer\u002dLauridsen
+10850162	N/A	Sun Jun \u0028badminton\u0029
+5745230	N/A	Rashid Sidek
+2327712	N/A	Poul\u002dErik H\u00f8yer Larsen
+1641317	N/A	Alan Budikusuma
+927586	N/A	Mia Audina
+8785220	N/A	Ye Zhaoying
+927477	N/A	Camilla Martin
+1166977	N/A	Susi Susanti
+919728	N/A	National stadium
+26530226	N/A	Arab Contractors \u0028company\u0029
+21809	N/A	National Hockey League
+270855	N/A	Hartford Whalers
+69918	N/A	Buffalo Sabres
+69523	N/A	Boston Bruins
+66964	N/A	Pittsburgh Penguins
+416235	N/A	Ottawa 67\u0027s
+4528577	N/A	Atlantic Division \u0028NHL\u0029
+70551	N/A	Florida Panthers
+66941	N/A	Philadelphia Flyers
+66743	N/A	New Jersey Devils
+73125	N/A	Washington Capitals
+66881	N/A	New York Rangers
+66880	N/A	New York Islanders
+73124	N/A	Tampa Bay Lightning
+4528921	N/A	Central Division \u0028NHL\u0029
+8795	N/A	Detroit Red Wings
+73135	N/A	Dallas Stars
+73126	N/A	Chicago Blackhawks
+26722293	N/A	St\u002e Louis Blues \u0028ice hockey\u0029
+70155	N/A	Toronto Maple Leafs
+73138	N/A	Phoenix Coyotes
+4529108	N/A	Pacific Division \u0028NHL\u0029
+70948	N/A	Colorado Avalanche
+73129	N/A	Edmonton Oilers
+73139	N/A	San Jose Sharks
+23615827	N/A	Calgary Flames
+73134	N/A	Anaheim Ducks
+42966	N/A	Montreal Canadiens
+73136	N/A	Los Angeles Kings
+15049	N/A	Indianapolis Colts
+635375	N/A	Marshall Faulk
+4157814	N/A	Jason Belser
+3671586	N/A	Paul Justin
+1306936	N/A	Jim Harbaugh
+8121	N/A	Dallas Cowboys
+33673	N/A	Washington Redskins
+21721	N/A	New York Jets
+12663	N/A	Green Bay Packers
+1303479	N/A	Tony Siragusa
+1633144	N/A	Ray Buchanan
+7168224	N/A	Quentin Coryatt
+8723189	N/A	Kerwin Bell
+19190	N/A	Miami Dolphins
+1125514	N/A	Marvin Harrison
+1302298	N/A	Troy Vincent
+1139658	N/A	Ty Detmer
+1306557	N/A	Ricky Watters
+4753274	N/A	Atlantic Division \u0028NBA\u0029
+72850	N/A	Miami Heat
+72855	N/A	New York Knicks
+72856	N/A	Orlando Magic
+72858	N/A	Washington Wizards
+72857	N/A	Philadelphia 76ers
+43376	N/A	Boston Celtics
+72852	N/A	New Jersey Nets
+72866	N/A	Chicago Bulls
+72871	N/A	Detroit Pistons
+72868	N/A	Cleveland Cavaliers
+72861	N/A	Atlanta Hawks
+72862	N/A	New Orleans Hornets
+72878	N/A	Milwaukee Bucks
+72875	N/A	Indiana Pacers
+72879	N/A	Toronto Raptors
+72885	N/A	Houston Rockets
+72890	N/A	Utah Jazz
+72887	N/A	Minnesota Timberwolves
+72880	N/A	Dallas Mavericks
+72883	N/A	Denver Nuggets
+72889	N/A	San Antonio Spurs
+72886	N/A	Memphis Grizzlies
+4753452	N/A	Pacific Division \u0028NBA\u0029
+16671402	N/A	Seattle SuperSonics
+72893	N/A	Los Angeles Lakers
+72897	N/A	Portland Trail Blazers
+72892	N/A	Los Angeles Clippers
+72891	N/A	Golden State Warriors
+72898	N/A	Sacramento Kings
+72895	N/A	Phoenix Suns
+21719	N/A	New England Patriots
+13864	N/A	Houston Texans
+16156	N/A	Jacksonville Jaguars
+6612	N/A	Cincinnati Bengals
+4293	N/A	Baltimore Ravens
+20297793	N/A	Kansas City Chiefs
+27170	N/A	San Diego Chargers
+22312	N/A	Oakland Raiders
+28390	N/A	Seattle Seahawks
+2102	N/A	Arizona Cardinals
+21757	N/A	New York Giants
+20134	N/A	Minnesota Vikings
+6611	N/A	Chicago Bears
+8577	N/A	Detroit Lions
+30837	N/A	Tampa Bay Buccaneers
+27169	N/A	San Francisco 49ers
+6610	N/A	Carolina Panthers
+2103	N/A	Atlanta Falcons
+21720	N/A	New Orleans Saints
+8122	N/A	Denver Broncos
+30839	N/A	Tennessee Titans
+23338	N/A	Pittsburgh Steelers
+60706	N/A	National Collegiate Athletic Association
+1438112	N/A	Orlando Pace
+376170	N/A	Lombardi Award
+6000172	N/A	Ohio State Buckeyes football
+269992	N/A	Rotary International
+9570822	N/A	Houston Cougars football
+1217500	N/A	Rose Bowl \u0028stadium\u0029
+7957075	N/A	Arizona State Sun Devils football
+15190346	N/A	Virginia Tech Hokies football
+1902649	N/A	Cornell Brown
+23123194	N/A	Juan Roque
+15713514	N/A	Jared Tomich
+4108481	N/A	Nebraska Cornhuskers football
+32641	N/A	Vince Lombardi
+1421152	N/A	Claude Mak\u00e9l\u00e9l\u00e9
+10812198	N/A	Jocelyn Gourvennec
+6332005	N/A	Phil Gray
+3538397	N/A	Bert Konterman
+15878221	N/A	Thomas Stickroth
+5480930	N/A	Dariusz Wosz
+1510393	N/A	Ulf Kirsten
+198376	N/A	Carsten Ramelow
+21018234	N/A	Burkhard Reich
+20962980	N/A	Eberhard Carl
+7363526	N/A	Youri Mulder
+1573748	N/A	Grand Slam Cup
+3071470	N/A	S\u00e9rgio Concei\u00e7\u00e3o
+3485361	N/A	Paulo Bento
+80801	N/A	Real Oviedo
+27222956	N/A	Jos\u00e9 Taira
+24102765	N/A	UD Salamanca
+9993504	N/A	Paulo Alves
+1914105	N/A	William Hill \u0028bookmaker\u0029
+610980	N/A	Davor \u0160uker
+347480	N/A	Ra\u00fal Gonz\u00e1lez
+816172	N/A	Fernando Redondo
+5529728	N/A	V\u00edctor S\u00e1nchez
+5586941	N/A	Guillermo Amor
+5586995	N/A	Jos\u00e9 Emilio Amavisca
+6096292	N/A	Roger Garc\u00eda Junyent
+788409	N/A	Fernando Hierro
+616593	N/A	Luis Enrique Mart\u00ednez Garc\u00eda
+9998052	N/A	Fernando Sanz
+5000750	N/A	Rafael Alkorta
+3567801	N/A	Miguel \u00c1ngel Nadal
+834322	N/A	Real Betis
+80824	N/A	Athletic Bilbao
+143279	N/A	Real Sociedad
+295563	N/A	Real Valladolid
+7614075	N/A	Racing de Santander
+958372	N/A	Rayo Vallecano
+32780	N/A	Valencia CF
+24119395	N/A	Celta de Vigo
+1769413	N/A	CD Tenerife
+79943	N/A	Sporting de Gij\u00f3n
+84496	N/A	Real Zaragoza
+243500	N/A	Sevilla FC
+7940435	N/A	SD Compostela
+2413021	N/A	H\u00e9rcules CF
+4151443	N/A	CF Extremadura
+2193105	N/A	Javier Clemente
+2173152	N/A	Jos\u00e9 Luis Caminero
+579541	N/A	Jo\u00e3o Havelange
+18564164	N/A	Mercedes\u002dBenz
+1610584	N/A	Kennet Andersson
+5472710	N/A	Igor Kolyvanov
+3487862	N/A	Dietmar Beiersdorfer
+27046811	N/A	Daniele Carnasciali
+1348640	N/A	Lorenzo Amoruso
+26136829	N/A	Fausto Pizzi
+3379954	N/A	Pierluigi Casiraghi
+616605	N/A	Pavel Nedv\u011bd
+2671283	N/A	Paolo Negro
+2335302	N/A	Abel Balbo
+1476665	N/A	Marco Delvecchio
+615883	N/A	Francesco Totti
+1026826	N/A	Roberto Ayala
+233026	N/A	Eugenio Corini
+2526978	N/A	Mario Stani\u0107
+9792192	N/A	Daniel Bravo
+1081233	N/A	Fabio Cannavaro
+968320	N/A	Filippo Inzaghi
+20118104	N/A	Alessandro Del Piero
+1451945	N/A	Alen Bok\u0161i\u0107
+1425014	N/A	Roberto Mancini
+10444156	N/A	Pierre Laigle
+17898455	N/A	Marcelo Otero
+543293	N/A	Iv\u00e1n Zamorano
+18295798	N/A	Dejan Koturovi\u0107
+2159873	N/A	Zoran Savi\u0107
+466604	N/A	World Open
+18803164	N/A	English people
+14754726	N/A	Zulu Kingdom
+1407421	N/A	Umkomaas
+478139	N/A	Mangosuthu Buthelezi
+383326	N/A	Inkatha Freedom Party
+5322	N/A	Czechoslovakia
+1806294	N/A	Josef Zieleniec
+1363183	N/A	Mlad\u00e1 fronta DNES
+151873	N/A	Czechs
+1203555	N/A	Democratic Union of Hungarians in Romania
+393370	N/A	Emil Constantinescu
+1219345	N/A	B\u00e9la Mark\u00f3
+60817	N/A	Timi\u015foara
+22537901	N/A	Arad\u002c Romania
+2024606	N/A	Oradea International Airport
+2384413	N/A	Sibiu International Airport
+303222	N/A	V\u00e1clav Klaus
+57575	N/A	Brno
+23346	N/A	Post\u002dCommunism
+10396793	N/A	The Holocaust
+369001	N/A	Free Democratic Party of Switzerland
+150133	N/A	Heineken International
+325070	N/A	Carlsberg Group
+9889109	N/A	Okocim
+419331	N/A	South African Breweries
+74608	N/A	Tychy
+459244	N/A	Central European Free Trade Agreement
+4793292	N/A	Heineken Pilsener
+1101488	N/A	Telkom Indonesia
+941690	N/A	Competition Commission \u0028United Kingdom\u0029
+415201	N/A	Ian Lang\u002c Baron Lang of Monkton
+2914114	N/A	Office of Fair Trading
+291315	N/A	US Airways
+9462675	N/A	Sale Grammar School
+164890	N/A	Lanarkshire
+5533386	N/A	John Michael Gorst
+226294	N/A	10 Downing Street
+10052	N/A	HP Enterprise Services
+583733	N/A	Prestwick
+423831	N/A	National Air Traffic Services
+684737	N/A	Civil Aviation Authority \u0028United Kingdom\u0029
+526502	N/A	Canadian Wheat Board
+221651	N/A	Thunder Bay
+7378179	N/A	China Steel
+18848197	N/A	ExxonMobil
+1719051	N/A	Ras Tanura
+10239	N/A	Exxon
+1057236	N/A	Spetses
+3262142	N/A	Fos\u002dsur\u002dMer
+1100754	N/A	Newmont Mining Corporation
+21216	N/A	Nevada
+51278	N/A	Albuquerque\u002c New Mexico
+3012585	N/A	Paine Webber
+1448050	N/A	Kid Brands
+124995	N/A	Oakland\u002c New Jersey
+1131450	N/A	Maurice Baril
+49367	N/A	Laurent\u002dD\u00e9sir\u00e9 Kabila
+906034	N/A	Doug Young
+448570	N/A	Bukavu
+3063152	N/A	Kindu
+588207	N/A	Kisangani
+20498	N/A	M\u00e9decins Sans Fronti\u00e8res
+20246549	N/A	Walikale
+57378	N/A	Port Louis
+31964	N/A	United Nations High Commissioner for Refugees
+476881	N/A	Abdou Diouf
+1531994	N/A	Moustapha Niasse
+3470	N/A	Burkina Faso
+224900	N/A	Ange\u002dF\u00e9lix Patass\u00e9
+14985085	N/A	Yakoma people
+289470	N/A	Blaise Compaor\u00e9
+19127	N/A	Mali
+4096428	N/A	Codos
+447011	N/A	North West \u0028South African province\u0029
+44514	N/A	Mafikeng
+1076893	N/A	Oscar Luigi Scalfaro
+32408	N/A	Vatican City
+28800	N/A	Democratic Left Alliance
+7183054	N/A	MMC Norilsk Nickel
+87622	N/A	Krasnoyarsk Krai
+193602	N/A	Igor Ivanov
+33622	N/A	Warsaw Pact
+2744730	N/A	Yegor Stroyev
+20979	N/A	Mikhail Gorbachev
+797201	N/A	Galanta
+59590	N/A	Vladim\u00edr Me\u010diar
+424642	N/A	People\u0027s Party \u2013 Movement for a Democratic Slovakia
+417972	N/A	Kazanlak
+22278	N/A	Ottoman Empire
+535551	N/A	Telmex
+763006	N/A	Televisa
+592784	N/A	Rosario\u002c Santa Fe
+735970	N/A	Bah\u00eda Blanca
+224093	N/A	Tampico\u002c Tamaulipas
+21076367	N/A	Gulf of Mexico
+751843	N/A	Pacific coast
+199793	N/A	Baja California
+222251	N/A	Sinaloa
+83750	N/A	Sonora
+222254	N/A	Tamaulipas
+193550	N/A	Quintana Roo
+14637976	N/A	Ministry of Finance \u0028Chile\u0029
+49053	N/A	Carlos Filipe Ximenes Belo
+49251	N/A	Dili
+19159399	N/A	East Timor
+49030	N/A	Jos\u00e9 Ramos\u002dHorta
+166411	N/A	Hainan
+1827332	N/A	Wenchang
+2242248	N/A	University of Yangon
+3026872	N/A	Yangon Technological University
+585020	N/A	Aung San
+14987	N/A	International Labour Organization
+7760633	N/A	William Jordan\u002c Baron Jordan
+36760	N/A	International Confederation of Free Trade Unions
+26270732	N/A	Michel Hansenne
+106539	N/A	ASEAN
+3466	N/A	Brunei
+19385859	N/A	Rubber Board
+191975	N/A	Union Bank of Switzerland
+193064	N/A	Nihon Keizai Shimbun
+1227693	N/A	Antoine Lahad
+1224174	N/A	South Lebanon Army
+799724	N/A	Guardians of the Cedars
+4559718	N/A	Catholicism
+801073	N/A	Etienne Saqr
+151232	N/A	Amarillo\u002c Texas
+1014621	N/A	Oklahoma Panhandle
+53678	N/A	Hartford\u002c Connecticut
+236446	N/A	Financial Services Authority
+57700	N/A	Tallahassee\u002c Florida
+18934	N/A	Muhammad
+1635683	N/A	Supreme Court of Florida
+9163	N/A	Des Moines\u002c Iowa
+151294	N/A	Appleton\u002c Wisconsin
+1171085	N/A	Canadian Grain Commission
+1300883	N/A	Henry Hub
+286989	N/A	National Weather Service
+30849	N/A	Toledo\u002c Ohio
+106664	N/A	Tempe\u002c Arizona
+5950	N/A	Columbus\u002c Ohio
+886212	N/A	American Veterinary Medical Association
+79289	N/A	German Shepherd Dog
+435295	N/A	Cocker Spaniel
+19255892	N/A	Dalmatian \u0028dog\u0029
+2139688	N/A	Doberman Pinscher
+16844	N/A	Kofi Annan
+10309782	N/A	Ahmedou Ould\u002dAbdallah
+779805	N/A	Amara Essy
+4671307	N/A	Hamid Algabid
+6150809	N/A	Joseph Nanven Garba
+59732	N/A	Pamplona
+76464	N/A	Batasuna
+19283178	N/A	Benito Mussolini
+159156	N/A	Alessandra Mussolini
+3237	N/A	National Alliance \u0028Italy\u0029
+1183638	N/A	Gianfranco Fini
+420162	N/A	RAI
+44463	N/A	Sophia Loren
+1810129	N/A	La Stampa
+8720252	N/A	Santa Claus
+54938	N/A	Saint Nicholas
+319038	N/A	Hindu nationalism
+149330	N/A	Bharatiya Janata Party
+5015670	N/A	Suraj Bhan
+42098	N/A	Ayodhya
+19377014	N/A	Rama
+3530116	N/A	Lantau Peak
+1532373	N/A	Hay Point\u002c Queensland
+70348	N/A	Newcastle upon Tyne
+17015	N/A	Kaohsiung
+666662	N/A	Royal Clipper
+409122	N/A	Dampier\u002c Western Australia
+166346	N/A	OPEC
+724212	N/A	Isthmus of Tehuantepec
+100456	N/A	Kenneth Clarke
+2771973	N/A	Stephenville International Airport
+24109126	N/A	Grand Rapids\u002c Michigan
+168937	N/A	Shannon Airport
+2047702	N/A	R\u002e Nicholas Burns
+526942	N/A	Olympic Airlines
+14385107	N/A	New Mexico Activities Association
+4649203	N/A	James Love
+67397	N/A	Ulan Bator
+536717	N/A	Information Technology Association of America
+187482	N/A	MCI Communications
+3326371	N/A	Garamba National Park
+56689	N/A	Kampala
+21342	N/A	New Caledonia
+1039111	N/A	Province of Mantua
+54634	N/A	Wednesday
+3692545	N/A	Blida Province
+9356	N/A	El Salvador
+1252672	N/A	Munich Re
+386085	N/A	John Lewis Partnership
+386090	N/A	Waitrose
+10037	N/A	Euroscepticism
+5571242	N/A	Antony Marlow
+295761	N/A	Newsnight
+64044	N/A	Michael Heseltine
+292266	N/A	Edwina Currie
+559146	N/A	Laurie Brereton
+591908	N/A	Minister for Foreign Affairs \u0028Australia\u0029
+1951864	N/A	Supreme Court of New South Wales
+342835	N/A	New Zealand First
+333149	N/A	New Zealand National Party
+335149	N/A	Winston Peters
+153190	N/A	New Zealand Labour Party
+22838615	N/A	Helen Clark
+3112720	N/A	Radiotelevision of Bosnia\u002dHerzegovina
+5836626	N/A	John Langmore
+17932285	N/A	Bob Halverson
+2639108	N/A	Fraser\u002c Australian Capital Territory
+1944	N/A	Australian Capital Territory
+23767	N/A	Paul Keating
+2203640	N/A	Shwedagon Pagoda
+10948329	N/A	Wen Hui Bao
+304460	N/A	Guilin
+183525	N/A	Guangxi
+44498	N/A	State Council of the People\u0027s Republic of China
+1988499	N/A	Civil Aviation Administration of China
+14229618	N/A	General Administration of Customs
+475296	N/A	Bre\u002dX
+453651	N/A	East Kalimantan
+950865	N/A	Mickey Kantor
+3806329	N/A	Institute of Policy Studies \u0028Singapore\u0029
+286880	N/A	National University of Singapore
+2126218	N/A	Zaandam
+368790	N/A	Johor Bahru
+2395764	N/A	Tops Markets LLC
+108471	N/A	Vail\u002c Colorado
+183628	N/A	FIS Alpine Ski World Cup
+64014	N/A	Lillehammer
+3309347	N/A	Alpine skiing at the 1994 Winter Olympics
+1287435	N/A	World championship
+441214	N/A	Carole Montillet
+4663364	N/A	Hilde Gerg
+9041410	N/A	Isolde Kostner
+9686509	N/A	Florence Masnada
+1489417	N/A	Katja Seizinger
+4652852	N/A	Martina Ertl\u002dRenz
+9654380	N/A	Katharina Gutensohn
+2424607	N/A	Renate G\u00f6tschl
+4671164	N/A	Heidi Zurbriggen
+4173288	N/A	R\u00e9gine Cavagnoud
+364378	N/A	Anita Wachter
+4097711	N/A	Hilary Lindh
+3989663	N/A	Michaela Dorfmeister
+4140213	N/A	Alexandra Meissnitzer
+145225	N/A	Pernilla Wiberg
+19048582	N/A	JCPenney Classic
+109690	N/A	Tarpon Springs\u002c Florida
+229059	N/A	LPGA Championship
+4358801	N/A	Pat Hurst
+4376329	N/A	Donna Andrews \u0028golfer\u0029
+5132236	N/A	Kelli Kuehne
+1628492	N/A	Beth Daniel
+12525154	N/A	Flachau
+1243653	N/A	Picabo Street
+9501284	N/A	Miriam Vogt
+8631819	N/A	Kate Pace
+4110340	N/A	Deborah Compagnoni
+9088362	N/A	Sabina Panzanini
+1021904	N/A	\u00d6stersund
+447991	N/A	Biathlon World Cup
+9389807	N/A	Vadim Sashurin
+3524979	N/A	Frode Andresen
+40377	N/A	Ole Einar Bj\u00f8rndalen
+2474438	N/A	Sven Fischer
+2526631	N/A	Ricco Gro\u00df
+9402923	N/A	Pavel Muslimov
+21341514	N/A	Olga Melnik
+8246697	N/A	Svetlana Paramygina
+4059571	N/A	Gunn Margit Andreassen
+8478291	N/A	Simone Greiner\u002dPetter\u002dMemm
+5324786	N/A	Petra Behle
+12677615	N/A	Brian Shimer
+8710077	N/A	Randy Jones \u0028bobsleigh\u0029
+211874	N/A	1976 Winter Olympics
+6292813	N/A	G\u00fcnther Huber
+6292854	N/A	Antonio Tartaglia
+1299136	N/A	Pierre Lueders
+12750739	N/A	David MacEachern
+5800960	N/A	Altenberg\u002c Germany
+461444	N/A	La Plagne
+12677487	N/A	Garrett Hines
+16535060	N/A	Xu Nannan
+16534104	N/A	S\u00e9bastien Foucras
+24519104	N/A	Jeff Bean
+16517957	N/A	Veronica Brenner
+4173927	N/A	Evelyne Leu
+16680211	N/A	Sepp Dostthaler
+6292729	N/A	Reto G\u00f6tschi
+6292705	N/A	Guido Acklin
+13187649	N/A	Dirk Wiese
+13629790	N/A	Ji\u0159\u00ed D\u017emura
+13629893	N/A	Pavel Polomsk\u00fd
+13162738	N/A	Hubert Sch\u00f6sser
+12660738	N/A	Sean Olsson
+12660811	N/A	Dean Ward
+363531	N/A	Kanpur
+965359	N/A	Tony Greig
+10128270	N/A	Clarence Woolmer
+231623	N/A	Uttar Pradesh
+1307223	N/A	Ranji Trophy
+15108404	N/A	Eric Bergoust
+4147465	N/A	Ale\u0161 Valenta
+4256572	N/A	Dmitri Dashinski
+4160865	N/A	Jacqui Cooper
+16531027	N/A	Marie Lindgren
+16114062	N/A	Hilde Synn\u00f8ve Lid
+782437	N/A	Kuusamo
+3730010	N/A	FIS Ski Jumping World Cup
+5838889	N/A	Takanobu Okabe
+4016475	N/A	Kazuyoshi Funaki
+4104697	N/A	Andreas Goldberger
+5311143	N/A	Dieter Thoma
+5837952	N/A	Ari\u002dPekka Nikkola
+5839455	N/A	Reinhard Schwarzenberger
+4172174	N/A	Noriaki Kasai
+4983608	N/A	Jani Soininen
+9168224	N/A	Kristian Brenden
+2918889	N/A	Espen Bredesen
+799388	N/A	Primo\u017e Peterka
+4364061	N/A	Speed Skating World Cup
+21089677	N/A	Sergey Klevchenya
+4192719	N/A	Casey FitzRandolph
+26658546	N/A	Sylvain Bouchard
+14189079	N/A	Kim Yoon\u002dman
+7985249	N/A	Franziska Schenk
+3204490	N/A	Marianne Timmer
+3263577	N/A	Chris Witty
+39838	N/A	Jan Bos
+39841	N/A	Gerard van Velde
+1397756	N/A	Jeremy Wotherspoon
+309257	N/A	Whistler\u002c British Columbia
+9055006	N/A	Whistler Mountain
+3788050	N/A	Billy Dodds
+1973203	N/A	Pierre van Hooijdonk
+7078668	N/A	Paul Wright \u0028footballer\u0029
+6530079	N/A	Andreas Thom
+5314986	N/A	Dean Windass
+615829	N/A	Brian Laudrup
+5865913	N/A	Darren Jackson
+3470790	N/A	Peter van Vossen
+5696362	N/A	Gerry Britton
+3929161	N/A	Colin Cameron \u0028footballer\u0029
+2240487	N/A	Robbie Winters
+724986	N/A	Paolo Di Canio
+241230	N/A	Ian Wright
+406831	N/A	Matthew Le Tissier
+526167	N/A	Dwight Yorke
+5362529	N/A	Efan Ekoku
+2834963	N/A	Robbie Earle
+1697179	N/A	Marcus Gayle
+1311995	N/A	Gary Speed
+526138	N/A	Chris Sutton
+929708	N/A	Peter Beardsley
+1343116	N/A	Ards F\u002eC\u002e
+1343192	N/A	Crusaders F\u002eC\u002e
+1343146	N/A	Cliftonville F\u002eC\u002e
+828078	N/A	Portadown F\u002eC\u002e
+1346043	N/A	Glenavon F\u002eC\u002e
+828687	N/A	Linfield F\u002eC\u002e
+1343177	N/A	Coleraine F\u002eC\u002e
+642484	N/A	Anglo\u002dWelsh Cup
+1901715	N/A	Reading R\u002eF\u002eC\u002e
+1095036	N/A	Widnes Vikings
+872781	N/A	Newport Gwent Dragons
+872917	N/A	Pontypridd RFC
+1204424	N/A	Neath RFC
+6929926	N/A	Joe Miller \u0028footballer\u0029
+4906374	N/A	David Rowson
+1784509	N/A	Billy Davies
+10162816	N/A	Chris Hay
+3483682	N/A	Ian Ferguson \u0028footballer born 1967\u0029
+17438213	N/A	Keith Wright \u0028footballer\u0029
+15174536	N/A	Pat McGinlay
+1044419	N/A	Fran\u00e7ois Pienaar
+3187751	N/A	New South Wales rugby league team
+3489523	N/A	Nick Farr\u002dJones
+229730	N/A	Patrick Vieira
+3169375	N/A	Dean Sturridge
+2246174	N/A	Chris Powell
+346905	N/A	Gianfranco Zola
+2575478	N/A	Michael Branch
+1530110	N/A	Andrei Kanchelskis
+4343251	N/A	Noel Whelan
+4678763	N/A	Andy Sinton
+4019080	N/A	Dean Holdsworth
+11250	N/A	Premier League
+5946640	N/A	Darryl Powell
+883238	N/A	Scottish Cup
+880401	N/A	Elgin City F\u002eC\u002e
+2488128	N/A	Whitehill Welfare F\u002eC\u002e
+880432	N/A	Huntly F\u002eC\u002e
+581662	N/A	Hednesford Town F\u002eC\u002e
+1233808	N/A	St Albans City F\u002eC\u002e
+451211	N/A	Woking F\u002eC\u002e
+451155	N/A	Boston United F\u002eC\u002e
+2332887	N/A	Enfield Town F\u002eC\u002e
+451208	N/A	Stevenage F\u002eC\u002e
+3675438	N/A	Boreham Wood F\u002eC\u002e
+5243678	N/A	Sudbury Town F\u002eC\u002e
+646709	N/A	Ashford Town F\u002eC\u002e \u0028Kent\u0029
+1264202	N/A	New Zealand Barbarians
+9715073	N/A	Bradford Vaughan
+1011572	N/A	Albania national football team
+1267103	N/A	Albanian Football Association
+23447950	N/A	Artur Lekbello
+10017954	N/A	Blendi Nallbani
+9109953	N/A	Rudi Vata
+18360005	N/A	Arjan Xhumba
+24714114	N/A	Ilir Shulku
+8083040	N/A	Nevil Dede
+11783722	N/A	Bledar Kola
+7468056	N/A	Altin Haxhi
+18815629	N/A	Ervin Fakaj
+11783679	N/A	Altin Rraklli
+25040430	N/A	Viktor Pa\u00e7o
+8484172	N/A	Fatmir Vata
+5903896	N/A	Erjon Bogdani
+9983465	N/A	Laurie Harper
+1989264	N/A	Ian Harvey
+3565374	N/A	Hwang Sun\u002dHong
+12305126	N/A	Hendro Kartiko
+12820147	N/A	Agung Setyabudi
+12500162	N/A	Bima Sakti
+4917550	N/A	Bnei Yehuda Tel Aviv F\u002eC\u002e
+861284	N/A	Maccabi Tel Aviv F\u002eC\u002e
+5834903	N/A	Hapoel Be\u0027er Sheva A\u002eF\u002eC\u002e
+1563605	N/A	Adnan Al Talyani
+4753334	N/A	Central Division \u0028NBA\u0029
+243389	N/A	Charlotte Bobcats
+1238503	N/A	Hartford Wolf Pack
+22705	N/A	Ottawa Senators
+73133	N/A	Vancouver Canucks
+605202	N/A	Pavel Bure
+3438109	N/A	Garry Galley
+2031342	N/A	Brian Burke \u0028ice hockey\u0029
+3945829	N/A	Axel Schulz
+1462772	N/A	Predrag Mijatovi\u0107
+5651409	N/A	Vampeta
+1218784	N/A	De Graafschap
+61629	N/A	1966 FIFA World Cup
+4224	N/A	Bobby Charlton
