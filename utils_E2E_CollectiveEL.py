@@ -98,11 +98,11 @@ def get_mention_window(mention_id, mentions, docs,  max_seq_length, tokenizer):
                       max_len_context)
 
 
-def get_marked_mentions(document_id, mentions, docs,  max_seq_length, tokenizer):
+def get_marked_mentions(document_id, mentions, docs,  max_seq_length, tokenizer, args):
     for m in mentions[document_id]:
         assert m['content_document_id'] == document_id
 
-    context_text = docs[document_id]['text']
+    context_text = docs[document_id]['text'].lower() if args.do_lower_case else docs[document_id]['text']
     tokenized_text = [tokenizer.cls_token]
     mention_start_markers = []
     mention_end_markers = []
@@ -204,7 +204,7 @@ def convert_examples_to_features(
     all_entity_token_masks = []
 
     for c_idx, c in enumerate(all_entities):
-        entity_text = entities[c]
+        entity_text = entities[c].lower() if args.do_lower_case else entities[c]
         max_entity_len = max_seq_length // 4  # Number of tokens
         entity_window = get_entity_window(entity_text, max_entity_len, tokenizer)
         # [CLS] candidate text [SEP]
@@ -287,7 +287,8 @@ def convert_examples_to_features(
                                                                             mentions,
                                                                             docs,
                                                                             max_seq_length,
-                                                                            tokenizer)
+                                                                            tokenizer,
+                                                                            args)
         doc_tokens = tokenizer.convert_tokens_to_ids(doc_tokens_)
         seq_tag_ids = convert_tags_to_ids(seq_tags)
 
@@ -466,9 +467,13 @@ def convert_examples_to_features(
             candidate_token_masks_2 = None
 
             c_idx = 0
-            for m_candidates in candidates:
+            for m_idx, m_candidates in enumerate(candidates):
+                if m_idx >= args.num_max_mentions:
+                    logger.warning("More than {} mentions in doc, mentions after {} are ignored".format(
+                            args.num_max_mentions, args.num_max_mentions))
+                    break
                 for c in m_candidates:
-                    entity_text = entities[c]
+                    entity_text = entities[c].lower() if args.do_lower_case else entities[c]
                     max_entity_len = max_seq_length // 4  # Number of tokens
                     entity_window = get_entity_window(entity_text, max_entity_len, tokenizer)
                     # [CLS] candidate text [SEP]
@@ -485,7 +490,6 @@ def convert_examples_to_features(
 
                     assert len(candidate_tokens) == max_entity_len
                     assert len(candidate_masks) == max_entity_len
-
                     candidate_token_ids_1[c_idx] = candidate_tokens
                     candidate_token_masks_1[c_idx] = candidate_masks
                     c_idx += 1
@@ -497,9 +501,13 @@ def convert_examples_to_features(
                 candidate_token_masks_2 = [[0] * max_entity_len] * (args.num_max_mentions * args.num_candidates)
 
                 for m_idx, m_hard_candidates in enumerate(candidates_2):
+                    if m_idx >= args.num_max_mentions:
+                        logger.warning("More than {} mentions in doc, mentions after {} are ignored".format(
+                                args.num_max_mentions, args.num_max_mentions))
+                        break
                     c_idx = m_idx * args.num_candidates
                     for c in m_hard_candidates:
-                        entity_text = entities[c]
+                        entity_text = entities[c].lower() if args.do_lower_case else entities[c]
                         max_entity_len = max_seq_length // 4  # Number of tokens
                         entity_window = get_entity_window(entity_text, max_entity_len, tokenizer)
                         # [CLS] candidate text [SEP]
@@ -524,6 +532,10 @@ def convert_examples_to_features(
         # Target candidate
         label_ids = [-1] * args.num_max_mentions
         for m_idx, m_candidates in enumerate(candidates):
+            if m_idx >= args.num_max_mentions:
+                logger.warning("More than {} mentions in doc, mentions after {} are ignored".format(
+                    args.num_max_mentions, args.num_max_mentions))
+                break
             if label_candidate_ids[m_idx] in m_candidates:
                 label_ids[m_idx] = m_candidates.index(label_candidate_ids[m_idx])
             else:
@@ -531,9 +543,13 @@ def convert_examples_to_features(
 
         # Pad the mention start and end indices
         mention_start_indices = [0] * args.num_max_mentions
-        mention_start_indices[:num_mentions] = mention_start_markers
         mention_end_indices = [0] * args.num_max_mentions
-        mention_end_indices[:num_mentions] = mention_end_markers
+        if num_mentions <= args.num_max_mentions:
+            mention_start_indices[:num_mentions] = mention_start_markers
+            mention_end_indices[:num_mentions] = mention_end_markers
+        else:
+            mention_start_indices = mention_start_markers[:args.num_max_mentions]
+            mention_end_indices = mention_end_markers[:args.num_max_mentions]
 
         # if ex_index < 3:
         #     logger.info("*** Example ***")

@@ -12,7 +12,6 @@ regex = re.compile(r'\(\d+.*\)')
 
 documents = []
 mentions = {}
-entities = {}
 words = []
 mention_start_indices = []
 mention_end_indices = []
@@ -75,8 +74,6 @@ with open(os.path.join(raw_data_dir, 'AIDA-YAGO2-dataset.tsv'), encoding='utf-8'
                     mention_end_indices.append(len(" ".join(words)))
                     mention_texts.append(line[2])
                     label_candidate_ids.append(line[5])
-                    if line[5] not in entities:
-                        entities[line[5]] = line[3]
                 elif line[1] == 'I':
                     words.append(line[0])
                     mention_end_indices[len(mention_end_indices) - 1] = len(" ".join(words))
@@ -160,11 +157,6 @@ with open(os.path.join(save_dir, 'test/mentions/mentions.json'), 'w+') as f:
     for document_id in mentions_test:
         dict_to_write = json.dumps(mentions_test[document_id])
         f.write(dict_to_write + '\n')
-f.close()
-
-with open(os.path.join(raw_data_dir, 'entities.txt'), 'w+') as f:
-    for eid in entities:
-        f.write(eid + '\tN/A\t' + entities[eid].replace('_', ' ') + '\n')
 f.close()
 
 

@@ -3,7 +3,7 @@ import torch.nn as nn
 from torch.nn import CrossEntropyLoss, MSELoss
 import copy
 from modeling_bert import BertPreTrainedModel
-from modeling_bert import BertModel
+from modeling_bert import BertModel, BertForPreTraining
 import pdb
 
 
@@ -11,6 +11,7 @@ class PreDualEncoder(BertPreTrainedModel):
     def __init__(self, config):
         super().__init__(config)
         self.bert = BertModel(config)
+        # self.bert = BertForPreTraining(config)
 
 
 class DualEncoderBert(BertPreTrainedModel):
