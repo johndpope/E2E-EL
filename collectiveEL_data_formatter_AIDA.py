@@ -7,11 +7,12 @@ import pdb
 # tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
 # print(len(tokenizer))
 
-raw_data_dir = './data/aida-yago2-dataset'
+raw_data_dir = './data/aida-yago2-dataset/raw_data'
 regex = re.compile(r'\(\d+.*\)')
 
 documents = []
 mentions = {}
+entities = {}
 words = []
 mention_start_indices = []
 mention_end_indices = []
@@ -74,6 +75,8 @@ with open(os.path.join(raw_data_dir, 'AIDA-YAGO2-dataset.tsv'), encoding='utf-8'
                     mention_end_indices.append(len(" ".join(words)))
                     mention_texts.append(line[2])
                     label_candidate_ids.append(line[5])
+                    if line[5] not in entities:
+                        entities[line[5]] = line[3]
                 elif line[1] == 'I':
                     words.append(line[0])
                     mention_end_indices[len(mention_end_indices) - 1] = len(" ".join(words))
@@ -112,7 +115,7 @@ for doc in documents:
 
 for document_id in mentions:
     if 'testa' in document_id:
-        mentions_train[document_id] = mentions[document_id]
+        mentions_dev[document_id] = mentions[document_id]
     elif 'testb' in document_id:
         mentions_test[document_id] = mentions[document_id]
     else:
@@ -121,28 +124,28 @@ for document_id in mentions:
 save_dir = "./data/aida-yago2-dataset/collective_el_data_2"
 
 with open(os.path.join(save_dir, 'train/documents/documents.json'), 'w+') as f:
-    for doc in documents_test:
+    for doc in documents_train:
         dict_to_write = doc
         dict_to_write = json.dumps(dict_to_write)
         f.write(dict_to_write + '\n')
 f.close()
 
 with open(os.path.join(save_dir, 'train/mentions/mentions.json'), 'w+') as f:
-    for document_id in mentions_test:
-        dict_to_write = json.dumps(mentions_test[document_id])
+    for document_id in mentions_train:
+        dict_to_write = json.dumps(mentions_train[document_id])
         f.write(dict_to_write + '\n')
 f.close()
 
 with open(os.path.join(save_dir, 'dev/documents/documents.json'), 'w+') as f:
-    for doc in documents_test:
+    for doc in documents_dev:
         dict_to_write = doc
         dict_to_write = json.dumps(dict_to_write)
         f.write(dict_to_write + '\n')
 f.close()
 
 with open(os.path.join(save_dir, 'dev/mentions/mentions.json'), 'w+') as f:
-    for document_id in mentions_test:
-        dict_to_write = json.dumps(mentions_test[document_id])
+    for document_id in mentions_dev:
+        dict_to_write = json.dumps(mentions_dev[document_id])
         f.write(dict_to_write + '\n')
 f.close()
 
@@ -157,6 +160,11 @@ with open(os.path.join(save_dir, 'test/mentions/mentions.json'), 'w+') as f:
     for document_id in mentions_test:
         dict_to_write = json.dumps(mentions_test[document_id])
         f.write(dict_to_write + '\n')
+f.close()
+
+with open(os.path.join(raw_data_dir, 'entities.txt'), 'w+') as f:
+    for eid in entities:
+        f.write(eid + '\tN/A\t' + entities[eid].replace('_', ' ') + '\n')
 f.close()
 
 

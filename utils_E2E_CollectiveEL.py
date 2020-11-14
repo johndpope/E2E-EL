@@ -550,7 +550,6 @@ def convert_examples_to_features(
         else:
             mention_start_indices = mention_start_markers[:args.num_max_mentions]
             mention_end_indices = mention_end_markers[:args.num_max_mentions]
-
         # if ex_index < 3:
         #     logger.info("*** Example ***")
         #     logger.info("mention_token_ids: %s", " ".join([str(x) for x in mention_tokens]))

@@ -1,0 +1,12 @@
+11867	UNK	Germany
+31717	UNK	United Kingdom
+3708	UNK	Brussels
+9974	UNK	European Commission
+974	UNK	European Commission
+9317	UNK	European Union
+626779	UNK	Franz Fischler
+5843419	UNK	France
+19344418	UNK	Bovine spongiform encephalopathy
+26667	UNK	Spain
+6394317	UNK	Loyola de Palacio
+9239	UNK Europe

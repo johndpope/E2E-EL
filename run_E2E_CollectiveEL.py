@@ -546,8 +546,6 @@ def evaluate(args, model, tokenizer, prefix=""):
             # predicted_tags = predicted_tags.to(args.device)
             # out_label_ids = torch.gather(batch[6], 1, which_gold_spans)
 
-
-
             pred_mention_start_indices = torch.tensor(pred_mention_start_indices).long().to(args.device)
             pred_mention_end_indices = torch.tensor(pred_mention_end_indices).long().to(args.device)
 
@@ -590,6 +588,8 @@ def evaluate(args, model, tokenizer, prefix=""):
             gold_mention_end_indices = batch[8].detach().cpu().numpy()[0][:num_mentions]
             gold_entities = all_label_candidate_ids[num_mention_processed:num_mention_processed + num_mentions]
             for j in range(num_mentions):
+                if j >= args.num_max_mentions:
+                    continue
                 # if gold_mention_start_indices[j] == gold_mention_end_indices[j]:
                 #     gold_mention_end_indices[j] += 1
                 if gold_mention_start_indices[j] > gold_mention_end_indices[j]:
