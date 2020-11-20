@@ -25,7 +25,6 @@ def get_examples(data_dir, mode):
     entities = {}
     with open(entity_path, encoding='utf-8') as f:
         for line in f:
-            print(line.strip().split('\t'))
             e, _, text = line.strip().split('\t')
             entities[e] = text
 
@@ -54,7 +53,6 @@ def get_examples(data_dir, mode):
             #     fields = json.loads(line)
             #     ments[fields["mention_id"]] = {k: v for k, v in fields.items() if k != "mention_id"}
         print("mentions {} dataset is done :)".format(mode))
-
     return ments, docs, entities
 
 def get_window(prefix, mention, suffix, max_size):
@@ -72,7 +70,7 @@ def get_window(prefix, mention, suffix, max_size):
         prefix_len = len(prefix)
 
     prefix = prefix[-prefix_len:]  # Truncate head of prefix
-    window = prefix + ['[Ms]'] + mention + ['[Me]'] +suffix
+    window = prefix + ['[Ms]'] + mention + ['[Me]'] + suffix
     window = window[:max_size]  # Truncate tail of suffix
 
     mention_start_index = len(prefix)
