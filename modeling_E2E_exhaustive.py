@@ -96,22 +96,25 @@ class DualEncoderBert(BertPreTrainedModel):
             all_start_indices = all_spans[1]
             all_end_indices = all_spans[2]
 
+            # Spans longer than `max_mention_length` are invalid
             span_lengths = all_end_indices - all_start_indices + 1
             valid_span_indices = torch.where(span_lengths <= args.max_mention_length)
             valid_doc_indices = all_doc_indices[valid_span_indices]
             valid_start_indices = all_start_indices[valid_span_indices]
             valid_end_indices = all_end_indices[valid_span_indices]
 
+            # Valid spans and their scores
             valid_spans = torch.stack((valid_doc_indices, valid_start_indices, valid_end_indices), dim=0)
             valid_span_scores = all_span_scores[(valid_doc_indices, valid_start_indices, valid_end_indices)]
 
+            # Target
             targets = torch.zeros(valid_spans.size(-1), dtype=torch.float32).to(valid_spans.device)
 
             gold_spans = set()
             gold_start_end_indices = torch.stack([mention_start_indices, mention_end_indices], dim=1)
             for i in range(gold_start_end_indices.size(0)):
                 for j in range(gold_start_end_indices.size(-1)):
-                    # (0, 0) can't be a mention span. 0-th index corresponds to [CLS]
+                    # (0, 0) can't be a mention span because 0-th index corresponds to [CLS]
                     if gold_start_end_indices[i][0][j].item() == 0 and gold_start_end_indices[i][1][j].item() == 0:
                         continue
                     else:
@@ -123,14 +126,15 @@ class DualEncoderBert(BertPreTrainedModel):
                     targets[i] = 1.0
 
             if self.training:
+                # Binary Cross Entropy loss
                 ner_loss = self.loss_fn_ner(valid_span_scores, targets)
                 return ner_loss
             else:
+                # Inference supports batch_size=1
                 return valid_start_indices, valid_end_indices, valid_span_scores
 
         if mode == 'ned':
             if mention_start_indices is not None and mention_end_indices is not None:
-
                 # Pool the mention representations
                 mention_embeddings = []
                 for i in range(mention_start_indices.size(0)):
@@ -215,11 +219,11 @@ class DualEncoderBert(BertPreTrainedModel):
 
                 labels = labels.reshape(-1)
 
-                linker_loss = self.loss_fn_linker(linker_logits, labels)
+                linking_loss = self.loss_fn_linker(linker_logits, labels)
                 # Normalize the loss
                 num_mentions = torch.where(labels >= 0)[0].size(0)
-                linker_loss = linker_loss / num_mentions
-                return linker_loss, linker_logits
+                linker_loss = linking_loss / num_mentions
+                return linking_loss, linker_logits
 
             if all_candidate_embeddings is not None:
                 b_size = mention_embeddings.size(0)
