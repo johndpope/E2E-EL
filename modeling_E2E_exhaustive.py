@@ -58,64 +58,89 @@ class DualEncoderBert(BertPreTrainedModel):
 
         if mode == 'ner':
             logits = self.bound_classifier(last_hidden_states)  # B X L X H --> B X L X 3
-            start_logprobs, end_logprobs, mention_logprobs = logits.split(1, dim=-1)
-            start_logprobs = start_logprobs.squeeze(-1)
-            end_logprobs = end_logprobs.squeeze(-1)
-            mention_logprobs = mention_logprobs.squeeze(-1)
+            start_scores, end_scores, mention_scores = logits.split(1, dim=-1)
+            start_scores = start_scores.squeeze(-1)
+            end_scores = end_scores.squeeze(-1)
+            mention_scores = mention_scores.squeeze(-1)
             # Exclude The masked tokens from start or end mentions
-            start_logprobs[torch.where(mention_token_masks == 0)] = -float("Inf")
-            end_logprobs[torch.where(mention_token_masks == 0)] = -float("Inf")
-            mention_logprobs[torch.where(mention_token_masks == 0)] = -float("Inf")
+            start_scores[torch.where(mention_token_masks == 0)] = -float("Inf")
+            end_scores[torch.where(mention_token_masks == 0)] = -float("Inf")
+            mention_scores[torch.where(mention_token_masks == 0)] = -float("Inf")
 
-            cumulative_mention_logprobs = torch.zeros(mention_token_masks.size()).to(mention_token_masks.device)
-            cumulative_mention_logprobs[torch.where(mention_token_masks == 0)] = -float("Inf")
-            cumulative_mention_logprobs[:, 0] = mention_logprobs[:, 0]
+            cumulative_mention_scores = torch.zeros(mention_token_masks.size()).to(mention_token_masks.device)
+            cumulative_mention_scores[torch.where(mention_token_masks == 0)] = -float("Inf")
+            cumulative_mention_scores[:, 0] = mention_scores[:, 0]
             for i in range(1, mention_token_masks.size(1)):
-                cumulative_mention_logprobs[:, i] = cumulative_mention_logprobs[:, i-1] + mention_logprobs[:, i]
-            all_span_mention_logprobs = cumulative_mention_logprobs.unsqueeze(1) - cumulative_mention_logprobs.unsqueeze(2)
-            all_span_mention_logprobs += mention_logprobs.unsqueeze(2).expand_as(all_span_mention_logprobs)
+                cumulative_mention_scores[:, i] = cumulative_mention_scores[:, i-1] + mention_scores[:, i]
 
-            # Add the start logprobs and end logprobs
-            all_span_start_end_logprobs = start_logprobs.unsqueeze(2) + end_logprobs.unsqueeze(1)
+            all_span_mention_scores = cumulative_mention_scores.unsqueeze(1) - cumulative_mention_scores.unsqueeze(2)
+            all_span_mention_scores += mention_scores.unsqueeze(2).expand_as(all_span_mention_scores)
 
-            # Add the mention span logprobs with the sum of start logprobs and end logprobs
-            all_span_logprobs = all_span_start_end_logprobs + all_span_mention_logprobs
+            # Add the start scores and end scores
+            all_span_start_end_scores = start_scores.unsqueeze(2) + end_scores.unsqueeze(1)
+
+            # Add the mention span scores with the sum of start scores and end scores
+            all_span_scores = all_span_start_end_scores + all_span_mention_scores
 
             # Mention end cannot have a higher index than mention start
-            impossible_mask = torch.zeros(all_span_logprobs.size(), dtype=torch.int32).to(mention_token_masks.device)
-            impossible_mask[torch.triu_indices(all_span_logprobs.size(1), all_span_logprobs.size(2))] = 1
-            all_span_logprobs[torch.where(impossible_mask == 0)] = -float("Inf")
+            impossible_mask = torch.zeros((all_span_scores.size(1), all_span_scores.size(2)), dtype=torch.int32).to(mention_token_masks.device)
+            possible_rows, possible_cols = torch.triu_indices(all_span_scores.size(1), all_span_scores.size(2))
+            impossible_mask[(possible_rows, possible_cols)] = 1
+            impossible_mask = impossible_mask.unsqueeze(0).expand_as(all_span_scores)
+            all_span_scores[torch.where(impossible_mask == 0)] = -float("Inf")
+            # Convert the scores the log-likelihoods
+            all_span_logprobs = torch.sigmoid(all_span_scores).log()  # Dim: B X L X L
 
             # Spans with logprobs  minus "Inf" are invalid
             all_spans = torch.where(all_span_logprobs > -float("Inf"))
-            pdb.set_trace()
-            all_start_indices = all_spans[0]
-            all_end_indices = all_spans[1]
+            all_doc_indices = all_spans[0]
+            all_start_indices = all_spans[1]
+            all_end_indices = all_spans[2]
 
-            valid_span_lengths = all_end_indices - all_start_indices + 1
-            valid_span_indices = torch.where(valid_span_lengths >= args.max_mention_length)
+            span_lengths = all_end_indices - all_start_indices + 1
+            valid_span_indices = torch.where(span_lengths <= args.max_mention_length)
+            valid_doc_indices = all_doc_indices[valid_span_indices]
             valid_start_indices = all_start_indices[valid_span_indices]
             valid_end_indices = all_end_indices[valid_span_indices]
 
-            valid_span_logprobs = all_span_logprobs[(valid_start_indices, valid_end_indices)]
+            valid_spans = torch.stack((valid_doc_indices, valid_start_indices, valid_end_indices), dim=0)
+
+            pred_spans = set()
+            for i in range(valid_spans.size(1)):
+                pred_spans.add((valid_spans[0][i].item(), valid_spans[1][i].item(), valid_spans[2][i].item()))
+
+            gt_spans = set()
+            gt_start_end_indices = torch.stack([mention_start_indices, mention_end_indices], dim=1)
+            for i in range(gt_start_end_indices.size(0)):
+                for j in range(gt_start_end_indices.size(-1)):
+                    gt_spans.add((i, gt_start_end_indices[i][0][j].item(), gt_start_end_indices[i][1][j].item()))
 
             if self.training:
-
+                ner_loss = 0
+                # ylog(p) + (1-y)log(1-p)
+                for (i, s_idx, e_idx) in pred_spans:
+                    if (i, s_idx, e_idx) in gt_spans:
+                        ner_loss = ner_loss - all_span_logprobs[i, s_idx, e_idx]
+                    else:
+                        ner_loss = ner_loss - torch.log(1 - torch.exp(all_span_logprobs[i, s_idx, e_idx]))
+                ner_loss = ner_loss / len(pred_spans)
                 return ner_loss
             else:
+                valid_span_logprobs = all_span_logprobs[(valid_doc_indices, valid_span_indices, valid_end_indices)]
                 return valid_start_indices, valid_end_indices, valid_span_logprobs
 
         if mode == 'ned':
             if mention_start_indices is not None and mention_end_indices is not None:
+
                 # Pool the mention representations
-                mention_start_indices = mention_start_indices.unsqueeze(-1).expand(-1, -1, self.hidden_size)
-                mention_end_indices = mention_end_indices.unsqueeze(-1).expand(-1, -1, self.hidden_size)
-                mention_start_embd = last_hidden_states.gather(1, mention_start_indices)
-                mention_end_embd = last_hidden_states.gather(1, mention_end_indices)
-
-                mention_embeddings = self.mlp(torch.cat([mention_start_embd, mention_end_embd], dim=2))
-                mention_embeddings = mention_embeddings.reshape(-1, 1, self.hidden_size)
-
+                mention_embeddings = []
+                for i in range(mention_start_indices.size(0)):
+                    for j in range(mention_start_indices.size(1)):
+                        s_idx = mention_start_indices[i][j].item()
+                        e_idx = mention_end_indices[i][j].item()
+                        m_embd = torch.mean(last_hidden_states[:, s_idx:e_idx + 1, :], dim=1)
+                        mention_embeddings.append(m_embd)
+                mention_embeddings = torch.cat(mention_embeddings, dim=0).unsqueeze(1)
 
             ''' For random negative training and  For tf-idf candidates based training and evaluation'''
             if all_candidate_embeddings is None and candidate_token_ids_2 is None:

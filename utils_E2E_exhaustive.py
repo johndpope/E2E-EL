@@ -351,95 +351,95 @@ def convert_examples_to_features(
                     m_candidates += negative_candidates
                     candidates.append(m_candidates)
 
-                    # Then get the hard negative
-                    if model is None:
-                        raise ValueError("`model` parameter cannot be None")
-                    # Hard negative candidate mining
-                    # print("Performing hard negative candidate mining ...")
-                    # Get mention embeddings
-                    input_token_ids = torch.LongTensor([doc_tokens]).to(args.device)
-                    input_token_masks = torch.LongTensor([doc_tokens_mask]).to(args.device)
-                    # Forward pass through the mention encoder of the dual encoder
-                    with torch.no_grad():
-                        if hasattr(model, "module"):
-                            mention_outputs = model.module.bert_mention.bert(
-                                input_ids=input_token_ids,
-                                attention_mask=input_token_masks,
-                            )
-                        else:
-                            mention_outputs = model.bert_mention.bert(
-                                input_ids=input_token_ids,
-                                attention_mask=input_token_masks,
-                            )
-                    last_hidden_states = mention_outputs[0]  # B X L X H
-                    # Pool the mention representations
-                    # mention_start_indices = torch.LongTensor([mention_start_markers]).to(args.device)
-                    # mention_end_indices = torch.LongTensor([mention_end_markers]).to(args.device)
-                    #
+                # Then get the hard negative
+                if model is None:
+                    raise ValueError("`model` parameter cannot be None")
+                # Hard negative candidate mining
+                # print("Performing hard negative candidate mining ...")
+                # Get mention embeddings
+                input_token_ids = torch.LongTensor([doc_tokens]).to(args.device)
+                input_token_masks = torch.LongTensor([doc_tokens_mask]).to(args.device)
+                # Forward pass through the mention encoder of the dual encoder
+                with torch.no_grad():
                     if hasattr(model, "module"):
-                        hidden_size = model.module.hidden_size
+                        mention_outputs = model.module.bert_mention.bert(
+                            input_ids=input_token_ids,
+                            attention_mask=input_token_masks,
+                        )
                     else:
-                        hidden_size = model.hidden_size
-                    #
-                    # mention_start_indices = mention_start_indices.unsqueeze(-1).expand(-1, -1, hidden_size)
-                    # mention_end_indices = mention_end_indices.unsqueeze(-1).expand(-1, -1, hidden_size)
-                    # mention_start_embd = last_hidden_states.gather(1, mention_start_indices)
-                    # mention_end_embd = last_hidden_states.gather(1, mention_end_indices)
-                    # if hasattr(model, "module"):
-                    #     mention_embeddings = model.module.mlp(torch.cat([mention_start_embd, mention_end_embd], dim=2))
-                    # else:
-                    #     mention_embeddings = model.mlp(torch.cat([mention_start_embd, mention_end_embd], dim=2))
-                    # mention_embeddings = mention_embeddings.reshape(-1, 1, hidden_size) # M X 1 X H
+                        mention_outputs = model.bert_mention.bert(
+                            input_ids=input_token_ids,
+                            attention_mask=input_token_masks,
+                        )
+                last_hidden_states = mention_outputs[0]  # B X L X H
+                # Pool the mention representations
+                # mention_start_indices = torch.LongTensor([mention_start_markers]).to(args.device)
+                # mention_end_indices = torch.LongTensor([mention_end_markers]).to(args.device)
+                #
+                if hasattr(model, "module"):
+                    hidden_size = model.module.hidden_size
+                else:
+                    hidden_size = model.hidden_size
+                #
+                # mention_start_indices = mention_start_indices.unsqueeze(-1).expand(-1, -1, hidden_size)
+                # mention_end_indices = mention_end_indices.unsqueeze(-1).expand(-1, -1, hidden_size)
+                # mention_start_embd = last_hidden_states.gather(1, mention_start_indices)
+                # mention_end_embd = last_hidden_states.gather(1, mention_end_indices)
+                # if hasattr(model, "module"):
+                #     mention_embeddings = model.module.mlp(torch.cat([mention_start_embd, mention_end_embd], dim=2))
+                # else:
+                #     mention_embeddings = model.mlp(torch.cat([mention_start_embd, mention_end_embd], dim=2))
+                # mention_embeddings = mention_embeddings.reshape(-1, 1, hidden_size) # M X 1 X H
 
-                    mention_embeddings = []
-                    for i, (s_idx, e_idx) in enumerate(zip(mention_start_markers, mention_end_markers)):
-                        m_embd = torch.mean(last_hidden_states[:, s_idx:e_idx+1, :], dim=1)
-                        mention_embeddings.append(m_embd)
-                    mention_embeddings = torch.cat(mention_embeddings, dim=0).unsqueeze(1)
+                mention_embeddings = []
+                for i, (s_idx, e_idx) in enumerate(zip(mention_start_markers, mention_end_markers)):
+                    m_embd = torch.mean(last_hidden_states[:, s_idx:e_idx+1, :], dim=1)
+                    mention_embeddings.append(m_embd)
+                mention_embeddings = torch.cat(mention_embeddings, dim=0).unsqueeze(1)
 
-                    # Perform similarity search
-                    num_m = mention_embeddings.size(0)  #
-                    all_candidate_embeddings_ = all_candidate_embeddings.unsqueeze(0).expand(num_m, -1, hidden_size) # M X C_all X H
+                # Perform similarity search
+                num_m = mention_embeddings.size(0)  #
+                all_candidate_embeddings_ = all_candidate_embeddings.unsqueeze(0).expand(num_m, -1, hidden_size) # M X C_all X H
 
-                    # distance, candidate_indices = all_candidate_index.search(mention_embedding, args.num_candidates)
-                    # candidate_indices = candidate_indices[0]  # original size 1 X 10 -> 10
+                # distance, candidate_indices = all_candidate_index.search(mention_embedding, args.num_candidates)
+                # candidate_indices = candidate_indices[0]  # original size 1 X 10 -> 10
+                similarity_scores = torch.bmm(mention_embeddings,
+                                              all_candidate_embeddings_.transpose(1, 2))  # M X 1 X C_all
+                similarity_scores = similarity_scores.squeeze(1)  # M X C_all
+                distance, candidate_indices = torch.topk(similarity_scores, k=args.num_candidates)
 
-                    similarity_scores = torch.bmm(mention_embeddings,
-                                                  all_candidate_embeddings_.transpose(1, 2))  # M X 1 X C_all
-                    similarity_scores = similarity_scores.squeeze(1)  # M X C_all
-                    distance, candidate_indices = torch.topk(similarity_scores, k=args.num_candidates)
+                candidate_indices = candidate_indices.cpu().detach().numpy().tolist()
 
-                    candidate_indices = candidate_indices.cpu().detach().numpy().tolist()
-
-                    for m_idx, m in enumerate(mentions[document_id]):
-                        mention_id = m["mention_id"]
-                        # Update the list of hard negatives for this `mention_id`
-                        if mention_id not in mention_hard_negatives:
-                            mention_hard_negatives[mention_id] = []
-                        for i, c_idx in enumerate(candidate_indices[m_idx]):
-                            c = all_entities[c_idx]
-                            if c == m["label_candidate_id"]:  # Positive candidate position
-                                if i not in position_of_positive:
-                                    position_of_positive[i] = 1
-                                else:
-                                    position_of_positive[i] += 1
-                                break
+                for m_idx, m in enumerate(mentions[document_id]):
+                    mention_id = m["mention_id"]
+                    # Update the list of hard negatives for this `mention_id`
+                    if mention_id not in mention_hard_negatives:
+                        mention_hard_negatives[mention_id] = []
+                    for i, c_idx in enumerate(candidate_indices[m_idx]):
+                        # print(c_idx, len(all_entities))
+                        c = all_entities[c_idx]
+                        if c == m["label_candidate_id"]:  # Positive candidate position
+                            if i not in position_of_positive:
+                                position_of_positive[i] = 1
                             else:
-                                # Append new hard negatives
-                                if c not in mention_hard_negatives[mention_id]:
-                                    mention_hard_negatives[mention_id].append(c)
-
-                    candidates_2 = []
-                    # candidates_2.append(label_candidate_id)  # positive candidate
-                    # Append hard negative candidates
-                    for m_idx, m in enumerate(mentions[document_id]):
-                        mention_id = m["mention_id"]
-                        if len(mention_hard_negatives[mention_id]) < args.num_candidates:  # args.num_candidates - 1
-                            m_hard_candidates = mention_hard_negatives[mention_id]
+                                position_of_positive[i] += 1
+                            break
                         else:
-                            candidate_pool = mention_hard_negatives[mention_id]
-                            m_hard_candidates = random.sample(candidate_pool, args.num_candidates)  # args.num_candidates - 1
-                        candidates_2.append(m_hard_candidates)
+                            # Append new hard negatives
+                            if c not in mention_hard_negatives[mention_id]:
+                                mention_hard_negatives[mention_id].append(c)
+
+                candidates_2 = []
+                # candidates_2.append(label_candidate_id)  # positive candidate
+                # Append hard negative candidates
+                for m_idx, m in enumerate(mentions[document_id]):
+                    mention_id = m["mention_id"]
+                    if len(mention_hard_negatives[mention_id]) < args.num_candidates:  # args.num_candidates - 1
+                        m_hard_candidates = mention_hard_negatives[mention_id]
+                    else:
+                        candidate_pool = mention_hard_negatives[mention_id]
+                        m_hard_candidates = random.sample(candidate_pool, args.num_candidates)  # args.num_candidates - 1
+                    candidates_2.append(m_hard_candidates)
 
         elif args.do_eval:
             for m_idx, m in enumerate(mentions[document_id]):

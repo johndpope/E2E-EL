@@ -175,6 +175,8 @@ def train(args, model, tokenizer):
             ner_inputs = {"args": args,
                           "mention_token_ids": batch[0],
                           "mention_token_masks": batch[1],
+                          "mention_start_indices": batch[7],
+                          "mention_end_indices": batch[8],
                           "seq_tags": batch[10],
                           "mode": 'ner',
                           }
@@ -812,6 +814,12 @@ def main():
         type=int,
         help="The maximum total input sequence length after tokenization. Sequences longer "
         "than this will be truncated, sequences shorter will be padded.",
+    )
+    parser.add_argument(
+        "--max_mention_length",
+        default=20,
+        type=int,
+        help="Maximum length of a mention span"
     )
     parser.add_argument("--do_train", action="store_true", help="Whether to run training.")
     parser.add_argument("--do_eval", action="store_true", help="Whether to run eval on the test set.")
