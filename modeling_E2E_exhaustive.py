@@ -25,7 +25,8 @@ class DualEncoderBert(BertPreTrainedModel):
         self.bound_classifier = nn.Linear(config.hidden_size, 3)
         self.init_modules()
         self.loss_fn_linker = nn.CrossEntropyLoss(ignore_index=-1)
-        self.loss_fn_tagger = nn.CrossEntropyLoss(ignore_index=-100)
+        self.loss_fn_ner = nn.BCEWithLogitsLoss()
+        self.BIGINT = 1e31
 
     def init_modules(self):
         for module in self.bound_classifier.modules():
@@ -63,12 +64,12 @@ class DualEncoderBert(BertPreTrainedModel):
             end_scores = end_scores.squeeze(-1)
             mention_scores = mention_scores.squeeze(-1)
             # Exclude The masked tokens from start or end mentions
-            start_scores[torch.where(mention_token_masks == 0)] = -float("Inf")
-            end_scores[torch.where(mention_token_masks == 0)] = -float("Inf")
-            mention_scores[torch.where(mention_token_masks == 0)] = -float("Inf")
+            start_scores[torch.where(mention_token_masks == 0)] = -self.BIGINT
+            end_scores[torch.where(mention_token_masks == 0)] = -self.BIGINT
+            mention_scores[torch.where(mention_token_masks == 0)] = -self.BIGINT
 
             cumulative_mention_scores = torch.zeros(mention_token_masks.size()).to(mention_token_masks.device)
-            cumulative_mention_scores[torch.where(mention_token_masks == 0)] = -float("Inf")
+            cumulative_mention_scores[torch.where(mention_token_masks == 0)] = -self.BIGINT
             cumulative_mention_scores[:, 0] = mention_scores[:, 0]
             for i in range(1, mention_token_masks.size(1)):
                 cumulative_mention_scores[:, i] = cumulative_mention_scores[:, i-1] + mention_scores[:, i]
@@ -87,12 +88,10 @@ class DualEncoderBert(BertPreTrainedModel):
             possible_rows, possible_cols = torch.triu_indices(all_span_scores.size(1), all_span_scores.size(2))
             impossible_mask[(possible_rows, possible_cols)] = 1
             impossible_mask = impossible_mask.unsqueeze(0).expand_as(all_span_scores)
-            all_span_scores[torch.where(impossible_mask == 0)] = -float("Inf")
-            # Convert the scores the log-likelihoods
-            all_span_logprobs = torch.sigmoid(all_span_scores).log()  # Dim: B X L X L
+            all_span_scores[torch.where(impossible_mask == 0)] = -self.BIGINT
 
             # Spans with logprobs  minus "Inf" are invalid
-            all_spans = torch.where(all_span_logprobs > -float("Inf"))
+            all_spans = torch.where(all_span_scores > -self.BIGINT)
             all_doc_indices = all_spans[0]
             all_start_indices = all_spans[1]
             all_end_indices = all_spans[2]
@@ -104,30 +103,30 @@ class DualEncoderBert(BertPreTrainedModel):
             valid_end_indices = all_end_indices[valid_span_indices]
 
             valid_spans = torch.stack((valid_doc_indices, valid_start_indices, valid_end_indices), dim=0)
+            valid_span_scores = all_span_scores[(valid_doc_indices, valid_start_indices, valid_end_indices)]
 
-            pred_spans = set()
-            for i in range(valid_spans.size(1)):
-                pred_spans.add((valid_spans[0][i].item(), valid_spans[1][i].item(), valid_spans[2][i].item()))
+            targets = torch.zeros(valid_spans.size(-1), dtype=torch.float32).to(valid_spans.device)
 
-            gt_spans = set()
-            gt_start_end_indices = torch.stack([mention_start_indices, mention_end_indices], dim=1)
-            for i in range(gt_start_end_indices.size(0)):
-                for j in range(gt_start_end_indices.size(-1)):
-                    gt_spans.add((i, gt_start_end_indices[i][0][j].item(), gt_start_end_indices[i][1][j].item()))
+            gold_spans = set()
+            gold_start_end_indices = torch.stack([mention_start_indices, mention_end_indices], dim=1)
+            for i in range(gold_start_end_indices.size(0)):
+                for j in range(gold_start_end_indices.size(-1)):
+                    # (0, 0) can't be a mention span. 0-th index corresponds to [CLS]
+                    if gold_start_end_indices[i][0][j].item() == 0 and gold_start_end_indices[i][1][j].item() == 0:
+                        continue
+                    else:
+                        gold_spans.add((i, gold_start_end_indices[i][0][j].item(), gold_start_end_indices[i][1][j].item()))
+
+            for i in range(valid_spans.size(-1)):
+                pred_span = (valid_spans[0][i].item(), valid_spans[1][i].item(), valid_spans[2][i].item())
+                if pred_span in gold_spans:
+                    targets[i] = 1.0
 
             if self.training:
-                ner_loss = 0
-                # ylog(p) + (1-y)log(1-p)
-                for (i, s_idx, e_idx) in pred_spans:
-                    if (i, s_idx, e_idx) in gt_spans:
-                        ner_loss = ner_loss - all_span_logprobs[i, s_idx, e_idx]
-                    else:
-                        ner_loss = ner_loss - torch.log(1 - torch.exp(all_span_logprobs[i, s_idx, e_idx]))
-                ner_loss = ner_loss / len(pred_spans)
+                ner_loss = self.loss_fn_ner(valid_span_scores, targets)
                 return ner_loss
             else:
-                valid_span_logprobs = all_span_logprobs[(valid_doc_indices, valid_span_indices, valid_end_indices)]
-                return valid_start_indices, valid_end_indices, valid_span_logprobs
+                return valid_start_indices, valid_end_indices, valid_span_scores
 
         if mode == 'ned':
             if mention_start_indices is not None and mention_end_indices is not None:

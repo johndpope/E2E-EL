@@ -25,6 +25,7 @@ def get_examples(data_dir, mode):
     entities = {}
     with open(entity_path, encoding='utf-8') as f:
         for line in f:
+            print(line.strip().split('\t'))
             e, _, text = line.strip().split('\t')
             entities[e] = text
 

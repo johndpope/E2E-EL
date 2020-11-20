@@ -125,6 +125,18 @@ def train(args, model, tokenizer):
             model, device_ids=[args.local_rank], output_device=args.local_rank, find_unused_parameters=True
         )
 
+    # For debugging: Register backward hooks to check gradient
+
+    # def hook(self, grad_in, grad_out):
+    #     print(self)
+    #     print('grad_in')
+    #     print([_grad_in for _grad_in in grad_in if _grad_in is not None])
+    #     print('grad_out')
+    #     print([_grad_out for _grad_out in grad_out if _grad_out is not None])
+    #
+    # for module in model.modules():
+    #     module.register_backward_hook(hook)
+
     # Train!
     logger.info("***** Running training *****")
     logger.info("  Num examples = %d", len(train_dataset))
