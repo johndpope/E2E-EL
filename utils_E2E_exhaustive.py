@@ -25,6 +25,7 @@ def get_examples(data_dir, mode):
     entities = {}
     with open(entity_path, encoding='utf-8') as f:
         for line in f:
+            
             e, _, text = line.strip().split('\t')
             entities[e] = text
 
@@ -100,6 +101,7 @@ def get_mention_window(mention_id, mentions, docs,  max_seq_length, tokenizer):
 
 
 def get_marked_mentions(document_id, mentions, docs,  max_seq_length, tokenizer, args):
+    # print("Num mention in this doc =", len(mentions[document_id]))
     for m in mentions[document_id]:
         assert m['content_document_id'] == document_id
 
@@ -109,10 +111,14 @@ def get_marked_mentions(document_id, mentions, docs,  max_seq_length, tokenizer,
     mention_end_markers = []
     sequence_tags = []
 
+    # print(len(context_text))
     prev_end_index = 0
     for m in mentions[document_id]:
         start_index = m['start_index']
         end_index = m['end_index']
+        # print(start_index, end_index)
+        if start_index >= len(context_text):
+            continue
         extracted_mention = context_text[start_index: end_index]
 
         # Text between the end of last mention and the beginning of current mention
@@ -275,6 +281,8 @@ def convert_examples_to_features(
     all_document_ids = []
     all_label_candidate_ids = []
     for (ex_index, document_id) in enumerate(mentions.keys()):
+        # pdb.set_trace()
+        # print(document_id)
         if ex_index % 1000 == 0:
             logger.info("Writing example %d of %d", ex_index, len(mentions))
 
@@ -290,6 +298,7 @@ def convert_examples_to_features(
                                                                             max_seq_length,
                                                                             tokenizer,
                                                                             args)
+        # print(mention_start_markers, mention_end_markers)
         doc_tokens = tokenizer.convert_tokens_to_ids(doc_tokens_)
         seq_tag_ids = convert_tags_to_ids(seq_tags)
 
@@ -391,6 +400,7 @@ def convert_examples_to_features(
                 # mention_embeddings = mention_embeddings.reshape(-1, 1, hidden_size) # M X 1 X H
 
                 mention_embeddings = []
+                # print(mention_start_markers, mention_end_markers)
                 for i, (s_idx, e_idx) in enumerate(zip(mention_start_markers, mention_end_markers)):
                     m_embd = torch.mean(last_hidden_states[:, s_idx:e_idx+1, :], dim=1)
                     mention_embeddings.append(m_embd)
@@ -402,20 +412,24 @@ def convert_examples_to_features(
 
                 # distance, candidate_indices = all_candidate_index.search(mention_embedding, args.num_candidates)
                 # candidate_indices = candidate_indices[0]  # original size 1 X 10 -> 10
+                # print(mention_embeddings)
                 similarity_scores = torch.bmm(mention_embeddings,
                                               all_candidate_embeddings_.transpose(1, 2))  # M X 1 X C_all
                 similarity_scores = similarity_scores.squeeze(1)  # M X C_all
+                # print(similarity_scores)
                 distance, candidate_indices = torch.topk(similarity_scores, k=args.num_candidates)
 
                 candidate_indices = candidate_indices.cpu().detach().numpy().tolist()
+                # print(candidate_indices)
 
+                # print(len(mentions[document_id]))
                 for m_idx, m in enumerate(mentions[document_id]):
                     mention_id = m["mention_id"]
                     # Update the list of hard negatives for this `mention_id`
                     if mention_id not in mention_hard_negatives:
                         mention_hard_negatives[mention_id] = []
+                    # print(m_idx)
                     for i, c_idx in enumerate(candidate_indices[m_idx]):
-                        # print(c_idx, len(all_entities))
                         c = all_entities[c_idx]
                         if c == m["label_candidate_id"]:  # Positive candidate position
                             if i not in position_of_positive:

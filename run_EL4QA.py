@@ -891,7 +891,6 @@ def main():
     parser.add_argument(
         "--ner_and_ned", type=bool, default=True, help="Model will perform both BIO tagging and entity linking per batch during training"
     )
-
     parser.add_argument(
         "--lambda_1", type=float, default=1, help="Weight of the random candidate loss"
     )

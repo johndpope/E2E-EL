@@ -184,19 +184,18 @@ def train(args, model, tokenizer):
             model.train()
             batch = tuple(t.to(args.device) for t in batch)
 
+
             ner_inputs = {"args": args,
                           "mention_token_ids": batch[0],
                           "mention_token_masks": batch[1],
                           "mention_start_indices": batch[7],
                           "mention_end_indices": batch[8],
-                          "seq_tags": batch[10],
                           "mode": 'ner',
                           }
 
             if args.use_hard_and_random_negatives:
                 ned_inputs = {"args": args,
-                              "mention_token_ids": batch[0],
-                              "mention_token_masks": batch[1],
+                              "last_hidden_states": None,
                               "mention_start_indices": batch[7],
                               "mention_end_indices": batch[8],
                               "candidate_token_ids_1": batch[2],
@@ -217,9 +216,8 @@ def train(args, model, tokenizer):
                               "labels": batch[6],
                               "mode": 'ned',
                               }
-
             if args.ner:
-                loss = model.forward(**ner_inputs)
+                loss, _ = model.forward(**ner_inputs)
             elif args.alternate_batch:
                 # Randomly choose whether to do tagging or NED for the current batch
                 if random.random() <= 0.5:
@@ -227,7 +225,8 @@ def train(args, model, tokenizer):
                 else:
                     loss, _ = model.forward(**ned_inputs)
             elif args.ner_and_ned:
-                ner_loss = model.forward(**ner_inputs)
+                ner_loss, last_hidden_states = model.forward(**ner_inputs)
+                ned_inputs["last_hidden_states"] = last_hidden_states
                 ned_loss, _ = model.forward(**ned_inputs)
                 loss = ner_loss + ned_loss
             else:
@@ -533,53 +532,32 @@ def evaluate(args, model, tokenizer, prefix=""):
                          "mention_token_masks": batch[1],
                          "mode": 'ner',
                          }
-            tag_logits = model.forward(**doc_input)
-            predicted_tags = torch.argmax(tag_logits, dim=2).detach() #.cpu().numpy()
-
-            # Find the length of the docs (number of tokens without [PAD])
-            mention_token_masks = batch[1]
-            doc_lens = torch.sum(mention_token_masks, dim=1).detach().cpu().numpy()
-
-            pred_mention_start_indices, pred_mention_end_indices = get_mention_spans(doc_input["mention_token_ids"],
-                                                                                     predicted_tags,
-                                                                                     doc_lens)
-
-            # unmatched_gold_mentions, extraneous_predicted_mentions, \
-            # overlapping_start_indices, overlapping_end_indices, which_gold_spans \
-            #     = find_partially_overlapping_spans(pred_mention_start_indices, pred_mention_end_indices,\
-            #                                  gold_mention_start_indices, gold_mention_end_indices, doc_lens)
-
-            # Update metric counts
-            # fp += extraneous_predicted_mentions
-            # fn += unmatched_gold_mentions
-
-            # Convert to tensors
-            # overlapping_start_indices = torch.LongTensor(overlapping_start_indices).to(args.device)
-            # overlapping_end_indices = torch.LongTensor(overlapping_end_indices).to(args.device)
-            # which_gold_spans = torch.LongTensor(which_gold_spans).to(args.device)
-            # predicted_tags = predicted_tags.to(args.device)
-            # out_label_ids = torch.gather(batch[6], 1, which_gold_spans)
-
-
-
-            pred_mention_start_indices = torch.tensor(pred_mention_start_indices).long().to(args.device)
-            pred_mention_end_indices = torch.tensor(pred_mention_end_indices).long().to(args.device)
+            pred_mention_start_indices, pred_mention_end_indices, pred_mention_span_scores, last_hidden_states = model.forward(**doc_input)
+            pred_mention_span_probs = torch.sigmoid(pred_mention_span_scores)
+            spans_after_prunning = torch.where(pred_mention_span_probs >= args.gamma)
+            # print(spans_after_prunning)
+            if spans_after_prunning[0].size(0) > 0:
+                mention_start_indices = pred_mention_start_indices[spans_after_prunning]
+                mention_end_indices = pred_mention_end_indices[spans_after_prunning]
+            else:
+                mention_start_indices = pred_mention_start_indices
+                mention_end_indices = pred_mention_end_indices
 
             if args.use_all_candidates:
                 mention_inputs = {"args": args,
-                                  "mention_token_ids": batch[0],
-                                  "mention_token_masks": batch[1],
-                                  "mention_start_indices": pred_mention_start_indices, # batch[7],  #overlapping_start_indices,
-                                  "mention_end_indices": pred_mention_end_indices, # batch[8], # overlapping_end_indices,
+                                  "last_hidden_states": last_hidden_states,
+                                  "mention_start_indices": mention_start_indices.unsqueeze(0),
+                                  # batch[7],  #overlapping_start_indices,
+                                  "mention_end_indices": mention_end_indices.unsqueeze(0),
+                                  # batch[8], # overlapping_end_indices,
                                   "all_candidate_embeddings": all_candidate_embeddings,
                                   "mode": 'ned',
                                   }
             else:
                 mention_inputs = {"args": args,
-                                  "mention_token_ids": batch[0],
-                                  "mention_token_masks": batch[1],
-                                  "mention_start_indices": batch[7],
-                                  "mention_end_indices": batch[8],
+                                  "last_hidden_states": last_hidden_states,
+                                  "mention_start_indices": mention_start_indices,
+                                  "mention_end_indices": mention_start_indices,
                                   "candidate_token_ids_1": batch[2],
                                   "candidate_token_masks_1": batch[3],
                                   "mode": 'ned',
@@ -609,31 +587,30 @@ def evaluate(args, model, tokenizer, prefix=""):
                 if gold_mention_start_indices[j] > gold_mention_end_indices[j]:
                     continue
                 gold_write = document_ids[j] + '\t' + str(gold_mention_start_indices[j]) \
-                                        + '\t' + str(gold_mention_end_indices[j]) \
-                                        + '\t' + gold_entities[j] \
-                                        + '\t' + str(1.0) \
-                                        + '\t' + 'NA' + '\n'
+                             + '\t' + str(gold_mention_end_indices[j]) \
+                             + '\t' + str(gold_entities[j]) \
+                             + '\t' + str(1.0) \
+                             + '\t' + 'NA' + '\n'
                 gold_file.write(gold_write)
 
             # Write the predicted entities
             doc_id_processed = document_ids[0]
             num_pred_mentions = len(predicted_entities)
-            pred_mention_start_indices = pred_mention_start_indices.detach().cpu().numpy()[0]
-            pred_mention_end_indices = pred_mention_end_indices.detach().cpu().numpy()[0]
+            mention_start_indices = mention_start_indices.detach().cpu().numpy()
+            mention_end_indices = mention_end_indices.detach().cpu().numpy()
             for j in range(num_pred_mentions):
                 # if pred_mention_start_indices[j] == pred_mention_end_indices[j]:
                 #     pred_mention_end_indices[j] += 1
                 if pred_mention_start_indices[j] > pred_mention_end_indices[j]:
                     continue
-                pred_write = doc_id_processed + '\t' + str(pred_mention_start_indices[j]) \
-                                            + '\t' + str(pred_mention_end_indices[j]) \
-                                            + '\t' + predicted_entities[j] \
-                                            + '\t' + str(1.0) \
-                                            + '\t' + 'NA' + '\n'
+                pred_write = doc_id_processed + '\t' + str(mention_start_indices[j]) \
+                             + '\t' + str(mention_end_indices[j]) \
+                             + '\t' + str(predicted_entities[j]) \
+                             + '\t' + str(1.0) \
+                             + '\t' + 'NA' + '\n'
                 pred_file.write(pred_write)
 
             num_mention_processed += num_mentions
-
 
             # for b_idx in range(sorted_preds.size(0)):
     #         for i, sorted_pred in enumerate(sorted_preds):
@@ -915,14 +892,15 @@ def main():
     parser.add_argument(
         "--ner_and_ned", type=bool, default=True, help="Model will perform both BIO tagging and entity linking per batch during training"
     )
-
+    parser.add_argument(
+        "--gamma", type=float, default=0, help="Threshold for mention candidate prunning"
+    )
     parser.add_argument(
         "--lambda_1", type=float, default=1, help="Weight of the random candidate loss"
     )
     parser.add_argument(
         "--lambda_2", type=float, default=0, help="Weight of the hard negative candidate loss"
     )
-
     parser.add_argument("--seed", type=int, default=42, help="random seed for initialization")
 
     parser.add_argument(
